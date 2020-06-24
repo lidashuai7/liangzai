@@ -1,0 +1,251 @@
+package com.cy.pj.vo.zsm;
+
+import java.util.Date;
+
+public class house_xq {
+
+	
+	private String houseid;
+	
+	private Integer landlordid;
+	
+	private String housename;
+	
+	private String housecity;
+	
+	private String houseaddress;
+	
+	private String masterphone;
+	
+	private Integer leaseway;
+	
+	private String houseclass;
+	
+	private Integer floorspace;
+	
+	private String housetype;
+	
+	private String bedtype;
+	
+	private Integer housenumber;
+	
+	private String housefeature;
+	
+	private String position;
+	
+	private String ambitus;
+	
+	private String status;
+	
+	private Integer baseprice;
+	
+	private Integer minday;
+	
+	private String picturepath;
+	
+	private Date housetime;
+
+	@Override
+	public String toString() {
+		return "house_xq [houseid=" + houseid + ", landlordid=" + landlordid + ", housename=" + housename
+				+ ", housecity=" + housecity + ", houseaddress=" + houseaddress + ", masterphone=" + masterphone
+				+ ", leaseway=" + leaseway + ", houseclass=" + houseclass + ", floorspace=" + floorspace
+				+ ", housetype=" + housetype + ", bedtype=" + bedtype + ", housenumber=" + housenumber
+				+ ", housefeature=" + housefeature + ", position=" + position + ", ambitus=" + ambitus + ", status="
+				+ status + ", baseprice=" + baseprice + ", minday=" + minday + ", picturepath=" + picturepath
+				+ ", housetime=" + housetime + "]";
+	}
+
+	public house_xq(String houseid, Integer landlordid, String housename, String housecity, String houseaddress,
+			String masterphone, Integer leaseway, String houseclass, Integer floorspace, String housetype,
+			String bedtype, Integer housenumber, String housefeature, String position, String ambitus, String status,
+			Integer baseprice, Integer minday, String picturepath, Date housetime) {
+		super();
+		this.houseid = houseid;
+		this.landlordid = landlordid;
+		this.housename = housename;
+		this.housecity = housecity;
+		this.houseaddress = houseaddress;
+		this.masterphone = masterphone;
+		this.leaseway = leaseway;
+		this.houseclass = houseclass;
+		this.floorspace = floorspace;
+		this.housetype = housetype;
+		this.bedtype = bedtype;
+		this.housenumber = housenumber;
+		this.housefeature = housefeature;
+		this.position = position;
+		this.ambitus = ambitus;
+		this.status = status;
+		this.baseprice = baseprice;
+		this.minday = minday;
+		this.picturepath = picturepath;
+		this.housetime = housetime;
+	}
+
+	public house_xq() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getHouseid() {
+		return houseid;
+	}
+
+	public void setHouseid(String houseid) {
+		this.houseid = houseid;
+	}
+
+	public Integer getLandlordid() {
+		return landlordid;
+	}
+
+	public void setLandlordid(Integer landlordid) {
+		this.landlordid = landlordid;
+	}
+
+	public String getHousename() {
+		return housename;
+	}
+
+	public void setHousename(String housename) {
+		this.housename = housename;
+	}
+
+	public String getHousecity() {
+		return housecity;
+	}
+
+	public void setHousecity(String housecity) {
+		this.housecity = housecity;
+	}
+
+	public String getHouseaddress() {
+		return houseaddress;
+	}
+
+	public void setHouseaddress(String houseaddress) {
+		this.houseaddress = houseaddress;
+	}
+
+	public String getMasterphone() {
+		return masterphone;
+	}
+
+	public void setMasterphone(String masterphone) {
+		this.masterphone = masterphone;
+	}
+
+	public Integer getLeaseway() {
+		return leaseway;
+	}
+
+	public void setLeaseway(Integer leaseway) {
+		this.leaseway = leaseway;
+	}
+
+	public String getHouseclass() {
+		return houseclass;
+	}
+
+	public void setHouseclass(String houseclass) {
+		this.houseclass = houseclass;
+	}
+
+	public Integer getFloorspace() {
+		return floorspace;
+	}
+
+	public void setFloorspace(Integer floorspace) {
+		this.floorspace = floorspace;
+	}
+
+	public String getHousetype() {
+		return housetype;
+	}
+
+	public void setHousetype(String housetype) {
+		this.housetype = housetype;
+	}
+
+	public String getBedtype() {
+		return bedtype;
+	}
+
+	public void setBedtype(String bedtype) {
+		this.bedtype = bedtype;
+	}
+
+	public Integer getHousenumber() {
+		return housenumber;
+	}
+
+	public void setHousenumber(Integer housenumber) {
+		this.housenumber = housenumber;
+	}
+
+	public String getHousefeature() {
+		return housefeature;
+	}
+
+	public void setHousefeature(String housefeature) {
+		this.housefeature = housefeature;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
+	}
+
+	public String getAmbitus() {
+		return ambitus;
+	}
+
+	public void setAmbitus(String ambitus) {
+		this.ambitus = ambitus;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Integer getBaseprice() {
+		return baseprice;
+	}
+
+	public void setBaseprice(Integer baseprice) {
+		this.baseprice = baseprice;
+	}
+
+	public Integer getMinday() {
+		return minday;
+	}
+
+	public void setMinday(Integer minday) {
+		this.minday = minday;
+	}
+
+	public String getPicturepath() {
+		return picturepath;
+	}
+
+	public void setPicturepath(String picturepath) {
+		this.picturepath = picturepath;
+	}
+
+	public Date getHousetime() {
+		return housetime;
+	}
+
+	public void setHousetime(Date housetime) {
+		this.housetime = housetime;
+	}
+	
+}

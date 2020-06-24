@@ -1,0 +1,112 @@
+﻿import inet.http;
+import debug.log;
+import web.json;
+import web.rest.jsonLiteClient;
+import web.rest.client;
+namespace capi{
+    //配置文件读取
+	cfg = ..fsys.config("/config/");
+	//..console.log('读取配置文件');
+	//运行配置
+	if(!cfg.server.http){
+		win.msgboxErr("请设置服务器的地址","抱歉，有错误发生");
+		//cfg.server.http = "127.0.0.1";
+		return;	
+	}
+	serverHttpPort = 9981
+	
+	
+	get = function(apiAction,params=false){
+		var url  = "http://"++cfg.server.http++":"++serverHttpPort++apiAction;
+		var http = ..inet.http();
+		var data = self.checkParams(params);
+		url = url++"?"++data;
+		..debug.log.print(url);
+		var html,err,errCode = http.get(url); 
+		var json = null;
+		if(!html){
+			if( http.statusCode ){
+				//服务端返回错误信息
+				debug.log.print("接口服务器发生错误：", http.lastResponse(), "HTTP错误代码:" + http.statusCode )
+			}
+			else{
+				//本地内部错误
+				debug.log.print("本地请求发生错误：",err,errCode );
+			}
+		}else {
+			json = ..web.json.parse(html);
+		}
+		
+		http.close();
+		return json;	
+	}
+	post = function(apiAction,params=false){
+		var url  = "http://"++cfg.server.http++":"++serverHttpPort++apiAction;
+		var http = ..inet.http();
+		var data = self.checkParams(params);
+		var html,err,errCode = http.post(url,data); 
+		var json = null;
+		if(!html){
+			if( http.statusCode ){
+				//服务端返回错误信息
+				debug.log.print("接口服务器发生错误：", http.lastResponse(), "HTTP错误代码:" + http.statusCode )
+			}
+			else{
+				//本地内部错误
+				debug.log.print("本地请求发生错误：",err,errCode );
+			}
+		}else{
+			json = ..web.json.parse(html);
+		}
+		
+		http.close();
+		return json;
+	}
+	
+	checkParams = function(params){
+		var values = "";
+		var ext    = "";
+		if(params){
+			for(k,v in params){
+				values = values ++ ext ++ k ++ "=" ++ v; 
+				ext = "&";
+			}	
+		}
+		return values; 
+	}
+	
+	jsonPost = function(action,params){
+		var url = "http://"++cfg.server.http++":"++serverHttpPort++action;
+		var restClient = ..web.rest.jsonLiteClient();  
+		var jsonData = restClient.post(url,params);
+		..debug.log.dumpJson(jsonData);
+		return jsonData; 
+	}
+	
+	upload = function(fileName){
+		var http = ..web.rest.client();
+		//声明一个rest-rpc接口,第一个参数指定URL描述
+		var url = "http://"++cfg.server.http++":"++serverHttpPort++"/api/main/upload";
+		//..debug.log.print("上传路径：",url);
+		
+		http.sendMultipartForm( {
+        	file = "@"++fileName;
+    		},function(str,sendSize,contentLength){
+        		//..console.log("正在上传",sendSize,contentLength);
+    		}
+		);
+		var str =http.post(url);
+		//..console.log("+----------------------------------------------------------")
+		//..console.log(str);
+		
+		return ..web.json.parse(str);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}

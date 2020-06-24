@@ -1,0 +1,127 @@
+import win.ui;
+import fsys.dlg;
+import web.json;
+import inet.http;
+/*DSG{{*/
+var winform = win.form(text="我的个人信息0xFF555555";right=529;bottom=422;bgcolor=16777215;border="none";frame=1;mode="popup")
+winform.add(
+depart={cls="edit";left=94;top=222;right=234;bottom=248;disabled=1;edge=1;z=7};
+email={cls="edit";left=327;top=261;right=467;bottom=287;edge=1;z=19};
+fase={cls="plus";left=35;top=21;right=153;bottom=139;border={color=-3355444;radius=6;width=2};clipch=1;foreRepeat="expand";foreground="\data\face\g.jpg";notify=1;z=3};
+groupbox={cls="groupbox";text="登录信息";left=182;top=14;right=499;bottom=142;bgcolor=16777215;edge=1;z=2};
+groupbox2={cls="groupbox";text="基本资料";left=15;top=156;right=499;bottom=307;bgcolor=16777215;edge=1;z=1};
+name={cls="edit";left=281;top=43;right=421;bottom=69;disabled=1;edge=1;multiline=1;readonly=1;z=13};
+nickname={cls="edit";left=327;top=183;right=467;bottom=209;edge=1;z=5};
+pwd={cls="edit";left=281;top=83;right=421;bottom=109;edge=1;multiline=1;password=1;z=15};
+realname={cls="edit";left=94;top=183;right=234;bottom=209;border=1;z=9};
+reset={cls="plus";text="取消";left=87;top=334;right=212;bottom=378;border={color=-657931;width=1};notify=1;z=20};
+static={cls="static";text="昵称：";left=269;top=184;right=343;bottom=219;transparent=1;z=4};
+static2={cls="static";text="部门：";left=37;top=225;right=111;bottom=260;transparent=1;z=6};
+static3={cls="static";text="姓名：";left=37;top=186;right=111;bottom=221;transparent=1;z=8};
+static4={cls="static";text="手机：";left=269;top=226;right=343;bottom=261;transparent=1;z=10};
+static5={cls="static";text="登录账户：";left=197;top=48;right=271;bottom=83;transparent=1;z=12};
+static6={cls="static";text="登录密码：";left=197;top=87;right=271;bottom=120;transparent=1;z=14};
+static7={cls="static";text="微信：";left=37;top=262;right=111;bottom=297;transparent=1;z=16};
+static8={cls="static";text="Email：";left=266;top=262;right=340;bottom=297;transparent=1;z=18};
+submit={cls="plus";text="修 改";left=300;top=334;right=425;bottom=378;border={color=-16738680;width=1};notify=1;z=21};
+tel={cls="edit";left=327;top=222;right=467;bottom=248;edge=1;z=11};
+weixin={cls="edit";left=94;top=261;right=234;bottom=287;edge=1;z=17}
+)
+/*}}*/
+
+//填入用户基本信息
+var userInfo = global.userInfo;
+if(userInfo.face && userInfo!=""){
+	winform.fase.foreground = inet.http().get(userInfo.face);
+}
+if(userInfo.depart_name) winform.depart.text = userInfo.depart_name;
+if(userInfo.name) winform.name.text = userInfo.name;
+if(userInfo.nick_name) winform.nickname.text = userInfo.nick_name;
+if(userInfo.real_name) winform.realname.text = userInfo.real_name;
+if(userInfo.email) winform.email.text = userInfo.email;
+if(userInfo.weixin) winform.weixin.text = userInfo.weixin;
+if(userInfo.tel) winform.tel.text = userInfo.tel;
+//填入结束
+
+winform.reset.oncommand = function(id,event){
+	winform.close();
+}
+
+winform.submit.skin({
+	background={
+		active=0xFF007368;
+		default=0xFF009688;
+		hover=0xFF43BAAB
+	};
+	color={
+		default=0xFFFFFFFF
+	}
+});
+
+winform.reset.skin({
+	background={
+		active=0xFFC9C9C9;
+		default=0xFFFFFFFF;
+		hover=0xA3F5F5F5
+	};
+	color={
+		default=0xFF555555
+	}
+});
+
+winform.fase.skin(
+	background = { 
+		hover = "/res/images/btn-hover.png";
+		focus = "/res/images/btn-focus.jpg";
+		active = "/res/images/btn-active.png";
+		disabled = "/res/images/btn-disabled.png"; 
+	}
+)
+winform.fase.oncommand = function(id,event){
+	import capi;
+	var userInfo = global.userInfo;
+	var filePath  = ..fsys.dlg.open(,"选择要上传的头像文件");
+        //console.log(filePath);
+    if(!filePath) return;
+    winform.fase.foreground = filePath;
+    //..console.log(filePath);
+ 	var upjson = capi.upload(filePath);
+ 	//..console.print(upjson);
+ 	if(upjson.status==1){
+ 		var userInfo = global.userInfo;
+ 		var data     = {uid=userInfo.id;face=upjson.file}
+ 		var res		 = capi.post("/api/user/edit",{token=global.loginToken;data=web.json.stringify(data)});
+ 		//..console.dumpJson(res);
+ 		if(res.status==1){
+ 			
+ 		}else{
+ 			win.msgboxErr(res.msg,"抱歉，发生了错误");	
+ 		}
+ 		
+ 	}else {
+ 		win.msgboxErr("文件上传失败","抱歉，发生了错误");
+ 	}		
+}
+
+winform.submit.oncommand = function(id,event){
+	var postData ={};
+	postData.uid = global.userInfo.id;
+	if(winform.nickname.text!="") postData.nick_name = winform.nickname.text;
+	if(winform.realname.text!="") postData.real_name = winform.realname.text;
+	if(winform.email.text!="") 	  postData.email = winform.email.text;
+	if(winform.weixin.text!="") postData.weixin = winform.weixin.text;
+	if(winform.tel.text!="") postData.tel = winform.tel.text;
+	if(winform.pwd.text!="") postData.pwd = winform.pwd.text;
+	import capi;
+	var rst = capi.post("/api/user/edit",{token=global.loginToken;data=web.json.stringify(postData)});
+	if(rst.status==1){
+		win.msgbox(rst.msg++"","操作成功");
+	}else{
+		win.msgboxErr(rst.msg,"抱歉，发生了错误");
+	}
+	
+}
+
+winform.show();
+win.loopMessage();
+return winform;

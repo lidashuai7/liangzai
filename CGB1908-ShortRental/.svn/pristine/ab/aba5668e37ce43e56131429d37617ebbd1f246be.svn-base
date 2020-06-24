@@ -1,0 +1,35 @@
+package com.cy.pj.service.xln.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cy.pj.dao.xln.OrderMapper;
+import com.cy.pj.service.xln.OrderManageService;
+import com.cy.pj.vo.xln.AllOrder;
+import com.cy.pj.vo.xln.NoPayOrder;
+import com.cy.pj.vo.xln.PayOrder;
+@Service
+public class OrderManageServiceImpl implements OrderManageService{
+	@Autowired
+	private OrderMapper orderMapper;
+	@Override
+	public List<AllOrder> allOrderFind() {
+		List<AllOrder> allOrder = orderMapper.allOrderFind();
+		return allOrder;
+	}
+ 
+	@Override
+	public List<NoPayOrder> noOrderFind() {
+		List<NoPayOrder> noOrder = orderMapper.noOrderFind();
+		return noOrder;
+	}
+
+	@Override
+	public List<PayOrder> payOrderFind() {
+		List<PayOrder> payOrder = orderMapper.payOrderFind();
+		return payOrder;
+	}
+
+}

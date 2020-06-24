@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.pj.dao.xln.BrowseRecordsDao">
+	<sql id="queryWhereId">
+		<where>
+			h.house_id=p.house_id and p.house_id=price.house_id and price.house_id=b.house_id
+			<if test="username!=null and username!='' ">
+			and	b.username=#{username}
+			</if>
+		</where>
+	</sql>
+	<sql id="queryWhere">
+		<where>
+			h.house_id=p.house_id and p.house_id=price.house_id and price.house_id=b.house_id
+			<if test="username!=null and username!='' ">
+			and	b.username=#{username}
+			</if>
+		</where>
+	</sql>
+	<select id="getRowCount" resultType="int">
+		select count(*) from tb_house h,tb_house_picture p,tb_house_price price,tb_house_browse b
+		<include refid="queryWhereId"/>
+		 order by b.records_id desc
+	</select>
+	<select id="findBrowseRecords"
+		resultType="com.cy.pj.vo.xln.BrowseRecords">
+	select b.house_id houseId,h.house_address houseAddress,h.house_type
+	houseType,h.house_name houseName,p.picture_path picturePath,price.base_price basePrice,u.username
+	from tb_house h,tb_house_picture p,tb_house_price price,tb_house_browse b,tb_userinfo u
+	<include refid="queryWhere"/>
+	order by b.records_id desc limit #{startIndex},#{pageSize}
+	</select>
+	<insert id="addBrowseRescords">
+		insert into tb_house_browse(house_id,username) values(#{browseRecords.houseid},#{browseRecords.username});
+	</insert>	
+</mapper>

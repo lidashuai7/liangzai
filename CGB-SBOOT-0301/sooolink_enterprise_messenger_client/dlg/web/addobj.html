@@ -1,0 +1,75 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<link rel="stylesheet" href="layui/css/layui.css" media="all">
+
+	
+    <style>
+        .layui-transfer-header{
+            padding-top:10px;
+        }
+        #choose-chat-user{
+            margin-top: 10px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body style="overflow-y: hidden;">
+    
+    <div id="choose-chat-user" class="demo-transfer"></div>
+    <div  style="margin-top: 15px;text-align: center;">
+        <button class="layui-btn" lay-submit="" lay-filter="formDemo" onclick="startChat();">开始聊天</button>
+        <button type="reset" class="layui-btn layui-btn-primary" onclick="top.layer.closeAll();">取消</button>
+        <button type="reset" class="layui-btn layui-btn-primary" onclick="readfile()">read</button>
+    </div>
+</body>
+<script src="enoji/js/jquery.min.js"></script>
+<script src="layui/layui.all.js"></script>
+<script src="js/chat.js"></script>
+<script>
+    var data = [
+        {"value": "1", "title": "李白"}
+        ,{"value": "2", "title": "杜甫"}
+        ,{"value": "3", "title": "苏轼"}
+        ,{"value": "4", "title": "李清照"}
+        ,{"value": "5", "title": "鲁迅", "disabled": true}
+        ,{"value": "6", "title": "巴金"}
+        ,{"value": "7", "title": "冰心"}
+        ,{"value": "8", "title": "矛盾"}
+        ,{"value": "9", "title": "贤心"}
+    ];
+
+    layui.transfer.render({
+        elem: '#choose-chat-user'
+        ,data: data
+        ,title: ['全部成员', '聊天成员']
+        ,showSearch: true,
+        id:"choosevalue"
+    })
+
+  function startChat()
+  {
+    var data = layui.transfer.getData('choosevalue'); 
+    console.log(data.length);
+    if(data.length<1){
+        layer.msg("没有选择成员！");
+        return false;
+    }
+    if(data.length>1){
+        
+        chatMsg.addGroup(data);
+    }else{
+        chatMsg.addUser(data);
+    }
+    console.log(data);
+  }
+
+  function readfile() {
+      $.get("1.txt").success(function(content){
+        alert(content);
+      })
+  }
+</script>
+
+</html>

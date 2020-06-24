@@ -1,0 +1,42 @@
+2020-06-23 17:20:43,817 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-06-23 17:27:04,220 [Worker-11: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2020-06-23 17:27:04,802 [Worker-11: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2020-06-23 17:28:49,911 [Worker-4: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2020-06-23 17:28:54,301 [Worker-4: Updating Maven Project] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.cy:CGB-DB-SYS-V3.01:0.0.1-SNAPSHOT @ E:\JAVA\newworkspace\mobanspace\CGB-DB-SYS-V3.01\pom.xml.
+2020-06-23 17:29:01,001 [Worker-4: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /CGB-DB-SYS-V3.01/src/main/java
+2020-06-23 17:29:01,003 [Worker-4: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /CGB-DB-SYS-V3.01/src/main/resources
+2020-06-23 17:29:01,094 [Worker-4: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /CGB-DB-SYS-V3.01/src/main/resources
+2020-06-23 17:29:01,345 [Worker-4: Updating Maven Project] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /CGB-DB-SYS-V3.01/src/test/java
+2020-06-23 17:29:02,546 [Worker-4: Updating Maven Project] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 12 sec
+2020-06-23 17:29:07,253 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-23 17:29:07,303 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-06-23 17:29:07,408 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7126 resources
+2020-06-23 17:29:36,194 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-23 17:29:36,194 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\JAVA\newworkspace\mobanspace\CGB-DB-SYS-V3.01\src\test\resources
+2020-06-23 19:10:38,907 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-23 19:10:42,302 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-06-23 19:10:42,689 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7126 resources
+2020-06-23 19:10:46,057 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-23 19:10:46,057 [Worker-36: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\JAVA\newworkspace\mobanspace\CGB-DB-SYS-V3.01\src\test\resources
+2020-06-23 21:13:45,796 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-23 21:13:48,047 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-06-23 21:13:48,341 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7126 resources
+2020-06-23 21:13:52,364 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-23 21:13:52,364 [Worker-61: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\JAVA\newworkspace\mobanspace\CGB-DB-SYS-V3.01\src\test\resources
+2020-06-23 21:30:04,672 [Worker-68: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-23 21:30:09,413 [Worker-68: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-06-23 21:30:09,703 [Worker-68: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7126 resources
+2020-06-23 21:30:13,621 [Worker-68: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-23 21:30:13,621 [Worker-68: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\JAVA\newworkspace\mobanspace\CGB-DB-SYS-V3.01\src\test\resources
+2020-06-23 21:30:16,377 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-23 21:30:16,647 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-06-23 21:30:17,020 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7126 resources
+2020-06-23 21:30:19,432 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-23 21:30:19,432 [Worker-69: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\JAVA\newworkspace\mobanspace\CGB-DB-SYS-V3.01\src\test\resources
+2020-06-24 08:29:09,630 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2020-06-24 08:29:51,162 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-24 08:29:51,208 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2020-06-24 08:29:51,337 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 7126 resources
+2020-06-24 08:31:03,673 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2020-06-24 08:31:03,673 [Worker-2: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory E:\JAVA\newworkspace\mobanspace\CGB-DB-SYS-V3.01\src\test\resources
+2020-06-24 08:47:44,213 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

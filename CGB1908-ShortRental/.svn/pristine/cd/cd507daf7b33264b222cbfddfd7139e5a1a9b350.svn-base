@@ -1,0 +1,767 @@
+$(document).ready(function(){	
+	var type=1;//1=手机号;2=备用手机号
+	var show_id = "";
+	//----------------------------------弹窗 start---------------------------------------------------------------------------
+	//新手机号验证 弹窗
+	var newmobilevalidlayer;
+	function showNewMobileValidDiv(){
+		show_id = "#newmobilevaliddiv";
+		$("#textnewmobile").val("");
+		$("#newmobilevaliddiv i").html("+86");
+		newmobilevalidlayer = $.layer({
+			closeBtn : [0 , false],
+			type : 1,
+			title : false,
+			offset:['150px' , ''],
+			border : [0,0,'',false],
+			area : ['auto','auto'],
+			// move : ['.d-h3',true],
+			page : {dom : '#newmobilevaliddiv'}
+		});
+		$('#newmobilevaliddivclose').on('click',function(){
+			isopen = false;
+			txtnewmwait=0;
+			layer.close(newmobilevalidlayer);
+		});
+	}
+
+	//文本框或新 手机号验证 弹窗（原手机号验证）
+	var inputmobilevalidlayer;
+	function showInputMobileValidDiv(){
+		inputmobilevalidlayer = $.layer({
+			closeBtn : [0 , false],
+			type : 1,
+			title : false,
+			offset:['150px' , ''],
+			border : [0,0,'',false],
+			area : ['auto','auto'],
+			// move : ['.d-h3',true],
+			page : {dom : '#inputmobilevaliddiv'}
+		});
+		$('#inputmobilevaliddivclose').on('click',function(){
+			inmwait=0;
+			layer.close(inputmobilevalidlayer);
+		});
+	}
+
+	//输入新手机号  弹窗（获取验证码）
+	var setnewmobilevalidlayer;
+	function showSetNewMobileValidDiv(){
+		show_id = "#setnewmobilediv";
+		$("#newmobile").val("");
+		$("#setnewmobilediv i").html("+86");
+		setnewmobilevalidlayer = $.layer({
+			closeBtn : [0 , false],
+			type : 1,
+			title : false,
+			offset:['150px' , ''],
+			border : [0,0,'',false],
+			area : ['auto','auto'],
+			// move : ['.d-h3',true],
+			page : {dom : '#setnewmobilediv'}
+		});
+		$('#setnewmobiledivclose').on('click',function(){
+			layer.close(setnewmobilevalidlayer);
+		});
+	}
+
+	//新手机验证div
+	var onewmobilevalidlayer;
+	function showONewmobilevalidDiv(){
+		$("#newmobileauthcode").val("");
+		onewmobilevalidlayer = $.layer({
+			closeBtn : [0 , false],
+			type : 1,
+			title : false,
+			offset:['150px' , ''],
+			border : [0,0,'',false],
+			area : ['auto','auto'],
+			// move : ['.d-h3',true],
+			page : {dom : '#onewmobilevaliddiv'}
+		});
+		$('#onewmobilevaliddivclose').on('click',function(){
+			layer.close(onewmobilevalidlayer);
+		});
+	}
+
+	//手机验证成功  弹窗
+	function showValidMobileSucDiv(){
+		var validmobilesuclayer = $.layer({
+			closeBtn : [0 , false],
+			type : 1,
+			title : false,
+			offset:['150px' , ''],
+			border : [0,0,'',false],
+			area : ['auto','auto'],
+			// move : ['.d-h3',true],
+			page : {dom : '#validmobilesucdiv'}
+		});
+		$('#validmobilesucdivclose').on('click',function(){
+			layer.close(validmobilesuclayer);
+		});
+	}
+
+	//手机验证失败  弹窗
+	function showValidMobileFailDiv(){
+		var validmobilefaillayer = $.layer({
+			closeBtn : [0 , false],
+			type : 1,
+			title : false,
+			offset:['150px' , ''],
+			border : [0,0,'',false],
+			area : ['auto','auto'],
+			// move : ['.d-h3',true],
+			page : {dom : '#validmobilefaildiv'}
+		});
+		$('#validmobilefaildivclose').on('click',function(){
+			layer.close(validmobilefaillayer);
+		});
+	}
+	//删除备用手机号弹窗
+	var delothermobilelayer;
+	function showDelOtherMobileDiv(){
+		delothermobilelayer = $.layer({
+			closeBtn : [0 , false],
+			type : 1,
+			title : false,
+			offset:['150px' , ''],
+			border : [0,0,'',false],
+			area : ['auto','auto'],
+			// move : ['.d-h3',true],
+			page : {dom : '#delothermobilesucdiv'}
+		});
+		$('#delothermobilesucdivclose').on('click',function(){
+			layer.close(delothermobilelayer);
+		});
+	}
+	//----------------------------------弹窗 end---------------------------------------------------------------------------
+	//*******************************************************开始绑定手机处理
+	//添加手机号 倒计时方法
+	var txtnewmwait=60;
+	function time4txtnewm(){
+		if (txtnewmwait == 0) {
+			$('#txtnewgetcode').attr('disabled',false);  
+			$('#txtnewgetcode').removeClass('alertactive-btn');  
+			$('#txtnewgetcode').text("重新获取"); 
+			txtnewmwait =60;
+		} else {
+			$('#txtnewgetcode').attr('disabled', true);
+			$('#txtnewgetcode').addClass('alertactive-btn');
+			$('#txtnewgetcode').text(txtnewmwait+"s");				
+			txtnewmwait--;
+			setTimeout(
+					function() {
+						time4txtnewm();
+					},
+					1000
+			);
+		}
+	}
+
+	//修改手机号 获取原手机验证码倒计时方法
+	var inmwait=60;
+	function time4inm(){
+		if (inmwait == 0) {
+			$('#inmgetmobilecode').attr('disabled',false);  
+			$('#inmgetmobilecode').removeClass('alertactive-btn');  
+			$('#inmgetmobilecode').text("重新获取"); 
+			inmwait =60;
+		} else {
+			$('#inmgetmobilecode').attr('disabled', true);
+			$('#inmgetmobilecode').addClass('alertactive-btn');
+			$('#inmgetmobilecode').text(inmwait+"s");				
+			inmwait--;
+			setTimeout(
+					function() {
+						time4inm();
+					},
+					1000
+			);
+		}
+	}
+	
+	//修改手机号码 --- 获取新手机验证码 倒计时方法（重复获取验证码）
+	var onewmwait=60;
+	function time4onm(){
+		if (onewmwait == 0) {
+			$('#newmgetmobilecode').attr('disabled',false);  
+			$('#newmgetmobilecode').removeClass('alertactive-btn');  
+			$('#newmgetmobilecode').text("重新获取"); 
+			onewmwait =60;
+		} else {
+			$('#newmgetmobilecode').attr('disabled', true);
+			$('#newmgetmobilecode').addClass('alertactive-btn');
+			$('#newmgetmobilecode').text(onewmwait+"s");				
+			onewmwait--;
+			setTimeout(
+					function() {
+						time4onm();
+					},
+					1000
+			);
+		}
+	}
+
+	$('.code-i').bind("click",function(){
+		show_id="#mobile_div";
+		toggleNationDiv();
+	});
+	//添加房东手机 手机号码输入框 监听
+	$('#mobile').bind('focusout', function(){
+		var mobile = $("#mobile").val();
+		if(mobile!=null&&mobile!=""){	  	   
+			openTxtNewValidMobile(mobile); 
+		}
+	});
+
+	//房东手机号 验证手机 按钮监听
+	$('#validmobile').click(function(){
+		type=1;
+		var mobile = $("#mobile").val();
+		if(mobile!=null&&mobile!=""){	   	   
+			openTxtNewValidMobile(mobile); 
+		}else{
+			layer.alert("请先填写合法的手机号码！",5,"温馨提示");	  
+		}
+	});
+	
+	//添加手机号
+	var isopen=false;
+	function openTxtNewValidMobile(mobile){
+		if(!isopen){
+			isopen = true;
+			$('#txtnewcode').val("");
+			var areacode = $("#mob_code").val();
+			var length = mobile.length;
+			if(valideMobile(mobile,areacode)){
+				$("#mobile").val("");	  		   
+				layer.alert("抱歉，手机号码不合法！",5,"温馨提示");
+				return false;
+			}else{//还需进行手机是否已被绑定验证
+				if(type==1)
+				{
+					var ctx = $('#ctx').val();				  	   	    
+					$.post(ctx+"/user/mobile/checkmobile.do",{'mobile':mobile},function(re) {
+						if(re.error!=null){
+							isopen=false;
+							layer.alert(re.error.message,5,"温馨提示");
+							return false;
+						}else{		  	   	   	
+							showNewMobileValidDiv();//弹出div后，发出短信
+							$('#textnewmobile').val(mobile);	
+							$(show_id+" .alert-code i").text("+"+areacode);
+							$("#code").text("+"+areacode);
+							time4txtnewm();//加入倒计时
+							$.get(ctx+"/user/mobile/"+mobile+"/sendmobileauthcode.do",function(re) {
+								if(re.error!=null){
+									layer.alert(re.error.message,5,"温馨提示");
+									txtnewmwait=0;					
+									return false;
+								}
+							},'JSON');
+						}
+					},'JSON');
+				}
+			}
+		}
+	}
+	
+	//备用手机    添加号码div弹层
+	$('#addMobile').click(function(){
+		type=2;
+		changeImageCode();
+		showNewMobileValidDiv();
+		$('#txtnewcode').val("");
+		$('#textnewmobile').val("");
+	});
+	
+	//在弹出的框里，更改手机号后，要同步修改 文本框中手机号
+	$('#textnewmobile').bind('focusout', function(){
+		var mobile = $("#textnewmobile").val();
+		var areacode = $("#mob_code").val();
+		if(valideMobile(mobile,areacode)){
+			$("#textnewmobile").val("");
+			layer.alert("抱歉，修改的手机号码不合法！",5,"温馨提示");
+			return false;
+		}else{
+			if(type==1)
+			{
+				var ctx = $('#ctx').val();				  	   	    
+				$.post(ctx+"/user/mobile/checkmobile.do",{'mobile':mobile,'areacode':areacode},function(re) {
+					if(re.error!=null)
+					{
+						$("#textnewmobile").val("");
+						layer.alert(re.error.message,5,"温馨提示");
+						return false;
+					}
+					else
+					{
+						$("#mobile").val(mobile);						
+					}
+				},'JSON');
+			}
+			else if(type==2)
+			{
+				$("#othermobile").val(mobile);		
+			}
+		} 	   
+	});
+
+	//添加手机号  点击获取验证码按钮
+	$('#txtnewgetcode').click(function(){
+		var mobile = $("#textnewmobile").val();
+		var areacode = $("#mob_code").val();
+		if(mobile == null || mobile == ""){
+			layer.alert("请输入手机号！",5,"温馨提示");
+			return false;
+		}
+		if($("#imageCodeText").val() == null || $("#imageCodeText").val() == ""){
+			layer.alert("请输入验证码！",5,"温馨提示");
+			return false;
+		}
+		if(valideMobile(mobile,code)){
+			layer.alert("抱歉，手机号码不合法！",5,"温馨提示");
+			return false;
+		}else{//还需进行手机是否已被绑定验证
+			var ctx = $('#ctx').val();	
+			if(type==1)
+			{
+				$.post(ctx+"/user/mobile/checkmobile.do",{'mobile':mobile,'areacode':areacode},function(re) {
+					if(re.error!=null){
+						$("#mobile").val("");
+						layer.alert(re.error.message,5,"温馨提示");
+						return false;
+					}else{		  	   	   	
+						time4txtnewm();//加入倒计时
+						$.get(ctx+"/user/mobile/"+mobile+"/sendmobileauthcode.do",{'areacode':areacode},function(re) {
+							if(re.error!=null){
+								layer.alert(re.error.message,5,"温馨提示");
+								txtnewmwait=0;					
+								return false;
+							}
+						},'JSON');
+					}
+				},'JSON');
+			}
+			else if(type==2)
+			{
+				time4txtnewm();//加入倒计时
+				$.get(ctx+"/user/mobile/"+mobile+"/sendothermobileauthcode.do",{'areacode':areacode,'imagecode':$("#imageCodeText").val()},function(re) {
+					if(re.error!=null){
+						layer.alert(re.error.message,5,"温馨提示");
+						txtnewmwait=0;
+						changeImageCode();
+						return false;
+					}
+				},'JSON');
+			}
+		}
+	});
+
+	//添加手机号
+	$('#bandtxtnewmobile').click(function(){
+		var mobile = $("#textnewmobile").val();
+		var areacode =$("#mob_code").val();
+		if(mobile == null || mobile == ""){
+			layer.alert("请输入手机号！",5,"温馨提示");
+			return false;
+		}
+		if(valideMobile(mobile, areacode)){
+			$("#textnewmobile").val("");
+			layer.alert("请先填写合法的手机号码！",5,"温馨提示");
+		}else{
+			var code =$('#txtnewcode').val();
+			if(code!=null&&code!=""){
+				var ctx = $('#ctx').val();
+				var uid = $('#uid').val();
+				if(type==1)
+				{
+					$.post(ctx+"/user/"+uid+"/validmobile.do",{'mobile':mobile,'code':code,'areacode':areacode},function(re) {
+						if(re.error!=null){
+							layer.alert(re.error.message,5,"温馨提示");	  				
+							return false;
+						}else{
+							if(re.data.result!="true"){
+								layer.alert("抱歉，验证码错误！",5,"温馨提示");
+							}else{		
+								isopen = false;
+								$('#txtnewcode').val("");
+								txtnewmwait=0;
+								$("#mobile").val(mobile);
+								$("#umobile").val(mobile);
+								$("#mobile").attr("disabled","disabled");
+								$("#code").text("+"+areacode);
+								$("#code").unbind();
+								$("#updatemobile").show();
+								$("#validmobile").hide();
+								layer.close(newmobilevalidlayer);
+							}
+						}
+					},'JSON');
+				}
+				else if(type==2)
+				{
+					console.log(areacode);
+					$.post(ctx+"/user/"+uid+"/validothermobile.do",{'mobile':mobile,'code':code,'areacode':areacode},function(re) {
+						if(re.error!=null){
+							layer.alert(re.error.message,5,"温馨提示");	  				
+							return false;
+						}else{
+							if(re.data.result!="true"){
+								layer.alert("抱歉，验证码错误！",5,"温馨提示");
+							}else{		
+								isopen = false;
+								$('#txtnewcode').val("");
+								txtnewmwait=0;
+								$("#othermobile").val(mobile);
+								$("#othercode").html("+"+areacode);
+								$("#addOtherDiv").hide();
+								$("#otherDiv").show();
+								layer.close(newmobilevalidlayer);
+							}
+						}
+					},'JSON');
+				}
+			}else{
+				layer.alert("请输入您获得的手机验证码！",5,"温馨提示");	
+			}
+		}
+	});  
+
+	//修改手机 按钮监听
+	$('#updatemobile').click(function(){
+		type=1;
+		var mobile = $("#mobile").val();
+		var areacode = $("#code").attr("code");
+		if(mobile!=null&&mobile!=""){	   	   
+			var ctx = $('#ctx').val();
+			$('#inputcode').text("+"+areacode);
+			$('#inputmobile').text(mobile);
+			showInputMobileValidDiv();//弹出div后，发出短信
+			time4inm();//加入倒计时
+			$.get(ctx+"/user/sendmobileauthcode.do",function(re) {
+				if(re.error!=null){
+					layer.alert(re.error.message,5,"温馨提示");
+					inmwait=0;					
+					return false;
+				}
+			},'JSON');
+		}else{
+			layer.alert("原绑定手机号码不正确请联系蚂蚁客服进行修改！",5,"温馨提示");	  
+		}
+	});	  
+
+	//备用手机  修改手机 按钮监听
+	$('#updateothermobile').click(function(){
+		type=2;
+		var mobile = $("#othermobile").val();
+		var areacode = $("#othercode").attr("code");
+		if(mobile!=null&&mobile!=""){	   	   
+			var ctx = $('#ctx').val();
+			$('#inputcode').text("+"+areacode);
+			$('#inputmobile').text(mobile);
+			showInputMobileValidDiv();//弹出div后，发出短信
+			time4inm();//加入倒计时
+			$.get(ctx+"/user/mobile/sendothermobileauthcode.do",function(re) {
+				if(re.error!=null){
+					layer.alert(re.error.message,5,"温馨提示");
+					inmwait=0;					
+					return false;
+				}
+			},'JSON');
+		}else{
+			layer.alert("原绑定手机号码不正确请联系蚂蚁客服进行修改！",5,"温馨提示");	  
+		}
+	});
+	
+	//修改手机号码 ---获取 原手机 验证码
+	$('#inmgetmobilecode').click(function(){
+		time4inm();//加入倒计时
+		var ctx = $('#ctx').val();		
+		$.get(ctx+"/user/sendmobileauthcode.do",function(re) {
+			if(re.error!=null){
+				layer.alert(re.error.message,5,"温馨提示");
+				inmwait=0;					
+				return false;
+			}
+		},'JSON');
+	});
+
+	//修改手机号码 ---验证原手机号 验证码
+	$('#dovalidinmobile').click(function(){
+		var authcode = $('#inauthcode').val();
+		if(authcode!=null&&authcode!=""){
+			var ctx = $('#ctx').val();	
+			if(type==1)
+			{
+				$.post(ctx+"/user/validmobileauthcode.do",{'code':authcode},function(re) {
+					if(re.error!=null){
+						layer.alert(re.error.message,5,"温馨提示");	  				
+						return false;
+					}else{
+						if(re.data.result!="true"){
+							layer.alert("抱歉，验证码错误！",5,"温馨提示");
+						}else{							
+							$('#inauthcode').val("");
+							inmwait=0;
+							layer.close(inputmobilevalidlayer);	
+							showSetNewMobileValidDiv();//打开新号码窗口
+						}
+					}
+				},'JSON');
+			}
+			else if(type==2)
+			{
+				var uid = $('#uid').val();
+				var mobile=$("#inputmobile").html();
+				$.post(ctx+"/user/validOthermobileauthcode.do",{'code':authcode},function(re) {
+					if(re.error!=null){
+						layer.alert(re.error.message,5,"温馨提示");	  				
+						return false;
+					}else{
+						if(re.data.result!="true"){
+							layer.alert("抱歉，验证码错误！",5,"温馨提示");
+						}else{		
+							$('#inauthcode').val("");
+							inmwait=0;
+							layer.close(inputmobilevalidlayer);	
+							showSetNewMobileValidDiv();//打开新号码窗口
+						}
+					}
+				},'JSON');
+			}
+
+		}else{
+			layer.alert("请输入您获得的手机验证码！",5,"温馨提示");	
+		}
+	});
+
+	//修改手机号码 ---获取新手机验证码
+	$('#getnewmobilecode').click(function(){
+		newMobileCode();
+	});
+
+	//修改手机号码-----获取新手机验证码(重复获取)
+	$('#newmgetmobilecode').click(function(){
+		time4onm();//加入倒计时
+		newMobileCode();
+	});
+	
+	function newMobileCode(){
+		var mobile = $("#newmobile").val();
+		var areacode =$("#mob_code").val();
+		var length = mobile.length;
+		if(valideMobile(mobile,areacode)){
+			$("#newmobile").val("");
+			layer.alert("抱歉，请输入正确的手机号码！",5,"温馨提示");
+			return false;
+		}else{
+			var ctx = $('#ctx').val();				  	   	    
+			if(type==1)
+			{
+				$.post(ctx+"/user/mobile/checkmobile.do",{'mobile':mobile,'areacode':areacode},function(re) {
+					if(re.error!=null){
+						var txtmobile = $("#mobile").val();
+						$("#newmobile").val("");
+						layer.alert(re.error.message,5,"温馨提示");
+						return false;
+					}else{						
+						$.get(ctx+"/user/mobile/"+mobile+"/sendmobileauthcode.do",{'areacode':areacode},function(re) {
+							if(re.error!=null){
+								layer.alert(re.error.message,5,"温馨提示");
+								return false;
+							}else{
+								$('#newmobilesp').text(mobile);
+								$('#newmobilecode').text("+"+areacode);
+								layer.close(setnewmobilevalidlayer);//关闭自己
+								time4onm();//倒计时
+								showONewmobilevalidDiv();//弹出验证新号的div
+							}
+						},'JSON');					
+					}
+				},'JSON');
+			}
+			else if(type==2)
+			{
+				time4txtnewm();//加入倒计时
+				$.get(ctx+"/user/mobile/"+mobile+"/sendothermobileauthcode.do",{'areacode':areacode},function(re) {
+					if(re.error!=null){
+						layer.alert(re.error.message,5,"温馨提示");
+						txtnewmwait=0;					
+						return false;
+					}else{
+						$('#newmobilesp').text(mobile);
+						$('#newmobilecode').text("+"+areacode);
+						layer.close(setnewmobilevalidlayer);//关闭自己
+						time4onm();//倒计时
+						showONewmobilevalidDiv();//弹出验证新号的div
+					}
+				},'JSON');
+			}
+		}
+	}
+
+	//修改手机号码----新手机验证绑定
+	$('#dovalidnewmobile').click(function(){
+		var mobile = $("#newmobilesp").text();
+		var areacode =$("#mob_code").val();
+		var length = mobile.length;
+		if(valideMobile(mobile,areacode)){
+			layer.alert("新手机号码不合法！",5,"温馨提示");
+		}else{
+			var code =$('#newmobileauthcode').val();
+			var ctx = $('#ctx').val();
+			var uid = $('#uid').val();
+			if(type==1)
+			{
+				if(code!=null&&code!=""){
+					$.post(ctx+"/user/"+uid+"/validmobile.do",{'mobile':mobile,'code':code,'areacode':areacode},function(re) {
+						if(re.error!=null){
+							layer.alert(re.error.message,5,"温馨提示");	  				
+							return false;
+						}else{
+							if(re.data.result!="true"){
+								layer.alert("抱歉，验证码错误！",5,"温馨提示");
+							}else{							
+								$('#newmobileauthcode').val("");
+								onewmwait=0;
+								$('#mobile').val(mobile);
+								$('#code').text("+"+areacode);
+								$('#code').attr("code",areacode);
+								$('#umobile').val(mobile);
+								layer.close(onewmobilevalidlayer);
+							}
+						}
+					},'JSON');
+				}else{
+					layer.alert("请输入您获得的手机验证码！",5,"温馨提示");	
+				}
+			}
+			else if(type==2)
+			{
+				$.post(ctx+"/user/"+uid+"/validothermobile.do",{'mobile':mobile,'code':code,'areacode':areacode},function(re) {
+					if(re.error!=null){
+						layer.alert(re.error.message,5,"温馨提示");	  				
+						return false;
+					}else{
+						if(re.data.result!="true"){
+							layer.alert("抱歉，验证码错误！",5,"温馨提示");
+						}else{		
+							$('#newmobileauthcode').val("");
+							onewmwait=0;
+							$('#othermobile').val(mobile);
+							$('#othercode').text("+"+areacode);
+							$('#othercode').attr("code",areacode);
+							layer.close(onewmobilevalidlayer);
+						}
+					}
+				},'JSON');
+			}
+		}
+	});
+	
+	//删除手机号
+	$("#delothermobile").click(function(){
+		showDelOtherMobileDiv();
+	});
+	$("#delothermobileconfirm").click(function(){
+		var ctx = $('#ctx').val();
+		$.ajax({
+			url :ctx+"/user/delothermobile.do",
+			type : 'POST',
+			async:true,
+			error: function(data){
+				layer.alert("删除失败！",5,"温馨提示");	
+			},
+			success : function(data){
+				if(data=="error" || data=="failure"){
+					layer.alert("抱歉，删除失败！",5,"温馨提示");
+				}else{
+					layer.close(delothermobilelayer);
+					$("#addOtherDiv").show();
+					$("#otherDiv").hide();
+				}
+			}
+		});
+	});
+	$("#delothermobilecancel").click(function(){
+		layer.close(delothermobilelayer);
+	});
+	
+	//----------------国家区号选择-----------------------------
+	//国家区号选择
+	$('.alert-code').on('click',function(e){
+		e.stopPropagation();
+		toggleNationDiv();
+	})
+
+	//洲的切换
+	$('.alert-nation_list .alert-zhou_list li').on('click',function(){
+		var index = $(this).index();
+		$("#li_num").val(index);
+		$(this).addClass('avtive_green').siblings().removeClass('avtive_green');
+		$(show_id + ' .alert-code_list li').eq(index).show().siblings().hide();
+	})
+	
+	$('.alert-nation_list .alert-code_list li a').on('click',function(){
+		var code = $(this).attr("value");
+		$("#mob_code").val(code);
+		$(".alert-code i").html("+"+code);
+		if(show_id == "#mobile_div"){
+			$("#mobile_div .code-i").text("+"+code);
+			$("#mobile_div .code-i").attr("code",code);
+		}
+		toggleNationDiv();
+	})
+	
+	function toggleNationDiv(){
+		$(show_id + ' div.alert-nation_list').toggleClass('dis_show');
+		console.log($(show_id + ' div.alert-nation_list'));
+		if($(show_id + " div.alert-nation_list").hasClass("dis_show")){
+			var li_num = 0;
+			$(show_id + " .alert-code span").removeClass('alert-code_open').addClass('alert-code_close');
+			$(show_id + " .alert-nation_list .alert-zhou_list li").eq(li_num).addClass('avtive_green').siblings().removeClass('avtive_green');
+			$(show_id + " .alert-nation_list .alert-code_list li").eq(li_num).show().siblings().hide();
+		}else{
+			$(show_id + " .alert-code span").removeClass('alert-code_close').addClass('alert-code_open');
+		}
+	}
+	
+	function valideMobile(mobile,code){
+		var length = mobile.length;
+		if(length == 0){
+			return true;
+		}
+		if(code = "" || code == "86"){
+			if(length<11||length>14||!/^0?1[34578]\d{9}$/.test(mobile)){
+				return true;
+			}
+		}else{
+			if(!/^0?\d{5,11}$/.test(mobile)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	function getMobileAndCode(mobile,code){
+		if(code = "" || code == "86"){
+			return mobile;
+		}
+		return code+""+mobile;
+	}
+});
+//更新图片验证码		     
+function changeImageCode(){
+	var ctx = $('#ctx').val();
+	var randomNum = makeRand();
+	$("#imageCode").attr("src","/common/authimage?random="+randomNum+"&width=80&height=38");
+}
+//make random
+function makeRand(){ 
+	var Num=""; 
+	for(var i=0;i<4;i++){ 
+		Num+=Math.floor(Math.random()*10); 
+	} 
+	return Num;
+} 

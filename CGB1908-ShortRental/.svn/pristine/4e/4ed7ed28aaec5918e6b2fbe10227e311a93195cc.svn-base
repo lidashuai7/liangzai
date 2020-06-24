@@ -1,0 +1,15 @@
+package com.cy.pj.vo.xbc;
+
+import lombok.Data;
+
+@Data
+public class PersonalInformationManagement {
+private String username;
+private  String  nickname;
+private String name;
+private  String gender;
+private  String mailbox;
+private  Long phonenumber;
+private  Long sparephonenumber;
+
+}

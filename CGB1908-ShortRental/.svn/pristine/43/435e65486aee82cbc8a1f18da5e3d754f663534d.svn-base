@@ -1,0 +1,13 @@
+package com.cy.pj.service.xln;
+
+import java.util.List;
+
+import com.cy.pj.vo.xln.AllOrder;
+import com.cy.pj.vo.xln.NoPayOrder;
+import com.cy.pj.vo.xln.PayOrder;
+
+public interface OrderManageService {
+	List<AllOrder> allOrderFind();
+	List<NoPayOrder> noOrderFind();
+	List<PayOrder> payOrderFind();
+}

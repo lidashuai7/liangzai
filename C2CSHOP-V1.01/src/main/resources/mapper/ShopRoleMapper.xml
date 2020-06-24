@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.shop.dao.ShopRoleDao">
+    
+    <!-- 修改角色自身信息 -->
+    <update id="updateObject">
+        update shop_roles
+        set name=#{name},
+            note=#{note},
+            modifiedTime=now()
+        where id=#{id}
+    </update>
+    
+    <!-- resultMap 标签用于自己定义映射规则的场景 -->
+    <resultMap id="shopRoleMenuVo"
+               type="com.cy.shop.vo.ShopRoleMenuVo">
+              <!-- one2many 
+                           基于角色id查询角色菜单关系表,获取菜单id并将其映射到
+              vo对象的menuIds属性上 -->
+              <collection property="menuIds"
+                          column="roleIds"
+                          select="com.cy.shop.dao.ShopRoleMenuDao.findMenuIdsByRoleId">
+              </collection>
+    </resultMap>
+    <!-- 查询角色自身信息 -->
+    <select id="findObjectById"
+            resultMap="shopRoleMenuVo">
+            select id,name,note
+            from shop_roles
+            where id=#{id}
+    </select>
+    <!-- useGeneratedKeys表示应用自增主键值
+         keyProperty 表示把自增主键值赋值给参数对象的id属性-->
+	<insert id="insertObject"
+		parameterType="com.cy.shop.entity.ShopRole" 
+		useGeneratedKeys="true"
+		keyProperty="id">
+		insert into shop_roles
+		(id,name,note,createdTime,modifiedTime)
+		values
+		(null,#{name},#{note},now(),now())
+	</insert>
+   
+   <!-- 提取sql共性 -->
+   <sql id="queryWhereId">
+       <where>
+          <if test="name!=null and name!=''">
+          name like concat("%",#{name},"%")
+          </if>
+       </where>
+   </sql>
+   
+   <!-- 分页查询 -->
+   <select id="findPageObjects"
+           resultType="com.cy.shop.entity.ShopRole">
+          select * from shop_roles
+          <include refid="queryWhereId"/>
+          order by createdTime desc
+          limit #{startIndex},#{pageSize}
+   </select>
+   <!-- 统计记录总数 -->
+   <select id="getRowCount" resultType="int">
+       select count(*) from shop_roles
+       <include refid="queryWhereId"/>
+   </select>
+   
+</mapper>

@@ -1,0 +1,80 @@
+import win.ui;
+import fsys.config;
+/*DSG{{*/
+var winform = win.form(text="aardio form";right=418;bottom=160;bgcolor=16777215;border="none")
+winform.add(
+httpurl={cls="edit";left=26;top=67;right=392;bottom=90;border=1;multiline=1;z=1};
+reset={cls="plus";text="取 消";left=52;top=107;right=173;bottom=141;bgcolor=12632256;z=2};
+static={cls="static";text="设置服务器IP/域名";left=135;top=10;right=374;bottom=34;font=LOGFONT(h=-16;weight=700);transparent=1;z=4};
+static2={cls="static";text="安装了服务器端的计算机IP地址或者域名";left=64;top=46;right=388;bottom=67;font=LOGFONT(h=-10);notify=1;transparent=1;z=5};
+static3={cls="static";text="说明：";left=27;top=45;right=69;bottom=67;color=255;transparent=1;z=6};
+submit={cls="plus";text="保 存";left=248;top=107;right=369;bottom=141;notify=1;z=3}
+)
+/*}}*/
+
+winform.submit.skin({
+	background={
+		active=0xFF007368;
+		default=0xFF009688;
+		hover=0xFF43BAAB
+	};
+	color={
+		default=0xFFFFFFFF
+	}
+});
+
+winform.reset.skin({
+	background={
+		active=0xFFC9C9C9;
+		default=0xFFC9C9C9;
+		hover=0xA3F5F5F5
+	};
+	color={
+		default=0xFF555555
+	}
+});
+
+winform.reset.oncommand = function(id,event){
+	winform.close();
+}
+
+var cfg = ..fsys.config("/config/");
+if(cfg.server.http){
+	winform.httpurl.text = cfg.server.http;
+}
+	
+winform.submit.oncommand = function(id,event){
+	var cfg = ..fsys.config("/config/");
+	var url = winform.httpurl.text;
+	if(url=='' || url==null){
+		win.msgboxErr("服务器地址没有填写","抱歉，发生了错误");
+		return false; 
+	}
+	cfg.server.http = url;
+	//检测服务器状态
+	import inet.http; 
+	var http    = inet.http();
+	var sendUrl = 'http://'++url++":9981";  
+	if( !http.beginRequest( sendUrl,"HEAD",,,0x200000/*_INTERNET_FLAG_NO_AUTO_REDIRECT*/ ) ) {
+		http.close();
+		win.msgboxErr("无法连接到服务器，请确认服务器地址填写正确。","抱歉，发生了错误");
+	}
+	//发送请求
+	//..console.log(sendUrl);
+	var ret,errMsg,errCode = http.send(); 
+	if(http.statusCode==200){
+		win.msgbox("服务器地址配置成功","恭喜，系统操作成功");
+		winform.close();
+	}else{
+		win.msgboxErr("无法连接到服务器，请确认服务器地址填写正确。","抱歉，发生了错误");
+		http.close();
+	}
+	
+	
+}
+
+
+
+winform.show();
+win.loopMessage();
+return winform;

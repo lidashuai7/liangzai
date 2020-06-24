@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cy.pj.dao.zsm.UserMapper">
+
+<select id="loginUser" resultType="com.cy.pj.entity.user">
+  select * from tb_user where user_account=#{useraccount} and user_pwd=#{userpwd};
+</select>
+
+<insert id="insertUser">
+
+insert into tb_user 
+	(user_id, 
+	login_Type, 
+	user_account, 
+	user_pwd
+	)
+	values
+	(null, 
+	1, 
+	#{user.useraccount}, 
+	#{user.userPwd}
+	);
+
+</insert>
+
+<select id="queryUser" resultType="com.cy.pj.entity.user">
+select * from tb_user where user_account=#{useraccount}
+</select>
+
+</mapper>

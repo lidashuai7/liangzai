@@ -1,0 +1,1973 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="applicable-device" content="pc">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="mobile-agent" content="format=html5;url=http://m.mayi.com/beijing">
+    <meta name="mobile-agent" content="format=xhtml;url=http://m.mayi.com/beijing">
+    <meta name="mobile-agent" content="format=wml;url=http://m.mayi.com/beijing">
+    <link rel="alternate" media="only screen and (max-width: 640px)" href="http://m.mayi.com/beijing">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+  	
+  	<title>北京住宿短租民宿-北京短租公寓-日租房–蚂蚁短租</title>
+    <meta name="keywords" content="北京住宿，北京短租房，北京民宿，北京日租房">
+    <meta name="description" content="蚂蚁短租网是性价比高的北京短租房、日租房在线预订平台，提供北京短租公寓、短租房、日租房、家庭旅馆、民宿等出租房房源价格、预订信息，比酒店住宿便宜50%，公寓100%真实入住点评，真实可靠。">
+   	<link rel="stylesheet" href="/erji/list_public.css">
+   	<link rel="stylesheet" href="/erji/newlist.css">
+    <link rel="stylesheet" href="/erji/new_calendar.css">
+    
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script src="/erji/hm.js.下载"></script><script charset="UTF-8" src="/erji/uba.min.js.下载"></script><script charset="UTF-8" src="/erji/QiMoIMSDK.js.下载"></script><script type="text/javascript" src="/erji/jquery-1.7.1.min.js.下载"></script>
+    <script type="text/javascript" src="/erji/layer.min.js.下载"></script><link type="text/css" rel="stylesheet" href="/erji/layer.css">
+    <script type="text/javascript" src="/erji/lazyload.js.下载"></script>
+    <script type="text/javascript" src="/erji/js.js.下载"></script>
+    <script type="text/javascript" src="/erji/main1.js.下载"></script>
+    <script type="text/javascript" src="/erji/json.js.下载"></script>
+    <script type="text/javascript" src="/erji/commom.js.下载"></script>
+    <script type="text/javascript" src="/erji/allcity.js.下载"></script>
+    <script type="text/javascript" src="/erji/new_calendar.js.下载"></script>
+    <script type="text/javascript" src="/erji/jquery.nicescroll.min.js.下载"></script>
+    <script type="text/javascript" src="/erji/index_searchlist_public.js.下载"></script>    
+    <script type="text/javascript" src="/erji/sou_search.js.下载"></script>
+    <script type="text/javascript" src="/erji/jquery.range.js.下载"></script>
+    <script type="text/javascript">
+        $(function () {
+        	$(window).resize(function(){
+        		$("dd .house-image").height($("dd .house-image").width()*0.6666666);
+        	})
+            $('#searchcityin1').bind('keypress', function (event) {
+                if (event.keyCode == 13 && $('#searchcityin1').val().length > 0) {
+                    $('#landmarkBtn').click();
+                }
+            });
+            <!-- 图像延迟加载  -->
+            $("img.lazy").lazyload({
+                effect: 'fadeIn'
+            });
+            <!-- 房源列表图像方法集合 -->
+            $('.house-image').each(function () {
+            	$("dd .house-image").height($("dd .house-image").width()*0.6666666);
+                <!-- 控制左右翻页箭头是否显示 -->
+                $(this).mouseover(function () {
+                    $(this).find('.change-prev').show();
+                    $(this).find('.change-next').show();
+                }).mouseout(function () {
+                    $(this).find('.change-prev').hide();
+                    $(this).find('.change-next').hide();
+                });
+                <!-- 向左轮播图像 -->
+                $(this).find('.change-prev').click(function () {
+                    var id = $(this).attr('data');
+                    m.initsrc = $('#' + id)[0].src;
+                    if (m.roomid != id) {
+                        $('#' + id).attr("src", "//staticnew.mayi.com/resourcesWeb/images/index/loading.gif");
+                        $.get("/web/search/getImagesByRoomId", {roomId: id}, function (re) {
+                            if (re.status == 1) {
+                                m.array = re.data;
+                                m.roomid = id;
+                                m.array.unshift($('#' + id).attr('data'));
+                                var index = getArrayIndex(m.array, m.initsrc);
+                                if (index == 0) {
+                                    $('#' + id).attr("src", m.initsrc);
+                                }
+                                $('#' + id).attr("src", m.array[index - 1]);
+                            } else {
+                                $('#' + id).attr("src", m.initsrc);
+                                return false;
+                            }
+                        }, 'JSON');
+                    } else {
+                        var mainImage = $(this).attr('mainImage');
+                        $('#' + id).attr("src", "//staticnew.mayi.com/resourcesWeb/images/index/loading.gif");
+                        var index = getArrayIndex(m.array, m.initsrc);
+                        if (index > 1) {
+                            $('#' + id).attr("src", m.array[index - 1]);
+                        } else {
+                            $('#' + id).attr("src", mainImage);
+                        }
+                    }
+                });
+                <!-- 向右轮播图像 -->
+                $(this).find('.change-next').click(function () {
+                    var id = $(this).attr('data');
+                    m.initsrc = $('#' + id)[0].src;
+                    if (m.roomid != id) {
+                        $('#' + id).attr("src", "//staticnew.mayi.com/resourcesWeb/images/index/loading.gif");
+                        $.get("/web/search/getImagesByRoomId", {roomId: id}, function (re) {
+                            if (re.status == 1) {
+                                m.array = re.data;
+                                m.roomid = id;
+                                m.array.unshift($('#' + id).attr('data'));
+                                var index = getArrayIndex(m.array, m.initsrc);
+                                $('#' + id).attr("src", m.array[index + 1]);
+                            } else {
+                                $('#' + id).attr("src", m.initsrc);
+                                return false;
+                            }
+                        }, 'JSON');
+                    } else {
+                        $('#' + id).attr("src", "//staticnew.mayi.com/resourcesWeb/images/index/loading.gif");
+                        var index = getArrayIndex(m.array, m.initsrc);
+                        if (index < m.array.length - 1) {
+                            $('#' + id).attr("src", m.array[index + 1]);
+                        } else {
+                            $('#' + id).attr("src", m.array[index]);
+                        }
+                    }
+                });
+            });
+            <!-- 地铁线路是否显示控制 -->
+            $('.line').click(function () {
+                $('.two-sub').each(function () {
+                    $(this).hide();
+                    //$(this).children().removeClass("le-on");
+                });
+                $('.two-subarea').each(function () {
+                    $(this).hide();
+                    //$(this).children().removeClass("le-on");
+                });
+                var lineNum = $(this).attr('lineNum');
+                $('.two-sub.' + lineNum).show();
+            });
+            $('.area').click(function () {
+
+
+                //$(".result-area").hide();
+                $('.two-sub').each(function () {
+                    $(this).hide();
+                    //$(this).children().removeClass("le-on");
+                });
+                $('.two-subarea').each(function () {
+                    $(this).hide();
+                    //$(this).children().removeClass("le-on");
+                })
+                var lineNum = $(this).attr('lineNum');
+
+                $('.two-subarea.' + lineNum).show();
+                // console.log($(this).attr('lineNum'));
+                var aObj = $(this).nextAll('div').eq(lineNum).children('a');
+                if (aObj.length == 1) {
+                    window.location.href = aObj.attr('href');
+                }
+            });
+
+            <!-- 位置模糊查询 -->
+            $("#searchpositionin").bind("keyup", function () {
+                suggestShow('keyup');
+            });
+            <!-- 位置框点击事件 -->
+            $("#searchpositionin").bind("click", function () {
+                suggestShow('click');
+            });
+
+            $(".piaochecked b").click(function () {
+                if (!$(this).hasClass("checked")) {
+                    $(this).addClass("checked");
+                } else {
+                    $(this).removeClass("checked");
+                }
+            })
+
+        });
+
+        function suggestShow(eventType) {
+            //隐藏日历框与城市框
+            if (eventType == 'keyup') {
+                $("#searchcitydiv").hide();
+                $(".content-box").hide();
+            }
+            if (eventType == 'click') {
+                //隐藏日历框与城市框
+                $("#searchcitydiv").hide();
+                $(".content-box").hide();
+            }
+            $('#MSuggestContainer').html('');
+            $('#MSuggestContainer').hide();
+            var cityName = $('#searchcityin').val();
+            var queryString = $('#searchpositionin').val();
+            if (queryString != "" && cityName != "") {
+                $.get("/web/search/position", {cityName: cityName, query: queryString}, function (data) {
+                    if (data.length > 0) {
+                        $('.main').append('<div id="MSuggestContainer"></div>');
+                        $('#MSuggestContainer').css({
+                            position: "absolute",
+                            top: "95px",
+                            left: "225px",
+                            background: "#fff",
+                            border: "1px solid #dedede",
+                            width: "540px",
+                            zIndex: 200000
+                        });
+                        var html = '<ul class="place">';
+                        var length = data.length;
+                        $.each(data, function (i, item) {
+                            if (i > 9) {
+                                return false;
+                            } else {
+                                if (length == i + 1) {
+                                    if (typeof(item.address) != "undefined") {
+                                        var totalLength = item.name.length + item.address.length;
+                                        if (totalLength > 40) {
+                                            var nameLength = item.name.length;
+                                            if (nameLength > 40) {
+                                                html = html + '<li class=\"last\"><span class=\"itemName\">' + item.name + '</span></li>';
+                                            } else {
+                                                html = html + '<li class=\"last\"><span class=\"itemName\">' + item.name + '</span><span style="cursor: default;font-size: 12px;color:#C0C0C0;margin-left:5px;">' + item.address.substr(0, 40 - nameLength) + '</span></li>';
+                                            }
+                                        } else {
+                                            html = html + '<li class=\"last\"><span class=\"itemName\">' + item.name + '</span><span style="cursor: default;font-size: 12px;color:#C0C0C0;margin-left:5px;">' + item.address + '</span></li>';
+                                        }
+                                    } else {
+                                        html = html + '<li class=\"last\"><span class=\"itemName\">' + item.name + '</span></li>';
+                                    }
+                                } else {
+                                    if (typeof(item.address) != "undefined") {
+                                        var totalLength = item.name.length + item.address.length;
+                                        if (totalLength > 40) {
+                                            var nameLength = item.name.length;
+                                            if (nameLength > 40) {
+                                                html = html + '<li><span class=\"itemName\" >' + item.name + '</span></li>';
+                                            } else {
+                                                html = html + '<li><span class=\"itemName\" >' + item.name + '</span><span style="cursor: default;font-size: 12px;color:#C0C0C0;margin-left:5px;">' + item.address.substr(0, 40 - nameLength) + '</span></li>';
+                                            }
+                                        } else {
+                                            html = html + '<li><span class=\"itemName\">' + item.name + '</span><span style="cursor: default;font-size: 12px;color:#C0C0C0;margin-left:5px;">' + item.address + '</span></li>';
+                                        }
+                                    } else {
+                                        html = html + '<li><span class=\"itemName\">' + item.name + '</span></li>';
+                                    }
+                                }
+                            }
+                        });
+                        html = html + '</ul>';
+                        $('#MSuggestContainer').append(html);
+                        $('#MSuggestContainer').show();
+                        //数据列表点击
+                        $("#MSuggestContainer ul li").click(function () {
+                            var input_value = $(this).children().first().text();
+                            $('#searchpositionin').val(input_value);
+                            getLatLng(input_value, true);
+                        });
+                    }
+                }, 'JSON');
+            } else {
+                $('#MSuggestContainer').hide();
+                $('#searchpositionin').attr("pinyin", "");
+            }
+        }
+
+        <!-- 房源图像使用变量 -->
+        var m = {roomid: "", initsrc: "", array: null};
+
+        <!-- 获取数组下标 -->
+        function getArrayIndex(arrayName, item) {
+            for (var i = 0; i < arrayName.length; i++) {
+                if (arrayName[i] == item) {
+                    return i;
+                }
+            }
+            return 0;
+        }
+
+        <!-- 获取坐标 -->
+        function getLatLng(address, isSearch) {
+            if (null == address || address == '') {
+                address = $("#searchposition").val();
+            }
+            var cityName = $('#searchcityin').val();
+            $.get("/web/search/getLatLng", {cityName: cityName, address: address}, function (re) {
+                var lat = re.location.lat;
+                var lng = re.location.lng;
+                if (typeof(lng) != "undefined" && typeof(lat) != "undefined"
+                        && lng != '' && lat != '' && lng != ' null' && lat != 'null') {
+                    $('#searchpositionin').attr('infolat', lat);
+                    $('#searchpositionin').attr('infolng', lng);
+                    $('#searchpositionin').attr("pinyin", re.pinyin);
+
+                }
+            }, 'JSON');
+            if (isSearch) {
+                //setTimeout(doSearch ,200);
+            }
+        }
+
+        function clearInfo() {
+            var sex = document.getElementById("searchpositionin");
+            if (sex.value == "可输入位置、地标、房间名、房东名等") {
+                sex.value = "";
+            } else {
+                return;
+            }
+        }
+
+        //显示登陆框
+        function userLogin() {
+            $('#loginboxdiv').attr("nexturl", "none");
+            showLoginboxDiv();
+        }
+
+        //输入景点鼠标点击效果
+        function ShowInfo() {
+            var sex = document.getElementById("searchpositionin");
+            if (sex.value == "") {
+                sex.value = "可输入位置、地标、房间名、房东名等";
+            } else {
+                sex.style.borderColor = "black";
+            }
+        }
+
+        function clearInfo() {
+            var sex = document.getElementById("searchpositionin");
+            if (sex.value == "可输入位置、地标、房间名、房东名等") {
+                sex.value = "";
+            } else {
+                return;
+            }
+        }
+
+        //显示登陆框
+        function userLogin() {
+            $('#loginboxdiv').attr("nexturl", "none");
+            showLoginboxDiv();
+        }
+
+        //输入景点鼠标点击效果
+        function ShowInfo() {
+            var sex = document.getElementById("searchpositionin");
+            if (sex.value == "") {
+                sex.value = "可输入位置、地标、房间名、房东名等";
+            }
+            else {
+                sex.style.borderColor = "black";
+            }
+        }
+
+        function changeurl(url) {
+            window.location.href = url;
+        }
+
+        $(function () {
+            $("div").filter(".room-detail").children("em.new").siblings("img").css("margin-left", 28);
+        });
+    </script>
+
+<link type="text/css" rel="stylesheet" href="/erji/layer.css"><link type="text/css" rel="stylesheet" href="/erji/chatStyle.css"><link type="text/css" rel="stylesheet" href="/erji/layer(1).css"></head>
+<body>
+<!-- Header -->
+<!-- 拉新入口 -->
+<link href="/erji/laxin.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/erji/list_header.js.下载"></script>
+<!-- 房东权限相关 -->
+<script type="text/javascript" src="/erji/landlordConfig.js.下载"></script>
+<link rel="stylesheet" href="/erji/mayi_base.css">
+<style>	
+.alert-box1{width:100%;height: 100%;z-index: 300000;position: absolute;display:none;line-height:40px;}
+.surveYY1{background: #000;width:100%;height:100%;opacity: 0.7;position: fixed;top: 0px;left: 0px;}
+.offmax_no{width:400px;height:186px;position:fixed;top:50%;margin-top:-93px;left:50%;margin-left:-200px;background-color:#fff;z-index:999;text-align:center;box-shadow:0px 0px 4px #ccc;border-radius:2px;} 
+.offmax_no p{padding:0 20px;line-height:25px;}
+.alert_tit1{border-bottom:1px solid #e0e0e0;font-size:18px;margin-bottom:20px;}
+.close-alert1{cursor:pointer;width:50%;margin:20px auto;background-color:#22bb62;text-align:center;color:#fff;border-radius:2px;}
+
+</style>
+<input type="hidden" name="ctx" id="ctx" value="">
+<!-- 头部栏开始 -->
+<div class="header">
+	<div class="nav index_nav line_h50">
+           <div class="headW_auto c_gray_dark clearfloat" style="width: 83%; margin: 0px auto;">
+               <div class="logo fl f20 c_gray_dark fw600 lineht34">
+                   <a href="" class="c_gray_dark"><img src="/erji/logo.png" width="34" alt="logo" class="radius-6">
+         	          蚂蚁短租
+                   </a>
+               </div>
+               <ul class="fr nav-list clearfloat">
+               		<li>
+                		<p class="top-line"></p>
+                        <a href="" class="fw600 f14" _mayi_rp="weblist|head|index">首页</a>
+                    </li>
+                   <li>
+                       <p class="top-line"></p>
+                       <span class="service fw600 f14">客服热线</span>
+                       <ul class="hover-list radius-6 c_gray_dark t-center pos_center w140_2">
+                           <li>400-028-6868</li>
+                       </ul>
+                   </li>
+                   <li>
+                       <p class="top-line"></p>
+                       <a class="app fw600 f14 " target="_blank" href="">下载APP送500元大礼包</a>
+                       <ul class="hover-list radius-6 c_gray_dark t-center down-app pos_center w344_2">
+                           <li class="clearfloat">
+                               <div class="fl">
+                                   <p class="f18 c_gray_dark mb10">扫码下载APP</p>
+                                   <img src="/erji/5K5ERFPBFKS5ZL6K6G96SDJE36LNUA.jpg" width="112" alt="下载app">
+                                   <p class="f14">注册立送500元大礼包</p>
+                               </div>
+                               <div class="fr">
+                                   <div class="fl">
+                                       <p class="f18 c_gray_dark mb10">扫码快速预订</p>
+                                       <img src="/erji/JJ8GRMND8SDJCP267PTG7BW8S3AV5T.jpg" width="112" alt="微信小程序">
+                                       <p class="f14">蚂蚁短租小程序</p>
+                                   </div>
+                               </div>
+                           </li>
+                       </ul>
+                   </li>
+                   <li>
+                       <p class="top-line"></p>
+                       <a class="f14 fw600 " target="_blank" href="">商旅合作</a>
+                   </li>
+                   <li>
+                       <p class="top-line"></p>
+                       <a class="fw600 f14 " href="javascript:void(0);">
+                           帮助中心
+                       </a>
+                       <ul class="hover-list radius-6 c_gray_dark t-left pos_center w140_2">
+                           <li class="mb10">
+                               <a class="c_gray_dark" target="_blank" href="">房源审核规范</a>
+                           </li>
+                           <li class="mb10">
+                               <a class="c_gray_dark" target="_blank" href="">房源安心计划</a>
+                           </li>
+                           <li class="mb10">
+                               <a class="c_gray_dark" target="_blank" href="">优质住宿计划</a>
+                           </li>
+                           <li class="mb10">
+                               <a class="c_gray_dark" target="_blank" href="">网站地图</a>
+                           </li>
+                           <li>
+                               <a class="c_gray_dark" target="_blank" href="">房客帮助</a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="user-action">
+                          <div class="login-btn t-center fw600 c_gray_dark cursorpt " id="loginshow">登录/注册</div>
+                   </li>
+               </ul>
+           </div>
+       </div>
+</div>
+<!-- 头部栏结束 -->
+<div class="alert-box1">
+    <div class="surveYY1"></div> 	
+    <div class="offmax_no">
+        <div class="alert_tit1">温馨提示</div>
+        <p class="frozeninfo">对不起，房东账号被封禁</p>
+        <p>如有疑问，请联系蚂蚁短租客服400-028-6868</p>
+        <div class="close-alert1">我知道了</div>
+    </div>
+</div>
+<!-- 拉新弹层 -->
+<script type="text/javascript" src="/erji/jquery.qrcode.min.js.下载"></script>
+    <script>
+    	$(function(){
+    		var userid = getCookie("MAYIUID");
+    		var ca_s = getCookie("_channel");
+    		var ca_n = getCookie("_caname");
+    		//生成专属二维码
+    		
+    		//邀请好友
+			var shareLink = "http://m.mayi.com/coupon/getInvitee?id="+userid+"&channel=w_qrcode&s=wap";
+    		//var shareLink = "https://previewwap.mayi.com/coupon/getInvitee?id="+userid+"&channel=w_qrcode&s=wap";
+			shareLink = shareLink.replace('','').replace('true','false');
+			var qingdaoWx="http://m.mayi.com/wxGuide?ca_s="+ca_s+"&ca_n="+ca_n;
+			//var qingdaoWx="http://prewap1.mayi.com/wxGuide?ca_s="+ca_s+"&ca_n="+ca_n;
+			
+			jQuery('#qrcode').qrcode({
+				width: 100,
+				height: 100,
+				text: shareLink
+			});	
+			//青岛啤酒节
+			jQuery('.qd_qrcode').qrcode({
+				width: 100,
+				height: 100,
+				text: qingdaoWx
+			});
+			jQuery('#qd_qrcode_theme').qrcode({
+				width: 85,
+				height: 85,
+				text: qingdaoWx
+			});
+			
+			$('.nav-list').on('mouseover','li',function(){
+		        $(this).find('.hover-list').show();
+		    });
+		    $('.nav-list').on('mouseout','li',function(){
+		        $(this).find('.hover-list').hide();
+		    });
+    	})
+    </script>
+<div class="share_tan" style="display: none">
+	<div class="mask"></div>
+     <div class="hongbao_img">
+		 <img src="/erji/close.png" alt="" class="hong_close">
+		 <img src="/erji/hongbao1.png" alt="" class="hongbao">
+		 <div id="qrcode" class="ewm_img"><canvas width="100" height="100"></canvas></div>
+		 <!-- <img src="//staticnew.mayi.com/resourcesWeb/v201612/headpub/images/ewm.jpg" alt="" class="ewm_img"/> -->
+		 <p class="text_para">扫码后，通过分享活动邀请好友注册蚂蚁短租，双方均可获得100元住宿基金！</p>
+		 
+	 </div>
+</div>
+<script type="text/javascript" src="/erji/7moorInit.js.下载" async="async"></script>
+
+
+ 
+<link rel="stylesheet" href="/erji/IM.css">    
+ 
+   
+	 
+
+	<div style="" class="Online_btn Only_Online">
+    	<span class="border-left"></span>
+        <a href="javascript:void(0)" id="live800iconlink" _mayi_rp="room|sem_contact|message"><img border="0" src="/erji/5635PVPKQGH6CND3UTE6WAYHLUXAXB.jpg" id="live800icon" name="live800icon"></a>
+    </div>
+<!--主体部分-->
+<div class="main">
+	<!--筛选-->
+	<div id="filter">
+		<div id="filterCont" class="relave">
+			<div class="w94_94" id="list_search" style="width: 83%; margin: 0px auto;">
+				<div class="clearfloat b_white search_main relave">
+					<div class="fl relave bor-r-eb t-left filterList place clearfloat">
+						<div class="theme c_gray f12">目的地</div>
+						<div class="input-box active">
+							<input type="text" id="searchcityin" search="" typeid="3" placeholder="城市、景点、商圈" value="北京" surl="/beijing" class="text" clicktag="2_1" name="searchcityin" citypinyin="beijing" cityname="北京" pinyin="" onkeydown="pressEve(event);" onkeyup="getSuggest(event,0);" autocomplete="off" _mayi_rp="weblist|sem_condition|searchcityin">
+                                <span class="circle" id="clearCityInfo" style="display: none;">×</span>
+	                    </div>
+		             </div>
+	                <div class="fl relave bor-r-eb t-center filterList time clearfloat" id="calendar_group">
+		             	 <div class="theme c_gray f12 t-left">住宿日期</div>
+		              	 <div class="input-box">
+	                        <input id="checkinday" readonly="" class="f18 c_gray_light fw700" _mayi_rp="weblist|sem_condition|checkindate" type="text" placeholder="入住日期" value="">
+	                        <div class="count">
+	                            <span class="f12 c_gray_dark" id="zrdays">0晚</span>
+	                        </div>
+	                        <input id="checkoutday" readonly="" class="f18 c_gray_light fw700" _mayi_rp="weblist|sem_condition|checkoutdate" type="text" placeholder="退房日期" value="">
+	                        <input id="checkinday_value" type="hidden" value="">
+	                        <input id="checkoutday_value" type="hidden" value="">
+	                    </div>
+	                    <span class="circle clear" id="clearSelect" style="display: none;" _mayi_rp="weblist|sem_condition|clearCalendar">×</span>
+                    	<div id="index_list_calendar-box" class="hidden search-modal"><div class="calendar-month paddingR10"><div class="calendar-title width_274"><h2 cury="2019" curm="10">2019-10</h2></div><ul class="calendar-week"><li class="pink red">日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li class="pink red">六</li></ul><ul class="calendar-day"><li class="old line2"></li><li class="old line2"></li><li class="line2 old " d="1" m="9" y="2019" w="2" today="0" ymd="2019-10-01"><span class="festival">国庆</span></li><li class="line2 old " d="2" m="9" y="2019" w="3" today="0" ymd="2019-10-02"><span>2</span></li><li class="line2 old " d="3" m="9" y="2019" w="4" today="0" ymd="2019-10-03"><span>3</span></li><li class="line2 old " d="4" m="9" y="2019" w="5" today="0" ymd="2019-10-04"><span>4</span></li><li class="line2 old " d="5" m="9" y="2019" w="6" today="0" ymd="2019-10-05"><span>5</span></li><li class="line2 old " d="6" m="9" y="2019" w="0" today="0" ymd="2019-10-06"><span>6</span></li><li class="line2 old " d="7" m="9" y="2019" w="1" today="0" ymd="2019-10-07"><span>7</span></li><li class="line2 old " d="8" m="9" y="2019" w="2" today="0" ymd="2019-10-08"><span>8</span></li><li class="line2 old " d="9" m="9" y="2019" w="3" today="0" ymd="2019-10-09"><span>9</span></li><li class="line2 old " d="10" m="9" y="2019" w="4" today="0" ymd="2019-10-10"><span>10</span></li><li class="line2 old " d="11" m="9" y="2019" w="5" today="0" ymd="2019-10-11"><span>11</span></li><li class="line2 old " d="12" m="9" y="2019" w="6" today="0" ymd="2019-10-12"><span>12</span></li><li class="line2 old " d="13" m="9" y="2019" w="0" today="0" ymd="2019-10-13"><span>13</span></li><li class="line2 old " d="14" m="9" y="2019" w="1" today="0" ymd="2019-10-14"><span>14</span></li><li class="line2 old " d="15" m="9" y="2019" w="2" today="0" ymd="2019-10-15"><span>15</span></li><li class="line2 old " d="16" m="9" y="2019" w="3" today="0" ymd="2019-10-16"><span>16</span></li><li class="line2 old " d="17" m="9" y="2019" w="4" today="0" ymd="2019-10-17"><span>17</span></li><li class="line2 show-date " d="18" m="9" y="2019" w="5" today="1" ymd="2019-10-18"><span>今天</span></li><li class="line2 show-date " d="19" m="9" y="2019" w="6" today="0" ymd="2019-10-19"><span>19</span></li><li class="line2 show-date " d="20" m="9" y="2019" w="0" today="0" ymd="2019-10-20"><span>20</span></li><li class="line2 show-date " d="21" m="9" y="2019" w="1" today="0" ymd="2019-10-21"><span>21</span></li><li class="line2 show-date " d="22" m="9" y="2019" w="2" today="0" ymd="2019-10-22"><span>22</span></li><li class="line2 show-date " d="23" m="9" y="2019" w="3" today="0" ymd="2019-10-23"><span>23</span></li><li class="line2 show-date " d="24" m="9" y="2019" w="4" today="0" ymd="2019-10-24"><span>24</span></li><li class="line2 show-date " d="25" m="9" y="2019" w="5" today="0" ymd="2019-10-25"><span>25</span></li><li class="line2 show-date " d="26" m="9" y="2019" w="6" today="0" ymd="2019-10-26"><span>26</span></li><li class="line2 show-date " d="27" m="9" y="2019" w="0" today="0" ymd="2019-10-27"><span>27</span></li><li class="line2 show-date " d="28" m="9" y="2019" w="1" today="0" ymd="2019-10-28"><span>28</span></li><li class="line2 show-date " d="29" m="9" y="2019" w="2" today="0" ymd="2019-10-29"><span>29</span></li><li class="line2 show-date " d="30" m="9" y="2019" w="3" today="0" ymd="2019-10-30"><span>30</span></li><li class="line2 show-date " d="31" m="9" y="2019" w="4" today="0" ymd="2019-10-31"><span>31</span></li><li class="old line2"></li><li class="old line2"></li></ul></div><div class="calendar-month"><div class="calendar-title"><h2 cury="2019" curm="11">2019-11</h2></div><ul class="calendar-week"><li class="pink red">日</li><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li class="pink red">六</li></ul><ul class="calendar-day"><li class="old line2"></li><li class="old line2"></li><li class="old line2"></li><li class="old line2"></li><li class="old line2"></li><li class="line2 show-date " d="1" m="10" y="2019" w="5" today="0" ymd="2019-11-01"><span>1</span></li><li class="line2 show-date " d="2" m="10" y="2019" w="6" today="0" ymd="2019-11-02"><span>2</span></li><li class="line2 show-date " d="3" m="10" y="2019" w="0" today="0" ymd="2019-11-03"><span>3</span></li><li class="line2 show-date " d="4" m="10" y="2019" w="1" today="0" ymd="2019-11-04"><span>4</span></li><li class="line2 show-date " d="5" m="10" y="2019" w="2" today="0" ymd="2019-11-05"><span>5</span></li><li class="line2 show-date " d="6" m="10" y="2019" w="3" today="0" ymd="2019-11-06"><span>6</span></li><li class="line2 show-date " d="7" m="10" y="2019" w="4" today="0" ymd="2019-11-07"><span>7</span></li><li class="line2 show-date " d="8" m="10" y="2019" w="5" today="0" ymd="2019-11-08"><span>8</span></li><li class="line2 show-date " d="9" m="10" y="2019" w="6" today="0" ymd="2019-11-09"><span>9</span></li><li class="line2 show-date " d="10" m="10" y="2019" w="0" today="0" ymd="2019-11-10"><span>10</span></li><li class="line2 show-date " d="11" m="10" y="2019" w="1" today="0" ymd="2019-11-11"><span>11</span></li><li class="line2 show-date " d="12" m="10" y="2019" w="2" today="0" ymd="2019-11-12"><span>12</span></li><li class="line2 show-date " d="13" m="10" y="2019" w="3" today="0" ymd="2019-11-13"><span>13</span></li><li class="line2 show-date " d="14" m="10" y="2019" w="4" today="0" ymd="2019-11-14"><span>14</span></li><li class="line2 show-date " d="15" m="10" y="2019" w="5" today="0" ymd="2019-11-15"><span>15</span></li><li class="line2 show-date " d="16" m="10" y="2019" w="6" today="0" ymd="2019-11-16"><span>16</span></li><li class="line2 show-date " d="17" m="10" y="2019" w="0" today="0" ymd="2019-11-17"><span>17</span></li><li class="line2 show-date " d="18" m="10" y="2019" w="1" today="0" ymd="2019-11-18"><span>18</span></li><li class="line2 show-date " d="19" m="10" y="2019" w="2" today="0" ymd="2019-11-19"><span>19</span></li><li class="line2 show-date " d="20" m="10" y="2019" w="3" today="0" ymd="2019-11-20"><span>20</span></li><li class="line2 show-date " d="21" m="10" y="2019" w="4" today="0" ymd="2019-11-21"><span>21</span></li><li class="line2 show-date " d="22" m="10" y="2019" w="5" today="0" ymd="2019-11-22"><span>22</span></li><li class="line2 show-date " d="23" m="10" y="2019" w="6" today="0" ymd="2019-11-23"><span>23</span></li><li class="line2 show-date " d="24" m="10" y="2019" w="0" today="0" ymd="2019-11-24"><span>24</span></li><li class="line2 show-date " d="25" m="10" y="2019" w="1" today="0" ymd="2019-11-25"><span>25</span></li><li class="line2 show-date " d="26" m="10" y="2019" w="2" today="0" ymd="2019-11-26"><span>26</span></li><li class="line2 show-date " d="27" m="10" y="2019" w="3" today="0" ymd="2019-11-27"><span>27</span></li><li class="line2 show-date " d="28" m="10" y="2019" w="4" today="0" ymd="2019-11-28"><span>28</span></li><li class="line2 show-date " d="29" m="10" y="2019" w="5" today="0" ymd="2019-11-29"><span>29</span></li><li class="line2 show-date " d="30" m="10" y="2019" w="6" today="0" ymd="2019-11-30"><span>30</span></li></ul></div><span class="cal_next" id="nextMonth"></span></div>
+		              </div>
+		              <!-- 入住人数 -->
+					  <div class="fl relave t-center bor-r-eb t-left filterList people ">
+						  <div class="theme c_gray f12 ">入住人数</div>
+						  <div class="chose-people cursorpt input-box" _mayi_rp="weblist|sem_condition|peoplenumber">
+						  	  	<span class="f14 c_gray_dark fw700" id="countVal">不限</span>
+						  </div>
+						  <div id="ruzhunum" class="search-modal radius-12 c_gray_dark" tabindex="4" style="overflow: hidden; outline: none;">
+						      <ul _mayi_rp="weblist|sem_condition|peoplenumber">
+						      	  <li peoplenum="0">不限</li>
+						      	  <li peoplenum="1">1人</li>
+						      	  <li peoplenum="2">2人</li>
+						      	  <li peoplenum="3">3人</li>
+						      	  <li peoplenum="4">4人</li>
+						      	  <li peoplenum="5">5人</li>
+						      	  <li peoplenum="6">6人</li>
+						      	  <li peoplenum="7">7人</li>
+						      	  <li peoplenum="8">8人</li>
+						          <li peoplenum="9">9人+</li>
+						       </ul>
+						  </div>
+					  </div>
+					  <!--关键词-->
+					  <div class="fl relave t-left filterList  clearfloat keyword">
+						  <div class="theme c_gray f12">关键词</div>
+						  <div class="input-box active">
+					      		<input class="f18 c_gray_light fw700" type="text" id="searchcityin1" placeholder="位置、标题、房东等" value="" surl="/beijing" maxlength="20" clicktag="2_1" name="searchcityin1" citypinyin="beijing" cityname="北京" pinyin="" onkeydown="pressEve(event,1);" onkeyup="getSuggest(event,1);" autocomplete="off" _mayi_rp="weblist|sem_condition|keywords">
+					      		<span class="circle" id="clearCityInfo" style="display: none;">×</span>
+					      </div>
+					</div>
+					<div class="fr relave search-btn f24 c_white fw600 t-center cursorpt" id="landmarkBtn" _mayi_rp="weblist|sem_condition|searchbutton">搜索民宿</div>                 
+                   <!-- 联想词-->
+                   <div class="suggest_results search-modal has-words radius-12 c_gray_dark top69" id="suggest">
+                        <ul id="suggestul">
+                            
+                        </ul>
+                   </div>
+                   <div class="error_tip_list search-modal radius-12 top69" id="tip_searchcity">关键词无结果</div>
+                   <!-- 城市列表弹框 -->
+                   <div class="select-hotcity clearfloat search-modal radius-12 c_gray_dark" id="searchcitydiv" name="searchcitydiv">
+		                    	 <ul class="clearfloat city_tab">
+		                            <li id="city_inland" class="city_inland active" _mayi_rp="weblist|searchtab|cityinland">国内·港澳台</li>
+		                            <li id="city_overseas" class="city_overseas" _mayi_rp="weblist|searchtab|cityoverseas">海外<span class="hot-icon"></span></li>
+		                         </ul>
+								 <div class="searh-recent clearfloat history">
+			                            <p class="w100 clearfloat"><span class="searh-tit fl fw700">历史搜索</span><span class="cleartrace fr clear" onclick="return Bind_Click(this);" _mayi_rp="webindex|condition|clearHistory"></span></p>
+			                            <ul id="searh-recent" class="clearfloat citys">
+			                            </ul>
+		                         </div>
+		                         <ul class="select-title clearfloat tab" id="cityselecttitleul">
+		                            <li class="active"><a value="hotcity" id="hotcity" class="selected" href="javascript:void(0)"></a></li>
+		                            <li><a value="a_b_c_d" id="a_b_c_d" href="javascript:void(0)" class="">ABCD</a></li>
+		                            <li><a value="e_f_g_h" id="e_f_g_h" href="javascript:void(0)" class="">EFGH</a></li>
+		                            <li><a value="j_k_l_m" id="j_k_l_m" href="javascript:void(0)" class="">JKLM</a></li>
+		                            <li><a value="n_p_q_r" id="n_p_q_r" href="javascript:void(0)" class="">NPQR</a></li>
+		                            <li><a value="s_t_w" id="s_t_w" href="javascript:void(0)" class="">STW</a></li>
+		                            <li><a value="x_y_z" id="x_y_z" href="javascript:void(0)">XYZ</a></li>
+		                         </ul>
+		                         <ul class="select-citycon clearfloat tab-content" id="cityselectul" name="cityselectul" tabindex="0" style="overflow: hidden; outline: none;">
+				                       
+		                         </ul>
+		                        <!-- <div class="hotmore hint f12 c_gray" >温馨提示：支持中文/拼音/简拼输入</div> -->
+		                    <div id="ascrail2001" class="nicescroll-rails nicescroll-rails-vr" style="width: 8px; z-index: 15; cursor: default; position: absolute; top: 1px; left: 122px; height: 20px; touch-action: none; display: none;"><div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 6px; height: 0px; background-color: rgb(72, 72, 72); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 100px; touch-action: none;"></div></div><div id="ascrail2001-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 8px; z-index: 15; top: 13px; left: 0px; position: absolute; cursor: default; display: none;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 6px; width: 0px; background-color: rgb(72, 72, 72); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 100px;"></div></div></div>
+                   <!--关键词列表-->
+                   <div class="key_word_list clearfloat search-modal radius-12 c_gray_dark top69" id="key_word_list" style="display: none;">
+                       <div class="key_li">
+                           <p><span class="p_span1"></span>商圈</p>
+                               <a href="">北京站/建国门</a>
+                               <a href="">崇文门</a>
+                               <a href="">王府井</a>
+                               <a href="">广渠门</a>
+                               <a href="">十里堡</a>
+                               <a href="">建外大街</a>
+                               <a href="">双井</a>
+                               <a href="">青年路</a>
+                               <a href="">四惠/高碑店</a>
+                           </div>
+                       <div class="key_li">
+                           <p><span class="p_span2"></span>景点</p>
+                                 <a href="">香山/北京植物园</a>
+                               <a href="">前门大街</a>
+                               <a href="">龙庆峡</a>
+                       </div>
+                       <div class="key_li">
+                           <p><span class="p_span3"></span>行政区</p>
+                               <a href="">顺义</a>
+                               <a href="">北京周边</a>
+                               <a href="">怀柔</a>
+                               <a href="">延庆</a>
+                         
+                       </div>
+                       <div class="key_li">
+                           <p><span class="p_span4"></span>车站机场</p>
+                               <a href="">南苑机场</a>
+                               <a href="">首都机场</a>
+                               <a href="">北京北站</a>
+                               </div>
+                   </div>
+               </div>
+             </div>
+            <div class="cont1 b_white">
+				<div class="path_link w94_94" style="width: 83%; margin: 0px auto;">
+	               	<a href="" rel="nofollow">首页</a><label>&nbsp;&gt;&nbsp;</label>
+						<h1 class="f14">北京短租房</h1>
+	                	<span class="ml10 f12">北京的房源获得超过11392400次房客评价，平均得分4.9分（满分5分）</span>
+	            </div>
+	            <div class="filter w94_94" style="width: 83%; margin: 0px auto;">
+					<ul>
+                   	<!-- 推荐标签 -->
+	                <li id="tuijian">
+	                    <div class="lt-icon">推荐</div>
+	                    <div class="rt-word">
+	                    	<div class="item one">
+                                <a rel="nofollow" class="on all" href="" _mayi_rp="weblist|sem_condition|recommend">不限</a>
+                                 	<div class="add relave">
+                                 		<a href="" _mayi_rp="weblist|sem_condition|recommend3">可做饭
+                                 		</a>
+                                 		<span class="add_title" style="width: 6em;">可以自己做饭</span>
+                                 	</div>
+                                    <div class="add relave">
+                                    	<a href="" _mayi_rp="weblist|sem_condition|recommend0">蚂蚁优选</a>
+                                        <span class="add_title" style="width: 18em;">设施全、服务佳、品质高的蚂蚁优选房源</span>
+                                    </div>              
+	                                <div class="add relave">
+	                                    <a href="" _mayi_rp="weblist|sem_condition|youjia">有家</a>
+	                                    <span class="add_title" style="width: 13em;">携程旗下唯一民宿管理品牌</span>
+	                                </div>
+	                                 <div class="add relave">
+	                                 	<a href="" _mayi_rp="weblist|condition|other2">周租月租</a>
+	                                    <span class="add_title" style="width: 13em;">周租月租有折扣，长租更实惠</span>
+	                                 </div>
+	                               <!--<div class="add relave">
+	                                     <a "
+	                                        href="/beijing/e2/" _mayi_rp="weblist|sem_condition|other1">支持退款</a>
+	                                        <span class="add_title">预订后支持退款（具体请依据房东退款政策）</span>
+	                                 </div>-->
+                                    <div class="add relave">
+                                         <a href="" _mayi_rp="weblist|sem_condition|recommend5">速订</a>
+                                         <span class="add_title" style="width: 14em;">下单后无需房东确认，即时预订</span>
+                                    </div>
+                                    <div class="add relave">
+                                    	<a href="" _mayi_rp="weblist|sem_condition|recommend1">实拍</a>
+                                     <span class="add_title" style="width: 9em;">专业摄影师实地拍摄</span>
+                                     </div>
+	                                <div class="add relave">
+	                                    <a href="" _mayi_rp="weblist|sem_condition|recommend4">商旅</a>
+	                                	<span class="add_title" style="width: 8em;">适合商旅人士居住</span>       
+	                                </div>
+							</div>
+						</div>
+					</li>
+	                <!-- 位置开始 -->
+	                <li id="position">
+	                    <div class="lt-icon"><i></i>位置</div>
+	                    <div class="rt-word position_choose">
+							<div class="item next">
+	                            <a rel="nofollow" href="" class="on all" id="mited" _mayi_rp="weblist|sem_condition|position">不限</a>
+	                               <div class="add"><a href="javascript:void(0);" class="search-business " _mayi_rp="weblist|sem_condition|position0" type="business">商圈<i></i></a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);" class="search-scenic " _mayi_rp="weblist|sem_condition|position2" type="area">景点<i></i></a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);" class="search-area " _mayi_rp="weblist|sem_condition|position1" type="scenic">行政区<i></i></a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);" class="search-traffic " _mayi_rp="weblist|sem_condition|position3" type="traffic">车站机场<i></i></a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);" class="search-metro " _mayi_rp="weblist|sem_condition|position4" type="metro">地铁<i></i></a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);" class="search-school " _mayi_rp="weblist|sem_condition|position5" type="school">学校<i></i></a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);" class="search-hospital " _mayi_rp="weblist|sem_condition|position6" type="hospital">医院<i></i></a>
+	                               </div>
+                           	</div>
+	                       	<!-- 商业街 -->
+                                <div class="lever result-business pr60">
+                                    <i class="bt1"></i>
+                                    <div class="lever_open">
+                                       
+                                            <span>
+                                            <a style="position:relative;" title="新国展" href="" _mayi_rp="weblist|sem_condition|position0">新国展
+                                            </a>
+											</span>
+                                            <span>
+                                            <a style="position:relative;" title="大兴黄村" href="" _mayi_rp="weblist|sem_condition|position0">大兴黄村
+                                            </a>
+											</span>
+                                    </div>
+                                </div>
+	                        <!-- 行政区域 -->
+                                <div class="lever result-area">
+                                    <i class="bt2"></i>
+                                        <a class="area " linenum="0" title="顺义" href="javaScript:;" _mayi_rp="weblist|sem_condition|position1">顺义</a>
+                                        <a class="area " linenum="1" title="北京周边" href="javaScript:;" _mayi_rp="weblist|sem_condition|position1">北京周边</a>
+                                        <a class="area " linenum="2" title="怀柔" href="javaScript:;" _mayi_rp="weblist|sem_condition|position1">怀柔</a>
+                                        <a class="area " linenum="3" title="延庆" href="javaScript:;" _mayi_rp="weblist|sem_condition|position1">延庆</a>
+                                               <div class="two-subarea xignzhengqu relave 0" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="光明" href="" _mayi_rp="weblist|sem_condition|position1">光明</a>
+                                                <a class=" " title="后沙峪" href="" _mayi_rp="weblist|sem_condition|position1">后沙峪</a>
+                                                <a class=" " title="机场" href="" _mayi_rp="weblist|sem_condition|position1">机场</a>
+                                                <a class=" " title="李桥" href="" _mayi_rp="weblist|sem_condition|position1">李桥</a>
+                                          </div>
+                                        <div class="two-subarea xignzhengqu relave 1" style="display:none">
+                                            <a rel="nofollow" href="http://www.mayi.com/beijing_beijingzhoubian/">不限</a>
+                                                <a class=" " title="三河" href="" _mayi_rp="weblist|sem_condition|position1">三河</a>
+                                                <a class=" " title="香河" href="" _mayi_rp="weblist|sem_condition|position1">香河</a>
+                                        </div>
+                                        <div class="two-subarea xignzhengqu relave 2" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="北房" href="" _mayi_rp="weblist|sem_condition|position1">北房</a>
+                                                  </div>
+                                        <div class="two-subarea xignzhengqu relave 3" style="display:none">
+                                            <a rel="nofollow" href="http://www.mayi.com/beijing_yanqing/">不限</a>
+                                                <a class=" " title="八达岭" href="" _mayi_rp="weblist|sem_condition|position1">八达岭</a>
+                                                <a class=" " title="大榆树" href="" _mayi_rp="weblist|sem_condition|position1">大榆树</a>
+                                                <a class=" " title="康庄" href="" _mayi_rp="weblist|sem_condition|position1">康庄</a>
+                                                <a class=" " title="永宁" href="" _mayi_rp="weblist|sem_condition|position1">永宁</a>
+                                        </div>
+                                        <div class="two-subarea xignzhengqu relave 4" style="display:none">
+                                            <a rel="nofollow" href="http://www.mayi.com/beijing_xicheng/">不限</a>
+                                                <a class=" " title="百万庄" href="" _mayi_rp="weblist|sem_condition|position1">百万庄</a>
+                                                <a class=" " title="车公庄" href="" _mayi_rp="weblist|sem_condition|position1">车公庄</a>
+                                                <a class=" " title="德胜门" href="" _mayi_rp="weblist|sem_condition|position1">德胜门</a>
+                                                <a class=" " title="阜成门" href="" _mayi_rp="weblist|sem_condition|position1">阜成门</a>
+                                                <a class=" " title="复兴门" href="" _mayi_rp="weblist|sem_condition|position1">复兴门</a>
+                                                <a class=" " title="官园" href="" _mayi_rp="weblist|sem_condition|position1">官园</a>
+                                                <a class=" " title="后海" href="" _mayi_rp="weblist|sem_condition|position1">后海</a>
+                                            </div>
+                                        <div class="two-subarea xignzhengqu relave 5" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="百善" href="" _mayi_rp="weblist|sem_condition|position1">百善</a>
+                                                <a class=" " title="北七家" href="" _mayi_rp="weblist|sem_condition|position1">北七家</a>
+                                                <a class=" " title="长陵" href="" _mayi_rp="weblist|sem_condition|position1">长陵</a>
+                                                <a class=" " title="昌平县城" href="" _mayi_rp="weblist|sem_condition|position1">昌平县城</a>
+                                                <a class=" " title="城北" href="" _mayi_rp="weblist|sem_condition|position1">城北</a>
+                                                <a class=" " title="城南" href="" _mayi_rp="weblist|sem_condition|position1">城南</a>
+                                                <a class=" " title="回龙观" href="" _mayi_rp="weblist|sem_condition|position1">回龙观</a>
+                                                <a class=" " title="霍营" href="" _mayi_rp="weblist|sem_condition|position1">霍营</a>
+                                                <a class=" " title="立水桥" href="" _mayi_rp="weblist|sem_condition|position1">立水桥</a>
+                                             </div>
+                                        <div class="two-subarea xignzhengqu relave 6" style="display:none">
+                                            <a rel="nofollow" href="http://www.mayi.com/beijing_tongzhou/">不限</a>
+                                                <a class=" " title="北关环岛" href="" _mayi_rp="weblist|sem_condition|position1">北关环岛</a>
+                                                <a class=" " title="北苑" href="" _mayi_rp="weblist|sem_condition|position1">北苑</a>
+                                                <a class=" " title="次渠" href="" _mayi_rp="weblist|sem_condition|position1">次渠</a>
+                                    </div>
+                                        <div class="two-subarea xignzhengqu relave 7" style="display:none">
+                                            <a rel="nofollow" href="http://www.mayi.com/beijing_yanjiao/">不限</a>
+                                        </div>
+                                        <div class="two-subarea xignzhengqu relave 8" style="display:none">
+                                            <a rel="nofollow" href="http://www.mayi.com/beijing_shijingshan/">不限</a>
+                                                <a class=" " title="八宝山" href="" _mayi_rp="weblist|sem_condition|position1">八宝山</a>
+                                                <a class=" " title="八大处" href="" _mayi_rp="weblist|sem_condition|position1">八大处</a>
+                                                <a class=" " title="八角" href="" _mayi_rp="weblist|sem_condition|position1">八角</a>
+                                                <a class=" " title="广宁" href="" _mayi_rp="weblist|sem_condition|position1">广宁</a>
+                                                <a class=" " title="古城" href="" _mayi_rp="weblist|sem_condition|position1">古城</a>
+                                                <a class=" " title="金顶街" href="" _mayi_rp="weblist|sem_condition|position1">金顶街</a>
+                                            </div>
+                                        <div class="two-subarea xignzhengqu relave 9" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="黄村" href="" _mayi_rp="weblist|sem_condition|position1">黄村</a>
+                                             </div>
+                                        <div class="two-subarea xignzhengqu relave 10" style="display:none">
+                                            <a rel="nofollow" href="http://www.mayi.com/beijing_xuanwu/">不限</a>
+                                                <a class=" " title="白广路" href="" _mayi_rp="weblist|sem_condition|position1">白广路</a>
+                                              </div>
+                                        <div class="two-subarea xignzhengqu relave 11" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="安宁庄" href="" _mayi_rp="weblist|sem_condition|position1">安宁庄</a>
+                                                <a class=" " title="白石桥" href="" _mayi_rp="weblist|sem_condition|position1">白石桥</a>
+                                      </div>
+                                        <div class="two-subarea xignzhengqu relave 12" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="安慧桥" href="" _mayi_rp="weblist|sem_condition|position1">安慧桥</a>
+                                        </div>
+                                        <div class="two-subarea xignzhengqu relave 13" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="崇文门" href="" _mayi_rp="weblist|sem_condition|position1">崇文门</a>
+                                            </div>
+                                        <div class="two-subarea xignzhengqu relave 14" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="滨河" href="" _mayi_rp="weblist|sem_condition|position1">滨河</a>
+                                                 </div>
+                                        <div class="two-subarea xignzhengqu relave 15" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="城子街道" href="" _mayi_rp="weblist|sem_condition|position1">城子街道</a>
+                                       </div>
+                                        <div class="two-subarea xignzhengqu relave 16" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="长阳" href="" _mayi_rp="weblist|sem_condition|position1">长阳</a>
+                                           </div>
+                                        <div class="two-subarea xignzhengqu relave 17" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="安定门" href="" _mayi_rp="weblist|sem_condition|position1">安定门</a>
+                                            </div>
+                                        <div class="two-subarea xignzhengqu relave 18" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="北庄" href="" _mayi_rp="weblist|sem_condition|position1">北庄</a>
+                                       </div>
+                                        <div class="two-subarea xignzhengqu relave 19" style="display:none">
+                                            <a rel="nofollow" href="">不限</a>
+                                                <a class=" " title="北大地" href="" _mayi_rp="weblist|sem_condition|position1">北大地</a>
+                                             </div>
+                                </div>
+							<!-- 景点 :去掉字母和hot标签，按照新的顺序排序（同商圈规则）-->
+                                <div class="lever pr60 result-scenic">
+                                    <i class="bt3"></i>
+                                    <div class="lever_open">
+                                            <a style="position:relative;" title="圆明园" href="" _mayi_rp="weblist|sem_condition|position2">圆明园
+                                            </a>
+                                   
+                                    </div>
+                                </div>
+	                        <!-- 车站机场 -->
+                                <div class="lever pr60 result-traffic">
+                                    <i class="bt4"></i>
+                                    <div class="lever_open">
+                                        <span class="level_station pb10 ">
+                                        <i class="top0">机场</i>
+                                           	<a title="南苑机场" href="" _mayi_rp="weblist|sem_condition|position3">南苑机场</a>
+                                         </span>
+                                        <span class="level_station pt10">
+                                        <i>火车站</i>
+                                           	<a title="北京北站" href="" _mayi_rp="weblist|sem_condition|position3">北京北站</a>
+                                          </span>
+                                        <span class="level_station  bordernone pt10 ">
+                                        <i>汽车站</i>
+                                           	<a title="八王坟客运站" href="" _mayi_rp="weblist|sem_condition|position3">八王坟客运站</a>
+                                            </span>
+                                    </div>
+                                </div>
+	                        <!-- 地铁 -->
+                                <div class="lever result-metro">
+                                    <i class="bt5"></i>
+                                        <a href="javascript:void(0);" linenum="0" title="1号线" rel="nofollow" class="line " _mayi_rp="weblist|sem_condition|position4">1号线</a>
+                                       <div class="two-sub 0" style="display:none">
+                                                <a title="四惠东" href="">四惠东</a>
+                                                   </div>
+                                        <div class="two-sub 1" style="display:none">
+                                                <a title="积水潭" href="">积水潭</a>
+                                                  </div>
+                                        <div class="two-sub 2" style="display:none">
+                                                <a title="天宫院" href="">天宫院</a>
+                                                   </div>
+                                        <div class="two-sub 3" style="display:none">
+                                                <a title="天通苑北" href="">天通苑北</a>
+                                                       </div>
+                                        <div class="two-sub 4" style="display:none">
+                                                <a title="草房" href="">草房</a>
+                                                </div>
+                                        <div class="two-sub 5" style="display:none">
+                                                <a title="焦化厂" href="">焦化厂</a>
+                                           </div>
+                                        <div class="two-sub 6" style="display:none">
+                                                <a title="南锣鼓巷" href="">南锣鼓巷</a>
+                                         </div>
+                                        <div class="two-sub 7" style="display:none">
+                                                <a title="国家图书馆" href="">国家图书馆</a>
+                                      </div>
+                                        <div class="two-sub 8" style="display:none">
+                                                <a title="火器营" href="">火器营</a>
+                                                  </div>
+                                        <div class="two-sub 9" style="display:none">
+                                                <a title="巴沟" href="">巴沟</a>
+                                      </div>
+                                        <div class="two-sub 10" style="display:none">
+                                                <a title="东直门" href="">东直门</a>
+                                                   </div>
+                                        <div class="two-sub 11" style="display:none">
+                                                <a title="西局" href="">西局</a>
+                                           </div>
+                                        <div class="two-sub 12" style="display:none">
+                                                <a title="清华东路西口" href="">清华东路西口</a>
+                                                         </div>
+                                        <div class="two-sub 13" style="display:none">
+                                                <a title="土桥" href="">土桥</a>
+                                                 </div>
+                                        <div class="two-sub 14" style="display:none">
+                                                <a title="西二旗" href="">西二旗</a>
+                                              </div>
+                                        <div class="two-sub 15" style="display:none">
+                                                <a title="郭公庄" href="">郭公庄</a>
+                                            </div>
+                                        <div class="two-sub 16" style="display:none">
+                                                <a title="2号航站楼" href="">2号航站楼</a>
+                                        </div>
+                                        <div class="two-sub 17" style="display:none">
+                                                <a title="次渠" href="">次渠</a>
+                                                 </div>
+                                </div>
+	                       	<!-- 大学 -->
+                                <div class="lever pr60 result-school">
+                                    <i class="bt6"></i>
+                                    <div class="lever_open">
+                                            <a title="北京大学" href="" _mayi_rp="weblist|sem_condition|position5">北京大学</a>
+                                                                      </div>
+                                </div>
+	                        <!-- 医院 -->
+                                <div class="lever  pr60  result-hospital">
+                                    <i class="bt7"></i>
+                                    <div class="lever_open">
+                                            <a title="301医院" href="" _mayi_rp="weblist|sem_condition|position6">301医院</a>
+                                                        </div>
+                                </div>
+                           </div>
+                       </li>
+	                   <!-- 位置结束 -->
+	                   <!--价格-->
+	                       <li>
+	                           <div class="lt-icon"><i class="icon-i04"></i>价格</div>
+	                           <div class="rt-word">
+	                               <div class="item one">
+	                                   <a rel="nofollow" class="on all" href="" _mayi_rp="weblist|sem_condition|price">不限</a>
+	                                    <div class="add wauto price_range">
+		                                	<input class="range-slider" type="hidden" value="60,1000" id="filter_price" style="display: none;"><div class="slider-container theme-green" style="width: 320px;">			<div class="back-bar">                <div class="selected-bar" style="width: 320px; left: 0px;"></div>                <div class="pointer low" style="left: -9px;"></div><div class="pointer-label" style="display: none;">60</div>                <div class="pointer high" style="left: 311px;"></div><div class="pointer-label more" style="display: none;">1000</div>                <div class="clickable-dummy"></div>            </div>            <div class="scale"></div>		</div>
+		                                	<span class="price_h3 f12">¥<i id="price_num1">60</i> - ¥<i id="price_num2">1000+</i></span>
+		                                    <input type="button" class="queding f12" value="确定" id="customPriceBtnNew" rel="nofollow" rlparam="" urlhost="/beijing" urlrequest="/beijing/p0-0/" _mayi_rp="weblist|sem_condition|price">
+		                                 </div>
+	                               </div>
+	                           </div>
+	                       </li>
+	                   <!--价格结束-->
+	                   <!-- 户型 -->
+                       <li id="huxing">
+                       	<div class="lt-icon">户型</div>
+                           <div class="rt-word">
+                               <div class="item one">
+                               <a rel="nofollow" class="on all" href="" _mayi_rp="weblist|sem_condition|roomnum">不限</a>
+                              		<div class="add relave"><a title="一居" href="" _mayi_rp="weblist|sem_condition|roomnum0">一居</a></div>
+                                   <div class="add relave"><a title="二居" href="" _mayi_rp="weblist|sem_condition|roomnum1">二居</a></div>
+                                   <div class="add relave"><a title="三居" href="" _mayi_rp="weblist|sem_condition|roomnum2">三居</a></div>
+                                   <div class="add relave"><a title="四居及以上" href="" _mayi_rp="weblist|sem_condition|roomnum3">四居及以上</a></div>
+                               </div>
+                           </div>
+                       </li>
+                       <!-- 户型结束 -->
+	                       
+                       <!--更多-->
+                       <li id="moreOther">
+                           <div class="lt-icon">更多</div>
+                           <div class="rt-word">
+                               <div class="item next">
+                                    <a rel="nofollow" class="on all" href="" _mayi_rp="weblist|sem_condition|roomtype">不限</a>
+                               		<div class="add moreOthernav" more="1"><a href="javascript:void(0);" class="tesefangxing ">特色房型<i></i></a></div>
+                                    <div class="add moreOthernav" more="2"><a href="javascript:void(0);" class="sheshi">设施<span class="othernum facility_type">0</span><i></i></a></div>
+                               </div>
+                               <!--特色房型-->
+                               <div class="checkbox one item tesefangxingCont" style="display: none;">
+                                        <!-- 房源类型数量大于等于10套展示 杨媛需求 -->
+	                                             <div class="add">
+	                                                 <a title="民居" href="" _mayi_rp="weblist|sem_condition|roomtype1">民居</a>
+	                                             </div>
+                                        <!-- 房源类型数量大于等于10套展示 杨媛需求 -->
+	                                                 <div class="add"><a title="公寓" href="" _mayi_rp="weblist|sem_condition|roomtype2">公寓</a>
+	                                                 </div>
+                                        <!-- 房源类型数量大于等于10套展示 杨媛需求 -->
+	                                             <div class="add">
+	                                                 <a title="独栋别墅" href="" _mayi_rp="weblist|sem_condition|roomtype3">独栋别墅</a>
+	                                             </div>
+                                        <!-- 房源类型数量大于等于10套展示 杨媛需求 -->
+	                                             <div class="add">
+	                                                 <a title="客栈" href="" _mayi_rp="weblist|sem_condition|roomtype5">客栈</a>
+	                                             </div>
+                                        <!-- 房源类型数量大于等于10套展示 杨媛需求 -->
+	                                             <div class="add">
+	                                                 <a title="四合院" href="" _mayi_rp="weblist|sem_condition|roomtype7">四合院</a>
+	                                             </div>
+                                        <!-- 房源类型数量大于等于10套展示 杨媛需求 -->
+                                        <!-- 房源类型数量大于等于10套展示 杨媛需求 -->
+                                        <!-- 房源类型数量大于等于10套展示 杨媛需求 -->
+                               </div>
+                               <!--配套设施-->
+                               <div class="checkbox one item" style="display: none;">
+                                   <div class="add"><a href="" style=" margin-left:0px;" _mayi_rp="weblist|sem_condition|facilities0">网络</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|facilities1">电视</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|facilities2">冰箱</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|facilities3">洗衣机</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|facilities4">空调</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|facilities5">淋浴</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|facilities6">暖气</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|facilities7">厨房</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|facilities8">允许聚会</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|facilities9">电梯</a></div>
+                               	   <input type="hidden" id="facility_type_count" value="0">
+                               </div>
+                               <!--床型-->
+                               <div class="checkbox one" style="display: none;">
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype0">2.0m双人床</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype1">1.8m双人床</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype2">1.5m双人床</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype3">单人床</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype4">双层床</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype5">单人沙发床</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype6">双人沙发床</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype7">儿童床</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype8">婴儿床</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype9">榻榻米</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype10">圆床</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype11">气垫床</a></div>
+                                   <div class="add"><a href="" _mayi_rp="weblist|sem_condition|bedtype12">炕床</a></div>
+                                   <input type="hidden" id="bed_type_count" value="0">
+                               </div>
+                           </div>
+                       </li>
+                   </ul>
+               </div>
+            </div>
+		</div>	
+		<div id="search_nav_bottom">
+              <div class="clearfloat w94_94 relave" style="overflow: hidden; min-height: 50px; width: 83%; margin: 0px auto;">
+                  <div class="gong" style="display:none">
+                      <ul class="fl change">
+                      </ul>
+                  </div>
+                  <div class="select_up" id="filter_up_down" style="" _mayi_rp="weblist|sem_condition|open_condition">展开筛选条件<i></i></div>
+              </div>
+        </div>
+	</div>
+	<div class="filter_fixed"></div>
+	<div class="b_white ">
+       <div class="rt-con w94_94 clearfloat" id="sortDiv" style="width: 83%; margin: 0px auto;">
+               <a rel="nofollow" _mayi_rp="weblist|sem_condition|defaultsort" href="javascript:void(0);" onclick="return false;" class="rt-on">推荐排序</a>
+           
+               <a class="room_price_choice" rel="nofollow">价格<i class="pr-arrows"></i>
+               	<span class="room_price_layer topsanjiao">
+               	<b id="toup_price" url="/beijing/?st=zuipianyi" _mayi_rp="weblist|sem_condition|pricedowntoup">由低到高</b>
+               	<b id="todown_price" url="/beijing/?st=zuigui" _mayi_rp="weblist|sem_condition|priceuptodown">由高到低</b>
+               	</span>
+               </a>
+               <a rel="nofollow" _mayi_rp="weblist|sem_condition|pinglunsort" href="http://www.mayi.com/beijing/?st=pinglunzuiduo" class="dis-arrows">评论数<i class="dis-arrows"></i>
+               	<span class="add_title pinglun_title ">评论数由多到少</span>
+               </a>
+               
+               <a rel="nofollow" _mayi_rp="weblist|sem_condition|yudingsort" href="http://www.mayi.com/beijing/?st=jiaoyizuiduo" class="dis-arrows">预订数<i class="dis-arrows"></i>
+               	<span class="add_title yuding_title">预订数由多到少</span>
+               </a>
+           
+           <span class="totalCount fr c_gray_dark"><b id="totalCount">72200+</b>套房屋符合条件</span>
+       </div>
+	   <div class="relave con-wrap-par w94_94" style="width: 83%; margin: 0px auto;">
+       		<div class="con-wrap" id="con-wrap" style="min-height: 527px;">
+				<div class="downloadApp" style="display: block;">
+		        	<!--<img src="//i1.mayi.com/mayi84/M61/WB/WA/JPGKKR6H7RVW86CRHJE9VZRVVQZ8J2.jpg" class="downloadAppImg" onclick="window.open('http://www.mayi.com/promotion/')"/> -->
+		        	<img src="./erji/downloadApp.png" class="downloadAppImg" onclick="window.open(&#39;http://www.mayi.com/activity/app50&#39;)">
+		        	<span class="close_download"></span>
+		        </div>
+	        	<div>
+	           <!-- 搜索到的已有房源start -->
+	               <dl class="searchRoom clearfloat" id="searchRoom">
+	                       <dd id="dd_853829173" data="853829173" lid="853829173" collestate="0" price="528" latlng="39.892273,116.36673" style="width: 25%;">
+	                           <div class="room-img">
+	                               <div class="collect" state="1" title="收藏" id="c_853829173" ></div>
+	                               <!--图片切换-->
+	                               <div>
+	                                       <div class="house-image" style="height: 206.667px;">
+	                                           <a href="javascript:void(0)" class="change-prev" style="display:none;" data="853829173" mainimage="//i1.mayi.com//mayi53/M68/TR/JM/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg"></a>
+	                                           <a href=""  target="_blank">
+	                                               <img class="roomMap853829173" style="display:none">
+	                                                   <img id="853829173" class="lazy lodgelazy" title="广安门牛街宣武医院北京西站精品雅居套房" src="/erji/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg" data-original="//i1.mayi.com//mayi53/M68/TR/JM/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg" alt="北京短租房广安门牛街宣武医院北京西站精品雅居套房" style="display: inline;">
+	                                           </a>
+	                                           <a href="javascript:void(0)" style="display: none" class="change-next" data="853829173"></a>
+	                                       </div>
+	                               </div>
+	                               <p class="asote yxfy-img">
+	                                               <a href="" target="_blank" class="yx_alink" rel="nofollow">
+	                                                   <img src="/erji/level9-2_1.png" alt="广安门牛街宣武医院北京西站精品雅居套房" style=" width: 62px;">
+	                                                   <span>“蚂蚁优选”认证是由蚂蚁短租开创建立的行业新标准，具备3大品质体系、9大服务标准、27项安心保障。住蚂蚁优选房，设施全、服务佳、品质高！</span>
+	                                               </a>
+	                                   <!-- 夜宵活动折扣标签 -->
+	                               </p>
+	                               <!-- 图片切换结束 -->
+	                               <b class="moy-b">
+                               	      <p>
+                               		  <font>￥</font>528
+                              		  </p>
+	                               </b>
+	
+	                                   <a title="广安门牛街宣武医院北京西站精品雅居套房">
+	                                       <b class="btn-img"><img src="/erji/UTW2YP7GF3M3ZPAB2HCWPEM5DRBTGY.jpg_150x150c.jpg" class="lazy landlazy" data-original="//i1.mayi.com/mayi48/M24/CP/WD/UTW2YP7GF3M3ZPAB2HCWPEM5DRBTGY.jpg_150x150c.jpg" width="46" heigth="46" alt="房东头像" style="display: inline;"></b>
+	                                   </a>
+	                           </div>
+	                           <a href="" title="广安门牛街宣武医院北京西站精品雅居套房" onclick="goDetail(this)" target="_blank" style="position:relative;">
+	                               <div class="room-detail  clearfloat">
+	                                   <p>广安门牛街宣武医院北京西站精品雅居套房</p>
+	                                   <ul>
+	                                           <li>1条评论·</li>
+	                                       <li>2居·
+	                                       </li>
+	                                       <li>
+	                                           	可住4人
+	                                       </li>
+	                                   </ul>
+	                                   <div class="room_intro_p">
+										   	   <span class="biaoqian_style" style="background: rgba(255,205,76,0.25);color: #FA9A00;">速订</span>
+	                                           <span class="biaoqian_style" style="background:#f4f4f4;">长租优惠</span>
+	                                           <span class="biaoqian_style" style="background:#f4f4f4;">实拍</span>
+	                                           <span class="biaoqian_style" style="background:#f4f4f4;"> 可做饭</span>
+	                                   </div>
+										<input type="hidden" value="0">
+	                               </div>
+	                           </a>
+	                       </dd>
+	                  
+	                       
+                    </dl>
+	               <!-- Page -->
+	                   <div id="page" class="page">
+	                                   <a class="pg-active" href="" rel="nofollow" _mayi_rp="weblist|sem_searchmore|pagecount">1</a>
+	                                   <a href="" rel="nofollow" _mayi_rp="weblist|sem_searchmore|pagecount">2</a>
+	                                   <a href="" rel="nofollow" _mayi_rp="weblist|sem_searchmore|pagecount">3</a>
+	                                   <a href="" rel="nofollow" _mayi_rp="weblist|sem_searchmore|pagecount">4</a>
+	                                   <a href="" rel="nofollow" _mayi_rp="weblist|sem_searchmore|pagecount">5</a>
+	                       <input type="hidden" vale="30">
+	                        <a href="javascript:void(0)">...</a>
+	                       <input type="hidden" vale="30">
+	                               <a href="" rel="nofollow" class="up-page" _mayi_rp="weblist|sem_searchmore|pagecount">下一页</a>
+	                   </div>
+	                   <!-- Page END -->
+           	   </div>
+           <!-- 搜索到的已有房源end -->
+
+           <!-- 全部推荐房源开始 start -->
+	       <!-- 全部推荐房源结束 end-->
+           </div>
+           <div class="rigth_like">
+	       		<div class="ditu_link relave">
+	       			<a href="javascript:goMap()" _mayi_rp="weblist|ditu|gomap">
+	       				<img src="/erji/ditu.png" alt="">
+	       				<span>试试地图找房</span>
+	       			</a>
+	       		</div>
+       			<!--平台宣传-->
+	       		<ul class="safeplan">
+	       			<li>
+	       				<a href="" target="_blank" _mayi_rp="weblist|anxin|realhouse">
+	       					<i class="zsfy"></i>
+	       					<span class="span1">真实房源</span>
+	       					<span class="span2">上门实拍资质备案</span>
+	       				</a>
+	       			</li>
+	       			<li>
+	       				<a href="" target="_blank" _mayi_rp="weblist|anxin|supportplan">
+	       					<i class="axrz"></i>
+	       					<span class="span1">安心入住</span>
+	       					<span class="span2">到店无房赔付</span>
+	       				</a>
+	       			</li>
+	       			<li>
+	       				<a href="" target="_blank" _mayi_rp="weblist|anxin|zmxy">
+	       					<i class="zmxy"></i>
+	       					<span class="span1">芝麻信用</span>
+	       					<span class="span2">房东房客实名认证</span>
+	       				</a>
+	       			</li>
+	       			<li>
+	       				<a href="" class="bordernone" target="_blank" _mayi_rp="weblist|anxin|zykf">
+	       					<i class="zykf"></i>
+	       					<span class="span1">专业客服</span>
+	       					<span class="span2">7 x 24小时</span>
+	       				</a>
+	       			</li>
+	       		</ul>
+       	</div>
+   </div>
+</div>
+<!-- 异步获取 城市精品房源推荐 start -->
+<div class="wrap" id="wrap-list" style="height:0px;overflow:hidden">
+    <div class="list-bottombox" style="display: none;">
+        <div class="left_bar">房源推广</div>
+        <div class="infiniteCarousel">
+            <div class="wrapper" rel="nofollow" style="overflow: hidden;">
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 精品房源推荐 end -->
+<!--速订筛选弹层 start -->
+<div class="layer_set_speed">
+    <div class="surveYY"></div>
+    <div class="offmax">
+        <span class="close_setspeed"></span>
+        <div class="dp_cnt">
+            <img src="/erji/pc_list_ss_layer_bj.png" class="setspeed_layer_bj">
+            <strong class="dp_tlt">建议您选择速订房源</strong>
+            <p class="dp_p">下单后无需房东确认即可成单，秒速预订您的房源！</p>
+            <p class="f12" style="color:#b4b9bf;">温馨提示：选择入住日期有助于您获得更多适合的推荐房源！</p>
+        </div>
+        <div class="link_suding"><a href="">立即筛选</a></div>
+    </div>
+</div>
+<!--速订筛选弹层 end -->
+<script type="text/javascript" src="/erji/layer.min.js.下载"></script>
+<script type="text/javascript" src="/erji/jQuery.md5.js.下载"></script>
+<script type="text/javascript" src="/erji/login.js.下载"></script>
+
+<!-- Footer -->
+<link rel="stylesheet" href="erji/seoFooter.css">
+<script src="/erji/seoFooter.js.下载"></script><script src="/erji/11.0.1.js.下载" id="sozz"></script><script charset="utf-8" src="/erji/ab77b6ea7f3fbf79.js.下载"></script>
+<div class="foot">
+	<div class="w1190 pb20 clearfloat">
+		<div class="mt50">
+			<p class="t-center f12 c777776">客户服务：400-028-6868 |
+				<a href="" target="_blank" class="c777776">&nbsp;用户答疑&nbsp;|</a>
+				<a href="" target="_blank" class="c777776">&nbsp;公司信息&nbsp;|</a>
+				<a href="" target="_blank" class="c777776">&nbsp;网站地图&nbsp;|</a>
+				<a href="" target="_blank" class="c777776">&nbsp;短租房&nbsp;|</a>
+				<a href="" target="_blank" class="c777776">&nbsp;app下载&nbsp;|</a>关注我们
+				<span class="mr10 cursorpt showinfo relave" style="display:inline-block;vertical-align:middle;">
+		            <img src="/erji/weixin_logo_s.png">
+		            <img src="/erji/weixin.jpg" class="head_pop absot" style="bottom:24px;left:-32px;">
+		        </span>
+				<span class="cursorpt" style="display:inline-block;vertical-align:middle;">
+		            <img src="/erji/xinlang_logo_s.png" onclick="sinaWeibo();">
+		        </span>
+			</p>
+			<!--公司切换-->
+			<p class="t-center f12 c777776">网站备案/许可证号：京ICP备12051504号-1 <a class="c777776" href="" target="_blank">营业执照编号：105259760</a> 易云游网络技术（北京）有限公司</p>
+		</div>
+	</div>
+</div>
+<!-- 登录弹窗 -->
+<div class="loginbox" id="loginboxdiv" nexturl="none" name="loginboxdiv" style="display:none;">
+	<a class="login-colse" id="loginclose" name="loginclose" href="javascript:void(0)"></a>
+    <div class="login-ways clearfloat">
+    	<div class="fl phone-account">
+            <ul class="c322c27 clearfloat f18">
+                <li class="phoneway_current" id="changeloginbyma">手机验证码登录</li>
+                <li class="mayiway" id="changeloginbyup">帐号密码登录</li>
+            </ul>
+            <div class="login-phone-account">
+            	<!-- 手机登陆 -->		
+                <div class="login-input" id="loginbymadiv" name="loginbymadiv">
+	            	<input type="hidden" id="li_num" value="0">
+	            	<input type="hidden" id="code_num" value="86">
+	                <div class="input">
+	                    <span class="phone-icon"></span>
+	                    <input class="dlargeinput" type="text" id="loginmobile" name="loginmobile" placeholder="手机号" value="" onafterpaste="mobileRepAndSetPos(this,/[^\d.]/g,&#39;&#39;)" onkeyup="mobileRepAndSetPos(this,/[^\d.]/g,&#39;&#39;)" maxlength="11">
+	                    <div class="choice_phone_type">
+							<i code="86">+86</i>
+							<span class="UP_down choice_nation_open"></span>
+						</div>
+	                </div>
+	                <div class="nation_list">
+						<ul class="continent_list">
+							<li class="">亚洲</li>
+							<li class="">欧洲</li>
+							<li class="">美洲</li>
+							<li class="">大洋洲</li>
+						</ul>
+						<ul class="nation_tel_list">
+							<!-- countrycode window-->
+							<li style="display: block;">
+	<a href="javascript:void(0);" value="86">中国大陆&nbsp;&nbsp;+86</a>
+	<a href="javascript:void(0);" value="82">韩国&nbsp;&nbsp;+82</a>
+	<a href="javascript:void(0);" value="60">马来西亚&nbsp;&nbsp;+60</a>
+	<a href="javascript:void(0);" value="81">日本&nbsp;&nbsp;+81</a>
+	<a href="javascript:void(0);" value="66">泰国&nbsp;&nbsp;+66</a>
+	<a href="javascript:void(0);" value="65">新加坡&nbsp;&nbsp;+65</a>
+	<a href="javascript:void(0);" value="91">印度&nbsp;&nbsp;+91</a>
+	<a href="javascript:void(0);" value="62">印度尼西亚&nbsp;&nbsp;+62</a>
+	<a href="javascript:void(0);" value="84">越南&nbsp;&nbsp;+84</a>
+	<a href="javascript:void(0);" value="853">中国澳门&nbsp;&nbsp;+853</a>
+	<a href="javascript:void(0);" value="852">中国香港&nbsp;&nbsp;+852</a>
+	<a href="javascript:void(0);" value="886">中国台湾&nbsp;&nbsp;+886</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="49">德国&nbsp;&nbsp;+49</a>
+	<a href="javascript:void(0);" value="7">俄罗斯&nbsp;&nbsp;+7</a>
+	<a href="javascript:void(0);" value="33">法国&nbsp;&nbsp;+33</a>
+	<a href="javascript:void(0);" value="380">乌克兰&nbsp;&nbsp;+380</a>
+	<a href="javascript:void(0);" value="34">西班牙&nbsp;&nbsp;+34</a>
+	<a href="javascript:void(0);" value="39">意大利&nbsp;&nbsp;+39</a>
+	<a href="javascript:void(0);" value="44">英国&nbsp;&nbsp;+44</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="55">巴西&nbsp;&nbsp;+55</a>
+	<a href="javascript:void(0);" value="1">加拿大&nbsp;&nbsp;+1</a>
+	<a href="javascript:void(0);" value="1">美国&nbsp;&nbsp;+1</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="61">澳大利亚&nbsp;&nbsp;+61</a>
+	<a href="javascript:void(0);" value="64">新西兰&nbsp;&nbsp;+64</a>
+</li>						</ul>
+					</div>
+	                <div class="largeinputbox small-top clearfix">
+	                    <div class="dinput fl">
+	                        <span class="verification-icon"></span>
+	                        <input class="dsmallinput" type="text" id="imagecode" placeholder="图形验证码" value="">
+	                    </div>
+	                    <div class="yz-code fr">
+	                          <img src="http://www.mayi.com/beijing" id="loginauthimage" title="点击刷新">
+	                    </div>
+	                </div>
+	                <div class="largeinputbox small-top clearfix" id="maerrordiv">
+	                    <div class="dinput fl" id="maerrordiv">
+	                        <span class="password-icon"></span>
+	                        <input class="dsmallinput" type="text" id="loginphonecode" name="loginphonecode" placeholder="短信验证码" value="">
+	                    </div>
+	                    <div class="yz-code fr">
+	                        <input class="sendnumber defaultsend" type="button" id="getloginphonecode" name="getloginphonecode" value="获取验证码">
+	                    </div>
+	                </div>
+	                <div class="logincheckbox large-top clearfix">
+	                    <label class="fl">
+	                        <input class="selectcheckbox" type="checkbox" name="rememberloginstate" checked="checked" value="">自动登录
+	                    </label>				
+	                </div>	
+	                <div class="logincheckbox large-top clearfix"><font>未注册的手机号将自动创建为蚂蚁短租帐户</font></div>
+	                <div class="btn-wrap btnpdt20">
+	                    <a href="javascript:void(0)" id="loginbymado">登录</a>
+	                </div>
+            	</div>
+            	<!-- 手机登陆 end  -->	
+            	<!-- 密码登陆 start -->
+	            <div class="login-input" id="loginbyupdiv" name="loginbyupdiv" style="display:none;">
+	            	<input type="hidden" id="li_num_1" value="0">
+	            	<input type="hidden" id="code_num_1" value="86">
+	                <div class="input">
+	                    <span class="user-icon"></span>
+	                    <input class="dlargeinput" type="text" id="loginnamein" name="loginnamein" placeholder="手机号/邮箱/账号" value="" autocomplete="off">
+	                	<div class="choice_phone_type_1">
+							<i tag="CN" code="86">+86</i>
+							<span class="UP_down choice_nation_open"></span>
+						</div>
+	                </div>
+	                <div class="nation_list_1">
+						<ul class="continent_list_1">
+							<li class="">亚洲</li>
+							<li class="">欧洲</li>
+							<li class="">美洲</li>
+							<li class="">大洋洲</li>
+						</ul>
+						<ul class="nation_tel_list_1">
+							<!-- countrycode window-->
+<li style="display: block;">
+	<a href="javascript:void(0);" value="86">中国大陆&nbsp;&nbsp;+86</a>
+	<a href="javascript:void(0);" value="82">韩国&nbsp;&nbsp;+82</a>
+	<a href="javascript:void(0);" value="60">马来西亚&nbsp;&nbsp;+60</a>
+	<a href="javascript:void(0);" value="81">日本&nbsp;&nbsp;+81</a>
+	<a href="javascript:void(0);" value="66">泰国&nbsp;&nbsp;+66</a>
+	<a href="javascript:void(0);" value="65">新加坡&nbsp;&nbsp;+65</a>
+	<a href="javascript:void(0);" value="91">印度&nbsp;&nbsp;+91</a>
+	<a href="javascript:void(0);" value="62">印度尼西亚&nbsp;&nbsp;+62</a>
+	<a href="javascript:void(0);" value="84">越南&nbsp;&nbsp;+84</a>
+	<a href="javascript:void(0);" value="853">中国澳门&nbsp;&nbsp;+853</a>
+	<a href="javascript:void(0);" value="852">中国香港&nbsp;&nbsp;+852</a>
+	<a href="javascript:void(0);" value="886">中国台湾&nbsp;&nbsp;+886</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="49">德国&nbsp;&nbsp;+49</a>
+	<a href="javascript:void(0);" value="7">俄罗斯&nbsp;&nbsp;+7</a>
+	<a href="javascript:void(0);" value="33">法国&nbsp;&nbsp;+33</a>
+	<a href="javascript:void(0);" value="380">乌克兰&nbsp;&nbsp;+380</a>
+	<a href="javascript:void(0);" value="34">西班牙&nbsp;&nbsp;+34</a>
+	<a href="javascript:void(0);" value="39">意大利&nbsp;&nbsp;+39</a>
+	<a href="javascript:void(0);" value="44">英国&nbsp;&nbsp;+44</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="55">巴西&nbsp;&nbsp;+55</a>
+	<a href="javascript:void(0);" value="1">加拿大&nbsp;&nbsp;+1</a>
+	<a href="javascript:void(0);" value="1">美国&nbsp;&nbsp;+1</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="61">澳大利亚&nbsp;&nbsp;+61</a>
+	<a href="javascript:void(0);" value="64">新西兰&nbsp;&nbsp;+64</a>
+</li>						</ul>
+					</div>
+	                <div class="input small-top">
+	                    <span class="password-icon"></span>
+	                    <input class="dlargeinput" type="password" id="loginpassin" name="loginpassin" placeholder="密码" value="">
+	                </div>
+	                <div class="largeinputbox small-top clearfix" id="uperrordiv">
+	                    <div class="dinput fl" id="yui_3_5_1_1_1434542056373_108">
+	                        <span class="verification-icon"></span>
+	                        <input type="text" class="dsmallinput" id="imagecode1" placeholder="图形验证码" value="">
+	                    </div>
+	                    <div class="yz-code fr">
+	                          <img src="" id="loginauthimage1" title="点击刷新">
+	                    </div>
+	                </div>
+	                <div class="logincheckbox large-top clearfix">
+	                    <label class="fl">
+	                        <input class="selectcheckbox" type="checkbox" name="rememberpass" checked="checked" value="">自动登录
+	                    </label>				
+	                </div>	
+	                <div class="btn-wrap btnpdt20">
+	                    <a href="javascript:void(0)" id="loginbyupdo" _mayi_rp="web|condition|loginc">登录</a>
+	                </div>
+	                <p class="otherwaytitle mt20">没有账号密码请 <a href="javascript:void(0)" id="changeloginbymwa">使用手机验证码登录</a></p>
+	            </div>
+	            <!-- 密码登陆 end -->
+            </div>
+        </div>
+        <div class="fl t-center third-party">
+        	<p class="f18 c322c27 mb20">其他登录方式</p>
+            <ul class="otherway c322c27">
+                <li class="wxway" id="loginbywx" _mayi_rp="web|condition|loginc">微信登录</li>
+                <li class="sinaway" id="loginbysina" _mayi_rp="web|condition|loginc">微博登录</li>
+                <li class="qqway" id="loginbyqq" _mayi_rp="web|condition|loginc">QQ登录</li>
+            </ul>
+        </div>
+    </div>
+</div>	
+<!-- 登录弹窗 END --> 
+<!--公共尾部结束-->
+<script type="text/javascript" src="/erji/layer.min.js.下载"></script>
+<script type="text/javascript" src="/erji/jQuery.md5.js.下载"></script>
+<script type="text/javascript" src="/erji/loginpc.js.下载"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    function getCookie(objName) {
+        var arrStr = document.cookie.split("; ");
+        for(var i = 0;i < arrStr.length;i ++){
+            var temp = arrStr[i].split("=");
+            if(temp[0] == objName) return unescape(temp[1]);
+        }
+    }
+    
+    function deleteCookie(name, path) {
+        var name = escape(name);
+        var expires = new Date(0);
+        path = path == "" ? "" : ";path=" + path;
+        document.cookie = name + "=" + ";expires=" + expires.toUTCString() + path;
+    }
+
+    //修正cookie中的MayiUserInfo
+    var user = getCookie('MayiUserInfo');
+    if (user != null) {
+        var pattern = new RegExp(/^\".+\"$/);
+        if (pattern.exec(user)) {
+            user = user.substring(1,user.length-1);
+            deleteCookie('MayiUserInfo', '/');
+            document.cookie = "MayiUserInfo=" + escape(user) + ";path=/;domain=.mayi.com";
+        }
+    }
+    //未登录的登录后才能显示站内信
+    	$(".email").show();
+});
+
+function sinaWeibo(){
+	window.open("http://widget.weibo.com/dialog/follow.php?fuid=2357071361");
+}
+</script>
+<style type="text/css">
+.email{ position:fixed; bottom:0px; right:0px; width:190px; height:35px; line-height:35px; background:#e8e8e8; border:1px #CCCCCC solid; border-right:none; z-index:400000000;}
+.email a{ padding-left:10px; float:left; font-weight:normal; font-family:"宋体"; font-size:12px; width:120px; box-shadow:1px 0px 0px 0px #ccc; border-right:1px #fff solid;}
+.email a img{ margin:12px 3px 0px 0px; float:left; width:16px; height:12px;}
+.imjs-status{color:#55aa39 !important}
+#webIM ul.tab-im .offline-icon,#webIM ul.tab-im .online-icon{background-position:0 !important}
+#webIM .all-list a.on, #webIM .all-list a.off{background-position:-239px -297px !important;color:#2883C3 !important}
+#webIM ul.tab-im a{color:#2883C3 !important}
+</style> 
+<script src="./erji/wb.js.下载" type="text/javascript" charset="utf-8"></script>
+<!-- load statistics js -->
+<!--[statistics start]-->
+<!-- load End--><!--底部浮层显示，默认是隐藏-->
+<!--跟踪代码-->
+<script type="text/javascript">
+    var _py = _py || [];
+    _py.push(['a', '_V..9lG-o_-K8tLjk83g1WAOcX']);
+    _py.push(['domain', 'stats.ipinyou.com']);
+    _py.push(['e', '']);
+    -function (d) {
+        var f = 'https:' == location.protocol;
+        f = (f ? 'https' : 'http') + '://' + (f ? 'file.ipinyou.com' : 'file.ipinyou.com.cn') + '/j/adv.js';
+        d.write('<script src="' + f + '"><\/script>');
+    }(document)
+</script><script src="/erji/adv.js.下载"></script>
+<noscript><img src="//stats.ipinyou.com/adv.gif?a=_V..9lG-o_-K8tLjk83g1WAOcX&e=" style="display:none;"/></noscript>
+<!--判断是否推送给赶集-->
+<input type="hidden" name="channel_ganji" id="channel_ganji" value="">
+<!-- 蚂蚁点击 -->
+<script src="/erji/mayi.js.下载"></script>
+<!-- 蚂蚁分析 -->
+<script src="/erji/mayi_rp.js.下载"></script>
+
+
+
+
+
+
+
+
+
+
+<!--360聚效推广的访客找回 -->
+
+<!--广告图-->
+<script type="text/javascript">
+    var cityType = getCookie('cityType');
+    $(function(){
+    	if(cityType == "" || cityType == null){
+    		cityType = "inland";
+    	}else{
+	    	if(cityType == "oversea"){
+	    		$(".city_overseas").addClass("active");
+	    		$(".city_inland").removeClass("active");
+	    	}
+    	}
+    });
+    function pressEve(e) {
+        var e = e || window.event;
+        var code = e.keyCode;
+        var sugcss = $('.suggest_results').css('display');
+
+        if (sugcss != 'none') {
+            if (code == 13) {
+                //选中第一个
+                if ($(".suggest_results li:first-child a .leftspan").attr("kw")) {
+                    $("#searchcityin").attr('citypinyin', $(".suggest_results li:first-child a").attr('url').split("/")[1]);
+                }
+                doSearch();
+            } else if (code == 38) {
+                movePrev();
+            } else if (code == 40) {
+                moveNext();
+            }
+        }
+    }
+
+    function getSuggest(e, k) {
+        var s = $('#searchcityin').val().trim();
+        if (k) {
+            s = $('#searchcityin1').val().trim();
+        }
+        //alert('联想:'+s);
+        var cityid = $('#cityid').val();
+        var ctx = $('#ctx').val();
+        if (!e) var e = window.event;
+        var code = e.keyCode;
+        if (code == 27) {
+            $('.error_tip_list').css('display', 'none');
+            $('.suggest_results').css('display', 'none');
+            return false;
+        }
+        if (code == 13 || code == 37 || code == 38 || code == 39 || code == 40 || code == undefined) {
+            return false;
+        }
+        if (null != s && s.length > 0 && s != '目的地' && s != '目的地、景点、商圈等' && s != '位置、标题、房东等') {
+            var sugurl = ctx + '/getSuggest/';
+            getSuggestResult(sugurl, s, k ? cityid : 0, 'list', k);
+        } else {
+            version++;
+            $('.suggest_results').html();
+            $('.error_tip_list').css('display', 'block');
+            if (k) {
+                //$('.error_tip_list').html('请输入关键字');
+                //$('.error_tip_list').css('left',$(".keyword").offset().left);
+                $('.suggest_results').css('display', 'none');
+                $('.select-hotcity').css('display', 'none');
+                $('.error_tip_list').css('display', 'none');
+                var oLeft = $(".keyword").position().left;
+                $('#key_word_list').fadeIn().css({"right":0,"left":"auto"});
+                /* $('#key_word_list').show();
+                $('#key_word_list').css('left', $("#searchcityin1").offset().left-$(".search_main").offset().left); */
+            } else {
+                //$('.error_tip_list').html('请输入目的地');
+                //$('.error_tip_list').css('left',100);
+                //$('#searchcityin').val("");
+                var searchkey = getCookie('searchkey');
+                if (null != searchkey && searchkey.length > 0) {
+                    var keys = searchkey.replace(/\"/ig, '').split(',');
+                    var data = '';
+                    for (var i = keys.length - 1; i > -1; i--) {
+                        var localHistoy = keys[i].split('&');
+                        data += '<li class="citylili"><a class="cityselecta" href="javascript:void(0)" cityname="' + localHistoy[0] + '" surl="' + localHistoy[1] + '" citypinyin="' + localHistoy[0] + '">' + localHistoy[0] + '</a></li>';
+                    }
+                    $("#searh-recent").html(data);
+                    $('.cityselecta').click(function (e) {
+                        var isDiBiao = $(this).attr("isDiBiao");
+                        if (isDiBiao == 1) {
+                            $("#searchcityin").attr("typeid", "0");
+                        } else {
+                            $("#searchcityin").attr("typeid", "3");
+                        }
+                    });
+                    $(".searh-recent").css('display', 'block');
+                } else {
+                    $(".searh-recent").css('display', 'none');
+                }
+                $("#hotcity").addClass('selected').parent().siblings().children().removeClass('selected');
+                loadhotCity();
+                $("#searchcitydiv").css("display", "block");
+                $(".error_tip").css('display', 'none');
+
+                $('.error_tip_list').css('display', 'none');
+                $('.suggest_results').css('display', 'none');
+                $('.select-hotcity').css('display', 'block');
+            }
+        }
+    }
+
+    function getOtherSug() {
+        var s = $('#searchcityin').val();
+        var ctx = $('#ctx').val();
+        var sugurl = ctx + '/getSuggest/';
+        getSuggestResult(sugurl, s, 0, 'list');
+    }
+
+    function goSug(sugurl, name) {
+        var ctx = $('#ctx').val();
+        var url = ctx + sugurl;
+        var checkinday = $('#checkinday').val();
+        if (checkinday != null && checkinday != "" && checkinday != "入住时间") {
+            url = url + "?d1=" + checkinday;
+            var checkoutday = $('#checkoutday').val();
+            if (checkoutday != null && checkoutday != "" && checkoutday != "退房时间") {
+                url = url + "&d2=" + checkoutday;
+            }
+        }
+        setSearchCookie(name);
+        window.location.href = url;
+    }
+    
+    //国内、海外tab图标切换
+	$("#city_inland,#city_overseas").on('click',function(e){
+		MYRP.rpComm($(this));
+		$(this).addClass('active').siblings().removeClass('active');
+		if($(this).hasClass("city_inland")){
+			listcityInfo(null,"inland");
+			cityType = "inland";
+		}else{
+			listcityInfo(null,"oversea");
+			cityType = "oversea";
+		}
+		e.stopPropagation();
+	});
+    //点击城市输入框
+    $('#searchcityin').click(function (e){
+    	MYRP.rpComm($(this));
+        e.stopPropagation();
+    	listcityInfo(e,cityType);
+    });
+    function listcityInfo(e,cityType){
+    	$("#cityselecttitleul").find('li').removeClass();
+		$("#cityselecttitleul").find('li:eq(0)').attr('class','active');
+		$("."+cityType).addClass('active').siblings().removeClass('active'); //tab标签选中状态
+        $('.up_btn').children("span").css('background-position', '-11px 0');
+        $('.up_btn ul').css('display', 'none');
+        var s = $('#searchcityin').val();
+        if (s != null && s.length > 0 && s != '目的地、景点、商圈等') {
+            var searchkey = getCookie('searchkey');
+            if (null != searchkey && searchkey.length > 0) {
+                var keys = searchkey.replace(/\"/ig, '').split(',');
+                var data = '';
+                for (var i = keys.length - 1; i > -1; i--) {
+                    var localHistoy = keys[i].split('&');
+                    if (localHistoy[2] == 1) {
+                        //data += '<li class="citylili"><a class="cityselecta" href="javascript:void(0)" cityname="'+localHistoy[0]+'" surl="'+localHistoy[1]+'?s='+localHistoy[0]+'" citypinyin="'+localHistoy[0]+'">'+localHistoy[0]+'</a></li>';
+                        var surl = "";
+                        if (localHistoy[1].indexOf("?s=") == -1) {
+                            surl = localHistoy[1] + "?s=" + localHistoy[0];
+                        } else {
+                            surl = localHistoy[1];
+                        }
+                        if(cityType == localHistoy[4]){
+	                        data += '<li class="citylili"><a class="cityselecta" href="javascript:void(0)" cityname="' + localHistoy[0] + '" isDiBiao="' + localHistoy[2] + '" surl="' + surl + '" citypinyin="' + localHistoy[0] + '">' + localHistoy[0] + '</a></li>';
+                        }
+                    } else {
+                    	if(cityType == localHistoy[4]){
+                        	data += '<li class="citylili"><a class="cityselecta" href="javascript:void(0)" cityname="' + localHistoy[0] + '" isDiBiao="' + localHistoy[2] + '" surl="' + localHistoy[1] + '" citypinyin="' + localHistoy[0] + '">' + localHistoy[0] + '</a></li>';
+                    	}
+                    }
+                }
+                $("#searh-recent").html(data);
+                $('.cityselecta').click(function (e) {
+                    $("#searchcityin1").val('');
+                    var isDiBiao = $(this).attr("isDiBiao");
+                    if (isDiBiao == 1) {
+                        $("#searchcityin").attr("typeid", "0");
+                    } else {
+                        $("#searchcityin").attr("typeid", "3");
+                    }
+                });
+                if(cityType == "inland"){
+					$("#hotcity").text("国内热门");
+				}else{
+					$("#hotcity").text("海外热门");
+				}
+				if($("#searh-recent").find("li").length > 0){
+					$(".searh-recent").css('display','block');
+				}else{
+					$(".searh-recent").css('display','none');
+				}
+            } else {
+            	$("#hotcity").text("国内热门");
+                $(".searh-recent").css('display', 'none');
+            }
+            $("#hotcity").addClass('selected').parent().siblings().children().removeClass('selected');
+            loadhotCity(cityType);
+            $("#searchcitydiv").css("display", "block");
+            $(".error_tip").css('display', 'none');
+			$('.error_tip_list').css('display', 'none');
+            $('.suggest_results').css('display', 'none');
+        } else {
+            $("#searchcitydiv").css("display", "block");
+        }
+    }
+
+    //加载热门城市
+    function loadhotCity(cityType) {
+        var ctx1 = $('#ctx1').val();
+        $('#cityselectul').html('');
+        //var redHotCity = ["chengdu", "chongqing", "xian", "xiamen", "suzhou", "wuhan", "qingdao", "hangzhou", "yangzhou"];
+        //var imageCity = ["hangzhou", "yangzhou", "qingdao", "weihai"];
+        if(cityType == "inland"){
+	        for (var city in hotcitys) {
+	            var cityinfo = hotcitys[city];
+	            var a = "";
+	            if(city <= 29){
+		            if(cityinfo[9] == 0){
+						if(cityinfo[1].length > 5){
+							a = '<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="'+cityinfo[1]+'" cityname="'+cityinfo[1]+'" surl="/'+cityinfo[2]+'" citypinyin="'+cityinfo[2]+'">'+cityinfo[1].substring(0,4)+'...</a></li>';
+						}else{
+							a = '<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="'+cityinfo[1]+'"cityname="'+cityinfo[1]+'" surl="/'+cityinfo[2]+'" citypinyin="'+cityinfo[2]+'">'+cityinfo[1]+'</a></li>';
+						}
+		            }
+	                $('#cityselectul').append(a);
+	            }
+	        }
+        }else{
+        	var a = "";
+        	a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="曼谷" cityname="曼谷" surl="/mangu" citypinyin="mangu">曼谷</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="普吉岛" cityname="普吉岛" surl="/pujidao" citypinyin="pujidao">普吉岛</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="大阪" cityname="大阪" surl="/daban" citypinyin="daban">大阪</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="东京" cityname="东京" surl="/dongjing" citypinyin="dongjing">东京</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="清迈" cityname="清迈" surl="/qingmai" citypinyin="qingmai">清迈</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="胡志明市" cityname="胡志明市" surl="/huzhimingshi" citypinyin="huzhimingshi">胡志明市</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="首尔" cityname="首尔" surl="/shouer" citypinyin="shouer">首尔</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="京都" cityname="京都" surl="/jingdou" citypinyin="jingdou">京都</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="河内" cityname="河内" surl="/henei" citypinyin="henei">河内</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="芭提雅" cityname="芭提雅" surl="/batiya" citypinyin="batiya">芭提雅</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="济州岛" cityname="济州岛" surl="/jizhoudao" citypinyin="jizhoudao">济州岛</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="芽庄市" cityname="芽庄市" surl="/yazhuangshi" citypinyin="yazhuangshi">芽庄市</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="暹粒" cityname="暹粒" surl="/xianli" citypinyin="xianli">暹粒</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="巴厘岛" cityname="巴厘岛" surl="/balidao" citypinyin="balidao">巴厘岛</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="吉隆坡" cityname="吉隆坡" surl="/jilongpo" citypinyin="jilongpo">吉隆坡</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="墨尔本" cityname="墨尔本" surl="/moerben" citypinyin="moerben">墨尔本</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="岘港" cityname="岘港" surl="/xiangang" citypinyin="xiangang">岘港</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="新加坡" cityname="新加坡" surl="/xinjiapo" citypinyin="xinjiapo">新加坡</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="甲米" cityname="甲米" surl="/jiami" citypinyin="jiami">甲米</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="哥打京那巴魯" cityname="哥打京那巴魯" surl="/gedajingneibalu" citypinyin="gedajingneibalu">哥打京那...</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="洛杉矶" cityname="洛杉矶" surl="/luoshanji" citypinyin="luoshanji">洛杉矶</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="巴黎" cityname="巴黎" surl="/bali" citypinyin="bali">巴黎</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="雅加达" cityname="雅加达" surl="/yajiada" citypinyin="yajiada">雅加达</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="会安" cityname="会安" surl="/huian" citypinyin="huian">会安</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="名古屋" cityname="名古屋" surl="/mingguwu" citypinyin="mingguwu">名古屋</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="悉尼" cityname="悉尼" surl="/xini" citypinyin="xini">悉尼</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="薄荷岛" cityname="薄荷岛" surl="/bohedao" citypinyin="bohedao">薄荷岛</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="釜山" cityname="釜山" surl="/fushan" citypinyin="fushan">釜山</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="苏梅岛" cityname="苏梅岛" surl="/sumeidao" citypinyin="sumeidao">苏梅岛</a></li>';
+			a+='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="温哥华" cityname="温哥华" surl="/wengehua" citypinyin="wengehua">温哥华</a></li>';
+			$('#cityselectul').append(a);
+        }
+        $('.cityselecta').click(function (e) {
+            $("#searchcityin1").val('');
+            var isDiBiao = $(this).attr("isDiBiao");
+            if (isDiBiao == 1) {
+                $("#searchcityin").attr("typeid", "0");
+            } else {
+                $("#searchcityin").attr("typeid", "3");
+            }
+        });
+    }
+	
+    //加载某类首字母的城市
+	function loadheadCity(value,node,cityType){
+		node.html('');
+		var values= new Array();
+		values = value.split("_");
+		//var imageCity =["hangzhou","yangzhou","qingdao","weihai"];
+		//var ctx1 = $('#ctx1').val();
+		for (i=0;i<values.length ;i++ ){
+		   var head = values[i];
+		   var str = '<div class="cityselectul_div">';
+		   str += '<span class="letter">'+head.toUpperCase()+'</span><ul class="clearfloat">';
+		   for(var city in citys){
+				var cityinfo = citys[city];
+				var citypinyin = cityinfo[2];
+				var citypinyinH = cityinfo[3];
+				var internation = cityinfo[9];
+				if(cityType == "inland"){
+					if(citypinyinH != undefined && citypinyinH.substring(0,1)==head && internation == 0){
+						var a = "";
+						if(cityinfo[1].length > 5){
+							a ='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="'+cityinfo[1]+'"cityname="'+cityinfo[1]+'" surl="/'+cityinfo[2]+'" citypinyin="'+cityinfo[2]+'">'+cityinfo[1].substring(0,4)+'...</a></li>';
+						}else{
+							a ='<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="'+cityinfo[1]+'"cityname="'+cityinfo[1]+'" surl="/'+cityinfo[2]+'" citypinyin="'+cityinfo[2]+'">'+cityinfo[1]+'</a></li>';
+						}
+						str +=a;
+					}
+				}else{
+					if(citypinyinH != undefined && citypinyinH.substring(0,1)==head && internation > 0){
+						var a = "";
+						if(cityinfo[1].length > 5){
+							 a = '<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="'+cityinfo[1]+'"cityname="'+cityinfo[1]+'" surl="/'+cityinfo[2]+'" citypinyin="'+cityinfo[2]+'">'+cityinfo[1].substring(0,4)+'...</a></li>';
+						}else{
+							 a = '<li class="citylili"><a class="cityselecta" href="javascript:void(0)" title="'+cityinfo[1]+'"cityname="'+cityinfo[1]+'" surl="/'+cityinfo[2]+'" citypinyin="'+cityinfo[2]+'">'+cityinfo[1]+'</a></li>';
+						}
+						str+=a;
+					}
+				}
+			}
+		   	str += '</ul></div>';
+		   	node.append(str);
+			$('.cityselecta').click(function(e){
+				var isDiBiao = $(this).attr("isDiBiao");
+				if(isDiBiao == 1){
+					$("#searchcityin").attr("typeid","0");
+				}else{
+					$("#searchcityin").attr("typeid","3");
+				}
+			});
+    	}	
+	} 
+    //点击关键词输入框
+    $('#searchcityin1').click(function (e) {
+    	MYRP.rpComm($(this));
+    	e.stopPropagation();
+    	$(".search-modal").hide();
+    	
+        $('.up_btn').children("span").css('background-position', '-11px 0');
+        $('.up_btn ul').css('display', 'none');
+
+        var s = $('#searchcityin1').val();
+        if (s != null && s.length > 0 && s != '位置、标题、房东等') {
+            var ctx = $('#ctx').val();
+            var sugurl = ctx + '/getSuggest/';
+            var cityid = $('#cityid').val();
+            getSuggestResult(sugurl, s, cityid, 'list', 1);
+        } else {
+            $('.suggest_results').css('display', 'none');
+            $('.select-hotcity').css('display', 'none');
+            var oLeft = $(".keyword").position().left;
+            $('#key_word_list').fadeIn().css({"right":0,"left":"auto"});
+        }
+    });
+
+    function pubFree() {
+        var user = $('#uid').val();
+        if (user != 0) {
+            publish(user);
+        } else {
+            $('.loginatother').click();
+        }
+    }
+
+    function showPreferential(id, isShow) {
+        if (isShow) {
+            $('#dis_' + id).show();
+        } else {
+            $('#dis_' + id).hide();
+        }
+    }
+
+    function showMapPreferential(id, isShow) {
+        if (isShow) {
+            $('#map_dis_' + id).show();
+        } else {
+            $('#map_dis_' + id).hide();
+        }
+    }
+
+    $(function () {
+        $('.relateSelect1 li').each(function (i) {
+            $(this).mouseover(function () {
+                $(this).addClass('on').siblings().removeClass('on');
+                var cityChange = $('.addrDetail').eq(i);
+                cityChange.show();
+                $('.addrDetail').not(cityChange).hide().end();
+            });
+        });
+    });
+    
+    //城市tab选择
+    var cityTab = $('#cityselecttitleul li');
+    cityTab.each(function (e) {
+        cityTab.eq(e).click(function () {
+            var value = $(this).find("a").attr("value");
+            $(this).find("a").addClass('selected').parent().siblings().children().removeClass('selected');
+            if(value=="hotcity"){
+				if($(".city_inland").hasClass("active")){
+					loadhotCity("inland");
+				}else{
+					loadhotCity("oversea");
+				}
+			}else{
+				if($(".city_inland").hasClass("active")){
+					loadheadCity(value,$("#cityselectul"),"inland");
+				}else{
+					loadheadCity(value,$("#cityselectul"),"oversea");
+				}
+			}
+        });
+    });
+
+
+    //城市选择
+    $('#cityselectul,#searh-recent,#cityselectulcity').click(function (e) {
+        if ($(e.target).hasClass("cityselecta")) {
+            var citya = $(e.target);
+            $('#searchcityin').val(citya.attr("cityname"));
+            $('#searchcityin').attr("cityname", citya.attr("cityname"));
+            $('#searchcityin').attr("citypinyin", citya.attr("citypinyin"));
+            $('#searchcityin').attr("surl", citya.attr("surl"));
+            $("#searchcitydiv").css("display", "none");
+            var cityvalue = $('#searchcityin').val();
+            setCookie('cityType',cityType,365*20);
+            searchBtnClick(cityvalue, 0, 'list');
+        }
+    });
+	$('.facility_type').html($('#facility_type_count').val());
+	$('.bed_type').html($('#bed_type_count').val());
+	//其他选项
+	$(".othernum").each(function(){
+		var hasnum = parseInt($(this).text());
+		if(hasnum>0){
+			$(this).css("display","inline-block");
+		}
+	})
+</script>
+
+</div><script type="text/javascript" charset="UTF-8" src="/erji/online"></script><div><div class="qimo_chatpup" id="qimo_chatpup" style="display: none; right: 18px; bottom: 0px; width: 355px; height: 500px;"><iframe id="chatIframe" src="./erji/moor_chat.html" height="100%" width="100%"></iframe><div id="maskChat"></div></div><div id="chatBtn" class="chatBtn" style="display: none; right: 18px; z-index: -100; background-color: rgb(25, 202, 166); border-radius: 5px 5px 0px 0px; bottom: -1px; padding: 8px 10px;"><img width="25px" height="25px" src="./erji/1.png" style="margin: 0px 5px -6px 0px;"><span>咨询客服</span><span id="qimo_badge"></span></div><div id="qimo_showNewMsg" class="qimo_showNewMsg" style="display: none; "><div id="qimo_showNewMsg_box" class="qimo_showNewMsg_box"><div id="qimo_showNewMsg_title_box" class="qimo_showNewMsg_title_box"><img src="./erji/agentLogo.png"><span id="qimo_showNewMsg_title" class="qimo_showNewMsg_title"></span></div> <div id="qimo_showNewMsg_content" class="qimo_showNewMsg_content"></div></div><span id="qimo_showNewMsg_close" class="qimo_showNewMsg_close">x</span></div></div><script type="text/javascript" charset="UTF-8" src="./erji/online(1)"></script><div><div class="qimo_inviteBox" id="qimo_inviteBox" style="display: none; right: 10px; bottom: 10px; background: rgb(63, 184, 253);"><img class="qimo_invite_close" id="qimo_invite_close" src="./erji/invite-close.png"><div class="qimo_inviteBox_top"><div class="qimo_inviteBox_top_img" id="qimo_inviteBox_top_img"><img id="qimo_inviteBox_img" src="./erji/896beb70-d81a-11e7-b6e7-9da891414b0f.png"></div><div class="qimo_inviteBox_top_right" id="qimo_inviteBox_top_right"><p id="qimo_inviteBox_InviteWords">欢迎咨询，请问有什么可以帮您的吗？</p><div class="qimo_inviteBox_top_button" id="qimo_inviteBox_top_button"><div id="invite_click_button_1" class="divbuttons msie11PadTop" style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255);">立即咨询</div><div id="invite_click_button_2" class="divbuttons msie11PadTop" style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255);">以后再说</div></div></div></div><div class="qimo_inviteBox_bottom"><textarea id="sendInviteText" placeholder="请输入您想要输入的内容..." rows="2"></textarea><div id="sendInviteContent" class="sendInviteContent msie11PadTop" style="background: rgb(63, 184, 253);">发送</div></div></div></div><div><div class="qimo_screenpop" id="qimo_screenpop" style="display: none"><div class="screendragbar" id="screendrag"></div><div class="qimo_headerimg" id="qimo_headerimg"><div class="screenminimg" style="display: none" id="screenminimg"><img src="./erji/small.png"></div><div class="screenminimg" id="screenmaximg"><img src="./erji/big.png"></div><div class="screenminimg" id="screencloseimg"><img src="./erji/close(1).png" style="width: 16px;height: 16px;"></div></div> <div id="mask"></div><iframe id="screenIframe" src="./erji/saved_resource(1).html" height="100%" width="100%" allow="microphone; camera"></iframe></div></div><div><div class="qimo_videopup" id="qimo_videopup" style="display: none"><div style="" class="dragbar" id="drag"></div><div class="qimo_minimg" id="qimo_minimg"><img src="./erji/small.png"></div><img src="./erji/big.png" class="qimo_maximg" id="qimo_maximg" style="display: none"> <div id="mask"></div><iframe id="videoIframe" src="./erji/saved_resource(2).html" height="100%" width="100%" allow="microphone; camera"></iframe></div></div><div id="ascrail2000" class="nicescroll-rails nicescroll-rails-vr" style="width: 8px; z-index: 15; cursor: default; position: absolute; top: 0px; left: 152px; height: 320px; touch-action: none; display: none;"><div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 6px; height: 0px; background-color: rgb(72, 72, 72); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 100px; touch-action: none;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 8px; z-index: 15; top: 312px; left: 0px; position: absolute; cursor: default; display: none;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 6px; width: 0px; background-color: rgb(72, 72, 72); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 100px;"></div></div></body></html>

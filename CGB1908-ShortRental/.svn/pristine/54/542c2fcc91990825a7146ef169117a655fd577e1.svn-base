@@ -1,0 +1,40 @@
+package com.cy.pj.service.zsm.service.serviceImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cy.common.exception.ServiceException;
+import com.cy.pj.dao.zsm.UserMapper;
+import com.cy.pj.entity.user;
+import com.cy.pj.service.zsm.UserService;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private UserMapper dao;
+	
+	@Override
+	public user loginUser(String useraccount, String userpwd) {
+		if(dao.loginUser(useraccount, userpwd)==null) {
+			new ServiceException("账号密码不存在");
+		}
+		return dao.loginUser(useraccount, userpwd);
+	}
+
+	@Override
+	public int insertUser(user user) {
+		if(dao.insertUser(user)!=0) {
+			return 1;
+		}else {
+			return 0;
+		}
+		
+			}
+
+	@Override
+	public user queryUser(String useraccount) {
+		return dao.queryUser(useraccount);
+	}
+
+}

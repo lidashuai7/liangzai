@@ -1,0 +1,184 @@
+<!-- Horizontal Form -->
+ <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">添加商品</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form class="form-horizontal"  method="post" enctype="multipart/form-data">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="nameId" class="col-sm-2 control-label">商品名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control"  id="nameId" placeholder="名称">
+            </div>
+          </div>
+		  <div class="form-group">
+				<label for="describeId" class="col-sm-2 control-label">商品描述</label>
+				<div class="col-sm-10">
+					<textarea style="height: 80px;padding: 10px;resize: none;" type="text" id="describeId" placeholder="商品描述..." class="form-control"/>
+				</div>
+		 </div>
+		 <div class="form-group">
+				<label for="priceId" class="col-sm-2 control-label">价格：</label>
+				<div class="col-sm-10">
+					<input type="text" id="priceId" placeholder="0.0" class="form-control">
+				</div>
+		 </div>
+		 <div class="form-group">
+				<label for="amountId" class="col-sm-2 control-label">库存：</label>
+				<div class="col-sm-10">
+					<input type="text" id="amountId" placeholder="0" class="form-control">
+				</div>
+		 </div>
+		 <div class="form-group">
+				<label for="unitId" class="col-sm-2 control-label">单位：</label>
+				<div class="col-sm-10">
+					<input type="text" id="unitId" placeholder="斤" class="form-control">
+				</div>
+		 </div>
+			<div class="form-group">
+				<label for="kindId" class="col-sm-2 control-label">类别：</label>
+				<div class="col-sm-10">
+					<input type="text" id="kindId" placeholder="种类"
+						class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="imgId" class="col-sm-2 control-label">上传图片：</label>
+				<div class="col-sm-10">
+					<p>
+						<input type="file" id="xdaTanFileImg1"
+							onchange="xmTanUploadImg(this)" accept="image/*"/>
+						<input type="file" id="xdaTanFileImg2"
+							onchange="xmTanUploadImg(this)" accept="image/*"/>
+						<input type="file" id="xdaTanFileImg3"
+							onchange="xmTanUploadImg(this)" accept="image/*"/>
+						<input type="file" id="xdaTanFileImg4"
+							onchange="xmTanUploadImg(this)" accept="image/*"/>
+					</p>
+					<div id="xmTanDiv"></div>
+				</div>
+			</div>
+		</div>
+		
+        <!-- /.box-body -->
+        <div class="box-footer">
+          <button type="button" class="btn btn-default btn-cancel">Cancel</button>
+          <button type="button" class="btn btn-info pull-right btn-save">Save</button>
+        </div>
+        <!-- /.box-footer -->
+      </form>
+      
+  </div>
+
+<script type="text/javascript">
+  
+	//初始化zTree时会用到
+	var setting = {
+		data : {
+			simpleData : {
+				enable : true,
+				idKey : "id", //节点数据中保存唯一标识的属性名称
+				pIdKey : "parentId", //节点数据中保存其父节点唯一标识的属性名称
+				rootPId : null
+			//根节点id
+			}
+		//json 格式javascript对象
+		}
+	}//json 格式的javascript对象
+
+	$(function() {
+		$(".box-footer").on("click", ".btn-cancel", doCancel).on("click",
+				".btn-save", doSaveOrUpdate);
+
+		var data = $("#mainContentId").data("rowData");
+		if (data)
+			doInitEditFormData(data);
+
+	});
+
+	var imgs = new Array();
+
+	function doInitEditFormData(data) {
+		$("#nameId").val(data.name);
+		$("#sortId").val(data.sort);
+		$("#noteId").val(data.note);
+		$("#parentId").val(data.parentName);
+		$("#parentId").data("parentId", data.parentId);
+	}
+
+	function doCancel() {
+		$("#mainContentId").load("prod/doProdListUI", function() {
+			$("#mainContentId").removeData();
+			$("#parentId").removeData();
+		})
+	}
+
+	function doSaveOrUpdate() {
+		//1.获取表单数据
+		var params = doGetEditFormData();
+		var rowData = $("#mainContentId").data("rowData");
+		if (rowData)
+			params.id = rowData.id;
+		//2.定义url
+		var insertUrl = "prod/doSaveObject";
+		var updateUrl = "dept/doUpdateObject";
+		var url = rowData ? updateUrl : insertUrl;
+		//3.异步提交数据
+		$.post(url, params, function(result) {
+			if (result.state == 1) {
+				alert(result.message);
+				doCancel();
+			} else {
+				alert(result.message);
+			}
+		});
+	}
+
+	function doGetEditFormData() {
+		var params = {
+			name : $("#nameId").val(),
+			prodDescribe : $("#describeId").val(),
+			price : $("#priceId").val(),
+			amount : $("#amountId").val(),
+			unit : $("#unitId").val(),
+			kind : $("#kindId").val(),
+			file : imgs.toString()
+			
+		}
+		return params;
+	}
+
+	//判断浏览器是否支持FileReader接口
+	if (typeof FileReader == 'undefined') {
+		document.getElementById("xmTanDiv").InnerHTML = "<h1>当前浏览器不支持FileReader接口</h1>";
+		//使选择控件不可操作
+		document.getElementById("xdaTanFileImg").setAttribute("disabled",
+				"disabled");
+	}
+
+	//选择图片，马上预览
+	function xmTanUploadImg(obj) {
+		var file = obj.files[0];
+		/* 	console.log(obj);
+			console.log(file);
+			console.log("file.size = " + file.size); //file.size 单位为byte */
+		var reader = new FileReader();
+		//读取文件过程方法
+		reader.onload = function(e) {
+			doHandlePhoto(e.target.result);
+		}
+		reader.readAsDataURL(file);
+	}
+
+	function doHandlePhoto(data) {
+		imgs.push(data);
+	}
+</script>
+
+
+
+
+
+

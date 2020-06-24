@@ -1,0 +1,33 @@
+#bar{
+    float: left;
+    width:45px;
+    background-color: #5FB878;
+    font-size: 14px;
+    color: #ffffff;
+    padding-top: 8px;
+}
+
+#bar .item{
+    height: 40px;
+    margin-left:2px;
+    
+}
+#bar .show{
+    
+}
+
+#bar img {
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-radius: 20px;
+}
+
+.itemactive{
+    background: #f5f5f5;border-radius: 20px;width: 40px;height: 40px;
+}
+
+.itemclick{
+    background: #f5f5f5;border-radius: 20px;width: 40px;height: 40px;
+}

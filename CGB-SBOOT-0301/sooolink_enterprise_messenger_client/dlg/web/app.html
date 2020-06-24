@@ -1,0 +1,98 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/app.css" media="all">
+</head>
+    <body>
+        <div>
+            <div id="bar">
+                <div class="item" data-url="appcontent.html">
+                    <div class="show">
+                        <img src="img/applist.png">
+                    </div>
+                </div>
+
+                <!-- <div class="item" data-url="http://www.baidu.com">
+                    <div class="show">
+                        <img src="img/blue.jpg">
+                    </div>
+                </div>
+
+                <div class="item" data-url="http://www.baidu.com">
+                    <div class="show">
+                        <img src="img/green.jpg">
+                    </div>
+                </div>
+
+                <div class="item" data-url="http://www.baidu.com">
+                    <div class="show">
+                        <img src="img/red.jpg">
+                    </div>
+                </div>
+
+
+                <div class="item" data-url="http://www.baidu.com">
+                    <div class="show">
+                        <img src="img/favicon.ico">
+                    </div>
+                </div> -->
+                
+            </div>
+            <div id="content" style="float: right;"> 
+                <iframe src="appcontent.html" style="border:0;"></iframe>
+            </div>
+        </div>
+    </body>
+<script src="enoji/js/jquery.min.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
+<script src="layui/layui.all.js"></script>
+<script>
+window.onload = function () {
+    setWinSize();
+
+};
+window.onresize = function () {
+    setWinSize();
+
+}
+
+function setWinSize() {
+    var leftWidth = 45;
+    var totalWidth = $("body").width();
+    var totalHeight = $('body').height();
+    var contentWidth = totalWidth-leftWidth;
+    var contentHeight = totalHeight-8;
+    $("#bar").height(contentHeight);
+    $("#content").height(contentHeight);
+    $("#content").width(contentWidth);
+    $("#content iframe").height(contentHeight);
+    $("#content iframe").width(contentWidth);
+}
+
+$(function(){
+    $("#bar").find(".item").hover(function(){
+        $(this).find('.show').addClass("itemactive");
+    },function(){
+        $(this).find('.show').removeClass("itemactive");
+    });
+
+    $("#bar").find(".item").on('click',function(){
+        $("#bar").find(".show").removeClass('itemclick');
+        $(this).find('.show').addClass("itemclick");
+
+        showAppContent(this);
+    });
+
+});
+
+function showAppContent(obj)
+{
+    var item = $(obj);
+    var url  = item.data('url');
+    var target = $('#content').find('iframe');
+    target.attr('src',url);
+}
+</script>
+</html>

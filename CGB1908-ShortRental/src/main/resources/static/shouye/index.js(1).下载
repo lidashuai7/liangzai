@@ -1,0 +1,172 @@
+$(document).ready(function(){
+//出现弹窗时页面自动滚动到弹窗处
+    $('.search input,.chose-people').click(function(){
+        var distance = $(window).scrollTop();
+        $(".app-open").stop(true).animate({left:"-100%",opacity:0},200);
+        $(".app-close").stop(true).delay(600).animate({left:"0%"},300);
+        if(distance>500){
+            return;
+        }else{
+            $('html,body').animate({scrollTop: 450},'slow');
+        }
+    });
+// 滚动条
+    $('.search-modal').niceScroll({
+        cursorcolor: '#484848',
+        cursoropacitymax: '0.25',
+        cursorwidth: '6px',
+        cursorborderradius: '100px'
+    });
+    $('#cityselectul').niceScroll({
+        cursorcolor: '#484848',
+        cursoropacitymax: '0.25',
+        cursorwidth: '6px',
+        cursorborderradius: '100px'
+    });
+// 目的地 tab
+    $('[class$="tab"]').on('click','li',function(){
+//        var name = $(this).prop('class');
+//        name = name.split(' ')[0];
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active');
+//        $('#'+name).addClass('active');
+//        $('#'+name).siblings().removeClass('active');
+    });
+// 搜索栏 住宿时间
+    $('.time input').click(function(e){
+        $('#suggest').fadeOut();
+        $('#searchcitydiv').fadeOut();
+        $('#ruzhunum').fadeOut();
+        if(!$(this).parents('.time').find('#index_list_calendar-box').hasClass('active')){
+            $(this).parents('.time').find('#index_list_calendar-box').fadeIn().addClass('active');
+        }
+        $(document).one("click", function (){
+            if($('#checkoutday').val() !=="" || $("#checkinday").val() === ""){
+                $('#index_list_calendar-box').fadeOut().removeClass('active');
+            }
+        });
+        stopPropagation(e);
+
+    });
+// 搜索栏 入住人数
+    $('.people .chose-people').click(function(e){
+        $('.search-modal').fadeOut();
+        $(this).parents('.people').find('.search-modal').fadeIn().on('click','li',function(){
+            var count = $(this).text();
+            var peoplenum = $(this).attr("peoplenum");
+            $(this).addClass('on').siblings().removeClass('on');
+            $('#countVal').text(count);
+            $('#countVal').attr("popNum",peoplenum);
+            $('#topCountVal').text(count);
+            $('.search-modal').fadeOut();
+        });
+
+        $(document).one("click", function (e){
+            if(e.target.getAttribute('id') !== 'tosearchlist'){
+                $('.search-modal').fadeOut();
+            }else{
+                return;
+            }
+        });
+        stopPropagation(e);
+    });
+
+    $('.search-modal').click(function(e){
+        stopPropagation(e);
+    })
+
+    $('.totop').click(function () {
+        $('html , body').animate({scrollTop: 0},'slow');
+    });
+// slide
+    $('#banner').bxSlider({
+        mode:'fade',
+        speed: 2000,
+        auto: true,
+        pause: 5000,
+        controls: true,
+        pager: true
+    });
+
+    $('#advertisement').bxSlider({
+        auto: true,
+        speed: 2000,
+        pause: 8000,
+        controls: true,
+        pager: true
+    });
+// 吸顶搜索栏 置顶按钮的显示和隐藏
+    $(window).scroll(function(){
+        var distance = $(window).scrollTop();
+        if(distance >=500){
+            $('.search').addClass('top-search');
+            $('.index-block').eq(0).css('margin-top','190px');
+
+            $('.totop').show();
+            $(".app-open").stop(true).animate({left:"-100%",opacity:0},200);
+            $(".app-close").stop(true).delay(600).animate({left:"0%"},300);
+            return false;
+        }else{
+            $('.search').removeClass('top-search');
+            $('.index-block').eq(0).css('margin-top','0')
+            $('.totop').hide();
+        }
+    })
+
+// 清空足迹
+    $('.clearfoot').click(function(){
+        $('.clear-modal').fadeIn();
+    });
+    $('.modal-footer').on('click','a',function(){
+        $('.clear-modal').fadeOut();
+    });
+    $('.sure-btn').click(function(){
+        $.ajax({
+            url:"/deleteTrack/",
+            type:"POST",
+            dataType:"json",
+            success:function(data){
+                if(data){
+                    $('#myfootBox').css("display","none");
+                }
+            }
+        });
+    });
+
+    $('.tool .icon-ma').mouseover(function(){
+        $('.tool .hover-list').fadeIn();
+    })
+    $('.tool .icon-ma').mouseout(function(){
+        $('.tool .hover-list').fadeOut();
+    })
+    // 横条幅
+    $(".btn-close").click(function(event){
+        event.stopPropagation();
+        event.preventDefault();
+        $(".app-open").animate({left:"-100%",opacity:0},600);
+        $(".app-close").delay(600).animate({left:"0%"},300);
+        return false;
+    });
+    $(".app-close").click(function(event){
+        event.stopPropagation();
+        $(".app-close").animate({left:"-100%"},300);
+        $(".app-open").delay(300).animate({left:"0%",opacity:1},600);
+        return false;
+    });
+});
+// 阻止冒泡兼容写法
+function stopPropagation(e){
+
+    e=window.event||e;
+
+    if(document.all){  //只有ie识别
+
+        e.cancelBubble=true;
+
+    }else{
+        e.stopPropagation();
+    }
+
+}
+
+

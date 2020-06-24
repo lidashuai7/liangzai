@@ -1,0 +1,1220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">    
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="applicable-device" content="pc">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="mobile-agent" content="format=html5;url=http://m.mayi.com/beijing">
+    <meta name="mobile-agent" content="format=xhtml;url=http://m.mayi.com/beijing">
+    <meta name="mobile-agent" content="format=wml;url=http://m.mayi.com/beijing">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
+  	
+  	<title>北京住宿短租民宿-北京短租公寓-日租房–蚂蚁短租</title>
+   	<link rel="stylesheet" href="/erji/list_public.css">
+   	<link rel="stylesheet" href="/erji/newlist.css">
+    <link rel="stylesheet" href="/erji/new_calendar.css">
+    
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script src="/erji/hm.js.下载"></script><script charset="UTF-8" src="/erji/uba.min.js.下载"></script><script charset="UTF-8" src="/erji/QiMoIMSDK.js.下载"></script><script type="text/javascript" src="/erji/jquery-1.7.1.min.js.下载"></script>
+    <script type="text/javascript" src="/erji/layer.min.js.下载"></script><link type="text/css" rel="stylesheet" href="/erji/layer.css">
+    <script type="text/javascript" src="/erji/lazyload.js.下载"></script>
+    <script type="text/javascript" src="/erji/js.js.下载"></script>
+    <script type="text/javascript" src="/erji/main1.js.下载"></script>
+    <script type="text/javascript" src="/erji/json.js.下载"></script>
+    <script type="text/javascript" src="/erji/commom.js.下载"></script>
+    <script type="text/javascript" src="/erji/allcity.js.下载"></script>
+    <script type="text/javascript" src="/erji/new_calendar.js.下载"></script>
+    <script type="text/javascript" src="/erji/jquery.nicescroll.min.js.下载"></script>
+    <script type="text/javascript" src="/erji/index_searchlist_public.js.下载"></script>    
+    <script type="text/javascript" src="/erji/sou_search.js.下载"></script>
+    <script type="text/javascript" src="/erji/jquery.range.js.下载"></script>
+<link type="text/css" rel="stylesheet" href="/erji/layer.css"><link type="text/css" rel="stylesheet" href="/erji/chatStyle.css"><link type="text/css" rel="stylesheet" href="/erji/layer(1).css"></head>
+<body>
+<!-- Header -->
+<!-- 拉新入口 -->
+<link href="/erji/laxin.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/erji/list_header.js.下载"></script>
+<!-- 房东权限相关 -->
+<script type="text/javascript" src="/erji/landlordConfig.js.下载"></script>
+<link rel="stylesheet" href="/erji/mayi_base.css">
+<style>	
+.alert-box1{width:100%;height: 100%;z-index: 300000;position: absolute;display:none;line-height:40px;}
+.surveYY1{background: #000;width:100%;height:100%;opacity: 0.7;position: fixed;top: 0px;left: 0px;}
+.offmax_no{width:400px;height:186px;position:fixed;top:50%;margin-top:-93px;left:50%;margin-left:-200px;background-color:#fff;z-index:999;text-align:center;box-shadow:0px 0px 4px #ccc;border-radius:2px;} 
+.offmax_no p{padding:0 20px;line-height:25px;}
+.alert_tit1{border-bottom:1px solid #e0e0e0;font-size:18px;margin-bottom:20px;}
+.close-alert1{cursor:pointer;width:50%;margin:20px auto;background-color:#22bb62;text-align:center;color:#fff;border-radius:2px;}
+
+</style>
+<input type="hidden" name="ctx" id="ctx" value="">
+<!-- 头部栏开始 -->
+<div class="header">
+	<div class="nav index_nav line_h50">
+           <div class="headW_auto c_gray_dark clearfloat" style="width: 83%; margin: 0px auto;">
+               <div class="logo fl f20 c_gray_dark fw600 lineht34">
+                   <a href="" class="c_gray_dark"><img src="/erji/logo.png" width="34" alt="logo" class="radius-6">
+         	          蚂蚁短租
+                   </a>
+               </div>
+               <ul class="fr nav-list clearfloat">
+               		<li>
+                		<p class="top-line"></p>
+                        <a href="" class="fw600 f14" _mayi_rp="weblist|head|index">首页</a>
+                    </li>
+                   <li>
+                       <p class="top-line"></p>
+                       <span class="service fw600 f14">客服热线</span>
+                       <ul class="hover-list radius-6 c_gray_dark t-center pos_center w140_2">
+                           <li>400-028-6868</li>
+                       </ul>
+                   </li>
+                   <li>
+                       <p class="top-line"></p>
+                       <a class="app fw600 f14 " target="_blank" href="">下载APP送500元大礼包</a>
+                       <ul class="hover-list radius-6 c_gray_dark t-center down-app pos_center w344_2">
+                           <li class="clearfloat">
+                               <div class="fl">
+                                   <p class="f18 c_gray_dark mb10">扫码下载APP</p>
+                                   <img src="/erji/5K5ERFPBFKS5ZL6K6G96SDJE36LNUA.jpg" width="112" alt="下载app">
+                                   <p class="f14">注册立送500元大礼包</p>
+                               </div>
+                               <div class="fr">
+                                   <div class="fl">
+                                       <p class="f18 c_gray_dark mb10">扫码快速预订</p>
+                                       <img src="/erji/JJ8GRMND8SDJCP267PTG7BW8S3AV5T.jpg" width="112" alt="微信小程序">
+                                       <p class="f14">富婆短租小程序</p>
+                                   </div>
+                               </div>
+                           </li>
+                       </ul>
+                   </li>
+                   <li>
+                       <p class="top-line"></p>
+                       <a class="f14 fw600 " target="_blank" href="">商旅合作</a>
+                   </li>
+                   <li>
+                       <p class="top-line"></p>
+                       <a class="fw600 f14 " href="javascript:void(0);">
+                           帮助中心
+                       </a>
+                       <ul class="hover-list radius-6 c_gray_dark t-left pos_center w140_2">
+                           <li class="mb10">
+                               <a class="c_gray_dark" target="_blank" href="">房源审核规范</a>
+                           </li>
+                           <li class="mb10">
+                               <a class="c_gray_dark" target="_blank" href="">房源安心计划</a>
+                           </li>
+                           <li class="mb10">
+                               <a class="c_gray_dark" target="_blank" href="">优质住宿计划</a>
+                           </li>
+                           <li class="mb10">
+                               <a class="c_gray_dark" target="_blank" href="">网站地图</a>
+                           </li>
+                           <li>
+                               <a class="c_gray_dark" target="_blank" href="">房客帮助</a>
+                           </li>
+                       </ul>
+                   </li>
+                   <li class="user-action">
+                          <div class="login-btn t-center fw600 c_gray_dark cursorpt " id="loginshow">登录/注册</div>
+                   </li>
+                    <li class="user-action" id="user-action">
+                        
+                   </li>
+               </ul>
+           </div>
+       </div>
+</div>
+<!-- 头部栏结束 -->
+<div class="alert-box1">
+    <div class="surveYY1"></div> 	
+    <div class="offmax_no">
+        <div class="alert_tit1">温馨提示</div>
+        <p class="frozeninfo">对不起，房东账号被封禁</p>
+        <p>如有疑问，请联系富婆短租客服400-028-6868</p>
+        <div class="close-alert1">我知道了</div>
+    </div>
+</div>
+<!-- 拉新弹层 -->
+<script type="text/javascript" src="/erji/jquery.qrcode.min.js.下载"></script>
+   
+<div class="share_tan" style="display: none">
+	<div class="mask"></div>
+     <div class="hongbao_img">
+		 <img src="/erji/close.png" alt="" class="hong_close">
+		 <img src="/erji/hongbao1.png" alt="" class="hongbao">
+		 <div id="qrcode" class="ewm_img"><canvas width="100" height="100"></canvas></div>
+		 <!-- <img src="//staticnew.mayi.com/resourcesWeb/v201612/headpub/images/ewm.jpg" alt="" class="ewm_img"/> -->
+		 <p class="text_para">扫码后，通过分享活动邀请好友注册富婆短租，双方均可获得100元住宿基金！</p>
+		 
+	 </div>
+</div>
+<script type="text/javascript" src="/erji/7moorInit.js.下载" async="async"></script>
+
+
+ 
+<link rel="stylesheet" href="/erji/IM.css">    
+ 
+   
+	 
+
+	<div style="" class="Online_btn Only_Online">
+    	<span class="border-left"></span>
+        <a href="javascript:void(0)" id="live800iconlink" _mayi_rp="room|sem_contact|message"><img border="0" src="/erji/5635PVPKQGH6CND3UTE6WAYHLUXAXB.jpg" id="live800icon" name="live800icon"></a>
+    </div>
+<!--主体部分-->
+<div class="main">
+	<!--筛选-->
+	<div id="filter">
+		<div id="filterCont" class="relave">
+			<div class="w94_94" id="list_search" style="width: 83%; margin: 0px auto;">
+				<div class="clearfloat b_white search_main relave">
+					  <!--关键词-->
+					  <div class="fl relave t-left filterList  clearfloat keyword">
+						  <div class="theme c_gray f12">关键词</div>
+						  <div class="input-box active">
+					      		<input class="f18 c_gray_light fw700" type="text" id="searchcityin1" placeholder="位置" value="" surl="/beijing" maxlength="20" clicktag="2_1" name="searchcityin1"
+					      		 _mayi_rp="weblist|sem_condition|keywords">
+					      		<span class="circle" id="clearCityInfo" style="display: none;">×</span>
+					      </div>
+					</div>
+					<div class="fr relave search-btn f24 c_white fw600 t-center cursorpt" id="landmarkBtn" _mayi_rp="weblist|sem_condition|searchbutton">搜索民宿</div>                 
+
+         
+
+                   <!-- 城市列表弹框 -->
+                   <div class="select-hotcity clearfloat search-modal radius-12 c_gray_dark" id="searchcitydiv" name="searchcitydiv">
+		    
+				
+		                    
+		           
+		                        <!-- <div class="hotmore hint f12 c_gray" >温馨提示：支持中文/拼音/简拼输入</div> -->
+		                    <div id="ascrail2001" class="nicescroll-rails nicescroll-rails-vr" style="width: 8px; z-index: 15; cursor: default; position: absolute; top: 1px; left: 122px; height: 20px; touch-action: none; display: none;">
+		                    <div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 6px; height: 0px; background-color: rgb(72, 72, 72); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 100px; touch-action: none;"></div></div><div id="ascrail2001-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 8px; z-index: 15; top: 13px; left: 0px; position: absolute; cursor: default; display: none;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 6px; width: 0px; background-color: rgb(72, 72, 72); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 100px;"></div></div></div>
+               </div>
+             </div>
+            <div class="cont1 b_white">
+				<div class="path_link w94_94" style="width: 83%; margin: 0px auto;">
+	               	<a href="" rel="nofollow">首页</a><label>&nbsp;&gt;&nbsp;</label>
+						
+	            </div>
+	            <div class="filter w94_94" style="width: 83%; margin: 0px auto;">
+					<ul>
+	                <li id="position">
+	                    <div class="lt-icon"><i></i>位置</div>
+	                    <div class="rt-word position_choose">
+							<div class="item next">
+	                            <a rel="nofollow" href="javascript:void(0);"  class="bx" id="mited1" _mayi_rp="weblist|sem_condition|position">不限</a>
+	                               <div class="add"><a href="javascript:void(0);"id="mited2" shu="商圈" class="search-business" _mayi_rp="weblist|sem_condition|position0" type="business">商圈</a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);"id="mited3" shu="景点" class="search-business" _mayi_rp="weblist|sem_condition|position2" type="area">景点</a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);"id="mited4"shu="行政区"  class="search-business" _mayi_rp="weblist|sem_condition|position1" type="scenic">行政区</a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);"id="mited5"shu="车站机场"  class="search-business" _mayi_rp="weblist|sem_condition|position3" type="traffic">车站机场</a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);"id="mited6"shu="地铁"  class="search-business" _mayi_rp="weblist|sem_condition|position4" type="metro">地铁</a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);"id="mited7" shu="学校" class="search-business" _mayi_rp="weblist|sem_condition|position5" type="school">学校</a>
+	                               </div>
+	                               <div class="add"><a href="javascript:void(0);"id="mited8"shu="医院"  class="search-business" _mayi_rp="weblist|sem_condition|position6" type="hospital">医院</a>
+	                               </div>
+	                               
+	                               <input type="text" hidden id="yc"/>
+                           	</div>
+	              
+	                       
+	                
+	                     
+                           </div>
+                       </li>
+	                   <!-- 位置结束 -->
+	                   <!--价格-->
+	                       <li>
+	                           <div class="lt-icon"><i class="icon-i04"></i>价格</div>
+	                           <div class="rt-word">
+	                               <div class="item one">
+	                                    <div class="add wauto price_range">
+		                                    从：<input type="text" id="cong" style="border:2px solid bule" value="200"/>
+		                                   到：<input type="text" id="dao" value="400"/>
+		          <input type="button" style="background:#21C48E;color:black" class="queding f12" value="确定" id="customPriceBtnNew"  _mayi_rp="weblist|sem_condition|price">
+		                                 </div>
+	                               </div>
+	                           </div>
+	                       </li>
+	                   <!--价格结束-->
+	                   <!-- 户型 -->
+                       <li id="huxing">
+                       	<div class="lt-icon">户型</div>
+                           <div class="rt-word">
+                               <div class="item one">
+                               <a rel="nofollow" class="bx"  _mayi_rp="weblist|sem_condition|roomnum">不限</a>
+                              		<div class="add relave"><a class="jushi" ju="一室" href="javascript:void(0)" _mayi_rp="weblist|sem_condition|roomnum0">一居</a></div>
+                                   <div class="add relave"><a  class="jushi" ju="二室" href="javascript:void(0)" _mayi_rp="weblist|sem_condition|roomnum1">二居</a></div>
+                                   <div class="add relave"><a class="jushi" ju="三室" href="javascript:void(0)" _mayi_rp="weblist|sem_condition|roomnum2">三居</a></div>
+                                   <div class="add relave"><a class="jushi" ju="四室" href="javascript:void(0)" _mayi_rp="weblist|sem_condition|roomnum3">四居及以上</a></div>
+                               </div>
+                           <input type="text" id="hx" hidden/>
+                           </div>
+                       </li>
+                   </ul>
+               </div>
+            </div>
+		</div>	
+		<div id="search_nav_bottom">
+              <div class="clearfloat w94_94 relave" style="overflow: hidden; min-height: 50px; width: 83%; margin: 0px auto;">
+                  <div class="gong" style="display:none">
+                      <ul class="fl change">
+                      </ul>
+                  </div>
+                  <div class="select_up" id="filter_up_down" style="" _mayi_rp="weblist|sem_condition|open_condition">展开筛选条件<i></i></div>
+              </div>
+        </div>
+	</div>
+	<div class="filter_fixed"></div>
+	<div class="b_white ">
+       <div class="rt-con w94_94 clearfloat" id="sortDiv" style="width: 83%; margin: 0px auto;">
+               <a rel="nofollow" _mayi_rp="weblist|sem_condition|defaultsort" href="javascript:void(0);" onclick="return false;" class="rt-on">推荐排序</a>
+           
+               <a class="room_price_choice" rel="nofollow">价格<i class="pr-arrows"></i>
+               	<span class="room_price_layer topsanjiao">
+               	<b class="xux" sd="高" >由低到高</b>
+               	<b class="xux" sd="低">由高到低</b>
+               	</span>
+               </a>
+       </div>
+	   <div class="relave con-wrap-par w94_94" style="width: 83%; margin: 0px auto;">
+       		<div class="con-wrap" id="con-wrap" style="min-height: 527px;">
+				<div class="downloadApp" style="display: block;">
+		        	<!--<img src="//i1.mayi.com/mayi84/M61/WB/WA/JPGKKR6H7RVW86CRHJE9VZRVVQZ8J2.jpg" class="downloadAppImg" onclick="window.open('http://www.mayi.com/promotion/')"/> -->
+		        	<span class="close_download"></span>
+		        </div>
+	        	<div>
+	           <!-- 搜索到的已有房源start -->
+	               <dl class="searchRoom clearfloat" id="searchRoom">
+	                         
+                    </dl>
+	               <!-- Page -->
+	                   <div id="page" class="page">
+	                        <a href="javascipt:(0)" id="prePage" class="up-page" _mayi_rp="weblist|sem_searchmore|pagecount">上一页</a>
+	                       
+	                               <a href="javascipt:(0)" id="nextPage" class="up-page" _mayi_rp="weblist|sem_searchmore|pagecount">下一页</a>
+	                   </div>
+	                   <!-- Page END -->
+           	   </div>
+           <!-- 搜索到的已有房源end -->
+
+           <!-- 全部推荐房源开始 start -->
+	       <!-- 全部推荐房源结束 end-->
+           </div>
+           <div class="rigth_like">
+	       		<div class="ditu_link relave">
+	       			<a href="javascript:goMap()" _mayi_rp="weblist|ditu|gomap">
+	       				<img src="/erji/ditu.png" alt="">
+	       				<span>试试地图找房</span>
+	       			</a>
+	       		</div>
+       			<!--平台宣传-->
+	       		<ul class="safeplan">
+	       			<li>
+	       				<a href="" target="_blank" _mayi_rp="weblist|anxin|realhouse">
+	       					<i class="zsfy"></i>
+	       					<span class="span1">真实房源</span>
+	       					<span class="span2">上门实拍资质备案</span>
+	       				</a>
+	       			</li>
+	       			<li>
+	       				<a href="" target="_blank" _mayi_rp="weblist|anxin|supportplan">
+	       					<i class="axrz"></i>
+	       					<span class="span1">安心入住</span>
+	       					<span class="span2">到店无房赔付</span>
+	       				</a>
+	       			</li>
+	       			<li>
+	       				<a href="" target="_blank" _mayi_rp="weblist|anxin|zmxy">
+	       					<i class="zmxy"></i>
+	       					<span class="span1">芝麻信用</span>
+	       					<span class="span2">房东房客实名认证</span>
+	       				</a>
+	       			</li>
+	       			<li>
+	       				<a href="" class="bordernone" target="_blank" _mayi_rp="weblist|anxin|zykf">
+	       					<i class="zykf"></i>
+	       					<span class="span1">专业客服</span>
+	       					<span class="span2">7 x 24小时</span>
+	       				</a>
+	       			</li>
+	       		</ul>
+       	</div>
+   </div>
+</div>
+<!-- 异步获取 城市精品房源推荐 start -->
+<div class="wrap" id="wrap-list" style="height:0px;overflow:hidden">
+    <div class="list-bottombox" style="display: none;">
+        <div class="left_bar">房源推广</div>
+        <div class="infiniteCarousel">
+            <div class="wrapper" rel="nofollow" style="overflow: hidden;">
+                <ul></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 精品房源推荐 end -->
+<!--速订筛选弹层 start -->
+
+	<input type="hidden" id="allmap"/>
+<div class="layer_set_speed">
+    <div class="surveYY"></div>
+    <div class="offmax">
+        <span class="close_setspeed"></span>
+        <div class="dp_cnt">
+            <img src="/erji/pc_list_ss_layer_bj.png" class="setspeed_layer_bj">
+            <strong class="dp_tlt">建议您选择速订房源</strong>
+            <p class="dp_p">下单后无需房东确认即可成单，秒速预订您的房源！</p>
+            <p class="f12" style="color:#b4b9bf;">温馨提示：选择入住日期有助于您获得更多适合的推荐房源！</p>
+        </div>
+        <div class="link_suding"><a href="">立即筛选</a></div>
+    </div>
+</div>
+<!--速订筛选弹层 end -->
+<script type="text/javascript" src="/erji/layer.min.js.下载"></script>
+<script type="text/javascript" src="/erji/jQuery.md5.js.下载"></script>
+<script type="text/javascript" src="/erji/login.js.下载"></script>
+<script type="text/javascript"src="http://api.map.baidu.com/api?v=2.0&ak=qS1M4GD0I7ZeySVp9PCZS7Ke0kllM8hB"></script>
+<!-- Footer -->
+<link rel="stylesheet" href="erji/seoFooter.css">
+<script src="/erji/seoFooter.js.下载"></script><script src="/erji/11.0.1.js.下载" id="sozz"></script><script charset="utf-8" src="/erji/ab77b6ea7f3fbf79.js.下载"></script>
+<div class="foot">
+	<div class="w1190 pb20 clearfloat">
+		<div class="mt50">
+			<p class="t-center f12 c777776">客户服务：400-028-6868 |
+				<a href="" target="_blank" class="c777776">&nbsp;用户答疑&nbsp;|</a>
+				<a href="" target="_blank" class="c777776">&nbsp;公司信息&nbsp;|</a>
+				<a href="" target="_blank" class="c777776">&nbsp;网站地图&nbsp;|</a>
+				<a href="" target="_blank" class="c777776">&nbsp;短租房&nbsp;|</a>
+				<a href="" target="_blank" class="c777776">&nbsp;app下载&nbsp;|</a>关注我们
+				<span class="mr10 cursorpt showinfo relave" style="display:inline-block;vertical-align:middle;">
+		            <img src="/erji/weixin_logo_s.png">
+		            <img src="/erji/weixin.jpg" class="head_pop absot" style="bottom:24px;left:-32px;">
+		        </span>
+				<span class="cursorpt" style="display:inline-block;vertical-align:middle;">
+		            <img src="/erji/xinlang_logo_s.png" onclick="sinaWeibo();">
+		        </span>
+			</p>
+			<!--公司切换-->
+			<p class="t-center f12 c777776">网站备案/许可证号：京ICP备12051504号-1 <a class="c777776" href="" target="_blank">营业执照编号：105259760</a> 易云游网络技术（北京）有限公司</p>
+		</div>
+	</div>
+</div>
+<!-- 登录弹窗 -->
+<div class="loginbox" id="loginboxdiv" nexturl="none" name="loginboxdiv" style="display:none;">
+	<a class="login-colse" id="loginclose" name="loginclose" href="javascript:void(0)"></a>
+    <div class="login-ways clearfloat">
+    	<div class="fl phone-account">
+				<ul class="c322c27 clearfloat f18">
+					<li class="phoneway_current" id="changeloginbyma">登录</li>
+					<li class="mayiway" id="changeloginbyup">注册</li>
+				</ul>
+				<div class="login-phone-account">
+				
+				<form action="/zsm/userlogin/login" method="post">
+				
+								<div class="login-input" id="loginbymadiv" name="loginbymadiv">
+						<input type="hidden" id="li_num" value="0"> <input
+							type="hidden" id="code_num" value="86">
+						<div class="input">
+							<span class="phone-icon"></span> <input class="dlargeinput"
+								type="text" id="zh"
+								placeholder="请输入账号" value="" name="username">
+							
+						</div>
+			
+						<div class="largeinputbox small-top clearfix">
+								<div class="input">
+							<span class="phone-icon"></span> <input class="dlargeinput"
+								type="password" id="mima"
+								placeholder="请输入密码" value=""
+								name="pwd">
+							
+						</div>
+						</div>
+						<div class="logincheckbox large-top clearfix">
+							<font>未注册的手机号将自动创建为富婆短租帐户</font>
+						</div>
+						<div class="btn-wrap btnpdt20">
+							<input type="submit" value="登录" style="width: 235px;height: 46px; background-color: #21C48E;">
+						</div>
+						
+						</form>
+						
+					</div>
+					<!-- 手机登陆 end  -->
+					<!-- 密码登陆 start -->
+					<form action="/zsm/userlogin/insertuser" method="post">
+					<div class="login-input" id="loginbyupdiv" name="loginbyupdiv"
+						style="display: none;">
+						<input type="hidden" id="li_num_1" value="0"> <input
+							type="hidden" id="code_num_1" value="86">
+						<div class="input">
+							<span class="user-icon"></span> <input class="dlargeinput"
+								type="text" id="zhshijiao" name="username"
+								placeholder="请输入账号" value="">
+						
+						</div>
+					
+						<div class="input small-top">
+							<span class="password-icon"></span> <input class="dlargeinput"
+								type="password" id="loginpassin" name="pwd"
+								placeholder="密码" value="">
+						</div>
+					
+						<div class="btn-wrap btnpdt20">
+						<input type="submit" value="注册" style="width: 235px;height: 46px; background-color: #21C48E;">
+			</div>
+					</form>
+					</div>
+        <div class="fl t-center third-party">
+        	<p class="f18 c322c27 mb20">其他登录方式</p>
+            <ul class="otherway c322c27">
+                <li class="wxway" id="loginbywx" _mayi_rp="web|condition|loginc">微信登录</li>
+                <li class="sinaway" id="loginbysina" _mayi_rp="web|condition|loginc">微博登录</li>
+                <li class="qqway" id="loginbyqq" _mayi_rp="web|condition|loginc">QQ登录</li>
+            </ul>
+        </div>
+    </div>
+</div>	
+<!-- 登录弹窗 END --> 
+<!--公共尾部结束-->
+<script type="text/javascript" src="/erji/layer.min.js.下载"></script>
+<script type="text/javascript" src="/erji/jQuery.md5.js.下载"></script>
+<script type="text/javascript" src="/erji/loginpc.js.下载"></script>
+<script src="/shouye/jquery-1.7.1.min.js.下载"></script>
+<script>
+var city;
+$(function(){
+	//当前页
+	var pageNum;
+	//页数量
+	var pages;
+	//是否有前一页
+	var hasPreviousPage=true;
+	//是否有下一页
+	var hasNextPage=true;
+	
+	
+ 	var pa={
+ 			 pagenum:1,
+ 			 pagesize:8
+ 		}
+	//自动定位功能
+	var map = new BMap.Map("allmap");
+	var point = new BMap.Point(112.97935279,28.21347823);
+	var point = new BMap.Point(112.97935279,28.21347823);	
+	map.centerAndZoom(point,12);
+	function myFun(result){
+		city =result.name;
+		map.setCenter(city);
+		alert("当前城市位置为："+city+",已经为您切换到该城市");
+	var pa={
+		 pagenum:1,
+		 pagesize:8,
+		 weizhi:city
+	}
+		one(pa);
+		
+	}
+	var myCity = new BMap.LocalCity();
+	myCity.get(myFun);
+	
+	
+	
+	$.ajax({
+		url:"/zsm/userlogin/getSe",
+		dataType:"json",
+		type:"post",
+		success:function(a){
+			if(a!=null){
+			 $("#loginshow").html("欢迎"+a.name)
+			 $("#user-action").html("<div onclick='shoucang()' class='login-btn t-center fw600 c_gray_dark cursorpt'>我的收藏</div>")
+		}
+		}
+})
+
+
+	
+	
+	
+//点击上一页查询本地房屋信息上一页
+	$("#prePage").click(function(){
+   	var paa={
+		 pagenum:pageNum-1,
+		 pagesize:8,
+		 weizhi:city
+	}
+     if(hasPreviousPage==false){
+    	 alert("没有上一页")
+     }else{
+    	 $.ajax({
+    			url:"/zsm/house/houseall",
+    			dataType:"json",
+    			type:"post",
+    			data:paa,
+    			success:function(b){
+    				
+    			    hasPreviousPage=b.hasPreviousPage
+    			    pageNum=b.pageNum
+    			    pages=b.pages
+    			    hasNextPage=b.hasNextPage
+
+                    $("#searchRoom").html("")
+    				$.each(b.list,function(i,obj){
+    				var dd="<dd id='"+obj.houseid+"'  collestate='0' price='528' latlng='39.892273,116.36673' style='width: 25%;'>"+
+    		                          " <div class='room-img'>"+
+    		                              " <div class='collect' state='1' title='收藏' ></div>"+
+    		                              " <div>"+
+    		                                  "     <div class='house-image' style='height: 206.667px;'>"+
+    		                                   "        <a href='javascript:void(0)' class='change-prev' style='display:none;'></a>"+
+    		                                     "      <a href='javascript:void(0)' >"+
+    		                                    "           <img class='roomMap853829173' style='display:none'>"+
+    		                                     "              <img id='853829173' onclick='gotoxq("+obj.houseid+")'  class='lazy lodgelazy' src='"+obj.picturepath+"' style='display: inline;'>"+
+    		                                     "      </a>"+
+    		                                     "      <a href='javascript:void(0)' style='display: none' class='change-next'></a>"+
+    		                                    "   </div>"+
+    		                              " </div>"+
+    		                            "   <b class='moy-b'>"+
+    	                               	 "     <p>"+
+    	                               	"	  <font>￥</font>"+obj.baseprice+""+
+    	                              	"	  </p>"+
+    		                             "  </b>"+
+    		                                 "  <a title='广安门牛街宣武医院北京西站精品雅居套房'>"+
+    		                                 "      <b class='btn-img'><img src='"+obj.landlordpath+"' class='lazy landlazy'  width='46' heigth='46' alt='房东头像' style='display: inline;'></b>"+
+    		                                "   </a>"+
+    		                          " </div>"+
+    		                          " <a href='' title='广安门牛街宣武医院北京西站精品雅居套房' style='position:relative;'>"+
+    		                            "   <div class='room-detail  clearfloat'>"+
+    		                              "     <p>"+obj.houseaddress+"</p>"+
+    		                              "     <ul>"+
+    		                               "            <li>1条评论·</li>"+
+    		                               "        <li>"+obj.housetype+"·"+
+    		                               "        </li>"+
+    		                               "    </ul>"+
+    		                               "    <div class='room_intro_p'>"+
+    										"	   	   <span class='biaoqian_style' style='background: rgba(255,205,76,0.25);color: #FA9A00;'>速订</span>"+
+    		                                "           <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.houseclass+"</span>"+
+    		                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.bedtype+"</span>"+
+    		                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'> 可做饭</span>"+
+    		                                 "  </div>"+
+    										"	<input type='hidden' value='0'>"+
+    		                            "   </div>"+
+    		                         "  </a>"+
+    		                     "  </dd>"
+    		                     
+    		                     $("#searchRoom").append(dd);
+    				})			
+    			}
+    		})
+     }
+   
+})
+//点击下一页查询本地房屋信息下一页
+$("#nextPage").click(function(){
+    
+   var position=$("#yc").val()
+   var jushu=$("#hx").val()
+	   	var paaa={
+			 pagenum:pageNum+1,
+			 pagesize:8,
+			 weizhi:city,
+			 position:position,
+			 housetype:jushu
+		}
+	     if(hasNextPage==false){
+	    	 alert("没有下一页")
+	     }else{
+	    	 $.ajax({
+	    			url:"/zsm/house/houseall",
+	    			dataType:"json",
+	    			type:"post",
+	    			data:paaa,
+	    			success:function(b){
+	    				
+	    			    hasPreviousPage=b.hasPreviousPage
+	    			    pageNum=b.pageNum
+	    			    pages=b.pages
+	    			    hasNextPage=b.hasNextPage
+
+	                    $("#searchRoom").html("")
+	    				$.each(b.list,function(i,obj){
+	    				var dd="<dd id='"+obj.houseid+"'  collestate='0' price='528' latlng='39.892273,116.36673' style='width: 25%;'>"+
+	    		                          " <div class='room-img'>"+
+	    		                              " <div class='collect' state='1' title='收藏' ></div>"+
+	    		                              " <div>"+
+	    		                                  "     <div class='house-image' style='height: 206.667px;'>"+
+	    		                                   "        <a href='javascript:void(0)' class='change-prev' style='display:none;' data='853829173' mainimage='//i1.mayi.com//mayi53/M68/TR/JM/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg'></a>"+
+	    		                                     "      <a href='javascript:void(0)'  >"+
+	    		                                    "           <img class='roomMap853829173' style='display:none'>"+
+	    		                                     "              <img  onclick='gotoxq("+obj.houseid+")' class='lazy lodgelazy' src='"+obj.picturepath+"' data-original='//i1.mayi.com//mayi53/M68/TR/JM/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg' alt='北京短租房广安门牛街宣武医院北京西站精品雅居套房' style='display: inline;'>"+
+	    		                                     "      </a>"+
+	    		                                     "      <a href='javascript:void(0)' style='display: none' class='change-next' data='853829173'></a>"+
+	    		                                    "   </div>"+
+	    		                              " </div>"+
+	    		                            "   <b class='moy-b'>"+
+	    	                               	 "     <p>"+
+	    	                               	"	  <font>￥</font>"+obj.baseprice+""+
+	    	                              	"	  </p>"+
+	    		                             "  </b>"+
+	    		                                 "  <a title='广安门牛街宣武医院北京西站精品雅居套房'>"+
+	    		                                 "      <b class='btn-img'><img src='"+obj.landlordpath+"' onclick='gotoxq("+obj.houseid+")' class='lazy landlazy'  width='46' heigth='46' alt='房东头像' style='display: inline;'></b>"+
+	    		                                "   </a>"+
+	    		                          " </div>"+
+	    		                          " <a href='' title='广安门牛街宣武医院北京西站精品雅居套房' style='position:relative;'>"+
+	    		                            "   <div class='room-detail  clearfloat'>"+
+	    		                              "     <p>"+obj.houseaddress+"</p>"+
+	    		                              "     <ul>"+
+	    		                               "            <li>1条评论·</li>"+
+	    		                               "        <li>"+obj.housetype+"·"+
+	    		                               "        </li>"+
+	    		                               "    </ul>"+
+	    		                               "    <div class='room_intro_p'>"+
+	    										"	   	   <span class='biaoqian_style' style='background: rgba(255,205,76,0.25);color: #FA9A00;'>速订</span>"+
+	    		                                "           <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.houseclass+"</span>"+
+	    		                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.bedtype+"</span>"+
+	    		                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'> 可做饭</span>"+
+	    		                                 "  </div>"+
+	    										"	<input type='hidden' value='0'>"+
+	    		                            "   </div>"+
+	    		                         "  </a>"+
+	    		                     "  </dd>"
+	    		                     
+	    		                     $("#searchRoom").append(dd);
+	    				})			
+	    			}
+	    		})
+	     }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function one(pa){
+		
+		//窗体加载按照定位查询本地房屋信息
+		$.ajax({
+			url:"/zsm/house/houseall",
+			dataType:"json",
+			type:"post",
+			data:pa,
+			success:function(b){
+				
+			    hasPreviousPage=b.hasPreviousPage
+			    pageNum=b.pageNum
+			    pages=b.pages
+			    hasNextPage=b.hasNextPage
+			    $("#searchRoom").html("")
+				$.each(b.list,function(i,obj){
+				var dd="<dd id='"+obj.houseid+"'   collestate='0' price='528' latlng='39.892273,116.36673' style='width: 25%;'>"+
+		                          " <div class='room-img'>"+
+		                              " <div class='collect' onclick=shoucang("+obj.houseid+") state='1' title='收藏' ></div>"+
+		                              " <div>"+
+		                                  "     <div class='house-image' style='height: 206.667px;'>"+
+		                                   "        <a href='javascript:void(0)' class='change-prev' style='display:none;' data='853829173' mainimage='//i1.mayi.com//mayi53/M68/TR/JM/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg'></a>"+
+		                                     "      <a href='javascript:void(0)'>"+
+		                                    "           <img class='roomMap853829173' style='display:none'>"+
+		                                     "              <img  class='lazy lodgelazy' onclick='gotoxq("+obj.houseid+")' title='"+obj.picturepath+"' src='"+obj.picturepath+"'  style='display: inline;'>"+
+		                                     "      </a>"+
+		                                     "      <a href='javascript:void(0)' style='display: none' class='change-next' data='853829173'></a>"+
+		                                    "   </div>"+
+		                              " </div>"+
+		                            "   <b class='moy-b'>"+
+	                               	 "     <p>"+
+	                               	"	  <font>￥</font>"+obj.baseprice+""+
+	                              	"	  </p>"+
+		                             "  </b>"+
+		                                 "  <a>"+
+		                                 "      <b class='btn-img'><img src='"+obj.landlordpath+"' onclick='gotoxq("+obj.houseid+")' class='lazy landlazy' data-original='//i1.mayi.com/mayi48/M24/CP/WD/UTW2YP7GF3M3ZPAB2HCWPEM5DRBTGY.jpg_150x150c.jpg' width='46' heigth='46' alt='房东头像' style='display: inline;'></b>"+
+		                                "   </a>"+
+		                          " </div>"+
+		                          " <a href='javascript:void(0)' style='position:relative;'>"+
+		                            "   <div class='room-detail  clearfloat'>"+
+		                              "     <p>"+obj.houseaddress+"</p>"+
+		                              "     <ul>"+
+		                               "            <li>1条评论·</li>"+
+		                               "        <li>"+obj.housetype+"·"+
+		                               "        </li>"+
+		                               "    </ul>"+
+		                               "    <div class='room_intro_p'>"+
+										"	   	   <span class='biaoqian_style' style='background: rgba(255,205,76,0.25);color: #FA9A00;'>速订</span>"+
+		                                "           <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.houseclass+"</span>"+
+		                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.bedtype+"</span>"+
+		                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'> 可做饭</span>"+
+		                                 "  </div>"+
+										"	<input type='hidden' value='0'>"+
+		                            "   </div>"+
+		                         "  </a>"+
+		                     "  </dd>"
+		                     $("#searchRoom").append(dd);
+				})			
+			}
+		})
+		
+		
+		}
+
+
+
+//点击不限查看无条件查询页面
+	$(".bx").click(function(){
+		one(pa);
+	})
+
+//价格高低排序
+$(".xux").live("click",function(){
+	var positiond = $(this).attr("sd");
+	var zi=0;
+	if(positiond=="高"){
+		zi=1;
+	}else if(positiond=="低"){
+		zi=2;
+	}
+	var paad={
+ 			 pagenum:1,
+ 			 pagesize:8,
+ 			 weizhi:city,
+ 			 xu:zi
+ 		}
+	
+	$.ajax({
+		url:"/zsm/house/houseall",
+		dataType:"json",
+		type:"post",
+		data:paad,
+		success:function(bb){
+		    hasPreviousPage=bb.hasPreviousPage
+		    pageNum=bb.pageNum
+		    pages=bb.pages
+		    hasNextPage=bb.hasNextPage
+		    $("#searchRoom").html("")
+			$.each(bb.list,function(i,obj){
+				debugger
+				var dd="<dd id='"+obj.houseid+"'  collestate='0' price='528' latlng='39.892273,116.36673' style='width: 25%;'>"+
+                " <div class='room-img'>"+
+                    " <div class='collect' onclick=shoucang("+obj.houseid+")></div>"+
+                    " <div>"+
+                        "     <div class='house-image' style='height: 206.667px;'>"+
+                         "        <a href='javascript:void(0)' class='change-prev' style='display:none;'></a>"+
+                           "      <a href='' >"+
+                          "           <img class='roomMap853829173' style='display:none'>"+
+                           "              <img id='853829173' onclick='gotoxq("+obj.houseid+")' class='lazy lodgelazy' src='"+obj.picturepath+"' style='display: inline;'>"+
+                           "      </a>"+
+                           "      <a href='javascript:void(0)' style='display: none' class='change-next' data='853829173'></a>"+
+                          "   </div>"+
+                    " </div>"+
+                  "   <b class='moy-b'>"+
+                 	 "     <p>"+
+                 	"	  <font>￥</font>"+obj.baseprice+""+
+                	"	  </p>"+
+                   "  </b>"+
+                       "  <a>"+
+                       "      <b class='btn-img'><img src='"+obj.landlordpath+"' onclick='gotoxq("+obj.houseid+")' class='lazy landlazy'  width='46' heigth='46' alt='房东头像' style='display: inline;'></b>"+
+                      "   </a>"+
+                " </div>"+
+                " <a href='javascipt:void(0)'  style='position:relative;'>"+
+                  "   <div class='room-detail  clearfloat'>"+
+                    "     <p>"+obj.houseaddress+"</p>"+
+                    "     <ul>"+
+                     "            <li>1条评论·</li>"+
+                     "        <li>"+obj.housetype+"·"+
+                     "        </li>"+
+                     "    </ul>"+
+                     "    <div class='room_intro_p'>"+
+						"	   	   <span class='biaoqian_style' style='background: rgba(255,205,76,0.25);color: #FA9A00;'>速订</span>"+
+                      "           <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.houseclass+"</span>"+
+                       "          <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.bedtype+"</span>"+
+                       "          <span class='biaoqian_style' style='background:#f4f4f4;'> 可做饭</span>"+
+                       "  </div>"+
+						"	<input type='hidden' value='0'>"+
+                  "   </div>"+
+               "  </a>"+
+           "  </dd>"
+           $("#searchRoom").append(dd);
+			})
+		}
+	
+	})
+	
+})
+
+	
+//点击位置按位置条件查询次位置信息	
+	$(".search-business").live("click",function(){
+		$("#hx").val("")
+		$("#yc").val("")
+		var position = $(this).attr("shu");	
+        $("#yc").val(position)
+	  	var paa={
+	  			 pagenum:1,
+	  			 pagesize:8,
+	  			 weizhi:city,
+	  			position:position
+	  		}
+		$.ajax({
+			url:"/zsm/house/houseall",
+			dataType:"json",
+			type:"post",
+			data:paa,
+			success:function(b){
+				
+			    hasPreviousPage=b.hasPreviousPage
+			    pageNum=b.pageNum
+			    pages=b.pages
+			    hasNextPage=b.hasNextPage
+			    $("#searchRoom").html("")
+				$.each(b.list,function(i,obj){
+					
+				var dd="<dd id='"+obj.houseid+"'  collestate='0' price='528' latlng='39.892273,116.36673' style='width: 25%;'>"+
+		                          " <div class='room-img'>"+
+		                              " <div class='collect' state='1' title='收藏'  onclick=shoucang("+obj.houseid+")></div>"+
+		                              " <div>"+
+		                                  "     <div class='house-image' style='height: 206.667px;'>"+
+		                                   "        <a href='javascript:void(0)' class='change-prev' style='display:none;' ></a>"+
+		                                     "      <a href='javascript:void(0)'>"+
+		                                    "           <img class='roomMap853829173' style='display:none'>"+
+		                                     "              <img  onclick='gotoxq("+obj.houseid+")' class='lazy lodgelazy' src='"+obj.picturepath+"'  style='display: inline;'>"+
+		                                     "      </a>"+
+		                                     "      <a href='javascript:void(0)' style='display: none' class='change-next' data='853829173'></a>"+
+		                                    "   </div>"+
+		                              " </div>"+
+		                            "   <b class='moy-b'>"+
+	                               	 "     <p>"+
+	                               	"	  <font>￥</font>"+obj.baseprice+""+
+	                              	"	  </p>"+
+		                             "  </b>"+
+		                                 "  <a>"+
+		                                 "      <b class='btn-img'><img src='"+obj.landlordpath+"'  onclick='gotoxq("+obj.houseid+")' class='lazy landlazy'  width='46' heigth='46' alt='房东头像' style='display: inline;'></b>"+
+		                                "   </a>"+
+		                          " </div>"+
+		                          " <a href='' title='广安门牛街宣武医院北京西站精品雅居套房' target='_blank' style='position:relative;'>"+
+		                            "   <div class='room-detail  clearfloat'>"+
+		                              "     <p>"+obj.houseaddress+"</p>"+
+		                              "     <ul>"+
+		                               "            <li>1条评论·</li>"+
+		                               "        <li>"+obj.housetype+"·"+
+		                               "        </li>"+
+		                               "    </ul>"+
+		                               "    <div class='room_intro_p'>"+
+										"	   	   <span class='biaoqian_style' style='background: rgba(255,205,76,0.25);color: #FA9A00;'>速订</span>"+
+		                                "           <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.houseclass+"</span>"+
+		                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.bedtype+"</span>"+
+		                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'> 可做饭</span>"+
+		                                 "  </div>"+
+										"	<input type='hidden' value='0'>"+
+		                            "   </div>"+
+		                         "  </a>"+
+		                     "  </dd>"
+		                     $("#searchRoom").append(dd);
+				})			
+			}
+		})
+		
+	})
+	
+	
+	
+	//点击居室按位置条件查询次位置信息	
+	$(".jushi").live("click",function(){
+		$("#hx").val("")
+		$("#yc").val("")
+		var jushi = $(this).attr("ju");	
+		$("#hx").val(jushi)	
+		
+		
+	  	var paa={
+	  			 pagenum:1,
+	  			 pagesize:8,
+	  			 weizhi:city,
+	  			housetype:jushi
+	  		}
+		$.ajax({
+			url:"/zsm/house/houseall",
+			dataType:"json",
+			type:"post",
+			data:paa,
+			success:function(b){
+				
+			    hasPreviousPage=b.hasPreviousPage
+			    pageNum=b.pageNum
+			    pages=b.pages
+			    hasNextPage=b.hasNextPage
+			    $("#searchRoom").html("")
+				$.each(b.list,function(i,obj){
+					
+				var dd="<dd id='"+obj.houseid+"'  collestate='0' price='528' latlng='39.892273,116.36673' style='width: 25%;'>"+
+		                          " <div class='room-img'>"+
+		                              " <div class='collect' state='1' title='收藏' onclick=shoucang("+obj.houseid+") ></div>"+
+		                              " <div>"+
+		                                  "     <div class='house-image' style='height: 206.667px;'>"+
+		                                   "        <a href='javascript:void(0)' class='change-prev' style='display:none;' data='853829173' mainimage='//i1.mayi.com//mayi53/M68/TR/JM/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg'></a>"+
+		                                     "      <a href='javascript:void(0)' >"+
+		                                    "           <img class='roomMap853829173' style='display:none'>"+
+		                                     "              <img id='853829173' onclick='gotoxq("+obj.houseid+")' class='lazy lodgelazy' title='广安门牛街宣武医院北京西站精品雅居套房' src='"+obj.picturepath+"' data-original='//i1.mayi.com//mayi53/M68/TR/JM/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg' alt='北京短租房广安门牛街宣武医院北京西站精品雅居套房' style='display: inline;'>"+
+		                                     "      </a>"+
+		                                     "      <a href='javascript:void(0)' style='display: none' class='change-next' data='853829173'></a>"+
+		                                    "   </div>"+
+		                              " </div>"+
+		                            "   <b class='moy-b'>"+
+	                               	 "     <p>"+
+	                               	"	  <font>￥</font>"+obj.baseprice+""+
+	                              	"	  </p>"+
+		                             "  </b>"+
+		                                 "  <a title='广安门牛街宣武医院北京西站精品雅居套房'>"+
+		                                 "      <b class='btn-img'><img src='"+obj.landlordpath+"' onclick='gotoxq("+obj.houseid+")' class='lazy landlazy' data-original='//i1.mayi.com/mayi48/M24/CP/WD/UTW2YP7GF3M3ZPAB2HCWPEM5DRBTGY.jpg_150x150c.jpg' width='46' heigth='46' alt='房东头像' style='display: inline;'></b>"+
+		                                "   </a>"+
+		                          " </div>"+
+		                          " <a href='' title='广安门牛街宣武医院北京西站精品雅居套房' target='_blank' style='position:relative;'>"+
+		                            "   <div class='room-detail  clearfloat'>"+
+		                              "     <p>"+obj.houseaddress+"</p>"+
+		                              "     <ul>"+
+		                               "            <li>1条评论·</li>"+
+		                               "        <li>"+obj.housetype+"·"+
+		                               "        </li>"+
+		                               "    </ul>"+
+		                               "    <div class='room_intro_p'>"+
+										"	   	   <span class='biaoqian_style' style='background: rgba(255,205,76,0.25);color: #FA9A00;'>速订</span>"+
+		                                "           <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.houseclass+"</span>"+
+		                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.bedtype+"</span>"+
+		                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'> 可做饭</span>"+
+		                                 "  </div>"+
+										"	<input type='hidden' value='0'>"+
+		                            "   </div>"+
+		                         "  </a>"+
+		                     "  </dd>"
+		                     $("#searchRoom").append(dd);
+				})			
+			}
+		})
+		
+	})
+	
+//按照价格区间查找
+
+$("#customPriceBtnNew").click(function(){
+	var cong=$("#cong").val();
+	var dao=$("#dao").val();
+	var paa={
+ 			 pagenum:1,
+ 			 pagesize:8,
+ 			 weizhi:city,
+ 			price1:cong,
+ 			price2:dao
+ 		}
+	$.ajax({
+		url:"/zsm/house/houseall",
+		dataType:"json",
+		type:"post",
+		data:paa,
+		success:function(b){
+			
+		    hasPreviousPage=b.hasPreviousPage
+		    pageNum=b.pageNum
+		    pages=b.pages
+		    hasNextPage=b.hasNextPage
+		    $("#searchRoom").html("")
+			$.each(b.list,function(i,obj){
+				
+			var dd="<dd id='"+obj.houseid+"'  collestate='0' price='528' latlng='39.892273,116.36673' style='width: 25%;'>"+
+	                          " <div class='room-img'>"+
+	                              " <div class='collect' state='1' onclick=shoucang("+obj.houseid+") title='收藏' ></div>"+
+	                              " <div>"+
+	                                  "     <div class='house-image' style='height: 206.667px;'>"+
+	                                   "        <a href='javascript:void(0)' class='change-prev' style='display:none;' data='853829173' mainimage='//i1.mayi.com//mayi53/M68/TR/JM/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg'></a>"+
+	                                     "      <a href='javascript:void(0)'>"+
+	                                    "           <img class='roomMap853829173' style='display:none'>"+
+	                                     "              <img id='853829173' onclick='gotoxq("+obj.houseid+")' class='lazy lodgelazy' title='广安门牛街宣武医院北京西站精品雅居套房' src='"+obj.picturepath+"' data-original='//i1.mayi.com//mayi53/M68/TR/JM/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg' alt='北京短租房广安门牛街宣武医院北京西站精品雅居套房' style='display: inline;'>"+
+	                                     "      </a>"+
+	                                     "      <a href='javascript:void(0)' style='display: none' class='change-next' data='853829173'></a>"+
+	                                    "   </div>"+
+	                              " </div>"+
+	                            "   <b class='moy-b'>"+
+                              	 "     <p>"+
+                              	"	  <font>￥</font>"+obj.baseprice+""+
+                             	"	  </p>"+
+	                             "  </b>"+
+	                                 "  <a title='广安门牛街宣武医院北京西站精品雅居套房'>"+
+	                                 "      <b class='btn-img'><img src='"+obj.landlordpath+"' onclick='gotoxq("+obj.houseid+")' class='lazy landlazy' data-original='//i1.mayi.com/mayi48/M24/CP/WD/UTW2YP7GF3M3ZPAB2HCWPEM5DRBTGY.jpg_150x150c.jpg' width='46' heigth='46' alt='房东头像' style='display: inline;'></b>"+
+	                                "   </a>"+
+	                          " </div>"+
+	                          " <a href='' title='广安门牛街宣武医院北京西站精品雅居套房' target='_blank' style='position:relative;'>"+
+	                            "   <div class='room-detail  clearfloat'>"+
+	                              "     <p>"+obj.houseaddress+"</p>"+
+	                              "     <ul>"+
+	                               "            <li>1条评论·</li>"+
+	                               "        <li>"+obj.housetype+"·"+
+	                               "        </li>"+
+	                               "    </ul>"+
+	                               "    <div class='room_intro_p'>"+
+									"	   	   <span class='biaoqian_style' style='background: rgba(255,205,76,0.25);color: #FA9A00;'>速订</span>"+
+	                                "           <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.houseclass+"</span>"+
+	                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.bedtype+"</span>"+
+	                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'> 可做饭</span>"+
+	                                 "  </div>"+
+									"	<input type='hidden' value='0'>"+
+	                            "   </div>"+
+	                         "  </a>"+
+	                     "  </dd>"
+	                     $("#searchRoom").append(dd);
+			})			
+		}
+	})
+})
+	
+//输入框搜索房子
+$("#landmarkBtn").click(function(){
+	var searchcityin1=$("#searchcityin1").val();
+	var paa={
+			 pagenum:1,
+			 pagesize:8,
+			 weizhi:searchcityin1
+		}
+	$.ajax({
+		url:"/zsm/house/houseall",
+		dataType:"json",
+		type:"post",
+		data:paa,
+		success:function(b){
+			
+		    hasPreviousPage=b.hasPreviousPage
+		    pageNum=b.pageNum
+		    pages=b.pages
+		    hasNextPage=b.hasNextPage
+		    $("#searchRoom").html("")
+			$.each(b.list,function(i,obj){
+				
+			var dd="<dd id='"+obj.houseid+"'  collestate='0' price='528' latlng='39.892273,116.36673' style='width: 25%;'>"+
+	                          " <div class='room-img'>"+
+	                              " <div class='collect' state='1'onclick=shoucang("+obj.houseid+") title='收藏' ></div>"+
+	                              " <div>"+
+	                                  "     <div class='house-image' style='height: 206.667px;'>"+
+	                                   "        <a href='javascript:void(0)' class='change-prev' style='display:none;' data='853829173' mainimage='//i1.mayi.com//mayi53/M68/TR/JM/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg'></a>"+
+	                                     "      <a href='javascript:void(0)' >"+
+	                                    "           <img class='roomMap853829173' style='display:none'>"+
+	                                     "              <img id='853829173'  onclick='gotoxq("+obj.houseid+")' class='lazy lodgelazy' title='广安门牛街宣武医院北京西站精品雅居套房' src='"+obj.picturepath+"' data-original='//i1.mayi.com//mayi53/M68/TR/JM/6VDMB3D3V3NXHS6FXMUKNYEDHMJRWG.jpg_566x377c.jpg' alt='北京短租房广安门牛街宣武医院北京西站精品雅居套房' style='display: inline;'>"+
+	                                     "      </a>"+
+	                                     "      <a href='javascript:void(0)' style='display: none' class='change-next' data='853829173'></a>"+
+	                                    "   </div>"+
+	                              " </div>"+
+	                            "   <b class='moy-b'>"+
+                             	 "     <p>"+
+                             	"	  <font>￥</font>"+obj.baseprice+""+
+                            	"	  </p>"+
+	                             "  </b>"+
+	                                 "  <a title='广安门牛街宣武医院北京西站精品雅居套房'>"+
+	                                 "      <b class='btn-img'><img src='"+obj.landlordpath+"'onclick='gotoxq("+obj.houseid+")' class='lazy landlazy' data-original='//i1.mayi.com/mayi48/M24/CP/WD/UTW2YP7GF3M3ZPAB2HCWPEM5DRBTGY.jpg_150x150c.jpg' width='46' heigth='46' alt='房东头像' style='display: inline;'></b>"+
+	                                "   </a>"+
+	                          " </div>"+
+	                          " <a href='' title='广安门牛街宣武医院北京西站精品雅居套房' target='_blank' style='position:relative;'>"+
+	                            "   <div class='room-detail  clearfloat'>"+
+	                              "     <p>"+obj.houseaddress+"</p>"+
+	                              "     <ul>"+
+	                               "            <li>1条评论·</li>"+
+	                               "        <li>"+obj.housetype+"·"+
+	                               "        </li>"+
+	                               "    </ul>"+
+	                               "    <div class='room_intro_p'>"+
+									"	   	   <span class='biaoqian_style' style='background: rgba(255,205,76,0.25);color: #FA9A00;'>速订</span>"+
+	                                "           <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.houseclass+"</span>"+
+	                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'>"+obj.bedtype+"</span>"+
+	                                 "          <span class='biaoqian_style' style='background:#f4f4f4;'> 可做饭</span>"+
+	                                 "  </div>"+
+									"	<input type='hidden' value='0'>"+
+	                            "   </div>"+
+	                         "  </a>"+
+	                     "  </dd>"
+	                     $("#searchRoom").append(dd);
+			})			
+		}
+	})
+	
+})
+	
+})
+	
+
+	
+
+
+	function gotoxq(houseid){
+	location.href="/zsm/housexq/xq?houseid="+houseid;
+	
+	}
+function shoucang(){
+	location.href="/zsm/house/goshouchang"
+}
+
+
+
+$.ajax({
+	url:"/zsm/userlogin/getSe",
+	dataType:"json",
+	type:"post",
+	success:function(a){
+		if(a!=null){
+		 $("#loginshow").html("欢迎"+a.name)
+		 $("#user-action").html("<div onclick='shoucang()' class='login-btn t-center fw600 c_gray_dark cursorpt'>我的收藏</div>")
+	}
+	}
+})
+
+function shoucang(houseid){
+	var sa=$("#loginshow").html()
+	if(sa=="登录/注册"){
+		alert("请登录")
+		location.href="http://127.0.0.1/zsm/test/gotoshouye4";
+	}else{
+	$.ajax({
+		url:"/zsm/house/insertcollect",
+		dataType:"json",
+		type:"post",
+		data:"houseid="+houseid,
+	    success:function(a){
+	    	if(a!=null){
+	    		alert("收藏成功！")
+	    		location.href="/zsm/house/goshouchang";
+	    	}
+	    }
+	})
+	}
+}
+</script>
+
+<style type="text/css">
+.email{ position:fixed; bottom:0px; right:0px; width:190px; height:35px; line-height:35px; background:#e8e8e8; border:1px #CCCCCC solid; border-right:none; z-index:400000000;}
+.email a{ padding-left:10px; float:left; font-weight:normal; font-family:"宋体"; font-size:12px; width:120px; box-shadow:1px 0px 0px 0px #ccc; border-right:1px #fff solid;}
+.email a img{ margin:12px 3px 0px 0px; float:left; width:16px; height:12px;}
+.imjs-status{color:#55aa39 !important}
+#webIM ul.tab-im .offline-icon,#webIM ul.tab-im .online-icon{background-position:0 !important}
+#webIM .all-list a.on, #webIM .all-list a.off{background-position:-239px -297px !important;color:#2883C3 !important}
+#webIM ul.tab-im a{color:#2883C3 !important}
+</style> 
+<script src="./erji/wb.js.下载" type="text/javascript" charset="utf-8"></script>
+<!-- load statistics js -->
+<!--[statistics start]-->
+<!-- load End--><!--底部浮层显示，默认是隐藏-->
+<!--跟踪代码-->
+<script src="/erji/adv.js.下载"></script>
+<!--判断是否推送给赶集-->
+<!-- 蚂蚁点击 -->
+<script src="/erji/mayi.js.下载"></script>
+<!-- 蚂蚁分析 -->
+<script src="/erji/mayi_rp.js.下载"></script>
+
+</div><script type="text/javascript" charset="UTF-8" src="/erji/online"></script><div><div class="qimo_chatpup" id="qimo_chatpup" style="display: none; right: 18px; bottom: 0px; width: 355px; height: 500px;"><iframe id="chatIframe" src="./erji/moor_chat.html" height="100%" width="100%"></iframe><div id="maskChat"></div></div><div id="chatBtn" class="chatBtn" style="display: none; right: 18px; z-index: -100; background-color: rgb(25, 202, 166); border-radius: 5px 5px 0px 0px; bottom: -1px; padding: 8px 10px;"><img width="25px" height="25px" src="./erji/1.png" style="margin: 0px 5px -6px 0px;"><span>咨询客服</span><span id="qimo_badge"></span></div><div id="qimo_showNewMsg" class="qimo_showNewMsg" style="display: none; "><div id="qimo_showNewMsg_box" class="qimo_showNewMsg_box"><div id="qimo_showNewMsg_title_box" class="qimo_showNewMsg_title_box"><img src="./erji/agentLogo.png"><span id="qimo_showNewMsg_title" class="qimo_showNewMsg_title"></span></div> <div id="qimo_showNewMsg_content" class="qimo_showNewMsg_content"></div></div><span id="qimo_showNewMsg_close" class="qimo_showNewMsg_close">x</span></div></div><script type="text/javascript" charset="UTF-8" src="./erji/online(1)"></script><div><div class="qimo_inviteBox" id="qimo_inviteBox" style="display: none; right: 10px; bottom: 10px; background: rgb(63, 184, 253);"><img class="qimo_invite_close" id="qimo_invite_close" src="./erji/invite-close.png"><div class="qimo_inviteBox_top"><div class="qimo_inviteBox_top_img" id="qimo_inviteBox_top_img"><img id="qimo_inviteBox_img" src="./erji/896beb70-d81a-11e7-b6e7-9da891414b0f.png"></div><div class="qimo_inviteBox_top_right" id="qimo_inviteBox_top_right"><p id="qimo_inviteBox_InviteWords">欢迎咨询，请问有什么可以帮您的吗？</p><div class="qimo_inviteBox_top_button" id="qimo_inviteBox_top_button"><div id="invite_click_button_1" class="divbuttons msie11PadTop" style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255);">立即咨询</div><div id="invite_click_button_2" class="divbuttons msie11PadTop" style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255);">以后再说</div></div></div></div><div class="qimo_inviteBox_bottom"><textarea id="sendInviteText" placeholder="请输入您想要输入的内容..." rows="2"></textarea><div id="sendInviteContent" class="sendInviteContent msie11PadTop" style="background: rgb(63, 184, 253);">发送</div></div></div></div><div><div class="qimo_screenpop" id="qimo_screenpop" style="display: none"><div class="screendragbar" id="screendrag"></div><div class="qimo_headerimg" id="qimo_headerimg"><div class="screenminimg" style="display: none" id="screenminimg"><img src="./erji/small.png"></div><div class="screenminimg" id="screenmaximg"><img src="./erji/big.png"></div><div class="screenminimg" id="screencloseimg"><img src="./erji/close(1).png" style="width: 16px;height: 16px;"></div></div> <div id="mask"></div><iframe id="screenIframe" src="./erji/saved_resource(1).html" height="100%" width="100%" allow="microphone; camera"></iframe></div></div><div><div class="qimo_videopup" id="qimo_videopup" style="display: none"><div style="" class="dragbar" id="drag"></div><div class="qimo_minimg" id="qimo_minimg"><img src="./erji/small.png"></div><img src="./erji/big.png" class="qimo_maximg" id="qimo_maximg" style="display: none"> <div id="mask"></div><iframe id="videoIframe" src="./erji/saved_resource(2).html" height="100%" width="100%" allow="microphone; camera"></iframe></div></div><div id="ascrail2000" class="nicescroll-rails nicescroll-rails-vr" style="width: 8px; z-index: 15; cursor: default; position: absolute; top: 0px; left: 152px; height: 320px; touch-action: none; display: none;"><div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 6px; height: 0px; background-color: rgb(72, 72, 72); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 100px; touch-action: none;"></div></div><div id="ascrail2000-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 8px; z-index: 15; top: 312px; left: 0px; position: absolute; cursor: default; display: none;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 6px; width: 0px; background-color: rgb(72, 72, 72); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 100px;"></div></div></body></html>

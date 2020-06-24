@@ -1,0 +1,6 @@
+package com.cy.pj.service.xbc;
+
+public interface InfromationService {
+	
+	Integer insert();
+}

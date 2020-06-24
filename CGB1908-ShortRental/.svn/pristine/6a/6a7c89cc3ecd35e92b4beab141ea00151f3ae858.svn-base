@@ -1,0 +1,22 @@
+package com.cy.pj.vo.xln;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
+public class PayOrder implements Serializable {
+	private static final long serialVersionUID = 3587483430005746059L;
+	private String orderNum;
+	private Date orderTime;
+	private String picture;
+	private String addrName;
+	private String address;
+	private Date enterTime;
+	private Date leaveTime;
+	private Double Money;
+	private Integer orderState;
+	private Integer payState; 
+
+}

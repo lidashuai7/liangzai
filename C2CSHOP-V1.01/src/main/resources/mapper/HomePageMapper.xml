@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.shop.dao.HomePageDao">
+
+	<cache type="com.cy.shop.cache.RedisCache"/>
+	<select id="findHomePageObject" resultType="com.cy.shop.vo.HomePageVo">
+		select id,name,main_photo,price from shop_prod
+	</select>
+</mapper>
+
+
+
+
+
+

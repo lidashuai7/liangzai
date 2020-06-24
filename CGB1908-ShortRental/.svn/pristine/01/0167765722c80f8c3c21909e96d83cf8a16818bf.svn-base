@@ -1,0 +1,55 @@
+
+$(function(){
+	var _channel = $("#channel").val();
+		$(window).scroll(function(){
+			var scrollt = document.documentElement.scrollTop + document.body.scrollTop; //获取滚动后的高度 
+		});
+		//<!-- 当点击标签的时候,使用animate在600毫秒的时间内,滚到顶部 -->
+		$(".la-03").click(function(){ 
+			$("html,body").animate({scrollTop:"0px"},600);
+		});
+		//<!-- 控制右侧浮层隐藏显示 -->
+		if(_channel!=undefined&&_channel.indexOf("tg_bd_wap") != -1){
+			$("#floatingLayer").hide();
+			$("#top_div").hide();
+		}else{
+			//<!-- 右浮层移入移除显示隐藏二维码图标 -->
+		
+			$("#app-click").mouseover(function(){
+		    	$(".app-img").show();
+		  	});
+	
+		  	$("#app-click").mouseout(function(){
+		    	$(".app-img").hide();
+		  	});
+	
+			$(".floatclose").click(function(){
+				$(".floatingLayer").remove();
+				document.cookie = "floatLayerCookie = exist";
+			});
+		}
+		$(window).scroll(function(){
+			if(_channel != undefined && _channel.indexOf("tg_bd_wap") != -1){
+				$("#floatingLayer").hide();
+				$("#top_div").hide();
+			}else{
+				var t = document.documentElement.scrollTop || document.body.scrollTop; 
+			    var top_div = document.getElementById("top_div");
+			    var floatingLayer = document.getElementById("floatingLayer");
+			    if( t >= 510) {
+			        top_div.style.display = "inline";
+			        var floatLayerCookie = getCookie("floatLayerCookie");
+			        if(!floatLayerCookie){
+			        	if(floatingLayer!=null)
+			        	floatingLayer.style.display = "block";
+			        }
+			    } else {
+			        top_div.style.display = "none";
+			        if(floatingLayer!=null)
+			        floatingLayer.style.display = "none";
+			    }
+		    }
+			
+		});
+	
+})

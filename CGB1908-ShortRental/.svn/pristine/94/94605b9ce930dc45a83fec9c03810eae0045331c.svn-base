@@ -1,0 +1,136 @@
+			var _py = _py || []; 
+			_py.push(['a', '_V..9lG-o_-K8tLjk83g1WAOcX']); 
+			_py.push(['domain','stats.ipinyou.com']); 
+			_py.push(['e','']); 
+			-function(d){ 
+				var f = 'https:' == location.protocol; 
+				f = (f ? 'https' : 'http') + '://'+(f?'file.ipinyou.com':'file.ipinyou.com.cn')+'/j/adv.js'; 
+				d.write('<script src="'+f+'"><\/script>'); 
+			}(document) 
+			
+			function pressEve(ev){
+				if(!ev) var ev=window.event;
+				var code = ev.keyCode;
+				var sugcss = $('.suggest_results').css('display');
+				if(sugcss!='none'){
+					if(code==13){
+						//将suggest输入到输入框
+						if($(".suggest_results li.hover a .leftspan").text()){
+							$("#searchcityin").val($(".suggest_results li.hover a .leftspan").text());
+							$("#searchcityin").attr('surl',$(".suggest_results li.hover a").attr('url'));
+						}else{
+							//默认第一条
+							if($(".suggest_results li:first-child a .leftspan").attr("kw")){
+								$("#searchcityin").val($(".suggest_results li:first-child a .leftspan").attr("kw"));
+							}
+							$("#searchcityin").attr('surl',$(".suggest_results li:first-child a").attr('url'));
+						}
+						
+						$('.suggest_results').css('display','none');
+					}else if(code==38){
+						movePrev();
+					}else if(code==40){
+						moveNext();
+					}
+				}
+				if(code==8 && $("#searchcityin").val().length <= 1){
+					$("#clearCityInfo").hide();
+				}else{
+//					$("#clearCityInfo").show();
+				}
+			}
+			
+			function sysLodge(){
+				var ctx = $('#ctx').val();
+				$.ajax({
+					//url:ctx+'/sysLodgeTo4se',
+					url:ctx+'/saveNationData',
+					type:'POST',
+					dataType:'json',
+					success:function(data){
+						if(null!=data.error&&data.error.length>0){
+							alert(data.error);
+						}else{
+							alert(data.mess);
+						}
+					}
+				});
+			}
+			
+			function getSuggest(e){
+				var s = $('#searchcityin').val().trim();
+				var ctx = $('#ctx').val();
+				if(!e) var e=window.event;
+				var code = e.keyCode;
+				if(code==37||code==38||code==39||code==40||code==13){
+					return false;
+				}
+				if(null!=s && s.length>0 && s!='目的地、景点、商圈等' && s!='目的地、城市'){
+					var sugurl = ctx+'/getSuggest/';
+					getSuggestResult(sugurl,s,0,'index');
+				}else{
+					$('.error_tip_list').css('display','none');
+					$('.suggest_results').css('display','none');
+					$('.select-hotcity').css('display','block');
+				}
+			}
+			
+			function getSuggests(e,k){
+				var s = $('#searchcityin').val().trim();
+				var ctx = $('#ctx').val();
+				if(!e) var e=window.event;
+				var code = e.keyCode;
+				if(code==37||code==38||code==39||code==40||code==13){
+					return false;
+				}
+				if(null!=s && s.length>0 && s!='目的地、景点、商圈等' && s!='目的地、城市'){
+					var sugurl = ctx+'/getSuggest/';
+					getSuggestResult(sugurl,s,0,'index',k);
+				}else{
+					$('.error_tip_list').css('display','none');
+					$('.suggest_results').css('display','none');
+					$('.select-hotcity').css('display','block');
+				}
+			}
+			
+			$(".collection").click(function(){
+ 	    		var user = getCookie('MAYIUID');
+ 	    		if(null==user){
+ 	    			$("#loginshow").click();
+ 	    		}else{
+ 	    			var roomid = $(this).attr("id");
+ 	    			roomid = roomid.replace("c_","");
+ 	    			var state = $(this).attr("state");
+ 	    			var ctx = $('#ctx').val();
+ 	    			$.ajax({
+ 	    				url:ctx+'/user/tenant/setCollection?roomid='+roomid+"&state="+state,
+ 	    				type:'POST',
+ 	    				dataType:'json',
+ 	    				success:function(data){
+ 	    					if(data==1){
+ 	    						if(state==1){
+ 	    							state=2;
+ 	    							$("#c_"+roomid+"").addClass("ct_on").attr("title","取消收藏");
+ 	    						}else{
+ 	    							state=1;
+ 	    							$("#c_"+roomid+"").removeClass("ct_on").attr("title","收藏");
+ 	    						}
+ 	    						$("#c_"+roomid+"").attr("state",state);
+ 	    					}else{
+ 	    						alert('收藏失败！');
+ 	    					}
+ 	    				},
+ 	    				error:function(){
+ 	    					alert('请求异常，请稍后再试！');
+ 	    				}
+ 	    			});
+ 	    		}
+ 	    	});
+ 	     	
+			function getCookie(objName) {
+		        var arrStr = document.cookie.split("; ");
+		        for(var i = 0;i < arrStr.length;i ++){
+		            var temp = arrStr[i].split("=");
+		            if(temp[0] == objName) return unescape(temp[1]);
+		        }
+		    } 

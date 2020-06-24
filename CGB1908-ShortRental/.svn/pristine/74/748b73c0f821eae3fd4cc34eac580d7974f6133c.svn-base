@@ -1,0 +1,107 @@
+// JavaScript Document
+/*2015-09-09*/
+var flag = true;
+function MoveBox(obj, roomid) {
+	var user = getCookie('MAYIUID');
+	if(null==user){
+		$("#loginshow").click();
+	}else{
+		if(!flag){
+			return;
+		}
+		flag = false;
+			ctx = $('#ctx').val();
+			$.ajax({
+				url : ctx + '/user/tenant/setCollection?roomid=' + roomid + "&state=1",
+				type : 'POST',
+				dataType : 'json',
+				success : function(data) {
+					if (data == 1) {
+						$("#sc_word").text("已收藏");						
+						var divTop = $(obj).offset().top;
+						var divLeft = $(obj).offset().left;
+						var aaaLeft = $("#aaa").offset().left+16;
+						var a = (document.body.clientWidth - 1190) / 2;
+						var divRight = document.body.clientWidth - divLeft - 19;
+						var aaaRight = document.body.clientWidth - aaaLeft - 19;
+						$('.mmcoll1').hide();
+						$('.mmcoll2').show();
+						$(obj).css({
+							"position" : "absolute",
+							"z-index" : 8,
+							"top" : 120,
+							'display':'block'
+						});					
+						$(obj).animate({
+							"right" : aaaRight + "px",
+							"top" : ($(document).scrollTop() + 30) + "px",
+						}, 500,function(){flag = true;}).fadeTo(0, 0.1).hide(0);				
+					} else {
+						alert('保存失败！');
+					}
+
+				},
+				error : function() {
+					alert('请求异常，请稍后再试！');
+				}
+			});
+			
+	}
+}
+
+function MoveBoxbk(obj, roomid) {
+	if(!flag){
+		return;
+	}	
+	ctx = $('#ctx').val();
+	$.ajax({
+		url : ctx + '/user/tenant/setCollection?roomid=' + roomid + "&state=2",
+		type : 'POST',
+		dataType : 'json',
+		success : function(data) {
+			$("#sc_word").text("收藏");			
+			$('.mmcoll1').show();
+			$('.mmcoll2').hide();
+			$(obj).siblings("#collect").css({
+				"position" : "absolute",
+				"z-index" : 8,
+				"top" : 120,
+				"opacity" : 1,
+				"display" : "block"
+			});
+			if (document.body.clientWidth > 1190) {
+				$(obj).siblings("#collect").css("right", a + 308)				
+			} else {
+				$(obj).siblings("#collect").css("right", 308)
+			}
+		},
+		error : function() {
+			alert('请求异常，请稍后再试！');
+		}
+	});
+}
+
+$(function() {
+	/*
+	 * d=30; $(".desWord h2").children().each(function(){ d +=
+	 * parseInt($(this).width()); })
+	 */
+	if (document.body.clientWidth > 1190) {
+		a = (document.body.clientWidth - 1190) / 2;
+		$(".mmcoll").css("right", a + 308);
+	} else {
+		$(".mmcoll").css("left", 864);
+	}
+})
+
+window.onresize = function() {
+	if (document.body.clientWidth > 1190) {
+		a = (document.body.clientWidth - 1190) / 2;
+		$(".mmcoll").css("right", a + 308);
+		$(".mmcoll").css("left", "");
+	} else {
+		$(".mmcoll").css("left", 864);
+		$(".mmcoll").css("right", "");
+	}
+	
+}

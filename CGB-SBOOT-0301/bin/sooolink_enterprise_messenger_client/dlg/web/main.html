@@ -1,0 +1,540 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+	<link rel="stylesheet" href="layui/css/layui.css" media="all">
+	<link rel="stylesheet" href="css/chat.css" media="all">
+
+
+</head>
+
+<body style="height:100%;overflow-y: hidden;">
+	<div style="height:100%;" id="main">
+		<div class="left">
+			<div class="search-menu">
+
+				<div class="search-imput" style="float:left;">
+					<div style="float:left;width:200px;"><input type="text" style="height:30px;" name="title" required
+							lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input" id="search-user-key"> </div>
+					<div style="margin-top:8px;"><i class="layui-icon layui-icon-search handclass"
+							style="margin-left: -25px;" onclick="searchChatUsers();"></i></div>
+					<div style="clear:both;"></div>
+				</div>
+				<div class="search-button" style="float:right;">
+					<i class="layui-icon layui-icon-add-1 handclass" onclick="addChatObj();"
+						style="font-size:30px;margin-right: 10px"></i>
+				</div>
+				<div style="clear:both;"></div>
+
+			</div>
+			<div class="user-list" style="overflow-y: auto;overflow-x: hidden;" id="chat-show-user-list">
+
+				<!-- <div class="user-item">
+					<div class="user-face">
+						<div class="img" style="background-image: url(img/blue.jpg);">
+							
+						</div>
+					</div>
+					<div class="user-info">
+						<div class="user-header">
+							<div class="user-name">张小盒</div>
+							<div class="user-date">12:12</div>
+						</div>
+						<div style="clear: both"></div>
+						<div class="user-dis">你什么时候过来的？</div>
+					</div>
+				</div>
+				<div style="clear: both"></div>
+
+				<div class="user-item">
+
+
+					<div class="user-face">
+						<div class="img" style="background-image: url(img/blue.jpg);">
+							
+						</div>
+					</div>
+					<div class="user-info">
+
+						<div class="user-header">
+							<div class="user-name">张小盒</div>
+							<div class="user-date">
+								12:12
+								<span class="layui-badge-dot"></span>
+							</div>
+
+						</div>
+						<div style="clear: both"></div>
+						<div class="user-dis">你什么时候过来的？</div>
+					</div>
+				</div>
+				<div style="clear: both"></div>
+
+				<div class="user-item">
+					<div class="user-face">
+						<div class="img" style="">
+							小盒
+						</div>
+					</div>
+					<div class="user-info">
+						<div class="user-header">
+							<div class="user-name">张小盒</div>
+							<div class="user-date">12:12</div>
+						</div>
+						<div style="clear: both"></div>
+						<div class="user-dis">你什么时候过来的？</div>
+					</div>
+				</div>
+				<div style="clear: both"></div>
+
+				<div class="user-item">
+
+					<div class="user-face">
+						<div class="img" style="">
+							小飞
+						</div>
+					</div>
+					<div class="user-info">
+						<div class="user-header">
+							<div class="user-name">张小盒</div>
+							<div class="user-date">
+								12:12
+								<span class="layui-badge-dot"></span>
+							</div>
+						</div>
+						<div style="clear: both"></div>
+						<div class="user-dis">你什么时候过来的？</div>
+
+					</div>
+
+				</div>
+				<div style="clear: both"></div>
+				<div class="user-item">
+					<div class="user-face">
+						<div class="img" style="background-image: url(img/blue.jpg);">
+							
+						</div>
+					</div>
+					<div class="user-info">
+						<div class="user-header">
+							<div class="user-name">张小盒</div>
+							<div class="user-date">12:12</div>
+						</div>
+						<div style="clear: both"></div>
+						<div class="user-dis">你什么时候过来的？</div>
+					</div>
+				</div>
+				<div style="clear: both"></div>
+				<div class="user-item">
+					<div class="user-face">
+						<div class="img" style="background-image: url(img/blue.jpg);">
+							
+						</div>
+					</div>
+					<div class="user-info">
+						<div class="user-header">
+							<div class="user-name">张小盒</div>
+							<div class="user-date">12:12</div>
+						</div>
+						<div style="clear: both"></div>
+						<div class="user-dis">你什么时候过来的？</div>
+					</div>
+				</div>
+				<div style="clear: both"></div>
+
+				<div class="user-item">
+					<div class="user-face">
+						<div class="img" style="background-image: url(img/blue.jpg);">
+							小盒
+						</div>
+					</div>
+					<div class="user-info">
+						<div class="user-header">
+							<div class="user-name">张小盒</div>
+							<div class="user-date">12:12</div>
+						</div>
+						<div style="clear: both"></div>
+						<div class="user-dis">你什么时候过来的？</div>
+					</div>
+				</div>
+				<div style="clear: both"></div> -->
+
+
+
+			</div>
+
+		</div>
+
+		<div class="middle">
+			<!-- 聊天对象 -->
+			<div class="chat-header" style="padding: 1px 8px 3px 3px;border-bottom: solid 2px #f0f0f0;"
+				id="chat-user-info">
+				<div class="chat-user-name" style="float: left;line-height: 40px;">
+					<div class="my-chat-face"
+						style="font-size: 11px;width: 40px;height: 40px;border-radius: 20px;margin-right:10px;background-image:;background-size:100% 100%;background-repeat:no-repeat;float: left;line-height: 40px;color: #ffffff;text-align: center;">
+
+					</div><span class="chat-header-name"></span>
+				</div>
+				<div class="chat-tools" style="float: right;margin-top: 6px">
+					<i class="layui-icon layui-icon-spread-left" id="chat-right"
+						style="font-size: 25px;cursor:pointer;color: #5FB878;"></i>
+				</div>
+				<div style="clear: both;"></div>
+
+			</div>
+
+			<div class="chat-body" id="chat-body" style="overflow-y: auto;overflow-x: hidden;">
+
+
+				<!-- <div class="chat-show-item">
+					<div class="chat-show-left">
+						<div class="chat-show-face">
+							<div class="img" style="background-image: '';">
+									Jck
+							</div>
+						</div>
+						<div class="chat-info">
+							<div class="chat-info-name">
+								Jck Smis
+								<span>12:10</span>
+							</div>
+							<div class="chat-info-content">
+								<img src="img/blue.jpg">
+							</div>
+						</div>
+					</div>
+					<div style="clear:both;"></div>
+				</div>
+
+				<div class="chat-show-item">
+					<div class="chat-show-left">
+						<div class="chat-show-face">
+							<div class="img" style="background-image: '';">
+									小虎
+							</div>
+						</div>
+						<div class="chat-info">
+							<div class="chat-info-name">
+								王小虎
+								<span>12:10</span>
+							</div>
+							<div class="chat-info-content">
+								haha,ni 好一个美人啊，你是谁？？？？？？？？？？？？？？？？？？？？？？？
+							</div>
+						</div>
+					</div>
+					<div style="clear:both;"></div>
+				</div> -->
+
+
+			</div>
+
+			<div class="chat-input">
+				<div class="chat-footer-tools">
+					<div class="handclass" style="float: left;"><i class="layui-icon layui-icon-face-smile-b" id="chat-send-face" style="font-size: 20px;"></i></div>
+					<div class="handclass" style="float: left;margin-left: 8px" id="chat-send-img" onclick="uploadImgFile();"><i class="layui-icon layui-icon-picture" style="font-size: 20px;"></i></div>
+					<div class="handclass" style="float: left;margin-left: 8px" id="chat-send-sound" onclick="uploadSoundFile();"><i class="layui-icon layui-icon-headset" style="font-size: 20px;"></i></div>
+					<div class="handclass" style="float: left;margin-left: 8px" id="chat-send-video" onclick="uploadVideoFile();"><i class="layui-icon layui-icon-video" style="font-size: 20px;"></i></div>
+					<div class="handclass" style="float: left;" id="chat-send-file" onclick="uploadFile();"><i class="layui-icon layui-icon-file" style="font-size: 20px;"></i></div>
+					<div style="clear: both;"></div>
+				</div>
+				<div class="chat-input-footer" style="height: 140px;">
+					<div class="chat-input-content" style="float: left;width: 90%;">
+						<textarea required lay-verify="required" placeholder="请输入消息内容,Ctrl+Enter快速发送"
+							class="layui-textarea" style="border:0;height: 150px;overflow-y: auto;"
+							id="chat-input-editer"></textarea>
+					</div>
+					<div class="chat-input-submit" style="float:right;width: 10%;">
+						<button type="button" class="layui-btn layui-btn-primary"
+							style="height:150px;width:99%;border:0;border-left: dashed 1px #f0f0f0;color: #5FB878;"
+							id="chat-send-msg">发送</button>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="right">
+			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin:0;" id="right-show-scoll">
+				<ul class="layui-tab-title">
+					<li class="layui-this">资料</li>
+					<li>文件</li>
+				</ul>
+				<div class="layui-tab-content" style="padding:3px;">
+					<!-- 资料 -->
+					<div class="layui-tab-item layui-show" id="right-show-scoll1">
+						<!-- 个人/群信息 -->
+						<table class="layui-table" lay-even="" lay-skin="nob" lay-size="sm">
+							<colgroup>
+								<col width="150">
+								<col width="200">
+							</colgroup>
+							<thead>
+								
+							</thead>
+							<tbody id="user-group-info">
+
+								<!-- <tr>
+									<td>昵称</td>
+									<td>张飞</td>
+								</tr>
+								<tr>
+									<td>姓名</td>
+									<td>张小盒</td>
+								</tr>
+								<tr>
+									<td>部门</td>
+									<td>行政部</td>
+								</tr>
+								<tr>
+									<td>性别</td>
+									<td>男</td>
+								</tr>
+								<tr>
+									<td>电话</td>
+									<td>13540633386/02815545454</td>
+								</tr> -->
+
+							</tbody>
+						</table>
+						<!-- 群成员 -->
+						<table class="layui-table group-list-users" lay-skin="nob" lay-size="sm">
+							<colgroup>
+
+								<col width="200">
+							</colgroup>
+							<tbody id="right-group-users">
+								<!-- <tr class="handclass" onclick="showUserInfo(this)">
+									<td>
+										<div class="group-info-list-img">
+											小盒
+										</div>
+										张小盒
+									</td>
+								</tr> -->
+								
+								
+
+							</tbody>
+						</table>
+
+
+					</div>
+
+					<!-- 文件 -->
+					<div class="layui-tab-item" id="right-show-scoll2">
+						<!-- 共享文件 -->
+						<table class="layui-table" lay-even="" lay-skin="nob" lay-size="sm">
+							<colgroup>
+								<col width="50">
+								<col width="100">
+								<col width="100">
+								<col>
+							</colgroup>
+							<thead>
+								<tr>
+									<th>文件</th>
+									<th>上传</th>
+									<th>下载次数</th>
+									<th>下载</th>
+								</tr>
+							</thead>
+							<tbody id="right-user-group-files">
+								<!-- <tr>
+									<td><i class="layui-icon layui-icon-picture"></i></td>
+									<td>张小盒</td>
+									<td>0</td>
+									<td><i class="layui-icon layui-icon-download-circle"></i></td>
+								</tr>
+								<tr>
+									<td><i class="layui-icon layui-icon-picture"></i></td>
+									<td>张小盒</td>
+									<td>10</td>
+									<td><i class="layui-icon layui-icon-download-circle"></i></td>
+								</tr>
+								<tr>
+									<td><i class="layui-icon layui-icon-picture"></i></td>
+									<td>张小盒</td>
+									<td>30</td>
+									<td><i class="layui-icon layui-icon-download-circle"></i></td>
+								</tr>
+								<tr>
+									<td><i class="layui-icon layui-icon-picture"></i></td>
+									<td>张小盒</td>
+									<td>70</td>
+									<td><i class="layui-icon layui-icon-download-circle"></i></td>
+								</tr> -->
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+		<div style="clear:both;"></div>
+
+	</div>
+
+
+
+
+
+
+	<!-- 其他窗口 -->
+	<!-- 新加一个聊天对象 -->
+	<style>
+		.layui-transfer-header {
+			padding-top: 10px;
+		}
+
+		#choose-chat-user {
+			margin-top: 10px;
+			margin-left: 10px;
+		}
+	</style>
+
+	<div id="win-choose-chat-user" style="display: none;">
+		<div id="choose-chat-user" class="demo-transfer"></div>
+		<div style="margin-top: 15px;text-align: center;">
+			<button class="layui-btn" lay-submit="" lay-filter="formDemo" onclick="startAddChatObj();">开始聊天</button>
+			<button type="reset" class="layui-btn layui-btn-primary" onclick="layer.closeAll();">取消</button>
+		</div>
+	</div>
+	<!-- 新加聊天对象结束 -->
+
+	<!-- 群名称设置界面 -->
+	<div id="win-choose-chat-group" style="display: none;">
+		<form class="layui-form" action="javascript:return false;" style="padding:20 20 20 20;">
+			<div class="layui-form-item">
+				<label class="layui-form-label">群名称</label>
+				<div class="layui-input-block">
+					<input type="text" name="name" id="name" required="" lay-verify="" placeholder="请输入群名称"
+						autocomplete="off" class="layui-input">
+				</div>
+			</div>
+
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">群头像</label>
+				<div class="layui-input-block">
+					<input type="hidden" name="face" value="" id="face" />
+					<i class="layui-icon layui-icon-group handclass" style="font-size:40px;"
+						onclick="upGroupFace(this);"></i>
+					<div style="float: left;">
+						<img src="" id="show-face" style="width: 40px;height: 40px;display: none;" />
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">群类型</label>
+				<div class="layui-input-block">
+					<input type="radio" name="type" value="2" title="公开">
+					<div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>
+						<div>公开</div>
+					</div>
+					<input type="radio" name="type" value="1" title="私有" checked="">
+					<div class="layui-unselect layui-form-radio layui-form-radioed"><i
+							class="layui-anim layui-icon"></i>
+						<div>私有</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button type="button" class="layui-btn layui-btn-primary" style="display: none;">取消</button>
+					<button type="button" class="layui-btn" id="check-create-group" lay-submit=""
+						lay-filter="formDemo">确认</button>
+					<button type="reset" class="layui-btn layui-btn-primary" style="display: none;">重置</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- 群名称设置界面结束 -->
+
+	<!-- 用户详情窗口 -->
+	<div id="win-show-user-info" style="display: none;">
+		<div style="text-align: center;margin-top:10px;">
+			<img src="img/red.jpg" style="width: 200px;height: 200px;border-radius: 100px;" />
+			<br /><br />
+			<button type="button" class="layui-btn layui-btn-radius" id="chat-item">
+				<i class="layui-icon layui-icon-dialogue"></i>他/她
+			</button>
+			<!-- <button type="button" class="layui-btn layui-btn-radius layui-btn-normal">
+				<i class="layui-icon layui-icon-at"></i>他/她
+			</button> -->
+
+		</div>
+		<div class="layui-tab-item layui-show" style="width: 100%;">
+			<!-- 个人/群信息 -->
+			<table class="layui-table" lay-even="" lay-skin="nob" lay-size="sm"
+				style="width: 70%; margin-left: auto;margin-right: auto">
+				<colgroup>
+					<col width="150">
+					<col width="200">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>昵称</th>
+						<th id="show-nick-name"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>姓名</td>
+						<td id="show-real-name"></td>
+					</tr>
+					<tr>
+						<td>部门</td>
+						<td id="show-depart-name"></td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td id="show-sex"></td>
+					</tr>
+					<tr>
+						<td>电话</td>
+						<td id="show-tel"></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- 用户详情窗口结束 -->
+
+</body>
+<script src="enoji/js/jquery.min.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
+<script src="layui/layui.all.js"></script>
+<script src="enoji/js/jquery.qqFace.js"></script>
+<script src="js/store.legacy.min.js"></script>
+<script src="js/function.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/start.js"></script>
+<script>
+	chatMsg.me = {
+		name: "蒋海林",
+		uid: "1",
+		face: "http://127.0.0.1:9981/data/upload/20200314194144101126.jpg"
+	};
+	external.getMyInfo(function (resdata) {
+		resdata = JSON.parse(resdata);
+		//console.log('myuserinfo',resdata);
+		var me = {};
+		console.log('meinfo',resdata);
+		me.name = resdata.real_name ? resdata.real_name : (resdata.nick_name ? resdata.nick_name : resdata.name);
+		me.uid = resdata.id;
+		me.depart_name = resdata.depart_name;
+		me.face = resdata.face ? resdata.face : '';
+		chatMsg.me = me;
+	});
+</script>
+<script src="js/websocket.js"></script>
+
+</html>

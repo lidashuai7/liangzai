@@ -1,0 +1,232 @@
+import win.ui;
+import console;
+import string;
+import io;
+import fsys.dlg;
+import web.json;
+import inet.http;
+import capi;
+/*DSG{{*/
+var winform = win.form(text="aardio form";right=1199;bottom=599)
+winform.add()
+/*}}*/
+
+//import web.form;
+
+import web.blink.form;  
+import web.blink.fileSystem;//支持嵌入资源
+
+var wb = web.blink.form(winform);
+//屏蔽js错误
+wb.noScriptErr = true;
+//屏蔽右键
+wb.showMenu = function(){
+	return false;
+}
+
+var userInfo = global.userInfo;
+//console.log('用户信息');
+//console.dumpJson(userInfo);
+
+//播放声音
+function palyDing()
+{
+    var path = "res/ding.wav";
+    import fsys.media;
+	fsys.media.playSound(path);
+	
+}
+//托盘闪动
+function playIco(){
+	publish("托盘跳动消息");	
+}
+
+//向html页面注入js扩展函数
+//在html中就可以通过external.xx的方式调用了
+import fsys.media;
+mediaFile = null;
+    
+wb.external={
+	playding    = function(play){
+		if(play){
+			palyDing();
+		}else{
+			//当窗口最小时
+			if(global.winStatus=='hide'){
+				palyDing();
+			}	
+		}	
+	};
+	playico 	= function(play){
+		if(play){
+			playIco();	
+		}else{
+			//当窗口最小时
+			if(global.winStatus=='hide'){
+				playIco();	
+			}	
+		}
+	};
+	
+	
+	getFileContent = function(fileName){
+		var strings = string.load(fileName);	
+		return strings;	
+	};
+	//图片文件上传
+	uploadImgFile = function(func){
+		var postSize,contentLength = 0;
+		var filePath  = fsys.dlg.open("JPG图片|*.jpg|JPEG图片|*.jpeg|PNG图片|*.png|BPM图片|*.bmp|GIF动图|*.gif|svg文件|*.svg","选择要上传的图片文件");	
+        if(!filePath) return;
+        //console.log(filePath);
+ 		var upjson = capi.upload(filePath);
+ 		//console.dumpTable(upjson);
+ 		upjson = web.json.stringify(upjson);
+ 		//return web.json.stringify(upjson);
+ 		func(upjson);
+	};
+	//文件上传	
+	uploadFile = function(func){
+		var filePath  = fsys.dlg.open(,"选择要上传的文件");
+        //console.log(filePath);
+        if(!filePath) return;
+        //console.log(filePath);
+ 		var upjson = capi.upload(filePath);
+ 		//console.dumpTable(upjson);
+ 		upjson = web.json.stringify(upjson);
+ 		//return web.json.stringify(upjson);
+ 		func(upjson);
+	};
+	//音频上传
+	uploadSoundFile = function(func){
+		var filePath  = fsys.dlg.open("mp3文件|*.mp3|wav文件|*.wav","选择要上传的音频文件");
+        //console.log(filePath);
+        if(!filePath) return;
+        //console.log(filePath);
+ 		var upjson = capi.upload(filePath);
+ 		//console.dumpTable(upjson);
+ 		upjson = web.json.stringify(upjson);
+ 		//return web.json.stringify(upjson);
+ 		func(upjson);
+	}
+	//视频上传
+	uploadVideoFile = function(func){
+		var filePath  = fsys.dlg.open("avi视频|*.avi|mp4视频|*.mp4|flv视频|*.flv","选择要上传的视频文件");
+        //console.log(filePath);
+        if(!filePath) return;
+        //console.log(filePath);
+ 		var upjson = capi.upload(filePath);
+ 		//console.dumpTable(upjson);
+ 		upjson = web.json.stringify(upjson);
+ 		//return web.json.stringify(upjson);
+ 		func(upjson);
+	}
+	
+	//封装统一的api调用接口，传递过来的data必须是json对象
+    api = function(action,data,func){
+        data = ..web.json.stringify(data);
+        var postData = {
+        	token=global.loginToken;
+        	data = data;
+        };
+        var debugaction = "Api请求("++action++")参数:";
+        //..console.log(debugaction);
+        //..console.dumpJson(postData);
+        var rstData = capi.post(action,postData);
+        debugaction = "Api返回("++action++")参数:";
+        //..console.log(debugaction);
+        //..console.dumpJson(rstData);
+        rstData = web.json.stringify(rstData);
+    	func(rstData);
+    };
+    //获取当前登录用户的信息
+    getMyInfo = function(func){
+        var userInfo = global.userInfo;
+        userInfo = ..web.json.stringify(userInfo);
+    	func(userInfo);
+    }
+    //获取到ws接口的地址
+    wsUrl = function(){
+        cfg = ..fsys.config("/config/");
+		//运行配置
+		if(!cfg.server.http){
+			cfg.server.http = "127.0.0.1";	
+		}
+		var wsPort = 9982;
+		var wsUrlHttp = "ws://"++cfg.server.http++":"++wsPort;
+    	return wsUrlHttp; 
+    }
+    //下载文件
+    downloadfile = function(url){
+    	import fsys.dlg;
+		import inet.downBox;
+		import inet.http;
+		import process;
+		var http = inet.http();
+		if( !http.head(url) ) return; //考虑无法连接的URL
+		 
+		var filename = http.readHeaderContent()[["disposition"]][["filename"]];
+		//..console.log(filename);
+		var path = fsys.dlg.save(,"下载文件",,winform,,filename);
+        var downBox = inet.downBox(winform,"文件下载中...",true);
+        if( downBox.test(url,path) ) {
+             //winform.msgbox("down yes");
+             //process.explore_select(path)
+        }
+        if(path){
+        	if(downBox.download(url,path) ){
+	 			//winform.msgbox("download complete");
+	 			process.explore_select(path)
+	 		}
+        }
+    }
+    
+    //播放语音，目前只支持mp3和wav
+    playsound = function(url){
+        fsys.media.closeAll();
+        mediaFile = fsys.media(url);
+    	mediaFile.play();	
+    }
+    
+    
+    //停止播放MP3
+    playsoundend = function(url){	
+        fsys.media.closeAll();
+    }
+    
+    //播放视频文件
+    playvideo = function(url){
+        global.theVideoUrl = url;
+    	winform.loadForm("\dlg\video.aardio");
+    }
+    
+ 
+    	
+}
+//加载聊天主页面
+wb.go("\dlg\web\main.html");
+
+
+
+//执行html中的js代码
+var js = /**
+	//log(222222);
+	//addChatObj();
+**/
+//wb.doScript(js, )
+//直接执行html中的js方法
+//wb.window.alert("调用JS的alert函数");
+
+//执行html中的jquery
+//wb.jQuery("#d1").text()
+//开启blink的调试工具
+//wb.showDevTools();
+//等待页面加载完毕
+//wb.wait();
+
+
+
+winform.show() 
+win.loopMessage();
+
+return winform;

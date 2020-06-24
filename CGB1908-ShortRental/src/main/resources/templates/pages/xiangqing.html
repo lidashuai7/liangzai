@@ -1,0 +1,4618 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0034)http://www.mayi.com/room/854485507 -->
+<html xmlns:th="http://www.thymeleaf.org">
+	<div id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important" class=""></div>
+
+	<head>
+		<link rel="alternate" media="only screen and (max-width: 640px)" href="">
+		<meta name="location" content="province=北京;city=北京;coord=116.4711,39.88638">
+		<link rel="stylesheet" href="./xiangqing/small-public.css">
+		<link href="/xiangqing/public_element.css" rel="stylesheet">
+		<link href="/xiangqing/details_new.css" rel="stylesheet" type="text/css">
+		<link href="/xiangqing/index_list_calendar.css" rel="stylesheet" type="text/css">
+		<link href="/xiangqing/about-fyDetail.css" rel="stylesheet" type="text/css">
+		<link href="/xiangqing/landlordDesR.css" rel="stylesheet" type="text/css">
+		<!-- 途家配套设施样式 -->
+		<link href="/xiangqing/tujia_facilitie.css" rel="stylesheet">
+
+		<script type="text/javascript" async="" src=""></script>
+		<script charset="UTF-8" src="/xiangqing/uba.min.js.下载"></script>
+		<script src="/xiangqing/push.js.下载"></script>
+		<script src="/xiangqing/hm.js.下载"></script>
+		<script charset="UTF-8" src="/xiangqing/QiMoIMSDK.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/jquery-1.9.1.min.js.下载"></script>
+		<!--360投放追踪  -->
+		<script type="text/javascript" src="/xiangqing/101147.js.下载"></script>
+
+
+		<script type="text/javascript" src="/xiangqing/jquery-migrate-1.1.1.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/commom.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/api"></script>
+		<script type="text/javascript" src="/xiangqing/getscript"></script>
+
+		<script type="text/javascript" src="/xiangqing/slidePic.js.下载"></script>
+
+		<script src="/xiangqing/jssor.slider.min.js.下载"></script>
+
+		<script type="text/javascript" src="/xiangqing/collect.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/jquery.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/jquery.scrollfollow.js.下载"></script>
+		<!--日历-->
+		<script type="text/javascript" src="/xiangqing/yui-min.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/calendar.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/moment.min.js.下载"></script>
+		<!-- zwb add -->
+		<script type="text/javascript" src="/xiangqing/zebra_datepicker.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/jCal.hMCalendar.min.js.下载"></script>
+		<!--日历结束-->
+
+		<style>
+			.table_pay_ul li.yajin_mayidianfu {
+				position: relative;
+				overflow: visible;
+				white-space: normal
+			}
+			
+			.yajin_mayidianfu .shuxingzhi {
+				text-decoration: line-through
+			}
+			
+			.yajin_mayidianfu .mayidianfu {
+				width: auto;
+				padding-left: 10px;
+				color: #322c27
+			}
+			
+			.des_tan {
+				position: absolute;
+				top: 6px;
+				width: 15px!important;
+				margin-left: 5px;
+				height: 15px;
+				background: url(http://staticnew.mayi.com/resourcesWeb/ordernew/images/bj2.png) no-repeat;
+				background-position: 0 -20px;
+				cursor: pointer
+			}
+			
+			.deposit_detail_layer {
+				border: 1px solid #e0e0e0;
+				position: absolute;
+				left: 290px;
+				top: 28px;
+				padding: 8px;
+				width: 370px;
+				background: #fff;
+				color: #313442;
+				box-shadow: 0 0 10px #e1e1e1;
+				display: none;
+			}
+			
+			.tri_rig {
+				position: absolute;
+				width: 0;
+				height: 0;
+				border-width: 6px;
+				border-color: transparent transparent #e0e0e0 transparent;
+				border-style: dashed dashed solid dashed;
+				overflow: hidden;
+				top: -12px;
+				left: 103px
+			}
+			
+			.tri_rig_b {
+				position: absolute;
+				width: 0;
+				height: 0;
+				border-width: 6px;
+				border-color: transparent transparent #fffaf4 transparent;
+				border-style: dashed dashed solid dashed;
+				overflow: hidden;
+				top: -11px;
+				left: 103px
+			}
+			
+			.zhehoujia {
+				top: 18px;
+			}
+			
+			.zhehoujia+.dInfo {
+				top: 2px;
+				color: #858585 !important;
+				font-size: 14px;
+				text-decoration: line-through;
+			}
+			
+			.calendar-bounding-box .content-box {
+				padding-bottom: 10px !important;
+			}
+			
+			.zhe8 {
+				color: #fb5e56;
+				float: left;
+				margin-left: 10px;
+				box-sizing: border-box;
+				margin-top: 3px;
+			}
+			
+			.zhe8 span {
+				width: 10px;
+				height: 10px;
+				background-color: #fb5e56;
+				display: inline-block;
+				line-height: 30px;
+				margin-right: 3px;
+			}
+			
+			.zhe8data {
+				background-color: #fb736e;
+			}
+			
+			.calendar-bounding-box td.zhe8data a {
+				color: #fff;
+			}
+		</style>
+		<script type="text/javascript">
+			window.criteo_q = window.criteo_q || [];
+			window.criteo_q.push({ event: "setAccount", account: 28930 }, { event: "setSiteType", type: "d" }, { event: "viewItem", item: 854485507 });
+
+			function criteoClick(flag) {
+				var d1 = $('#checkinday').val();
+				var d2 = $('#checkoutday').val();
+				var pric = $('#priceL').find('span').text();
+				var datein = new Date(d1);
+				var dateout = new Date(d2);
+				var time = dateout.getTime() - datein.getTime();
+				var days = Math.floor(time / (24 * 60 * 60 * 1000));
+				var timestamp = new Date().getTime() + "" + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10);
+				if(flag == "sale") {
+					window.criteo_q.push({ event: "setAccount", account: 28930 }, { event: "setSiteType", type: "d" }, {
+						event: "trackTransaction",
+						id: timestamp,
+						item: [
+							{ id: 854485507, price: pric, quantity: days }
+						],
+						checkin_date: d1,
+						checkout_date: d2
+					});
+				} else {
+					window.criteo_q.push({ event: "setAccount", account: 28930 }, { event: "setSiteType", type: "d" }, {
+						event: "viewBasket",
+						item: [
+							{ id: 854485507, price: pric, quantity: days }
+						],
+						checkin_date: d1,
+						checkout_date: d2
+					});
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			var domainInfo = { subdomain: '', mainsite: '' };
+			$(function() {
+				<!-- 日历-->
+				strBODY = ".date", dTop = 41, dLeft = -212;
+				YUI({}).use('trip-calendar', function(Y) {
+					var oCal = new Y.TripCalendar({
+						minDate: new Date, //最小时间限制
+						date: $('#checkinday').val(),
+						triggerNode: '#checkinday', //第一个触节点
+						finalTriggerNode: '#checkoutday', //最后一个触发节点
+						calPrice: 2,
+						roomid: '854485507',
+						minday: '1',
+						ctx: '',
+						sDiscount: ''
+					});
+					oCal.on('startDateChange', function(e) {
+						$('#searchcityin_xq').val("1套");
+
+					});
+					oCal.on('endDateChange', function(e) {
+						$('#searchcityin_xq').val("1套");
+						ajaxPriceDetial();
+					});
+				});
+				/*头部hover效果*/
+				$(".showinfo").mouseover(function() {
+					$(this).children('.head_pop').show();
+				});
+				$(".showinfo").mouseout(function() {
+					$(this).children('.head_pop').hide();
+				});
+
+				$('.call-phone').hover(function(e) {
+					$(this).siblings('.add_chat').show()
+				}, function(e) {
+					//e.stopPropagation();
+					$(this).siblings('.add_chat').hide()
+				})
+
+				var oTime;
+				$(".deposit .tab_tan").mouseover(function() {
+					$(this).next(".deposit_info_div").show();
+				}).mouseleave(function() {
+					oTime = setTimeout(function() {
+						$(".deposit_info_div").hide();
+					}, 300)
+				});
+				$(".deposit_info_div").mouseover(function() {
+					clearTimeout(oTime);
+				}).mouseleave(function() {
+					$(this).hide();
+				});
+				$(".facility_more a").click(function() {
+					$(this).children('.tujia_more_btn').toggleClass('up_moreBtn');
+					$(".facility_out_box").toggleClass("height_value");
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(".mp_down").click(function() {
+					if($(".calendar_mp").css("display") == "none") {
+						$(".calendar_mp").show();
+						$(this).css("background-image", "url(//staticnew.mayi.com/resourcesWeb/images/shou.png)");
+					} else {
+						$(".calendar_mp").hide();
+						$(this).css("background-image", "url(//staticnew.mayi.com/resourcesWeb/images/kai.png)");
+					}
+				});
+			})
+
+			function loginShow() {
+				$("#loginshow").click();
+			}
+		</script>
+		<style>
+			/*2016-10-11*/
+			
+			.yx_alink {
+				position: relative;
+				left: 0;
+				top: 4px;
+				width: 78px;
+				display: inline-block;
+				height: 28px;
+				margin-right: -10px;
+				margin-top: -3px;
+			}
+			
+			.yx_alink span {
+				display: none;
+				position: absolute;
+				left: -6px;
+				top: 42px;
+				width: 300px;
+				border: 1px solid #ccc;
+				padding: 10px;
+				background: #fff;
+				z-index: 10;
+				font-size: 14px;
+				color: #322c27;
+				line-height: 18px;
+			}
+			
+			.yx_alink span:before,
+			.yx_alink span:after {
+				position: absolute;
+				content: '';
+				display: block;
+				width: 0;
+				height: 0;
+				border-style: solid;
+			}
+			
+			.yx_alink span:after {
+				border-color: transparent transparent #fff;
+				top: -10px;
+				left: 50px;
+				border-width: 0 8px 10px;
+			}
+			
+			.yx_alink span:before {
+				border-color: transparent transparent #ccc;
+				top: -12px;
+				left: 52px;
+				border-width: 0 10px 12px;
+			}
+			
+			.yx_alink:hover span {
+				display: block;
+			}
+			
+			.alert-box1 {
+				width: 100%;
+				height: 100%;
+				z-index: 300000;
+				position: absolute;
+				display: none;
+				line-height: 40px;
+			}
+			
+			.surveYY1 {
+				background: #000;
+				width: 100%;
+				height: 100%;
+				opacity: 0.7;
+				position: fixed;
+				top: 0px;
+				left: 0px;
+			}
+			
+			.offmax_no {
+				width: 400px;
+				height: 186px;
+				position: fixed;
+				top: 50%;
+				margin-top: -93px;
+				left: 50%;
+				margin-left: -200px;
+				background-color: #fff;
+				z-index: 999;
+				text-align: center;
+				box-shadow: 0px 0px 4px #ccc;
+				border-radius: 2px;
+			}
+			
+			.offmax_no p {
+				padding: 0 20px;
+				line-height: 25px;
+			}
+			
+			.alert_tit1 {
+				border-bottom: 1px solid #e0e0e0;
+				font-size: 18px;
+				margin-bottom: 20px;
+			}
+			
+			.close-alert1 {
+				cursor: pointer;
+				width: 50%;
+				margin: 20px auto;
+				background-color: #22bb62;
+				text-align: center;
+				color: #fff;
+				border-radius: 2px;
+			}
+			
+			.img_playPar {
+				position: relative;
+				left: 0;
+				top: 0;
+			}
+			
+			.bazhe_btn {
+				position: absolute;
+				left: 14px;
+				top: 18px;
+				z-index: 8;
+				width: auto !important;
+				cursor: pointer;
+			}
+			
+			.main-r_1 {
+				position: relative;
+				left: 0;
+				top: 0;
+			}
+			
+			.bazhe_txt {
+				position: absolute;
+				left: 0;
+				top: -28px;
+				line-height: 28px;
+				height: 28px;
+				font-size: 12px;
+				color: #ff5872;
+				background: #fff8ed;
+				width: 100%;
+				text-align: center;
+			}
+			
+			.main-2,
+			.main-4 {
+				background: #fff;
+			}
+			
+			.main-3 .auto_m,
+			.main-2 .auto_m {
+				width: 100%;
+			}
+			
+			.main-3,
+			.main-2 {
+				width: 832px;
+			}
+			
+			.main-4 {
+				width: 1190px;
+			}
+			
+			.report_enter {
+				padding-top: 10px;
+				padding-bottom: 10px;
+				line-height: 22px;
+				float: left;
+				width: 100%;
+				text-align: center;
+				background: #fff;
+			}
+			
+			.report_enter a {
+				color: #777776;
+			}
+			
+			.report_enter a:hover {
+				color: #22bb62;
+			}
+		</style>
+		<link type="text/css" rel="stylesheet" href="./xiangqing/layer.css">
+		<link type="text/css" rel="stylesheet" href="./xiangqing/chatStyle.css">
+		<style type="text/css">
+			.BMap_mask {
+				background: transparent url(http://api0.map.bdimg.com/images/blank.gif);
+			}
+			
+			.BMap_noscreen {
+				display: none;
+			}
+			
+			.BMap_button {
+				cursor: pointer;
+			}
+			
+			.BMap_zoomer {
+				background-image: url(http://api0.map.bdimg.com/images/mapctrls1d3.gif);
+				background-repeat: no-repeat;
+				overflow: hidden;
+				font-size: 1px;
+				position: absolute;
+				width: 7px;
+				height: 7px;
+			}
+			
+			.BMap_stdMpCtrl div {
+				position: absolute;
+			}
+			
+			.BMap_stdMpPan {
+				width: 44px;
+				height: 44px;
+				overflow: hidden;
+				background: url(http://api0.map.bdimg.com/images/mapctrls2d0.png) no-repeat;
+			}
+			
+			.BMap_ie6 .BMap_stdMpPan {
+				background: none;
+			}
+			
+			.BMap_ie6 .BMap_smcbg {
+				left: 0;
+				width: 44px;
+				height: 464px;
+				filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="http://api0.map.bdimg.com/images/mapctrls2d0.png");
+			}
+			
+			.BMap_ie6 .BMap_stdMpPanBg {
+				z-index: -1;
+			}
+			
+			.BMap_stdMpPan .BMap_button {
+				height: 15px;
+				width: 15px;
+			}
+			
+			.BMap_panN,
+			.BMap_panW,
+			.BMap_panE,
+			.BMap_panS {
+				overflow: hidden;
+			}
+			
+			.BMap_panN {
+				left: 14px;
+				top: 0;
+			}
+			
+			.BMap_panW {
+				left: 1px;
+				top: 12px;
+			}
+			
+			.BMap_panE {
+				left: 27px;
+				top: 12px;
+			}
+			
+			.BMap_panS {
+				left: 14px;
+				top: 25px;
+			}
+			
+			.BMap_stdMpZoom {
+				top: 45px;
+				overflow: hidden;
+			}
+			
+			.BMap_stdMpZoom .BMap_button {
+				width: 22px;
+				height: 21px;
+				left: 12px;
+				overflow: hidden;
+				background-image: url(http://api0.map.bdimg.com/images/mapctrls2d0.png);
+				background-repeat: no-repeat;
+				z-index: 10;
+			}
+			
+			.BMap_ie6 .BMap_stdMpZoom .BMap_button {
+				background: none;
+			}
+			
+			.BMap_stdMpZoomIn {
+				background-position: 0 -221px;
+			}
+			
+			.BMap_stdMpZoomOut {
+				background-position: 0 -265px;
+			}
+			
+			.BMap_ie6 .BMap_stdMpZoomIn div {
+				left: 0;
+				top: -221px;
+			}
+			
+			.BMap_ie6 .BMap_stdMpZoomOut div {
+				left: 0;
+				top: -265px;
+			}
+			
+			.BMap_stdMpType4 .BMap_stdMpZoom .BMap_button {
+				left: 0;
+				overflow: hidden;
+				background: -webkit-gradient(linear, 50% 0, 50% 100%, from(rgba(255, 255, 255, 0.85)), to(rgba(217, 217, 217, 0.85)));
+				z-index: 10;
+				-webkit-border-radius: 22px;
+				width: 34px;
+				height: 34px;
+				border: 1px solid rgba(255, 255, 255, 0.5);
+				-webkit-box-shadow: 0 2px 3.6px #CCC;
+				display: -webkit-box;
+				-webkit-box-align: center;
+				-webkit-box-pack: center;
+				-webkit-box-sizing: border-box;
+			}
+			
+			.BMap_stdMpType4 .BMap_smcbg {
+				position: static;
+				background: url(http://api0.map.bdimg.com/images/mapctrls2d0_mb.png) 0 0 no-repeat;
+				-webkit-background-size: 24px 32px;
+			}
+			
+			.BMap_stdMpType4 .BMap_stdMpZoomIn {
+				background-position: 0 0;
+			}
+			
+			.BMap_stdMpType4 .BMap_stdMpZoomIn .BMap_smcbg {
+				width: 24px;
+				height: 24px;
+				background-position: 0 0;
+			}
+			
+			.BMap_stdMpType4 .BMap_stdMpZoomOut {
+				background-position: 0 0;
+			}
+			
+			.BMap_stdMpType4 .BMap_stdMpZoomOut .BMap_smcbg {
+				width: 24px;
+				height: 6px;
+				background-position: 0 -25px;
+			}
+			
+			.BMap_stdMpSlider {
+				width: 37px;
+				top: 18px;
+			}
+			
+			.BMap_stdMpSliderBgTop {
+				left: 18px;
+				width: 10px;
+				overflow: hidden;
+				background: url(http://api0.map.bdimg.com/images/mapctrls2d0.png) no-repeat -23px -226px;
+			}
+			
+			.BMap_stdMpSliderBgBot {
+				left: 19px;
+				height: 8px;
+				width: 10px;
+				top: 124px;
+				overflow: hidden;
+				background: url(http://api0.map.bdimg.com/images/mapctrls2d0.png) no-repeat -33px bottom;
+			}
+			
+			.BMap_ie6 .BMap_stdMpSliderBgTop,
+			.BMap_ie6 .BMap_stdMpSliderBgBot {
+				background: none;
+			}
+			
+			.BMap_ie6 .BMap_stdMpSliderBgTop div {
+				left: -23px;
+				top: -226px;
+			}
+			
+			.BMap_ie6 .BMap_stdMpSliderBgBot div {
+				left: -33px;
+				bottom: 0;
+			}
+			
+			.BMap_stdMpSliderMask {
+				height: 100%;
+				width: 24px;
+				left: 10px;
+				cursor: pointer;
+			}
+			
+			.BMap_stdMpSliderBar {
+				height: 11px;
+				width: 19px;
+				left: 13px;
+				top: 80px;
+				overflow: hidden;
+				background: url(http://api0.map.bdimg.com/images/mapctrls2d0.png) no-repeat 0 -309px;
+			}
+			
+			.BMap_stdMpSliderBar.h {
+				background: url(http://api0.map.bdimg.com/images/mapctrls2d0.png) no-repeat 0 -320px;
+			}
+			
+			.BMap_ie6 .BMap_stdMpSliderBar,
+			.BMap_ie6 .BMap_stdMpSliderBar.h {
+				background: none;
+			}
+			
+			.BMap_ie6 .BMap_stdMpSliderBar div {
+				top: -309px;
+			}
+			
+			.BMap_ie6 .BMap_stdMpSliderBar.h div {
+				top: -320px;
+			}
+			
+			.BMap_zlSt,
+			.BMap_zlCity,
+			.BMap_zlProv,
+			.BMap_zlCountry {
+				position: absolute;
+				left: 34px;
+				height: 21px;
+				width: 28px;
+				background-image: url(http://api0.map.bdimg.com/images/mapctrls2d0.png);
+				background-repeat: no-repeat;
+				font-size: 0;
+				cursor: pointer;
+			}
+			
+			.BMap_ie6 .BMap_zlSt,
+			.BMap_ie6 .BMap_zlCity,
+			.BMap_ie6 .BMap_zlProv,
+			.BMap_ie6 .BMap_zlCountry {
+				background: none;
+				overflow: hidden;
+			}
+			
+			.BMap_zlHolder {
+				display: none;
+				position: absolute;
+				top: 0;
+			}
+			
+			.BMap_zlHolder.hvr {
+				display: block;
+			}
+			
+			.BMap_zlSt {
+				background-position: 0 -380px;
+				top: 21px;
+			}
+			
+			.BMap_zlCity {
+				background-position: 0 -401px;
+				top: 52px;
+			}
+			
+			.BMap_zlProv {
+				background-position: 0 -422px;
+				top: 76px;
+			}
+			
+			.BMap_zlCountry {
+				background-position: 0 -443px;
+				top: 100px;
+			}
+			
+			.BMap_ie6 .BMap_zlSt div {
+				top: -380px;
+			}
+			
+			.BMap_ie6 .BMap_zlCity div {
+				top: -401px;
+			}
+			
+			.BMap_ie6 .BMap_zlProv div {
+				top: -422px;
+			}
+			
+			.BMap_ie6 .BMap_zlCountry div {
+				top: -443px;
+			}
+			
+			.BMap_stdMpType1 .BMap_stdMpSlider,
+			.BMap_stdMpType2 .BMap_stdMpSlider,
+			.BMap_stdMpType3 .BMap_stdMpSlider,
+			.BMap_stdMpType4 .BMap_stdMpSlider,
+			.BMap_stdMpType2 .BMap_stdMpZoom,
+			.BMap_stdMpType3 .BMap_stdMpPan,
+			.BMap_stdMpType4 .BMap_stdMpPan {
+				display: none;
+			}
+			
+			.BMap_stdMpType3 .BMap_stdMpZoom {
+				top: 0;
+			}
+			
+			.BMap_stdMpType4 .BMap_stdMpZoom {
+				top: 0;
+			}
+			
+			.BMap_cpyCtrl a {
+				font-size: 11px;
+				color: #7979CC;
+			}
+			
+			.BMap_scaleCtrl {
+				height: 23px;
+				overflow: hidden;
+			}
+			
+			.BMap_scaleCtrl div.BMap_scaleTxt {
+				font-size: 11px;
+				font-family: Arial, sans-serif;
+			}
+			
+			.BMap_scaleCtrl div {
+				position: absolute;
+				overflow: hidden;
+			}
+			
+			.BMap_scaleHBar img,
+			.BMap_scaleLBar img,
+			.BMap_scaleRBar img {
+				position: absolute;
+				width: 37px;
+				height: 442px;
+				left: 0;
+			}
+			
+			.BMap_scaleHBar {
+				width: 100%;
+				height: 5px;
+				font-size: 0;
+				bottom: 0;
+			}
+			
+			.BMap_scaleHBar img {
+				top: -437px;
+				width: 100%;
+			}
+			
+			.BMap_scaleLBar,
+			.BMap_scaleRBar {
+				width: 3px;
+				height: 9px;
+				bottom: 0;
+				font-size: 0;
+				z-index: 1;
+			}
+			
+			.BMap_scaleLBar img {
+				top: -427px;
+				left: 0;
+			}
+			
+			.BMap_scaleRBar img {
+				top: -427px;
+				left: -5px;
+			}
+			
+			.BMap_scaleLBar {
+				left: 0;
+			}
+			
+			.BMap_scaleRBar {
+				right: 0;
+			}
+			
+			.BMap_scaleTxt {
+				text-align: center;
+				width: 100%;
+				cursor: default;
+				line-height: 18px;
+			}
+			
+			.BMap_omCtrl {
+				background-color: #fff;
+				overflow: hidden;
+			}
+			
+			.BMap_omOutFrame {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+			}
+			
+			.BMap_omInnFrame {
+				position: absolute;
+				border: 1px solid #999;
+				background-color: #ccc;
+				overflow: hidden;
+			}
+			
+			.BMap_omMapContainer {
+				position: absolute;
+				overflow: hidden;
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+			}
+			
+			.BMap_omViewMv {
+				border-width: 1px;
+				border-style: solid;
+				border-left-color: #84b0df;
+				border-top-color: #adcff4;
+				border-right-color: #274b8b;
+				border-bottom-color: #274b8b;
+				position: absolute;
+				z-index: 600;
+			}
+			
+			.BMap_omViewInnFrame {
+				border: 1px solid #3e6bb8;
+			}
+			
+			.BMap_omViewMask {
+				width: 1000px;
+				height: 1000px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background-color: #68c;
+				opacity: .2;
+				filter: progid:DXImageTransform.Microsoft.Alpha(opacity=20);
+			}
+			
+			.BMap_omBtn {
+				height: 13px;
+				width: 13px;
+				position: absolute;
+				cursor: pointer;
+				overflow: hidden;
+				background: url(http://api0.map.bdimg.com/images/mapctrls1d3.gif) no-repeat;
+				z-index: 1210;
+			}
+			
+			.anchorBR .BMap_omOutFrame {
+				border-top: 1px solid #999;
+				border-left: 1px solid #999;
+			}
+			
+			.quad4 .BMap_omBtn {
+				background-position: -26px -27px;
+			}
+			
+			.quad4 .BMap_omBtn.hover {
+				background-position: 0 -27px;
+			}
+			
+			.quad4 .BMap_omBtn.BMap_omBtnClosed {
+				background-position: -39px -27px;
+			}
+			
+			.quad4 .BMap_omBtn.BMap_omBtnClosed.hover {
+				background-position: -13px -27px;
+			}
+			
+			.anchorTR .BMap_omOutFrame {
+				border-bottom: 1px solid #999;
+				border-left: 1px solid #999;
+			}
+			
+			.quad1 .BMap_omBtn {
+				background-position: -39px -41px;
+			}
+			
+			.quad1 .BMap_omBtn.hover {
+				background-position: -13px -41px;
+			}
+			
+			.quad1 .BMap_omBtn.BMap_omBtnClosed {
+				background-position: -26px -41px;
+			}
+			
+			.quad1 .BMap_omBtn.BMap_omBtnClosed.hover {
+				background-position: 0 -41px;
+			}
+			
+			.anchorBL .BMap_omOutFrame {
+				border-top: 1px solid #999;
+				border-right: 1px solid #999;
+			}
+			
+			.quad3 .BMap_omBtn {
+				background-position: -27px -40px;
+			}
+			
+			.quad3 .BMap_omBtn.hover {
+				background-position: -1px -40px;
+			}
+			
+			.quad3 .BMap_omBtn.BMap_omBtnClosed {
+				background-position: -40px -40px;
+			}
+			
+			.quad3 .BMap_omBtn.BMap_omBtnClosed.hover {
+				background-position: -14px -40px;
+			}
+			
+			.anchorTL .BMap_omOutFrame {
+				border-bottom: 1px solid #999;
+				border-right: 1px solid #999;
+			}
+			
+			.quad2 .BMap_omBtn {
+				background-position: -40px -28px;
+			}
+			
+			.quad2 .BMap_omBtn.hover {
+				background-position: -14px -28px;
+			}
+			
+			.quad2 .BMap_omBtn.BMap_omBtnClosed {
+				background-position: -27px -28px;
+			}
+			
+			.quad2 .BMap_omBtn.BMap_omBtnClosed.hover {
+				background-position: -1px -28px;
+			}
+			
+			.anchorR .BMap_omOutFrame {
+				border-bottom: 1px solid #999;
+				border-left: 1px solid #999;
+				border-top: 1px solid #999;
+			}
+			
+			.anchorL .BMap_omOutFrame {
+				border-bottom: 1px solid #999;
+				border-right: 1px solid #999;
+				border-top: 1px solid #999;
+			}
+			
+			.anchorB .BMap_omOutFrame {
+				border-top: 1px solid #999;
+				border-left: 1px solid #999;
+				border-right: 1px solid #999;
+			}
+			
+			.anchorT .BMap_omOutFrame {
+				border-bottom: 1px solid #999;
+				border-right: 1px solid #999;
+				border-left: 1px solid #999;
+			}
+			
+			.anchorNon .BMap_omOutFrame,
+			.withOffset .BMap_omOutFrame {
+				border: 1px solid #999;
+			}
+			
+			.BMap_zoomMask0,
+			.BMap_zoomMask1 {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: transparent url(http://api0.map.bdimg.com/images/blank.gif);
+				z-index: 1000;
+			}
+			
+			.BMap_contextMenu {
+				position: absolute;
+				border-top: 1px solid #adbfe4;
+				border-left: 1px solid #adbfe4;
+				border-right: 1px solid #8ba4d8;
+				border-bottom: 1px solid #8ba4d8;
+				padding: 0;
+				margin: 0;
+				width: auto;
+				visibility: hidden;
+				background: #fff;
+				z-index: 10000000;
+			}
+			
+			.BMap_cmShadow {
+				position: absolute;
+				background: #000;
+				opacity: .3;
+				filter: alpha(opacity=30);
+				visibility: hidden;
+				z-index: 9000000;
+			}
+			
+			div.BMap_cmDivider {
+				border-bottom: 1px solid #adbfe4;
+				font-size: 0;
+				padding: 1px;
+				margin: 0 6px;
+			}
+			
+			div.BMap_cmFstItem {
+				margin-top: 2px;
+			}
+			
+			div.BMap_cmLstItem {
+				margin-bottom: 2px;
+			}
+			
+			.BMap_shadow img {
+				border: 0 none;
+				margin: 0;
+				padding: 0;
+				height: 370px;
+				width: 1144px;
+			}
+			
+			.BMap_pop .BMap_top {
+				border-top: 1px solid #ababab;
+				background-color: #fff;
+			}
+			
+			.BMap_pop .BMap_center {
+				border-left: 1px solid #ababab;
+				border-right: 1px solid #ababab;
+				background-color: #fff;
+			}
+			
+			.BMap_pop .BMap_bottom {
+				border-bottom: 1px solid #ababab;
+				background-color: #fff;
+			}
+			
+			.BMap_shadow,
+			.BMap_shadow img,
+			.BMap_shadow div {
+				-moz-user-select: none;
+				-webkit-user-select: none;
+			}
+			
+			.BMap_checkbox {
+				background: url(http://api0.map.bdimg.com/images/mapctrls1d3.gif);
+				vertical-align: middle;
+				display: inline-block;
+				width: 11px;
+				height: 11px;
+				margin-right: 4px;
+				background-position: -14px 90px;
+			}
+			
+			.BMap_checkbox.checked {
+				background-position: -2px 90px;
+			}
+			
+			.BMap_pop .BMap_top img,
+			.BMap_pop .BMap_center img,
+			.BMap_pop .BMap_bottom img {
+				display: none;
+			}
+			
+			@media print {
+				.BMap_noprint {
+					display: none;
+				}
+				.BMap_noscreen {
+					display: block;
+				}
+				.BMap_mask {
+					background: none;
+				}
+				.BMap_pop .BMap_top img,
+				.BMap_pop .BMap_center img,
+				.BMap_pop .BMap_bottom img {
+					display: block;
+				}
+			}
+			
+			.BMap_vectex {
+				cursor: pointer;
+				width: 11px;
+				height: 11px;
+				position: absolute;
+				background-repeat: no-repeat;
+				background-position: 0 0;
+			}
+			
+			.BMap_vectex_nodeT {
+				background-image: url(http://api0.map.bdimg.com/images/nodeT.gif);
+			}
+			
+			.BMap_vectex_node {
+				background-image: url(http://api0.map.bdimg.com/images/node.gif);
+			}
+			
+			.iw {
+				width: 100%;
+				-webkit-box-sizing: border-box;
+				border: .3em solid transparent;
+				-webkit-background-clip: padding;
+			}
+			
+			.iw_rt {
+				position: relative;
+				height: 46px;
+				width: 195px;
+				-webkit-box-sizing: border-box;
+				display: -webkit-box;
+				-webkit-box-align: center;
+				margin: 2px 5px 0 2px;
+				background-color: rgba(0, 0, 0, 0.8);
+				-webkit-box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.3);
+				-webkit-border-radius: 2px;
+				color: #fff;
+			}
+			
+			.iw_rt:after {
+				content: "";
+				position: absolute;
+				left: 50%;
+				bottom: -8px;
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-top: 8px solid rgba(0, 0, 0, 0.8);
+				border-right: 5px solid transparent;
+				margin: 0 0 0 -6px;
+			}
+			
+			.iw_s {
+				text-align: center;
+				vertical-align: middle;
+				height: 100%;
+				-webkit-box-sizing: border-box;
+			}
+			
+			.iw_rt .iw_s1 {
+				color: #cbcbcb;
+			}
+			
+			.iw_rt b {
+				color: #fff;
+				font-weight: bold;
+			}
+			
+			.iw_rt_gr {
+				margin-left: -4px;
+			}
+			
+			.iw_busline {
+				margin: 32px 0 0 -3px;
+			}
+			
+			.iw_busline .iw_cc {
+				text-align: center;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				padding: 0 6px;
+			}
+			
+			.iw_r {
+				-webkit-box-ordinal-group: 3;
+			}
+			
+			.iw_r,
+			.iw_l {
+				height: 100%;
+				font-size: 4.5em;
+				text-align: center;
+				color: #747474;
+				border: none;
+				-webkit-box-sizing: border-box;
+				-webkit-border-radius: 0;
+				line-height: .7em;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				width: 41px;
+			}
+			
+			.iw_r {
+				border-style: none none none solid;
+			}
+			
+			.iw_l {
+				border-style: none solid none none;
+			}
+			
+			.iw_search,
+			.iw_l {
+				background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAAlCAYAAAAuqZsAAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ bWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6 eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNl SUQ9InhtcC5paWQ6QjA3NjMyREJDNzQ2MTFFMTlBQUM5QzlCRDZGODZCQkYiIHhtcE1NOkRvY3Vt ZW50SUQ9InhtcC5kaWQ6QjA3NjMyRENDNzQ2MTFFMTlBQUM5QzlCRDZGODZCQkYiPiA8eG1wTU06 RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCMDc2MzJEOUM3NDYxMUUxOUFB QzlDOUJENkY4NkJCRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCMDc2MzJEQUM3NDYxMUUx OUFBQzlDOUJENkY4NkJCRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1w bWV0YT4gPD94cGFja2V0IGVuZD0iciI/PllB9T8AAAKuSURBVHjaxFjRcdpAEAX+mVEqiFxB5AoQ HZAKElcArsBWBSgVQCoAVwCuwEoFlivwGQpI7jKrzGXn7ep0EsPO7BjLp/O73bdv9xifTqdRpCXW c+sz65n1lNy3mvzZemX9aN34C6bTKdx8HAHMgVlaX0QeaGv9J4EcBJgD9EA/hzAH7N4Cq/oAW1tf KX+vKEXP7PlMSLFvhQX32BWY49GBOIRO7FKy57wBlnoUQHu5yJX+g4mymdvgFWzkAM3JtwGgmiJw a2/pvQoEYBQCLKNI8RfuaeNjT245gAUdqgHdmkqUPiOctLdJVYkithkAVO/K5cC+M30KAZVSxboo /ybnn1eIR5r5qUyI7P4GX6nqJHskbQsxQ7wqu6aSn2qrgHLrXjqAat5ZC0WlRuzVE0J3uhtBCjRt a3qjX92JIMiOIqYtYgumzpo+7RRtu/E0zvknokMF5GgdQv4Ze/5DWL8CFVe2aNuedGsLCi1vS+WL F4WKNkL2Dnh414FnO1b1R5vKuRaxjKUF2YKBqjuCGtF6nyL5+XxOJWCcL2/CpjzdRYRuGpDShQQs ARUj9U/OnRh7Yr9/CW1JXU4fYxXoHIMCu+iB+gBLIt/LgShDYCYktGCDfCBgvyRgVQgZwTy/jIzy EnQNMZV1QCT4bJ+3XFCkS81/WijdkiYAdSak04BWtabWEmIbsNZYgU00YE+gjyErQeo31GpShVMH Yc+/dwsEzh97/D6ojT2ZMlM1XwN8WP9Ma7NAbZvbtBoEjE+jBT2TusCu5SIbI7z/wLWN1rdKi0o6 cqwTuAmYyTm5NQW/82atWvlnBbo7apxD98qDJxl7mkC76JQ2Qm0CI1xKF95Gb4oLXHJDwJlxjy/u LgruGtNFM8lqnNtfK2JqN3CVeW1gzWj9jThd0xd59R8BBgAAiefGO1Bt1gAAAABJRU5ErkJggg==") no-repeat 50% 50%;
+				-webkit-background-size: 19px 19px;
+			}
+			
+			.iw_line_s,
+			.iw_r {
+				background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAmCAYAAABDClKtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ bWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6 eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNl SUQ9InhtcC5paWQ6QjA3NjMyREZDNzQ2MTFFMTlBQUM5QzlCRDZGODZCQkYiIHhtcE1NOkRvY3Vt ZW50SUQ9InhtcC5kaWQ6QjA3NjMyRTBDNzQ2MTFFMTlBQUM5QzlCRDZGODZCQkYiPiA8eG1wTU06 RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCMDc2MzJEREM3NDYxMUUxOUFB QzlDOUJENkY4NkJCRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCMDc2MzJERUM3NDYxMUUx OUFBQzlDOUJENkY4NkJCRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1w bWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqheQ+MAAAEtSURBVHja7JftDYIwEIbB8JeEUXACZQPd oGygE+gGxAnQEZzAOgEdwREIDKBXUgjBIqW5Npj0kvcHpG0erveFX1WVZ8l2oBhEhRoLw/BroW8J KgeR3vMVlI5BrSwAHQZAnngmYxtMe4oIL41ZAp6iNqF4/BQTa0oBxmxAcaAHKFJY+wKtAaw0CRUJ oHjGHiY8VpqCKmYCdRkJUKmJ7Ms1gZqkqOs6w/bUGXRCOGePCcXjaItwDsW8PoZ0zhM70IeeyiZi jH/Isf+CF9MAOdCppDj+LJ6yim6j9802B6VqQa818BFjY6AHakHp9Crj15ctCaiFIi7Q/wCKLRHq vjSoVNKWunH4rTBDv5Cv7NKeKfvvU2nINzHAuexzUA7KQTkoB6UxDicKvc+qfQQYABaiUBxugCsr AAAAAElFTkSuQmCC") no-repeat 50% 50%;
+				-webkit-background-size: 19px 19px;
+			}
+			
+			.iw_line {
+				height: 64px;
+				width: 228px;
+				padding: 0 11px;
+				line-height: 20px;
+			}
+			
+			.iw_bustrans .iw_cc {
+				text-align: center;
+			}
+			
+			.iw_c {
+				color: #FFFFFF;
+				text-decoration: none;
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-box-align: center;
+				-webkit-box-flex: 1;
+			}
+			
+			.iw_cc {
+				-webkit-box-sizing: border-box;
+				width: 100%;
+				border: none;
+			}
+			
+			.gray_background {
+				filter: alpha(opacity=50);
+				-moz-opacity: 0.5;
+				-khtml-opacity: 0.5;
+				opacity: 0.5
+			}
+			
+			.light_gray_background {
+				filter: alpha(opacity=70);
+				-moz-opacity: 0.7;
+				-khtml-opacity: 0.7;
+				opacity: 0.7
+			}
+			
+			.panoInfoBox {
+				cursor: pointer;
+			}
+			
+			.panoInfoBox {
+				position: relative;
+				width: 323px;
+				height: 101px;
+				margin-bottom: 4px;
+				cursor: pointer;
+			}
+			
+			.panoInfoBox .panoInfoBoxTitleBg {
+				width: 323px;
+				height: 19px;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				z-index: 2;
+				background-color: #000;
+				opacity: .7;
+			}
+			
+			.panoInfoBox .panoInfoBoxTitleContent {
+				font-size: 12px;
+				color: #fff;
+				position: absolute;
+				bottom: 2px;
+				left: 5px;
+				z-index: 3;
+				text-decoration: none;
+			}
+			
+			.RouteAddressOuterBkg {
+				position: relative;
+				padding: 32px 4px 4px 3px;
+				background-color: #ffdd99;
+			}
+			
+			.RouteAddressInnerBkg {
+				padding: 3px 5px 8px 8px;
+				background-color: #ffffff;
+			}
+			
+			#RouteAddress_DIV1 {
+				margin-top: 5px;
+			}
+			
+			.RouteAddressTip {
+				position: absolute;
+				width: 100%;
+				top: 0px;
+				text-align: center;
+				height: 30px;
+				line-height: 30px;
+				color: #994c00;
+			}
+			
+			.route_tip_con {
+				position: absolute;
+				top: 145px;
+			}
+			
+			.route_tip_con .route_tip {
+				position: absolute;
+				width: 233px;
+				height: 29px;
+				color: #803300;
+				text-align: center;
+				line-height: 29px;
+				border: #cc967a solid 1px;
+				background: #fff2b2;
+				z-index: 100000;
+			}
+			
+			.route_tip_con .route_tip span {
+				position: absolute;
+				top: 0;
+				right: 0;
+				_right: -1px;
+				width: 14px;
+				height: 13px;
+				background: url(http://api0.map.bdimg.com/images/addrPage.png?v=20121107) no-repeat 0 -121px;
+				cursor: pointer;
+			}
+			
+			.route_tip_con .route_tip_shadow {
+				width: 233px;
+				height: 29px;
+				position: absolute;
+				left: 1px;
+				top: 1px;
+				background: #505050;
+				border: 1px solid #505050;
+				opacity: 0.2;
+				filter: alpha(opacity=20)
+			}
+			
+			.sel_body_body_page {
+				margin: 5px 0
+			}
+			
+			.sel_n {
+				margin-top: 5px;
+				overflow: hidden;
+			}
+			
+			.sel_n .sel_top {
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat 0 -418px;
+				height: 4px;
+				font-size: 0px;
+			}
+			
+			.sel_n .sel_body_top {
+				height: 32px;
+				width: 100%;
+				background: url(http://api0.map.bdimg.com/images/addrPage.png?v=20121107) no-repeat 0 -41px;
+			}
+			
+			.sel_n .sel_body_title {
+				float: left;
+				width: 100%;
+				height: 31px;
+			}
+			
+			.sel_n .sel_body_sign {
+				margin-top: 1px;
+				width: 30px;
+				height: 31px;
+				float: left;
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat -79px -387px;
+			}
+			
+			.sel_n .sel_body_name {
+				height: 10px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				margin: 0 20px 0 30px;
+				padding: 8px 7px 7px;
+				font-size: 14px;
+				color: #FA8722;
+			}
+			
+			.sel_n .sel_body_button {
+				float: left;
+				width: 55px;
+				margin-left: -55px;
+				padding-top: 8px;
+			}
+			
+			.sel_n .sel_body_button a {}
+			
+			.sel_n .sel_bottom {
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat 0 -415px;
+				height: 4px;
+				font-size: 0px;
+			}
+			
+			.sel_n .sel_body_body {
+				padding: 3px 0 0 0
+			}
+			
+			.sel_n1 {
+				margin-top: 5px;
+				width: 329px;
+				overflow: hidden;
+			}
+			
+			.sel_n1 .sel_top {
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat 0 -418px;
+				height: 4px;
+				font-size: 0px;
+			}
+			
+			.sel_n1 .sel_body_top {
+				height: 31px;
+				width: 100%;
+				background: url(http://api0.map.bdimg.com/images/sel_body_n_top.gif) repeat-x;
+			}
+			
+			.sel_n1 .sel_body_top {
+				height: 32px;
+				width: 100%;
+				background: url(http://api0.map.bdimg.com/images/addrPage.png?v=20121107) no-repeat 0 -41px
+			}
+			
+			.sel_n1 .sel_body_title {
+				float: left;
+				width: 100%;
+				height: 31px;
+				cursor: pointer;
+			}
+			
+			.sel_n1 .sel_body_sign {
+				margin-top: 1px;
+				width: 30px;
+				height: 31px;
+				float: left;
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat -79px -387px;
+			}
+			
+			.sel_n1 .sel_body_name {
+				margin: 0 20px 0 30px;
+				padding: 8px 7px 7px;
+				font-size: 14px;
+				color: #FA8722;
+			}
+			
+			.sel_n1 .sel_body_button {
+				float: left;
+				width: 20px;
+				height: 31px;
+				margin-left: -23px;
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat -253px -382px;
+				overflow: hidden;
+				zoom: 1;
+				cursor: pointer;
+			}
+			
+			.sel_n1 .sel_body_button a {
+				display: none;
+			}
+			
+			.sel_n1 .sel_body_body {
+				display: none
+			}
+			
+			.sel_n1 .sel_bottom {
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat 0 -415px;
+				height: 4px;
+				font-size: 0px;
+			}
+			
+			.sel_y {
+				margin-top: 5px;
+				overflow: hidden;
+			}
+			
+			.sel_y .sel_top {
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat 0 -439px;
+				height: 4px;
+				zoom: 1;
+				font-size: 0px;
+			}
+			
+			.sel_y .sel_body_top {
+				height: 32px;
+				width: 100%;
+				background: url(http://api0.map.bdimg.com/images/addrPage.png?v=20121107) no-repeat 0 0
+			}
+			
+			.sel_y .sel_body_title {
+				float: left;
+				width: 100%;
+				height: 31px;
+				cursor: pointer;
+			}
+			
+			.sel_y .sel_body_sign {
+				margin-top: 1px;
+				width: 30px;
+				height: 31px;
+				float: left;
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat -167px -384px;
+			}
+			
+			.sel_y .sel_body_name {
+				margin: 0 20px 0 30px;
+				padding: 8px 7px 7px;
+				font-size: 14px;
+				color: #5B7BCB;
+			}
+			
+			.sel_y .sel_body_button {
+				float: left;
+				width: 20px;
+				height: 31px;
+				margin-left: -20px;
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat -269px -297px;
+				cursor: pointer;
+			}
+			
+			.sel_y .sel_body_button a {
+				display: none;
+			}
+			
+			.sel_y .sel_body_body {
+				display: none;
+				height: 0px
+			}
+			
+			.sel_y .sel_body_body_div {}
+			
+			.sel_y .sel_bottom {
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat 0 -436px;
+				height: 4px;
+				font-size: 0px;
+			}
+			
+			.sel_y .sel_body_body_page {
+				display: none;
+				height: 0px;
+			}
+			
+			.sel_x {
+				margin-top: 5px;
+				width: 329px;
+				overflow: hidden;
+			}
+			
+			.sel_x .sel_top {
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat 0 -418px;
+				height: 4px;
+				font-size: 0px;
+			}
+			
+			.sel_x .sel_body_top {
+				height: 32px;
+				width: 100%;
+				background: url(http://api0.map.bdimg.com/images/addrPage.png?v=20121107) no-repeat 0 -41px;
+			}
+			
+			.sel_x .sel_body_title {
+				float: left;
+				width: 100%;
+				height: 31px;
+			}
+			
+			.sel_x .sel_body_sign {
+				margin-top: 1px;
+				width: 30px;
+				height: 31px;
+				float: left;
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat -122px -384px;
+			}
+			
+			.sel_x .sel_body_name {
+				margin: 0 20px 0 30px;
+				padding: 8px 7px 7px;
+				font-size: 14px;
+				color: #FA8722;
+			}
+			
+			.sel_x .sel_body_button {
+				float: left;
+				width: 55px;
+				margin-left: -55px;
+				padding-top: 8px;
+			}
+			
+			.sel_x .sel_body_button a {}
+			
+			.sel_x .sel_body_body {}
+			
+			.sel_x .sel_body_body_div {
+				padding: 5px 5px 0 5px;
+			}
+			
+			.sel_x .sel_bottom {
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat 0 -415px;
+				height: 4px;
+				font-size: 0px;
+			}
+			
+			.sel_x1 {
+				margin-top: 5px;
+				width: 329px;
+				overflow: hidden;
+			}
+			
+			.sel_x1 .sel_top {
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat 0 -418px;
+				height: 4px;
+				font-size: 0px;
+			}
+			
+			.sel_x1 .sel_body_top {
+				height: 32px;
+				width: 100%;
+				background: url(http://api0.map.bdimg.com/images/addrPage.png?v=20121107) no-repeat 0 -41px
+			}
+			
+			.sel_x1 .sel_body_title {
+				float: left;
+				width: 100%;
+				height: 31px;
+				cursor: pointer;
+			}
+			
+			.sel_x1 .sel_body_sign {
+				margin-top: 1px;
+				width: 30px;
+				height: 31px;
+				float: left;
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat -122px -384px;
+			}
+			
+			.sel_x1 .sel_body_name {
+				margin: 0 20px 0 30px;
+				padding: 8px 7px 7px;
+				font-size: 14px;
+				color: #FA8722;
+			}
+			
+			.sel_x1 .sel_body_button {
+				float: left;
+				width: 55px;
+				height: 31px;
+				margin-left: -55px;
+			}
+			
+			.sel_x1 .sel_body_button a {
+				display: none;
+			}
+			
+			.sel_x1 .sel_body_body {
+				display: none;
+				height: 0px;
+			}
+			
+			.sel_x1 .sel_body_body_div {
+				padding: 5px 5px 0 5px;
+			}
+			
+			.sel_x1 .sel_bottom {
+				background: url(http://api0.map.bdimg.com/images/bgs.gif) no-repeat 0 -415px;
+				height: 4px;
+				font-size: 0px;
+			}
+			
+			.sel_body_citylist {
+				height: 100px;
+				padding: 0 0 0 5px
+			}
+			
+			.sel_body_resitem {
+				table-layout: fixed;
+				overflow-x: hidden;
+				overflow-y: hidden;
+			}
+			
+			.sel_body_resitem table {
+				margin-right: 5px;
+			}
+			
+			.sel_body_resitem tr {
+				cursor: pointer;
+			}
+			
+			.sel_body_resitem th {
+				padding-top: 5px;
+				padding-left: 5px;
+				text-align: left;
+				vertical-align: top;
+				width: 22px;
+			}
+			
+			.sel_body_resitem th div.iconbg {
+				background: url(http://api0.map.bdimg.com/images/markers_new_ie6.png) no-repeat scroll 0 0;
+				height: 29px;
+				width: 24px;
+			}
+			
+			.sel_body_resitem th div.icon {
+				cursor: pointer
+			}
+			
+			.sel_body_resitem th div#no_0_1,
+			.sel_body_resitem th div#no_1_1 {
+				background-position: 0 -64px
+			}
+			
+			.sel_body_resitem th div#no_0_2,
+			.sel_body_resitem th div#no_1_2 {
+				background-position: -24px -64px
+			}
+			
+			.sel_body_resitem th div#no_0_3,
+			.sel_body_resitem th div#no_1_3 {
+				background-position: -48px -64px
+			}
+			
+			.sel_body_resitem th div#no_0_4,
+			.sel_body_resitem th div#no_1_4 {
+				background-position: -72px -64px
+			}
+			
+			.sel_body_resitem th div#no_0_5,
+			.sel_body_resitem th div#no_1_5 {
+				background-position: -96px -64px
+			}
+			
+			.sel_body_resitem th div#no_0_6,
+			.sel_body_resitem th div#no_1_6 {
+				background-position: -120px -64px
+			}
+			
+			.sel_body_resitem th div#no_0_7,
+			.sel_body_resitem th div#no_1_7 {
+				background-position: -144px -64px
+			}
+			
+			.sel_body_resitem th div#no_0_8,
+			.sel_body_resitem th div#no_1_8 {
+				background-position: -168px -64px
+			}
+			
+			.sel_body_resitem th div#no_0_9,
+			.sel_body_resitem th div#no_1_9 {
+				background-position: -192px -64px
+			}
+			
+			.sel_body_resitem th div#no_0_10,
+			.sel_body_resitem th div#no_1_10 {
+				background-position: -216px -64px
+			}
+			
+			.sel_body_resitem td {
+				line-height: 160%;
+				padding: 3px 0 3px 3px;
+				vertical-align: top;
+			}
+			
+			.sel_body_resitem div.ra_td_title {
+				float: left;
+				margin-right: 40px;
+			}
+			
+			.sel_body_resitem div.ra_td_button {
+				float: right;
+				width: 40px;
+			}
+			
+			.sel_body_resitem div.ra_td_button input {
+				height: 18px;
+				font-size: 12px;
+				width: 40px;
+			}
+			
+			.sel_body_resitem div.clear {
+				clear: both;
+				height: 0px;
+				width: 100%;
+			}
+			
+			.sel_body_resitem td .selBtn {
+				width: 70px;
+				height: 29px;
+				background: url(http://api0.map.bdimg.com/images/addrPage.png?v=20121107) no-repeat -21px -81px;
+				text-align: center;
+				line-height: 29px;
+				visibility: hidden;
+				color: #b35900;
+				display: inline-block;
+				*display: inline;
+				*zoom: 1;
+			}
+			
+			.sel_body_resitem td .list_street_view_poi {
+				display: inline-block;
+				float: none;
+				margin-right: 6px;
+				position: static;
+				*vertical-align: -3px;
+				_vertical-align: -5px;
+				*display: inline;
+				*zoom: 1;
+			}
+			
+			.selInfoWndBtn {
+				width: 70px;
+				height: 29px;
+				background: url(http://api0.map.bdimg.com/images/addrPage.png?v=20121107) no-repeat -21px -81px;
+				text-align: center;
+				line-height: 29px;
+				margin: 0 auto;
+				cursor: pointer;
+				color: #b35900
+			}
+			
+			.sel_body_body td a {
+				text-decoration: none;
+				cursor: auto;
+			}
+			
+			.sel_body_body td a:hover,
+			.sel_body_body td a:focus {
+				text-decoration: underline;
+			}
+			
+			.panoInfoBox {
+				cursor: pointer
+			}
+			
+			.panoInfoBox {
+				position: relative;
+				width: 323px;
+				height: 101px;
+				margin-bottom: 4px;
+				cursor: pointer
+			}
+			
+			.panoInfoBox .panoInfoBoxTitleBg {
+				width: 323px;
+				height: 19px;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				z-index: 2;
+				background-color: #000;
+				opacity: .7
+			}
+			
+			.panoInfoBox .panoInfoBoxTitleContent {
+				font-size: 12px;
+				color: #fff;
+				position: absolute;
+				bottom: 2px;
+				left: 5px;
+				z-index: 3;
+				text-decoration: none
+			}
+			
+			.pano_switch_left,
+			.pano_switch_right {
+				position: absolute;
+				width: 28px;
+				height: 38px;
+				cursor: pointer;
+				background-color: #252525;
+				background-color: rgba(37, 37, 37, .9)
+			}
+			
+			.pano_switch_left {
+				background: url(http://api0.map.bdimg.com/images/panorama/zuojiantou.png) no-repeat;
+				-webkit-background-size: 100% 100%;
+				background-size: 100% 100%
+			}
+			
+			.pano_switch_right {
+				background: url(http://api0.map.bdimg.com/images/panorama/youjiantou.png) no-repeat;
+				-webkit-background-size: 100% 100%;
+				background-size: 100% 100%
+			}
+			
+			.pano_switch_left:hover {
+				background: url(http://api0.map.bdimg.com/images/panorama/zuojiantou_hover.png) no-repeat;
+				-webkit-background-size: 100% 100%;
+				background-size: 100% 100%
+			}
+			
+			.pano_switch_right:hover {
+				background: url(http://api0.map.bdimg.com/images/panorama/youjiantou_hover.png) no-repeat;
+				-webkit-background-size: 100% 100%;
+				background-size: 100% 100%
+			}
+			
+			.pano_switch_left.pano_switch_disable,
+			.pano_switch_right.pano_switch_disable {
+				background: 0 0;
+				border: none
+			}
+			
+			.pano_poi_1,
+			.pano_poi_2,
+			.pano_poi_4 {
+				display: inline-block;
+				width: 16px;
+				height: 16px;
+				vertical-align: middle;
+				background: url(http://webmap0.map.bdimg.com/newmap/static/common/images/pano_whole/guide_icons_4b871b2.png) no-repeat;
+				background-position: 0 0
+			}
+			
+			.pano_photo_arrow_l,
+			.pano_photo_arrow_r {
+				position: absolute;
+				top: 0;
+				width: 20px;
+				height: 100%;
+				background: #f3eeee
+			}
+			
+			.pano_photo_arrow_l {
+				left: 0
+			}
+			
+			.pano_photo_arrow_r {
+				right: 0
+			}
+			
+			.pano_arrow_l,
+			.pano_arrow_r {
+				display: inline-block;
+				width: 18px;
+				height: 18px;
+				background: url(http://webmap0.map.bdimg.com/newmap/static/common/images/pano_whole/pano-icons_223a291.png) no-repeat
+			}
+			
+			.pano_catlogLi {
+				cursor: pointer;
+				position: relative;
+				line-height: 10px;
+				font-size: 10px;
+				text-align: center;
+				color: #abb0b2;
+				border: 1px solid #53565c;
+				padding: 3px 0;
+				margin-top: 3px;
+				margin-left: 2px;
+				width: 90%
+			}
+			
+			.pano_catlogLi:hover {
+				color: #3DAAFC;
+				border: 1px solid #3DAAFC
+			}
+			
+			.pano_catlogLiActive {
+				color: #3DAAFC;
+				border: 1px solid #3DAAFC
+			}
+			
+			.pano_arrow_l {
+				background-position: 0 -36px
+			}
+			
+			.pano_arrow_r {
+				background-position: -54px -36px
+			}
+			
+			.pano_photo_arrow_l:hover .pano_arrow_l {
+				background-position: -18px -36px
+			}
+			
+			.pano_photo_arrow_r:hover .pano_arrow_r {
+				background-position: -72px -36px
+			}
+			
+			.pano_photo_arrow_l.pano_arrow_disable .pano_arrow_l {
+				background-position: -36px -36px
+			}
+			
+			.pano_photo_arrow_r.pano_arrow_disable .pano_arrow_r {
+				background-position: -90px -36px
+			}
+			
+			.pano_photo_item {
+				position: relative;
+				float: left;
+				line-height: 0;
+				padding-left: 8px
+			}
+			
+			.pano_photo_decs {
+				position: absolute;
+				bottom: 1px;
+				left: 0;
+				padding: 2px 0;
+				text-indent: 5px;
+				margin-left: 8px;
+				display: inline-block;
+				color: #fff;
+				background: #000;
+				opacity: .5;
+				filter: alpha(opacity=50)9;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap
+			}
+			
+			.pano_photo_item img {
+				display: inline-block;
+				border: solid 1px #252525
+			}
+			
+			.pano_photo_item:hover img {
+				border-color: #005efc
+			}
+			
+			.pano_photo_item_seleted {
+				position: absolute;
+				top: 0;
+				left: -100000px;
+				border: 3px solid #097df3
+			}
+			
+			.pano_close {
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				width: 40px;
+				cursor: pointer;
+				height: 40px;
+				line-height: 40px;
+				border-radius: 3px;
+				background-color: rgba(37, 37, 37, .9);
+				background-image: url(http://api0.map.bdimg.com/images/panorama/close.png);
+				background-repeat: no-repeat;
+				background-position: center center;
+				background-size: 90%
+			}
+			
+			.pano_close:hover {
+				background-image: url(http://api0.map.bdimg.com/images/panorama/close_hover.png)
+			}
+			
+			.pano_pc_indoor_exit {
+				position: absolute;
+				right: 60px;
+				top: 10px;
+				width: 89px;
+				cursor: pointer;
+				height: 40px;
+				line-height: 40px;
+				color: #ebedf0;
+				border-radius: 3px;
+				background-color: #252525;
+				background-color: rgba(37, 37, 37, .9);
+				background-image: url(http://api0.map.bdimg.com/images/panorama/indoor_exit.png);
+				background-repeat: no-repeat;
+				background-position: 15px 12px
+			}
+			
+			.pano_pc_indoor_exit:hover {
+				background-image: url(http://api0.map.bdimg.com/images/panorama/indoor_exit_hover.png);
+				color: #2495ff
+			}
+			
+			.pano_m_indoor_exit {
+				font-size: 16px;
+				position: absolute;
+				right: 30px;
+				top: 10px;
+				width: 89px;
+				cursor: pointer;
+				height: 40px;
+				line-height: 40px;
+				color: #ebedf0;
+				border-radius: 3px;
+				background-color: #252525;
+				background-color: rgba(37, 37, 37, .9);
+				background-image: url(http://api0.map.bdimg.com/images/panorama/indoor_exit.png);
+				background-repeat: no-repeat;
+				background-position: 15px 12px
+			}
+			
+			.navtrans-table tr {
+				color: #666
+			}
+			
+			.navtrans-table tr:hover {
+				color: #333
+			}
+			
+			.navtrans-navlist-icon {
+				float: left;
+				width: 18px;
+				height: 16px;
+				background: url(http://webmap0.map.bdimg.com/wolfman/static/common/images/nav-icon_b5c3223.png) no-repeat 0px 0px;
+				_background: url(http://webmap0.map.bdimg.com/wolfman/static/common/images/nav-icon_ie6_134841b.png) no-repeat 0px 0px;
+				margin-top: 2px;
+				margin-right: 5px
+			}
+			
+			.navtrans-navlist-icon.s-1 {
+				background-position: 0px 0px
+			}
+			
+			.navtrans-navlist-icon.s-2 {
+				background-position: -18px 0px
+			}
+			
+			.navtrans-navlist-icon.s-3 {
+				background-position: -36px 0px
+			}
+			
+			.navtrans-navlist-icon.s-4 {
+				background-position: -54px 0px
+			}
+			
+			.navtrans-navlist-icon.s-5 {
+				background-position: -72px 0px
+			}
+			
+			.navtrans-navlist-icon.s-6 {
+				background-position: -90px 0px
+			}
+			
+			.navtrans-navlist-icon.s-7 {
+				background-position: 0px -16px
+			}
+			
+			.navtrans-navlist-icon.s-8 {
+				background-position: -18px -16px
+			}
+			
+			.navtrans-navlist-icon.s-9 {
+				background-position: -36px -16px
+			}
+			
+			.navtrans-navlist-icon.s-10 {
+				background-position: -54px -16px
+			}
+			
+			.navtrans-navlist-icon.s-11 {
+				background-position: -72px -16px
+			}
+			
+			.navtrans-navlist-icon.s-12 {
+				background-position: -90px -16px
+			}
+			
+			.navtrans-navlist-icon.s-13 {
+				background-position: 0px -32px
+			}
+			
+			.navtrans-navlist-icon.s-14 {
+				background-position: -18px -32px
+			}
+			
+			.navtrans-navlist-icon.s-18 {
+				background-position: -36px -32px
+			}
+			
+			.navtrans-navlist-icon.s-19 {
+				background-position: -54px -32px
+			}
+			
+			.navtrans-navlist-icon.s-20 {
+				background-position: -72px -32px
+			}
+			
+			.navtrans-navlist-icon.s-21 {
+				background-position: -90px -32px
+			}
+			
+			.navtrans-navlist-icon.nav-st,
+			.navtrans-navlist-icon.nav-through {
+				background-position: -16px -70px
+			}
+			
+			.navtrans-navlist-icon.nav-ed {
+				background-position: 0px -70px
+			}
+			
+			.navtrans-view {
+				border-top: 1px solid #e4e6e7;
+				border-left: 1px solid #e4e6e7;
+				border-right: 1px solid #e4e6e7
+			}
+			
+			.navtrans-view:hover {
+				cursor: pointer
+			}
+			
+			.navtrans-view .navtrans-arrow {
+				position: absolute;
+				top: 8px;
+				right: 5px;
+				width: 7px;
+				height: 4px;
+				background-image: url(http://webmap0.map.bdimg.com/wolfman/static/common/images/nav-icon_b5c3223.png);
+				background-repeat: no-repeat;
+				background-position: -40px -70px;
+				margin-top: 3px;
+				margin-right: 3px;
+				_background-image: url(http://webmap0.map.bdimg.com/wolfman/static/common/images/nav-icon_ie6_134841b.png)
+			}
+			
+			.navtrans-view.expand:hover .navtrans-arrow {
+				background-position: -61px -70px
+			}
+			
+			.navtrans-view.expand .navtrans-arrow {
+				background-position: -54px -70px
+			}
+			
+			.navtrans-view:hover .navtrans-arrow {
+				background-position: -47px -70px
+			}
+			
+			.navtrans-navlist-content {
+				overflow: hidden
+			}
+			
+			.navtrans-res {
+				border-bottom: 1px solid #E4E6E7;
+				border-left: 1px solid #E4E6E7;
+				border-right: 1px solid #E4E6E7
+			}
+			
+			.navtrans-bus-icon {
+				display: inline-block;
+				float: left;
+				background-image: url(http://webmap0.map.bdimg.com/wolfman/static/common/images/ui3/mo_banner_e1aa2e6.png);
+				background-repeat: no-repeat
+			}
+			
+			.navtrans-bus-icon.bus {
+				width: 13px;
+				height: 16px;
+				background-position: -1px -192px;
+				position: relative;
+				top: 4px
+			}
+			
+			.navtrans-bus-icon.walk {
+				width: 16px;
+				height: 18px;
+				background-position: -63px -189px;
+				position: relative;
+				top: 2px;
+				left: -2px
+			}
+			
+			.navtrans-bus-desc {
+				line-height: 24px;
+				margin-left: 20px
+			}
+			
+			.navtrans-busstation {
+				color: #36c;
+				font-weight: 600
+			}
+			
+			.tranroute-plan-list.expand .trans-title {
+				border-bottom: 1px solid #e4e6e7;
+				background-color: #ebf1fb
+			}
+			
+			.trans-plan-content tr td:hover .bus {
+				background-position: -15px -192px
+			}
+			
+			.trans-plan-content tr td:hover .walk {
+				background-position: -82px -189px
+			}
+			
+			.suggest-plan {
+				position: absolute;
+				background-color: #0C88E8;
+				padding: 0px 15px;
+				line-height: 20px;
+				color: #fff;
+				left: 0px;
+				top: 0px
+			}
+			
+			.suggest-plan-des {
+				text-align: left;
+				padding: 29px 0px 0px 25px;
+				font-size: 13px;
+				color: #000
+			}
+			
+			.bmap-clearfix {
+				*+height: 1%
+			}
+			
+			.bmap-clearfix:after {
+				content: ".";
+				display: block;
+				height: 0px;
+				clear: both;
+				visibility: hidden
+			}
+			
+			.BMap_CityListCtrl {
+				font-size: 12px
+			}
+			
+			.BMap_CityListCtrl a {
+				text-decoration: none!important
+			}
+			
+			.BMap_CityListCtrl a:hover {
+				text-decoration: underline!important
+			}
+			
+			.BMap_CityListCtrl .citylist_popup_main {
+				border: 1px solid #cdcdcd;
+				z-index: 2;
+				position: relative;
+				width: 100%;
+				height: 100%;
+				background: #fafafa;
+				overflow: hidden;
+				box-shadow: 1px 1px 1px rgba(0, 0, 0, .1)
+			}
+			
+			.ui_city_change_top .ui_city_change_inner,
+			.ui_city_change_bottom .ui_city_change_inner {
+				display: inline-block;
+				height: 24px;
+				line-height: 24px;
+				border: 1px solid #c4c7cc;
+				background-color: #fff;
+				padding: 0 10px 0 10px;
+				color: #000
+			}
+			
+			.ui_city_change_top .ui_city_change_inner i,
+			.ui_city_change_bottom .ui_city_change_inner i {
+				width: 8px;
+				height: 6px;
+				display: inline-block;
+				position: relative;
+				top: 9px;
+				left: 5px;
+				-webkit-transition: all ease-in-out .15s;
+				transition: all ease-in-out .15s;
+				display: none9
+			}
+			
+			.ui_city_change_click .ui_city_change_inner i,
+			.ui_city_change_click_close .ui_city_change_inner i {
+				-webkit-transform: rotate(180deg);
+				-moz-transform: rotate(180deg);
+				-o-transform: rotate(180deg);
+				transform: rotate(180deg)
+			}
+			
+			.ui_city_change_top .ui_city_change_inner:hover em {
+				border-top-color: #0C88E8
+			}
+			
+			.ui_city_change_top .ui_city_change_inner em {
+				width: 0;
+				height: 0;
+				border-color: rgba(255, 255, 255, 0);
+				border-top-color: #D0D4DA;
+				border-style: solid;
+				border-width: 4px
+			}
+			
+			.ui_city_change_top .ui_city_change_inner:hover,
+			.ui_city_change_bottom .ui_city_change_inner:hover {
+				text-decoration: none!important;
+				color: #3d6dcc
+			}
+			
+			.ui_city_change_bottom .ui_city_change_inner:hover em {
+				border-bottom-color: #0C88E8
+			}
+			
+			.ui_city_change_bottom .ui_city_change_inner em {
+				width: 0;
+				height: 0;
+				border-color: rgba(255, 255, 255, 0);
+				border-bottom-color: #D0D4DA;
+				border-style: solid;
+				border-width: 4px;
+				position: relative;
+				top: -18px
+			}
+			
+			.citylist_popup_main .citylist_ctr_title {
+				background: #f9f9f9;
+				border-bottom: 1px solid #dadada;
+				height: 25px;
+				line-height: 25px;
+				font-size: 12px;
+				color: #4c4c4c;
+				padding-left: 7px
+			}
+			
+			.citylist_popup_main .city_content_top {
+				position: relative;
+				height: 30px;
+				padding: 15px 10px 0px 10px;
+				border-bottom: 1px solid #CCC;
+				margin: 0px 10px
+			}
+			
+			.citylist_popup_main .city_content_top .cur_city_info {
+				display: inline-block;
+				margin: 0;
+				padding: 0;
+			}
+			
+			#city_ctrl_form {
+				position: absolute;
+				right: 12px;
+				top: 10px
+			}
+			
+			#selCityWd {
+				border: 1px solid #ccc;
+				height: 20px;
+				width: 121px;
+				line-height: 20px;
+				text-indent: 4px;
+				outline: none
+			}
+			
+			#selCitySubmit:hover {
+				background-position: -355px -98px
+			}
+			
+			#selCitySubmit {
+				float: right;
+				background: url(http://webmap0.map.bdimg.com/wolfman/static/common/images/index_a2f1ac4.png) no-repeat scroll -302px -98px;
+				height: 24px;
+				line-height: 24px;
+				width: 48px;
+				cursor: pointer;
+				margin-left: 5px;
+				text-align: center
+			}
+			
+			#sel_city_letter_list {
+				padding-top: 10px
+			}
+			
+			#sel_city_letter_list a {
+				white-space: nowrap;
+				margin-right: 11px;
+				line-height: 18px;
+				font-size: 13px;
+				font-family: Arial, Helvetica, SimSun, sans-serif
+			}
+			
+			.city_content_medium {
+				padding: 10px 10px 10px 10px;
+				border-bottom: 1px solid #CCC;
+				margin: 0px 10px
+			}
+			
+			.city_content_bottom {
+				padding: 10px 10px 10px 8px;
+				margin: 9px 5px 5px 5px;
+				height: 218px;
+				overflow-y: auto
+			}
+			
+			#city_detail_table tr td {
+				vertical-align: top
+			}
+			
+			.sel_city_hotcity a {
+				color: #3d6dcc
+			}
+			
+			.sel_city_letter {
+				padding: 0 14px 0 3px
+			}
+			
+			.sel_city_letter div {
+				font-size: 24px;
+				line-height: 24px;
+				font-weight: 700;
+				color: #ccc;
+				padding: 0;
+				margin: 0;
+				font-family: Arial, Helvetica, SimSun, sans-serif
+			}
+			
+			.sel_city_sf {
+				padding-right: 8px;
+				font-weight: 700
+			}
+			
+			.sel_city_sf a {
+				white-space: nowrap;
+				line-height: 18px;
+				color: #3d6dcc
+			}
+			
+			.city_names_wrap {
+				margin-bottom: 9px
+			}
+			
+			.sel_city_name {
+				color: #3d6dcc;
+				white-space: nowrap;
+				margin-right: 9px;
+				line-height: 18px;
+				float: left
+			}
+			
+			#popup_close {
+				outline: none;
+				position: absolute;
+				z-index: 50;
+				top: 7px;
+				right: 6px;
+				width: 12px;
+				height: 12px;
+				background: url(http://webmap0.map.bdimg.com/wolfman/static/common/images/popup_close_15d2283.gif) no-repeat;
+				border: 0;
+				cursor: pointer
+			}
+		</style>
+	</head>
+
+	<body id="yui_3_5_1_1_1571367661897_26">
+		<!-- Header -->
+		<!-- 拉新入口 -->
+		<link href="/xiangqing/laxin.css" rel="stylesheet" type="text/css">
+
+		<script type="text/javascript" src="/xiangqing/index_searchlist_public.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/list_header.js.下载"></script>
+		<!-- 拉新入口 -->
+		<script type="text/javascript" src="/xiangqing/laxin.js.下载"></script>
+		<!-- 房东权限相关 -->
+		<script type="text/javascript" src="/xiangqing/landlordConfig.js.下载"></script>
+		<style>
+			.logo58 {
+				background: url(//staticnew.mayi.com/resourcesWeb/images/index/58logo.png) no-repeat;
+				left: 14px !important;
+				top: 16px !important;
+			}
+			
+			.logomayi {
+				left: 200px !important;
+			}
+			
+			.alert-box1 {
+				width: 100%;
+				height: 100%;
+				z-index: 300000;
+				position: absolute;
+				display: none;
+				line-height: 40px;
+			}
+			
+			.surveYY1 {
+				background: #000;
+				width: 100%;
+				height: 100%;
+				opacity: 0.7;
+				position: fixed;
+				top: 0px;
+				left: 0px;
+			}
+			
+			.offmax_no {
+				width: 400px;
+				height: 186px;
+				position: fixed;
+				top: 50%;
+				margin-top: -93px;
+				left: 50%;
+				margin-left: -200px;
+				background-color: #fff;
+				z-index: 999;
+				text-align: center;
+				box-shadow: 0px 0px 4px #ccc;
+				border-radius: 2px;
+			}
+			
+			.offmax_no p {
+				padding: 0 20px;
+				line-height: 25px;
+			}
+			
+			.alert_tit1 {
+				border-bottom: 1px solid #e0e0e0;
+				font-size: 18px;
+				margin-bottom: 20px;
+			}
+			
+			.close-alert1 {
+				cursor: pointer;
+				width: 50%;
+				margin: 20px auto;
+				background-color: #22bb62;
+				text-align: center;
+				color: #fff;
+				border-radius: 2px;
+			}
+			
+			.error_tip_list {
+				background-color: #fff;
+				color: #ff7043;
+				width: 71%;
+				line-height: 40px;
+				text-indent: 15px;
+				position: absolute;
+				top: 60px;
+				border: 1px solid #e0e0e0;
+				z-index: 9;
+				display: none;
+			}
+			
+			.error_tip_list .other_city {
+				border-top: 1px solid #e0e0e0;
+				height: 42px;
+				line-height: 42px;
+				text-align: center;
+				color: #5d5c5b;
+				border-bottom-left-radius: 2px;
+				border-bottom-right-radius: 2px;
+				font-weight: bold;
+			}
+			
+			span.search {
+				display: block;
+			}
+			/*搜索样式*/
+			
+			.suggest_results li label {
+				position: absolute;
+				right: 10px;
+				margin-top: -6px;
+			}
+			
+			.suggest_results li.tit_about a {
+				color: #000;
+			}
+			
+			.suggest_results li.address_about a {
+				color: #000;
+			}
+			
+			.suggest_results li.hover a,
+			.suggest_results li:hover a {
+				color: #fff;
+			}
+			
+			.suggest_results li.hover .c22bb62,
+			.suggest_results li:hover .c22bb62 {
+				color: #fff;
+			}
+			
+			.suggest_results li.address_about {
+				padding-right: 12px;
+			}
+			
+			.suggest_results li {
+				cursor: pointer
+			}
+			
+			.suggest_results li.have_label {
+				border-top: 1px solid #e0e0e0;
+			}
+			
+			.suggest_results li label {
+				float: right;
+				min-width: 20px;
+				min-height: 20px;
+			}
+			
+			.suggest_results li label i {
+				width: 23px;
+				height: 21px;
+				display: inline-block;
+				background: url(http://staticnew.mayi.com/resourcesWeb/images/suggest_icon.png) no-repeat;
+				background-size: 46px 294px;
+				position: relative;
+				top: 4px;
+				margin-left: 10px;
+			}
+			
+			.suggest_results li .tit_icon {
+				background-position: 0 -210px;
+			}
+			
+			.suggest_results li .address_icon {
+				background-position: 0 -168px;
+			}
+			
+			.suggest_results li .city_icon {
+				background-position: 0 0px;
+			}
+			
+			.suggest_results li .arim_icon {
+				background-position: 0 -21px;
+			}
+			
+			.suggest_results li .regions_icon {
+				background-position: 0 -42px;
+			}
+			
+			.suggest_results li .street_icon {
+				background-position: 0 -63px;
+			}
+			
+			.suggest_results li .views_icon {
+				background-position: 0 -84px;
+			}
+			
+			.suggest_results li .circle_icon {
+				background-position: 0 -105px;
+			}
+			
+			.suggest_results li .subway_icon {
+				background-position: 0 -126px;
+			}
+			
+			.suggest_results li .station_icon {
+				background-position: 0 -252px;
+				width: 46px;
+			}
+			
+			.suggest_results li .hospital_icon {
+				background-position: 0 -147px;
+			}
+			
+			.suggest_results li .school_icon {
+				background-position: 0 -231px;
+			}
+			
+			.suggest_results li .minsu_icon {
+				background-position: 0 -210px;
+			}
+			
+			.suggest_results li.hover .tit_icon,
+			.suggest_results li:hover .tit_icon {
+				background-position: -23px -210px;
+			}
+			
+			.suggest_results li.hover .address_icon,
+			.suggest_results li:hover .address_icon {
+				background-position: -23px -168px;
+			}
+			
+			.suggest_results li.hover .city_icon,
+			.suggest_results li:hover .city_icon {
+				background-position: -23px 0px;
+			}
+			
+			.suggest_results li.hover .arim_icon,
+			.suggest_results li:hover .arim_icon {
+				background-position: -23px -21px;
+			}
+			
+			.suggest_results li.hover .regions_icon,
+			.suggest_results li:hover .regions_icon {
+				background-position: -23px -42px;
+			}
+			
+			.suggest_results li.hover .street_icon,
+			.suggest_results li:hover .street_icon {
+				background-position: -23px -63px;
+			}
+			
+			.suggest_results li.hover .views_icon,
+			.suggest_results li:hover .views_icon {
+				background-position: -23px -84px;
+			}
+			
+			.suggest_results li.hover .circle_icon,
+			.suggest_results li:hover .circle_icon {
+				background-position: -23px -105px;
+			}
+			
+			.suggest_results li.hover .subway_icon,
+			.suggest_results li:hover .subway_icon {
+				background-position: -23px -126px;
+			}
+			
+			.suggest_results li.hover .station_icon,
+			.suggest_results li:hover .station_icon {
+				background-position: 0px -273px;
+			}
+			
+			.suggest_results li.hover .hospital_icon,
+			.suggest_results li:hover .hospital_icon {
+				background-position: -23px -147px;
+			}
+			
+			.suggest_results li.hover .school_icon,
+			.suggest_results li:hover .school_icon {
+				background-position: -23px -231px;
+			}
+			
+			.suggest_results li.hover .minsu_icon,
+			.suggest_results li:hover .minsu_icon {
+				background-position: -23px -210px;
+			}
+			
+			.icon_after:after {
+				content: "|";
+				padding: 0 1px 0 5px;
+				position: relative;
+				top: -1px;
+			}
+			
+			.icon_after:last-child:after {
+				content: "";
+				padding: 0;
+			}
+			
+			.room_city {
+				color: #b4b9bf;
+			}
+			
+			.sug_room_tip {
+				color: #b4b9bf;
+				height: 65px;
+				line-height: 65px;
+				border-top: 1px solid #e0e0e0;
+			}
+			
+			.suggest_results {
+				background-color: #fff;
+				color: #22bb62;
+				top: 60px;
+				position: absolute;
+				width: 71%;
+				z-index: 9;
+				box-sizing: border-box;
+				border: 1px solid #e0e0e0;
+				display: none;
+			}
+			
+			.suggest_results li {
+				padding: 10px 15px;
+			}
+			
+			.suggest_results li.hover,
+			.suggest_results li:hover {
+				background-color: #22bb62;
+			}
+			
+			.suggest_results li.hover a,
+			.suggest_results li.hover a .rightspan,
+			.suggest_results li.hover a .leftspan .keyword {
+				color: #fff;
+			}
+			
+			.suggest_results li a {
+				display: block;
+				width: 100%;
+				color: #322c27;
+			}
+			
+			.suggest_results .other_city {
+				height: 42px;
+				line-height: 42px;
+				text-align: center;
+				color: #5d5c5b;
+				border-top: 1px solid #ebeaea;
+				border-bottom-left-radius: 2px;
+				border-bottom-right-radius: 2px;
+			}
+			/*搜索样式结束*/
+		</style>
+		<input type="hidden" name="ctx" id="ctx" value="">
+		<div class="header relave">
+			<a href="">
+				<div class="asote head_left"></div>
+			</a>
+			<div class="head_cnt relave">
+				<span class="search"></span>
+						<div class="error_tip_list" id="tip_searchcity">
+					<p>请输入关键字</p>
+				</div>
+				<!--推荐-->
+				<div style="" class="suggest_results" id="suggest">
+					<ul>
+					</ul>
+				</div>
+				<ul class="nav_R asote nav_right" id="log">
+					<li>
+						<div class="showinfo">
+							<a href="" target="_self"><img src="/xiangqing/7BBUSD45HMHH2K9YF75JUZ8BC6JWV8.jpg_35x35c.jpg" id="aaa" class="user_img">
+								<span class="name" id="head_nickname">o</span></a>
+							<div class="head_pop">
+								<div class="pop_column">
+									<p>
+										<a href="" target="_self" id="myorder" rel="nofollow">我的订单</a>
+									</p>
+									<p>
+										<a href="" target="_self" id="myorder" rel="nofollow" class="slideactive">我的账户</a>
+									</p>
+									<p>
+										<a href="" target="_self" id="mycollect" rel="nofollow">我的收藏</a>
+									</p>
+									<p>
+										<a href="" target="_self" id="mymsg" rel="nofollow">消息通知</a>
+									</p>
+									<p class="Invite_friends">邀请好友</p>
+									<p class="textCt">
+										<a href="javascript:void(0)" id="loginoutbut" target="_self" class="stclick" clicktag="1_6">退出登录</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="showinfo" id="s_islandlord" hidden="" style="display: block;">
+							<a href="" target="_self" class="stclick">我是房东</a>
+							<div class="head_pop">
+								<div class="pop_column plr10">
+									<p>
+										<a href="">订单管理</a>
+									</p>
+									<p>
+										<a href="">房源管理</a>
+									</p>
+									<p>
+										<a href="">消息通知</a>
+									</p>
+									<p>
+										<a href="">结算管理</a>
+									</p>
+									<p>
+										<a href="">关注房东微信</a>
+									</p>
+									<p>
+										<a href="">下载APP</a>
+									</p>
+									<p hidden="" id="s_micro" style="display: block;">
+										<a href="">房东微店</a>
+									</p>
+									<p>
+										<a href="">我的设置</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="showinfo">
+							<a rel="nofollow" href="" target="_blank">下载APP送500元大礼包</a>
+							<div class="b-app-img head_pop"><img src="/xiangqing/8BESRPVFMVRMLWF5DMMQJPXZ3HDEPJ.jpg_110x110c.jpg" style="width:110px;"></div>
+						</div>
+					</li>
+					<li>
+						<a class="recruit" rel="nofollow" href="" target="_blank">商旅合作</a>
+					</li>
+					<li>
+						<!-- 	
+                <a rel="nofollow" href="javascript:publish(878244467)" class="room-btn f16 t-center" >免费发布房源</a>
+             -->
+					</li>
+				</ul>
+			</div>
+
+		</div>
+		<!--公共头部结束-->
+		<div class="alert-box1">
+			<div class="surveYY1"></div>
+			<div class="offmax_no">
+				<div class="alert_tit1">温馨提示</div>
+				<p>对不起，房东账号被封禁</p>
+				<p>如有疑问，请联系富婆短租客服400-028-6868</p>
+				<div class="close-alert1">我知道了</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var userName = $("#head_userName").val();
+				if(userName != '' && userName.length > 0) {
+					var realLength = 0;
+					var len = userName.length;
+					var charCode = -1;
+					for(var i = 0; i < len; i++) {
+						charCode = userName.charCodeAt(i);
+						if(charCode >= 0 && charCode <= 128) {
+							realLength += 1;
+						} else {
+							realLength += 2;
+						}
+						if(realLength > 20) {
+							$("#head_nickname").html(userName.substring(0, i) + "...");
+							break;
+						}
+					}
+					if(realLength <= 20) {
+						$("#head_nickname").html(userName);
+					}
+				}
+
+			});
+		</script>
+		<script type="text/javascript" src="/xiangqing/7moorInit.js.下载" async="async"></script>
+
+		<script type="text/javascript" src="/xiangqing/c.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/strophe.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/easemob.im-1.1.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/easemob.im-1.1.shim.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/easemob.im.config.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/bootstrap.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/add_reply.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/jquery-ui.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/IM.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/ajaxfileupload.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/operator.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/webim.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/chat.js.下载"></script>
+		<link rel="stylesheet" href="/xiangqing/IM.css">
+		<link rel="stylesheet" href="/xiangqing/jquery-ui.css">
+
+		<script type="text/javascript" src="/xiangqing/swfupload.js.下载"></script>
+		<script type="text/javascript" src="/xiangqing/swfupload.queue.js.下载"></script>
+
+
+		<style>
+			#layer_settimeout {
+				width: 280px;
+				height: 60px;
+				border-radius: 5px;
+				background: rgba(0, 0, 0, .7);
+				color: #fff;
+				position: fixed;
+				top: 300px;
+				left: 50%;
+				margin-left: -140px;
+				z-index: 999999999;
+				line-height: 60px;
+				text-align: center;
+				display: none
+			}
+		</style>
+
+		<script type="text/javascript" src="/xiangqing/fk_index.js.下载"></script>
+
+		<input type="hidden" name="btnCanGo" id="btnCanGo" value="1">
+
+		<div class="report-alert-box t-center" id="jubao1" name="jubao1Boxdiv" style="display:none;">
+			<div class="report-alert-title mb30">匿名举报该房客</div>
+			<ul class="jubao">
+				<li class="mb20" id="jubaochat">该房客在聊天过程中有不良行为</li>
+				<li class="mb30" id="jubaorz">该房客在入住过程中有不良行为</li>
+			</ul>
+		</div>
+
+		<div class="report-alert-box t-center" id="jubaochatChoice" name="jubaochatChoiceBoxdiv" style="display:none;">
+			<div class="report-alert-title mb30">匿名举报该房客</div>
+			<ul class="jubao chat">
+				<li class="mb10">出言辱骂</li>
+				<li class="mb10">坚持要求看房 / 线下交易</li>
+				<li class="mb10">发布垃圾广告、淫秽色情信息</li>
+				<li class="mb10">不订房，频繁骚扰</li>
+				<li class="mb30">其他短租平台工作人员</li>
+			</ul>
+			<p class="tc_submit mb20">下一步</p>
+		</div>
+
+		<!--上传图片证据-->
+		<div class="report-alert-box t-center" id="jubaochatUpImage" name="jubaochatUpImageBoxdiv" style="display: none;">
+			<div class="report_host">
+				<p>匿名举报该房客</p>
+			</div>
+			<div class="report_add_pic">
+				<p class="f16 mt20 up_img">请上传图片证据</p>
+				<p class="f14 chat_desc">请上传聊天记录截图，现场图片等证据（选填），方便工作人员进行审核</p>
+			
+			</div>
+			<div class="tc_submit mb20 report_btn_checked">提交</div>
+		</div>
+
+		<!--主体结束-->
+		<div class="report-alert-box t-center" id="jubaorzChoice" name="jubaorzChoice" style="display:none;">
+			<div class="report-alert-title mb30">匿名举报该房客</div>
+			<ul class="jubao ruzhu">
+				<li class="mb10">在房内从事黄赌毒等不法行为</li>
+				<li class="mb10">利用房子进行诈骗</li>
+				<li class="mb10">非法传销</li>
+				<li class="mb10">恶意损坏、偷窃家具</li>
+				<li class="mb10">利用差评威胁房东</li>
+				<li class="mb30">素质低下辱骂房东</li>
+			</ul>
+			<p class="tc_submit mb20">下一步</p>
+		</div>
+
+		<div class="report-alert-box t-center" id="jubaoSuccess" name="jubaoSuccess" style="display:none;">
+			<div class="c22bb62 f16 mb20">
+				<img src="/xiangqing/check-img.png" class="mr10" style="vertical-align: middle;">提交成功，请勿重复举报
+			</div>
+			<p class="report-t-left">感谢您抽出时间举报此用户，您的参与有助于富婆短租建设成一个安全、值得信赖的平台。</p>
+			<p class="report-t-left">您的举报内容如果经过核查属实，我们会对该用户处以富婆短租全站禁言或禁止登录的惩罚。</p>
+			<div id="jubaoSuccessBoxclose" class="report-green-btn f16" style="vertical-align: middle;background-image: none;">确定</div>
+		</div>
+
+		<div id="layer_settimeout" style="display:none;">您不是房东，无权举报</div>
+		<div id="point" class="contacts_landlord clearfloat IM_content ui-draggable" style="display:none;">
+			<span class="right_open_btn"></span>
+			<div class="fl contacter_left">
+				<h3>最近联系人</h3>
+				<div class="" id="noContact">
+					<p class="null_list">联系人列表是空的</p>
+					<a target="_blank" class="check_near" href="">查看最近联系人</a>
+				</div>
+				<ul class="contacter_ul"></ul>
+			</div>
+			<div class="contacter_right clearfloat fl">
+				<div class="p_talk_right" id="contacter_right_0">
+					<div class="fl contacter_right_talk" id="talk_0">
+						<h3 class="clearfloat head_talk"></h3>
+						<div class="contacter_talk clearfloat">
+							<div class="talk_parent"></div>
+						</div>
+						<div class="xiaoxi_record">
+							<a target="_blank" href="" class="xiaoxi_record_a clearfloat"><i class="fr">消息记录</i><span class="xiaoxi_bj fr"></span></a>
+						</div><textarea disabled="" class="xiaoxi_text xiaoxi_text_none" cols="" rows="" name=""></textarea>
+						<div class="xiaoxi_btn clearfloat"><button class="contacts_null send fr send_none" a="0">发送</button></div>
+					</div>
+				</div>
+				<div class="tj_swiper_wrap_div fl" style="">
+					<ul class="font_inner_ul" style="top: 0px;">
+						<li></li>
+					</ul>
+				</div>
+				<div class="fl auto_reply_hover about"><span class="auto_reply_img"></span></div>
+				<div class="about auto_reply_tan" style="display: none;">
+					<div class="fl auto_reply_hover about"><span class="auto_reply_img"></span></div>
+					<ul id="auto_reply_tan_ul" class="auto_reply_tan_ul">
+						<li><span class="text_reply">您好，请问几人入住呢？</span>
+							<!--<span class="reply_x"></span>--></li>
+						<li><span class="text_reply">抱歉，您看中的房源已经订出去了。</span>
+							<!--<span class="reply_x"></span>--></li>
+						<li><span class="text_reply" title="抱歉，富婆禁止透露联系方式，您预订成功后富婆会自动把我的联系方式发送给您。">抱歉，富婆禁止透露联系方式，您预订成功后富婆会自动把我的...</span>
+							<!--<span class="reply_x"></span>--></li>
+						<li><span class="text_reply">照片都是实地拍摄的，请放心下单。</span>
+							<!--<span class="reply_x"></span>--></li>
+					</ul>
+				</div>
+				<div class="fl auto_reply_hover about"><span class="auto_reply_img"></span></div>
+			</div>
+		</div>
+		<!-- <a class='IM_btn' style='display:none;' href='javascript:;' _mayi_rp="webaround|other|online"><span class='IM_btn_span' ><i style="display:none;">0</i></span>在线聊天</a> -->
+		<div class="im_sfz_tan" style="display: none;">
+			<span></span>
+			<img src="" alt="">
+		</div>
+
+		<!--弹窗start-->
+		<div class="abnormal-tips-wrapper">
+			<div class="abnormal-tips" style="display: none;position: fixed;left: 50%;top: 50%;z-index: 1001;margin-left: -243px;margin-top: -141px;width: 486px;height: 282px;background: #fff;">
+				<div class="abnormal-tips-title" style="box-sizing: border-box;position: relative;height: 60px;line-height: 60px;text-align: center;border: 1px solid #DCDEE0;border-top-left-radius: 3px;border-top-right-radius: 3px;font-size: 18px;color: #5E646B;">
+					<span>异常提示</span>
+					<div class="abnormal-tips-close" style="position: absolute;top: 20px;right: 30px;width: 19px;height: 19px;background: url(&#39;//staticnew.mayi.com/resourcesWeb/im1/images/close.png&#39;) no-repeat center;cursor: pointer;">
+					</div>
+				</div>
+				<div class="abnormal-tips-content" style="padding: 0 48px;">
+					<div id="messageError" class="abnormal-tips-text" style="padding: 50px 0;line-height: 22px;text-align: center;font-size: 16px;color: #2B2F33;">在线聊天登录失败，请点击重新打开或刷新页面后重试</div>
+					<div class="abnormal-tips-btn" style="font-size: 0;">
+						<div class="abnormal-tips-btn-close" style="display: inline-block;box-sizing: border-box;width: 180px;height: 50px;line-height: 50px;margin-right: 30px;text-align: center;border: 1px solid #B4B9BF;border-radius: 3px;font-size: 18px;color: #5E646B;cursor: pointer;">关闭</div>
+						<div class="abnormal-tips-btn-open" style="display: inline-block;box-sizing: border-box;width: 180px;height: 50px;line-height: 50px;text-align: center;border: 1px solid #3EB382;border-radius: 3px;font-size: 18px;color: #3EB382;cursor: pointer;">重新打开</div>
+					</div>
+				</div>
+			</div>
+			<div class="abnormal-tips-mask" style="display: none;position: fixed;left: 0;top: 0;z-index: 1000;width: 100%;height: 100%;opacity: 0.7;background: #000000;"></div>
+		</div>
+		<!--弹窗end-->
+
+		<style>
+			.im_sfz_tan {
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.6);
+				z-index: 1000001;
+				line-height: 100%;
+				text-align: center;
+				display: none;
+			}
+			
+			.im_sfz_tan span {
+				display: inline-block;
+				height: 100%;
+				vertical-align: middle;
+			}
+			
+			.im_sfz_tan img {
+				display: inline;
+				max-width: 1190px;
+				max-height: 700px;
+				min-width: 600px;
+				min-height: 220px;
+				vertical-align: middle;
+				border: 10px solid #fff;
+			}
+		</style>
+		<div style="" class="Online_btn">
+			<span class="border-left"></span>
+			<a href="javascript:void(0)" id="live800iconlink"><img border="0" src="/xiangqing/5635PVPKQGH6CND3UTE6WAYHLUXAXB.jpg" id="live800icon" name="live800icon"></a>
+		</div>
+		<!-- 拉新弹层 -->
+		<div class="share_tan" style="display: none">
+			<div class="mask"></div>
+			<div class="hongbao_img">
+				<img src="/xiangqing/close.png" alt="" class="hong_close">
+				<img src="/xiangqing/hongbao.png" alt="" class="hongbao">
+			</div>
+		</div>
+			<!--初始化公用值结束-->
+		<div class="main" id="yui_3_5_1_1_1571367661897_25">
+			<!--导航条-->
+			<div class="desChioce" id="desChioce01" style="display: none;">
+				<ul class="clearfloat">
+					<li class="current">
+						<a href="javascript:;">图片</a>
+					</li>
+					<li class="">
+						<a href="javascript:;">关于房源</a>
+					</li>
+					<li>
+						<a id="pjskip" ;="" href="javascript:;">评价(<span>27</span>条)</a>
+					</li>
+					<li>
+						<a href="javascript:;">地图</a>
+					</li>
+					<li class="price clearfloat fr relave" id="yui_3_5_1_1_1450765892279_80">
+						<div class="priceL" id="priceL">￥<span>318</span>/晚</div>
+					</li>
+				</ul>
+			</div>
+
+			<!--详情页第一部分左边-->
+			<div class="main-l clearfloat" id="photo">
+				<div class="desWord">
+					<h2><a href="javascript:void(0)" rel="nofollow" th:text="${xq.housename}">【国贸】CBD/劲松地铁三里屯地中海一居</a>
+		    			    <div class="biaoqian">
+			    			    	<span class="shipai_1" title="照片均为富婆短租员工实地拍摄，请放心入住">实拍</span>
+		            				<span class="kezuofan_3" title="">可做饭</span>
+		    			    </div>  
+		    			 			     
+	    			</h2>
+					<p th:text="${xq.houseaddress}">北京朝阳区农光里甲-1号楼
+					
+					</p>
+					<span id="sc_word">收藏</span>
+				</div>
+				<div class="fl img_playPar">
+					<!--房屋轮播图-->
+					<div class="desTop fl">
+
+						<!--图片轮播-->
+						<div style="position:relative;">
+
+							<div class="picmap-change">
+								<!-- 夜宵折扣标签！！ -->
+								<div id="TabChangeCon_01" class="change-list">
+									<div class="picbox">
+										<ul class="piclist">
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img th:src="${xq.picturepath}" alt=""></a>
+											</li>
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/N6KHEE6KKNZ4XGM3F8JUYFS8VAUQZ4.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/X26B4PZ7UQBYMV97Y3WR74VV6ZFPMU.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+											<li style="display: list-item;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/PDCLQRG34R649XDP7HMB79T8TLE2YV.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/ZKYN8392WLAWH25CEG2BS5L3RAH48E.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/U49QKU8SHXX4U4PEH5428DJZES3RSC.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/ND6FY8BWHZB2265CFS73RYKKZ8MZ5B.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/JKSMHCU2U5VAERK3KDK83YYFUKCHET.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/GVNBMA66BS5FM5NE53HZ6VQZH2R4X6.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/ZC6MFSGG6GZ5YNF9PDF6LCC8M9XP6R.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/T3A3PP2XZYET6KYN8KKP2487RKVPXP.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/Z8XFFT493DXKCGXD79JQXTKZ8NJKFC.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+											<li style="display: none;">
+												<a href="javascipt:void(0)"><img src="/xiangqing/5C29S2VNF7WV9SDDXTKH5AVNWYQQWU.jpg_732x480cw.jpg" alt=""></a>
+											</li>
+
+										</ul>
+										</div>
+									<div class="picsmallbox">
+										<div class="picboxpic">
+											<ul id="picsmall" class="picsmall clearfix" style="height: 1190px; top: -210px;">
+												<li class="minPic">
+													<a href="" class=""><img src="/xiangqing/5FRLSC4D4CT4ME4HNCVPBVW5UVNRXZ.jpg_90x60c.jpg" alt=""></a>
+												</li>
+												<li class="minPic">
+													<a href="" class=""><img src="/xiangqing/N6KHEE6KKNZ4XGM3F8JUYFS8VAUQZ4.jpg_90x60c.jpg" alt=""></a>
+												</li>
+												<li class="minPic">
+													<a href="" class=""><img src="/xiangqing/X26B4PZ7UQBYMV97Y3WR74VV6ZFPMU.jpg_90x60c.jpg" alt=""></a>
+												</li>
+												<li class="minPic">
+													<a href="" class="current"><img src="/xiangqing/PDCLQRG34R649XDP7HMB79T8TLE2YV.jpg_90x60c.jpg" alt=""></a>
+												</li>
+												<li class="minPic">
+													<a href=""><img src="/xiangqing/ZKYN8392WLAWH25CEG2BS5L3RAH48E.jpg_90x60c.jpg" alt=""></a>
+												</li>
+												<li class="minPic">
+													<a href=""><img src="/xiangqing/U49QKU8SHXX4U4PEH5428DJZES3RSC.jpg_90x60c.jpg" alt=""></a>
+												</li>
+												<li class="minPic">
+													<a href=""><img src="/xiangqing/ND6FY8BWHZB2265CFS73RYKKZ8MZ5B.jpg_90x60c.jpg" alt=""></a>
+												</li>
+												<li class="minPic">
+													<a href=""><img src="/xiangqing/JKSMHCU2U5VAERK3KDK83YYFUKCHET.jpg_90x60c.jpg" alt=""></a>
+												</li>
+												<li class="minPic">
+													<a href=""><img src="/xiangqing/GVNBMA66BS5FM5NE53HZ6VQZH2R4X6.jpg_90x60c.jpg" alt=""></a>
+												</li>
+												<li class="minPic">
+													<a href=""><img src="/xiangqing/ZC6MFSGG6GZ5YNF9PDF6LCC8M9XP6R.jpg_90x60c.jpg" alt=""></a>
+												</li>
+												<li class="minPic">
+													<a href=""><img src="/xiangqing/T3A3PP2XZYET6KYN8KKP2487RKVPXP.jpg_90x60c.jpg" alt=""></a>
+												</li>
+												<li class="minPic">
+													<a href=""><img src="/xiangqing/Z8XFFT493DXKCGXD79JQXTKZ8NJKFC.jpg_90x60c.jpg" alt=""></a>
+												</li>
+																	</ul>
+										</div>
+
+										<div class="translucence"></div>
+									</div>
+								</div>
+								<div id="TabChangeCon_02" class="change-list">
+									<div id="mapDiv"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--图片轮播结束-->
+
+					<div class="feature">
+						<ul class="clearfloat">
+							<li>
+								<div class="clearfloat feature_chansu">
+									<img src="/xiangqing/room_ping.png" class="fl">
+									<span class="fl" th:text="${xq.rentalmode}">整套出租</span>
+								</div>
+								<p>[[${xq.housetype}]]·[[${xq.floorspace}]]m²</p>
+							</li>
+							<li class="w258">
+								<div class="clearfloat feature_chansu">
+									<img src="/xiangqing/ruzhu.png" class="fl">
+									<span class="fl">可住<span th:text="${xq.minday}"></span>人</span>
+								</div>
+								<p>
+									共1张床·
+									<span>不可加床</span>
+
+								</p>
+							</li>
+							<li id="feature_chansu">
+								<div class="clearfloat feature_chansu"><img src="/xiangqing/haoping.png" class="fl"><span class="fl">100%好评</span></div>
+								<p>27条评价</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--右侧预订信息-->
+				<div class="main-r_1" id="yui_3_5_1_1_1571367661897_24" style="position: relative; left: -1px; top: 0px; z-index: 1;">
+					<div class="order" id="yui_3_5_1_1_1571367661897_23">
+						<div class="priceTotal clearfloat">
+							<div class="priceTotalL" id="priceTotalL">总计￥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red" th:text="${xq.baseprice}">318</span></div>
+				
+						</div>
+						<div class="discountPrice clearfloat" id="discountTotal"></div>
+						<div class="pay" id="yui_3_5_1_1_1571367661897_87">
+							<input type="hidden" value="no" id="hidden_comefrom">
+							<a id="goBookBtn1" style="margin-top: 330px" th:attr="houseid=${xq.houseid},money=${xq.baseprice},landlordid=${xq.landlordid}"  href="javascript:;" rel="nofollow">立即预订</a>
+						</div>
+
+					</div>
+				
+
+				</div>
+				<!--右侧预订信息结束-->
+			</div>
+			<!--详情页第一部分结束-->
+			<!--详情页第二部分开始-->
+			<div class="w1190">
+				<div class="main-2" id="room">
+					<div class="auto_m">
+						<!--文字内容开始-->
+						<div class="intro_par">
+							<!--房源介绍开始-->
+							<a href="" name="roomInfo"></a>
+							<div class="intro padding_t clearfloat" name="roomInfo">
+								<h4 class="fl fl_room lineH18">房源介绍</h4>
+								<div class="fl fl_p relave room_jies">
+									<p th:text="${xq.ambitus}"></p>
+								</div>
+							</div>
+							<!--基本信息-->
+							<div class="intro padding_t clearfloat">
+								<!--表格介绍-->
+								<h4 class="updetail fl_room fl">基本信息</h4>
+								<ul class="table fl fl_p">
+									<li>房源类型：<span class="shuxingzhi" th:text="${xq.houseclass}">公寓</span></li>
+									<li>卫生间：
+										<span class="shuxingzhi">
+											1
+									</span>
+									</li>
+									<li>被单更换：<span class="shuxingzhi">每客一换</span></li>
+									<li>大床(2×1.8米)：	
+										<span class="shuxingzhi">
+								            	1张
+				        					</span>
+									</li>
+									<li>能否加床：<span class="shuxingzhi">不能</span></li>
+								</ul>
+							</div>
+							<!--配套设施-->
+							<div class="intro sup_fac padding_t clearfloat">
+								<div class="facility_out_box height_value clearfloat" <h4="">配套设施
+									<div class="facility_list">
+										<h3>居家</h3>
+										<ul class="clearfloat relave facility_ul">
+											<li th:text="${xq.equipment}">
+												<span class="absot fac_span facility_wifi"></span>无线网络
+											</li>
+										</ul>
+									</div>
+									<div class="facility_list">
+										<h3>洗浴用品</h3>
+										<ul class="clearfloat relave facility_ul">
+											<li th:text="${xq.sanitarysquipment}">
+												<span class="absot fac_span facility_dlwy"></span>独立卫浴
+											</li>
+										</ul>
+									</div>
+									<div class="facility_list">
+										<h3>餐厨</h3>
+										<ul class="clearfloat relave facility_ul">
+											<li th:text="${xq.kitchenequipment}">
+												<span class="absot fac_span facility_cj"></span>餐具
+											</li>
+										</ul>
+									</div>
+									<div class="facility_list">
+										<h3>安全</h3>
+										<ul class="clearfloat relave facility_ul">
+											<li th:text="${xq.safetyequipment}">
+												<span class="absot fac_span facility_ba"></span>保安
+											</li>
+										</ul>
+									</div>
+									<div class="facility_list">
+										<h3>建筑</h3>
+										<ul class="clearfloat relave facility_ul">
+											<li th:text="${xq.buildingequipment}">
+												<span class="absot fac_span facility_ch"></span>窗户
+											</li>
+										</ul>
+									</div>
+									<div class="facility_list">
+										<h3>周边（500米内）</h3>
+										<ul class="clearfloat relave facility_ul">
+											<li th:text="${xq.peripheralequipment}">
+												<span class="absot fac_span facility_ct"></span>餐厅
+											</li>
+										</ul>
+									</div>
+									<div class="facility_list">
+										<h3>其他</h3>
+										<ul class="clearfloat relave facility_ul">
+											<li th:text="${xq.otherservices}">
+												<span class="absot fac_span facility_hyxh"></span>欢迎小孩
+											</li>
+										</ul>
+									</div>
+								</div>
+								<div class="facility_more facility_list">
+									<a href="javascript:;" class="relave"><span>更多</span><i class="absot tujia_more_btn"></i></a>
+								</div>
+							</div>
+							<!--提供服务-->
+							<!--特色服务-->
+							<!--入住须知-->
+							<div class="intro padding_t clearfloat">
+								<h4 class="updetail fl_room fl" id="room">入住须知</h4>
+								<ul class="table fl fl_p ruzhu_marT">
+									<li>接待时间：<span class="shuxingzhi">08:00-22:00</span></li>
+									<li>最少入住：<span class="shuxingzhi">[[${xq.minday}]]天</span><b class="C-ff5d51 calendarB">查看可租状态</b></li>
+									<li>退房时间：<span class="shuxingzhi">12:00以前</span></li>
+									<li>最多入住：<span class="shuxingzhi">180天</span></li>
+									<li>入住时间：<span class="shuxingzhi">15:00以后</span></li>
+									<li>发票：<span class="shuxingzhi">
+					            		支持开发票
+					            			<b class="C-ff5d51 invoice_notes_btn">查看开票须知</b></span>
+									</li>
+									<li>外宾接待：<span class="shuxingzhi">不接待</span></li>
+								</ul>
+							</div>
+							<!--特色体验-->
+							<!--富婆提示-->
+							<div class="intro padding_t prompt clearfloat">
+								<h4 class="fl fl_room lineH26">富婆提示</h4>
+								<div class="fl fl_p">
+									<p class="lineH24 huan">入住后如您认为照片与房间实质有太大差异，富婆客服将对双方提出的证据进行认定，如属实，未入住天数的费用将全额退款。</p>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!--详情页第二部分结束-->
+				<!-- 详情页第三部分开始 -->
+				<style>
+					.no_score {
+						margin-bottom: 10px;
+						padding-bottom: 20px;
+					}
+				</style>
+				<div class="main-3" id="pingjia">
+					<div class="auto_m">
+						<!--房源评价-->
+						<a href="" name="pingjia"></a>
+						<div class="pingjia" name="pingjia">
+							<ul class="pingjiaTit no_score clearfloat">
+								<li id="landComment" class="on ping_up"><i>本房源评价</i>
+									<p id="landCommentP" style=""><span id="ffComment">(27)</span></p>
+								</li>
+								<li id="lordComment" class="ping_down"><i>房东收到的所有评价</i>
+									<p id="lordCommentP" style=""><span id="llComment">(27)</span></p>
+								</li>
+								<div class="pjContent" style="" id="pjContent">
+									<input name="content" id="hasContent" type="checkbox">
+									<label>有内容的评价</label>
+								</div>
+							</ul>
+							<!--本房源评价-->
+							<div class="attached" id="contact_roomer">
+								<div class="score" style="" id="lodge_score">
+									<div class="scoreL">
+										<p>房源总好评率</p>
+										<p class="C_00897b font24">100%</p>
+										<div class="star relave"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+									</div>
+									<div class="scoreR">
+										<div class="scoreR1 clearfloat"><span class="fl scoreR3_span">整洁卫生</span>
+											<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+										</div>
+										<div class="scoreR2 clearfloat"><span class="fl scoreR3_span">交通位置</span>
+											<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+										</div>
+										<div class="scoreR3 clearfloat"><span class="fl scoreR3_span">设施环境</span>
+											<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+										</div>
+										<div class="scoreR4 clearfloat"><span class="fl scoreR3_span">房东服务</span>
+											<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+										</div>
+										<div class="scoreR5 clearfloat"><span class="fl scoreR3_span">性价比</span>
+											<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+										</div>
+									</div>
+								</div>
+								<!--本房源评价End-->
+								<div id="lodgeunitPJ_cnt">
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/5ZGR2F2YDKVCYEU6YSCLUNSXQJDK99.jpg_54x54c.jpg" alt=""><span>136****5399</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">房间整洁干净，有点文艺范。特别是厨房，可以做点简单的饭菜，比在外面吃的要干净放心，附近有菜市场，什么都有，离地铁也近。房东服务态度也特别好，很耐心。外地来京旅游度假住这种小套间很舒适。</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="bottom absot">
+													<div class="time"><span>2019年08月入住</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/VBUEJP3GQ64TRD94VLJNDG336D23ET.jpg_54x54c.jpg" alt=""><span>m#_868768298</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">交通方便 设施齐全 棒棒哒</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="bottom absot">
+													<div class="time"><span>2019年01月入住</span></div>
+												</div>
+											</div>
+											<div class="roomer_reply relave clearfloat"><img src="/xiangqing/QDYGRGDS6EE7J3GBR5YUKVT6X8SU2Z.jpg_150x150c.jpg" alt="" class="fl roomer_toux">
+												<div class="reply_cnt fl">
+													<h4>房东回复：</h4>
+													<div>这才是想要的民宿的样子呢，希望所有的人都能住到舒适的房子</div>
+													<div class="bottom absot reply_time">
+														<div class="time"><span>2019-01-23 00:00</span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/5ZGR2F2YDKVCYEU6YSCLUNSXQJDK99.jpg_54x54c.jpg" alt=""><span>m#_876994177</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">环境不错 地方一定得按发的路线找 电视机都是坏的 床有点小 其他还行</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="bottom absot">
+													<div class="time"><span>2019年01月入住</span></div>
+												</div>
+											</div>
+											<div class="roomer_reply relave clearfloat"><img src="/xiangqing/QDYGRGDS6EE7J3GBR5YUKVT6X8SU2Z.jpg_150x150c.jpg" alt="" class="fl roomer_toux">
+												<div class="reply_cnt fl">
+													<h4>房东回复：</h4>
+													<div>就像是迷宫一样，但是跟着我的指引图就没有问题啦哈哈哈，非常抱歉电视的问题啦，会尽快改进，争取下次吧其他还行换成特别好</div>
+													<div class="bottom absot reply_time">
+														<div class="time"><span>2019-01-23 00:00</span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/ADJDTYJVJVDXYPDJWWPRDBWGLWUEXS.jpg_54x54c.jpg" alt=""><span>奥利奥olio</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">系统默认好评！</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年12月入住</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/7KXK3KZT8QLREY2HUYTZPFD3VPHHFX.jpg_54x54c.jpg" alt=""><span>186****6663</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">系统默认好评！</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年12月入住</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/9Q9J28QBYT9ZESFQG4VWMY3KWVXAQW.jpg_54x54c.jpg" alt=""><span>135****6438</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">系统默认好评！</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年12月入住</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/37MMVGGF5G5SZ3LVHG6H4H6WPXGXH8.jpg_54x54c.jpg" alt=""><span>m#_862276903</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">小区有三个门，一定要对照房东给的照片仔细找不同，否则就会找错哦。家里两个电视，两个都是坏的，还好我有ipad里的小电影，否则没法度过漫漫长夜了嘤。小区门口的驴肉火烧和汤很好吃，某人饿坏了一口气吃了三个哇。如果有机会再路过北京，再来回味一下这温馨的小屋子啦啦啦。</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年12月入住</span></div>
+												</div>
+											</div>
+											<div class="roomer_reply relave clearfloat"><img src="/xiangqing/QDYGRGDS6EE7J3GBR5YUKVT6X8SU2Z.jpg_150x150c.jpg" alt="" class="fl roomer_toux">
+												<div class="reply_cnt fl">
+													<h4>房东回复：</h4>
+													<div>感谢您宝贵的评价，很高兴您对我房子感到满意，欢迎亲下次再来入住哦</div>
+													<div class="bottom absot reply_time">
+														<div class="time"><span>2018-12-17 00:00</span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/9Q9J28QBYT9ZESFQG4VWMY3KWVXAQW.jpg_54x54c.jpg" alt=""><span>188****1616</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">房子很整洁，地理位置也很不错哟！房东人也很不错。好房子必须全五星！</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年12月入住</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/ZR5TDCXZHURKMJXYSGXKBJ6KWQNM4V.jpg_54x54c.jpg" alt=""><span>m#_876993723</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">房屋环境很好。房东也特别亲切.很干净。虽说是一房一换一打扫。但是房东会主动询问需不需要打扫。换卫生用品。服务很贴心。</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年11月入住</span></div>
+												</div>
+											</div>
+											<div class="roomer_reply relave clearfloat"><img src="/xiangqing/QDYGRGDS6EE7J3GBR5YUKVT6X8SU2Z.jpg_150x150c.jpg" alt="" class="fl roomer_toux">
+												<div class="reply_cnt fl">
+													<h4>房东回复：</h4>
+													<div>感谢您宝贵的评价，很高兴您对我房子感到满意，欢迎亲下次再来入住哦</div>
+													<div class="bottom absot reply_time">
+														<div class="time"><span>2018-12-12 00:00</span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/FJUT8NVVNAHDLYQPB8SHVVWUM7YM49.jpg_54x54c.jpg" alt=""><span>m#_876994163</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">满分，服务装修，卫生完美</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年11月入住</span></div>
+												</div>
+											</div>
+											<div class="roomer_reply relave clearfloat"><img src="/xiangqing/QDYGRGDS6EE7J3GBR5YUKVT6X8SU2Z.jpg_150x150c.jpg" alt="" class="fl roomer_toux">
+												<div class="reply_cnt fl">
+													<h4>房东回复：</h4>
+													<div>感谢您宝贵的评价，很高兴您对我房子感到满意，欢迎亲下次再来入住哦</div>
+													<div class="bottom absot reply_time">
+														<div class="time"><span>2018-12-12 00:00</span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="page_turn" id="lodgeunitPJ_cntpage">
+										<a class="pg-active" href="javascript:loadPageComment(&#39;1&#39;,&#39;1&#39;)" rel="nofollow">1</a>
+										<a class="" href="javascript:loadPageComment(&#39;2&#39;,&#39;1&#39;)" rel="nofollow">2</a>
+										<a class="" href="javascript:loadPageComment(&#39;3&#39;,&#39;1&#39;)" rel="nofollow">3</a>
+										<a href="javascript:loadPageComment(&#39;2&#39;,&#39;1&#39;)" rel="nofollow" class="up-page">&gt;</a>
+									</div>
+								</div>
+							</div>
+
+							<!--房东收到的所有房源评价-->
+							<div class="attached" id="attached_home02" style="display: none;">
+								<div class="score" style="" id="landlord_score">
+									<div class="scoreL">
+										<p>房东总好评率</p>
+										<p class="C_00897b font24">100%</p>
+										<div class="star relave"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+									</div>
+									<div class="scoreR">
+										<div class="scoreR1 clearfloat"><span class="fl scoreR3_span">整洁卫生</span>
+											<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+										</div>
+										<div class="scoreR2 clearfloat"><span class="fl scoreR3_span">交通位置</span>
+											<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+										</div>
+										<div class="scoreR3 clearfloat"><span class="fl scoreR3_span">设施环境</span>
+											<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+										</div>
+										<div class="scoreR4 clearfloat"><span class="fl scoreR3_span">房东服务</span>
+											<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+										</div>
+										<div class="scoreR5 clearfloat"><span class="fl scoreR3_span">性价比</span>
+											<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:100%"></span></div>
+										</div>
+									</div>
+								</div>
+								<!--本房东评价End-->
+								<div id="lordPJ_cnt">
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/5ZGR2F2YDKVCYEU6YSCLUNSXQJDK99.jpg_54x54c.jpg" alt=""><span>136****5399</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">房间整洁干净，有点文艺范。特别是厨房，可以做点简单的饭菜，比在外面吃的要干净放心，附近有菜市场，什么都有，离地铁也近。房东服务态度也特别好，很耐心。外地来京旅游度假住这种小套间很舒适。</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="more_room_instro absot">
+													<a href="javasrcipt:void(0)" th:text="${houseaddress}"><span class="absot"></span>【国贸】CBD/劲松地铁三里屯地中海一居</a>
+												</div>
+												<div class="bottom absot">
+													<div class="time"><span>2019年08月入住</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/VBUEJP3GQ64TRD94VLJNDG336D23ET.jpg_54x54c.jpg" alt=""><span>m#_868768298</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">交通方便 设施齐全 棒棒哒</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="more_room_instro absot">
+													<a href="" target="_blank"><span class="absot"></span>【国贸】CBD/劲松地铁三里屯地中海一居</a>
+												</div>
+												<div class="bottom absot">
+													<div class="time"><span>2019年01月入住</span></div>
+												</div>
+											</div>
+											<div class="roomer_reply relave clearfloat"><img src="/xiangqing/QDYGRGDS6EE7J3GBR5YUKVT6X8SU2Z.jpg_150x150c.jpg" alt="" class="fl roomer_toux">
+												<div class="reply_cnt fl">
+													<h4>房东回复：</h4>
+													<div>这才是想要的民宿的样子呢，希望所有的人都能住到舒适的房子</div>
+													<div class="bottom absot reply_time">
+														<div class="time"><span>2019-01-23 00:00</span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/5ZGR2F2YDKVCYEU6YSCLUNSXQJDK99.jpg_54x54c.jpg" alt=""><span>m#_876994177</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">环境不错 地方一定得按发的路线找 电视机都是坏的 床有点小 其他还行</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="more_room_instro absot">
+													<a href="" target="_blank"><span class="absot"></span>【国贸】CBD/劲松地铁三里屯地中海一居</a>
+												</div>
+												<div class="bottom absot">
+													<div class="time"><span>2019年01月入住</span></div>
+												</div>
+											</div>
+											<div class="roomer_reply relave clearfloat"><img src="/xiangqing/QDYGRGDS6EE7J3GBR5YUKVT6X8SU2Z.jpg_150x150c.jpg" alt="" class="fl roomer_toux">
+												<div class="reply_cnt fl">
+													<h4>房东回复：</h4>
+													<div>就像是迷宫一样，但是跟着我的指引图就没有问题啦哈哈哈，非常抱歉电视的问题啦，会尽快改进，争取下次吧其他还行换成特别好</div>
+													<div class="bottom absot reply_time">
+														<div class="time"><span>2019-01-23 00:00</span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/ADJDTYJVJVDXYPDJWWPRDBWGLWUEXS.jpg_54x54c.jpg" alt=""><span>奥利奥olio</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">系统默认好评！</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="more_room_instro absot">
+													<a href="" target="_blank"><span class="absot"></span>【国贸】CBD/劲松地铁三里屯地中海一居</a>
+												</div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年12月入住</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/7KXK3KZT8QLREY2HUYTZPFD3VPHHFX.jpg_54x54c.jpg" alt=""><span>186****6663</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">系统默认好评！</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="more_room_instro absot">
+													<a href="" target="_blank"><span class="absot"></span>【国贸】CBD/劲松地铁三里屯地中海一居</a>
+												</div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年12月入住</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/9Q9J28QBYT9ZESFQG4VWMY3KWVXAQW.jpg_54x54c.jpg" alt=""><span>135****6438</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">系统默认好评！</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="more_room_instro absot">
+													<a href="" target="_blank"><span class="absot"></span>【国贸】CBD/劲松地铁三里屯地中海一居</a>
+												</div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年12月入住</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/37MMVGGF5G5SZ3LVHG6H4H6WPXGXH8.jpg_54x54c.jpg" alt=""><span>m#_862276903</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">小区有三个门，一定要对照房东给的照片仔细找不同，否则就会找错哦。家里两个电视，两个都是坏的，还好我有ipad里的小电影，否则没法度过漫漫长夜了嘤。小区门口的驴肉火烧和汤很好吃，某人饿坏了一口气吃了三个哇。如果有机会再路过北京，再来回味一下这温馨的小屋子啦啦啦。</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="more_room_instro absot">
+													<a href="" target="_blank"><span class="absot"></span>【国贸】CBD/劲松地铁三里屯地中海一居</a>
+												</div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年12月入住</span></div>
+												</div>
+											</div>
+											<div class="roomer_reply relave clearfloat"><img src="/xiangqing/QDYGRGDS6EE7J3GBR5YUKVT6X8SU2Z.jpg_150x150c.jpg" alt="" class="fl roomer_toux">
+												<div class="reply_cnt fl">
+													<h4>房东回复：</h4>
+													<div>感谢您宝贵的评价，很高兴您对我房子感到满意，欢迎亲下次再来入住哦</div>
+													<div class="bottom absot reply_time">
+														<div class="time"><span>2018-12-17 00:00</span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/9Q9J28QBYT9ZESFQG4VWMY3KWVXAQW.jpg_54x54c.jpg" alt=""><span>188****1616</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">房子很整洁，地理位置也很不错哟！房东人也很不错。好房子必须全五星！</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="more_room_instro absot">
+													<a href="" target="_blank"><span class="absot"></span>【国贸】CBD/劲松地铁三里屯地中海一居</a>
+												</div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年12月入住</span></div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/ZR5TDCXZHURKMJXYSGXKBJ6KWQNM4V.jpg_54x54c.jpg" alt=""><span>m#_876993723</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">房屋环境很好。房东也特别亲切.很干净。虽说是一房一换一打扫。但是房东会主动询问需不需要打扫。换卫生用品。服务很贴心。</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="more_room_instro absot">
+													<a href="" target="_blank"><span class="absot"></span>【国贸】CBD/劲松地铁三里屯地中海一居</a>
+												</div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年11月入住</span></div>
+												</div>
+											</div>
+											<div class="roomer_reply relave clearfloat"><img src="/xiangqing/QDYGRGDS6EE7J3GBR5YUKVT6X8SU2Z.jpg_150x150c.jpg" alt="" class="fl roomer_toux">
+												<div class="reply_cnt fl">
+													<h4>房东回复：</h4>
+													<div>感谢您宝贵的评价，很高兴您对我房子感到满意，欢迎亲下次再来入住哦</div>
+													<div class="bottom absot reply_time">
+														<div class="time"><span>2018-12-12 00:00</span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="pingjiaDes clearfloat">
+										<div class="roomer_photo fl"><img src="/xiangqing/FJUT8NVVNAHDLYQPB8SHVVWUM7YM49.jpg_54x54c.jpg" alt=""><span>m#_876994163</span></div>
+										<div id="houseDes" class="fl">
+											<div class="pingjia_tiao relave">
+												<div class="des">
+													<div class="pingjia_cnt1">满分，服务装修，卫生完美</div><span class="more_ping relave" style="display: none;"><i class="ping_txt">更多</i><i class="absot more_btn"></i></span></div>
+												<div class="more_room_instro absot">
+													<a href="" target="_blank"><span class="absot"></span>【国贸】CBD/劲松地铁三里屯地中海一居</a>
+												</div>
+												<div class="bottom absot">
+													<div class="time"><span>2018年11月入住</span></div>
+												</div>
+											</div>
+											<div class="roomer_reply relave clearfloat"><img src="/xiangqing/QDYGRGDS6EE7J3GBR5YUKVT6X8SU2Z.jpg_150x150c.jpg" alt="" class="fl roomer_toux">
+												<div class="reply_cnt fl">
+													<h4>房东回复：</h4>
+													<div>感谢您宝贵的评价，很高兴您对我房子感到满意，欢迎亲下次再来入住哦</div>
+													<div class="bottom absot reply_time">
+														<div class="time"><span>2018-12-12 00:00</span></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="page_turn" id="lordPJ_cntpage">
+										<a class="pg-active" href="javascript:loadPageComment(&#39;1&#39;,&#39;2&#39;)" rel="nofollow">1</a>
+										<a class="" href="javascript:loadPageComment(&#39;2&#39;,&#39;2&#39;)" rel="nofollow">2</a>
+										<a class="" href="javascript:loadPageComment(&#39;3&#39;,&#39;2&#39;)" rel="nofollow">3</a>
+										<a href="javascript:loadPageComment(&#39;2&#39;,&#39;2&#39;)" rel="nofollow" class="up-page">&gt;</a>
+									</div>
+								</div>
+								<!--房源评价结束-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 详情页第三部分结束 -->
+		
+			</div>
+			<!-- 详情页第四部分结束 -->
+		</div><script type="text/javascript " charset="UTF-8 " src="/xiangqing/online "></script>
+
+<!--右侧浮层-->
+	    <!--右侧浮层  无专题-->
+    <!-- <link href="//staticnew.mayi.com/resourcesWeb/v201510/css/right_erduo.css " rel="stylesheet "> -->
+    <!-- 右侧浮层 有专题 -->
+    <link href="/xiangqing/right_erduo_tp.css " rel="stylesheet ">
+   	<div class="layer " id="top_div " style="height: 175px; display: none; ">
+    <!-- <div class="layer " id="top_div "> --> <!-- style="height:175px " -->
+        <div class="layer_year " hidden=" "><!-- hidden -->
+			<!--下面a链接地址为专题页-->
+			
+			<!--
+			<a href="/cleanRecruitInfo/ " target="_blank " _mayi_rp="webaround|rightlayer|cleaning ">
+				<div class='pos_img absot' style="background-image:url(//staticnew.mayi.com/duanzu/resourcesWeb/cleanRecruit/images/index_clean.png); "></div>
+			</a>
+			<a href="/tp_joinwe " target="_blank " _mayi_rp="webaround|rightlayer|tp_joinwe ">
+				<div class='pos_img absot' style="background-image:url(//staticnew.mayi.com/resourcesWeb/images/joinwe.png); "></div>
+			</a>
+			
+			<a href="http://iyoujia.mayi.com/mayilod/ " target="_blank " _mayi_rp="webaround|rightlayer|mayilod ">
+				<div class='pos_img absot' style="background-image:url(//staticnew.mayi.com/resourcesWeb/images/mayilod.jpg); "></div>
+			</a>
+			
+			<a href="/tp_worldcup2018 " target="_blank " _mayi_rp="webaround|rightlayer|worldcup ">
+				<div class='pos_img absot' style="background-image:url(https://i1.mayi.com/mayi31/M56/FF/NH/ZH7PZV25UFBRE5TG7TWPH6W3R5L8HQ.jpg); "></div>
+			</a>
+			-->
+		</div>
+		<dl style="position:relative; ">
+		<!-- 四元组控制下载元素显示情况 -->
+    		<dt id="app-click "><a href="" target="_blank " _mayi_rp="webaround|rightlayer|firstorder "><b>下载APP<br><span style="color:#ff5d51 ">立送500元</span></b></a></dt>
+			<!--<dt id="app-click " style="border-top:0px " ><a href="/activity/app50 " target="_blank " _mayi_rp="webaround|rightlayer|firstorder "><b>APP首单<font>立减5元</font></b></a></dt> --> 
+    		<dd><a href=" " target="_blank " _mayi_rp="webaround|rightlayer|protect "></a></dd>       			
+    		<dd class="none_border "><a class="la-03 " href="javascript:void(0) "></a></dd>
+		</dl>
+		<!-- <img src="https://i1.mayi.com/mayi55/M47/EO/SY/ZYJAYNQPDK7CE5R5Y3UZJFX4DQPM2R.jpg_110x110c.jpg " class="app-img rt-app " > -->
+		<div class="app-img ">
+			<div class="fl app-img-fl ">
+		    	<p class="app-img-uup ">扫码下载app</p>
+				<img src="/xiangqing/5K5ERFPBFKS5ZL6K6G96SDJE36LNUA.jpg " class=" rt-app ">
+		   		<p class="app-img-udp ">立送500元大礼包</p>
+			</div>
+			<div class=" ">
+	    		<p class="app-img-dup ">扫码快速预订</p>
+				<img src="/xiangqing/JJ8GRMND8SDJCP267PTG7BW8S3AV5T.jpg " class="rt-app ">
+	    		<p class="app-img-ddp ">富婆短租小程序</p>
+			</div>
+		</div>
+	</div>    
+	<!--底部浮层显示，默认是隐藏-->
+	<script type="text/javascript " src="/xiangqing/rightlayer.js.下载 "></script><!--公共尾部-->
+<link rel="stylesheet " href="/xiangqing/seoFooter.css ">
+<script src="/xiangqing/seoFooter.js.下载 "></script><script src="/xiangqing/11.0.1.js.下载 " id="sozz "></script><script charset="utf-8 " src="./xiangqing/ab77b6ea7f3fbf79.js.下载 "></script>
+<div class="foot ">
+	<div class="w1190 pb20 clearfloat ">
+	
+        	<div class="one-line " style="height:40px ">
+		    	 富婆短租网<a href=" ">北京短租房</a>分站，为您推荐<a href=" ">北京市朝阳日租房</a>以及短租公寓、北京短租房预定、北京日租房、北京家庭旅馆、北京民宿等出租房房源价格、预订信息；短租房地址：北京朝阳区农光里甲-1号楼，比酒店住宿便宜50%，公寓100%真实入住点评，真实可靠。
+		    </div>
+	    <!--2017/9/4 update by hll-->
+	    <div class="link_end ">
+	        <div class="city_classify ">
+	            <ul class="clearfloat ">
+		            		<li class="choiced_bg_color ">热门城市</li>
+		            		<li class=" ">短租别墅推荐</li>
+	            		<li class=" ">手机版</li>
+	            	
+	            </ul>
+	        </div>
+	        <div class="big_classify_box ">
+		        			<div class="classify_box other_name " style="display: block; height: 75px; ">
+				        		<ul class="clearfloat ">
+									<li><a target="_blank " title="北京 " href="javascript:void(0)">北京民宿短租</a></li>
+									<li><a target="_blank " title="上海 " href="javascript:void(0)">上海民宿短租</a></li>
+									<li><a target="_blank " title="三亚 " href="javascript:void(0)">三亚民宿短租</a></li>
+									<li><a target="_blank " title="成都 " href="javascript:void(0)">成都民宿短租</a></li>
+									<li><a target="_blank " title="青岛 " href="javascript:void(0)">青岛民宿短租</a></li>
+									<li><a target="_blank " title="广州 " href="javascript:void(0)">广州民宿短租</a></li>
+									<li><a target="_blank " title="杭州 " href="javascript:void(0)">杭州民宿短租</a></li>
+							
+		        				</ul>
+		        				<div class="footer_open " style="display: block; "></div>
+			                    <div class="footer_close " style="display: none; "></div>
+	        				</div>
+        				
+        				
+        				
+		                
+			        	
+	        					        	
+	        			
+			        	
+        				
+        				
+        				
+		                
+			        	
+		        			<div class="classify_box " style="display: none; height: 75px; ">
+		        				<ul class="clearfloat ">
+				        			<li><a target="_blank" title="北京 " href="javascript:void(0) ">北京短租别墅</a></li>
+									<li><a target="_blank " title="上海 " href="javascript:void(0) ">上海短租别墅</a></li>
+									<li><a target="_blank " title="广州 " href="javascript:void(0) ">广州短租别墅</a></li>
+									<li><a target="_blank " title="深圳 " href="javascript:void(0) ">深圳短租别墅</a></li>
+									<li><a target="_blank " title="香港 " href="javascript:void(0) ">香港短租别墅</a></li>
+									<li><a target="_blank " title="成都 " href="javascript:void(0) ">成都短租别墅</a></li>
+									<li><a target="_blank " title="重庆 " href="javascript:void(0) ">重庆短租别墅</a></li>
+									<li><a target="_blank " title="青岛 " href="javascript:void(0) ">青岛短租别墅</a></li>
+									<li><a target="_blank " title="大连 " href="javascript:void(0) ">大连短租别墅</a></li>
+									<li><a target="_blank " title="厦门 " href="javascript:void(0) ">厦门短租别墅</a></li>
+									<li><a target="_blank " title="三亚 " href="javascript:void(0) ">三亚短租别墅</a></li>
+									<li><a target="_blank " title="杭州 " href="javascript:void(0) ">杭州短租别墅</a></li>
+									<li><a target="_blank " title="苏州 " href="javascript:void(0) ">苏州短租别墅</a></li>
+									<li><a target="_blank " title="南京 " href="javascript:void(0) ">南京短租别墅</a></li>
+									<li><a target="_blank " title="武汉 " href="javascript:void(0) ">武汉短租别墅</a></li>
+									<li><a target="_blank " title="西安 " href="javascript:void(0) ">西安短租别墅</a></li>
+									<li><a target="_blank " title="济南 " href="javascript:void(0) ">济南短租别墅</a></li>
+									<li><a target="_blank " title="沈阳 " href="javascript:void(0) ">沈阳短租别墅</a></li>
+									<li><a target="_blank " title="郑州 " href="javascript:void(0) ">郑州短租别墅</a></li>
+									<li><a target="_blank " title="太原 " href="javascript:void(0) ">太原短租别墅</a></li>
+								</ul>
+							</div>
+	        					        	
+	        			
+			        	
+		        	<div class="classify_box other_name " style="display: none;height: 75px; ">
+	    				<ul class="clearfloat ">
+    							<li><a target="_blank " href="http://m.mayi.com/room/854485507 " title="【国贸】CBD/劲松地铁三里屯地中海一居 ">【国贸】CBD/劲松地铁三里屯地中海一居</a></li>
+		        		</ul>
+					</div>
+	        </div>
+		        <!--订单轮播显示-->
+				<div class="carousel_box ">
+					<span>最新预订：</span>
+					<div class="winBox ">
+						<ul class="cont-ul " style="left: -1487px; ">
+									<li><a href="javascript:void(0)">加州民宿/嘉州地铁站旁/观音桥商圈/单间44分钟前被用户*****5615预定</a></li>
+									<li><a href="javascript:void(0)">南广场/加州民宿/嘉州轻轨观音桥/单间K47分钟前被用户*****5615预定</a></li>
+									<li><a href="javascript:void(0)">（逸馨）北站万达日租短租公寓 欧式房59分钟前被用户*****5876预定</a></li>
+									<li><a href="javascript:void(0)">遂溪边裙岛海边别墅，回家的感觉59分钟前被用户*****4464预定</a></li>
+									<li><a href="javascript:void(0) ">遂溪边裙岛海边别墅，回家的感觉1小时10分钟前被用户*****4464预定</a></li>
+									<li><a href="javascript:void(0)">天安门崇文门王府井东单协和同仁医院儿研所1小时22分钟前被用户*****5331预定</a></li>
+									<li><a href="javascript:void(0)">宽窄巷子春熙路锦里地铁口三居室可住七人1小时23分钟前被用户*****622预定</a></li>
+									<li><a href="javascript:void(0)">暗格调&amp;春熙路门口/双地铁/太古里两居1小时33分钟前被用户*****4236预定</a></li>
+									<li><a href="javascript:void(0)">加州民宿/嘉州地铁站旁/观音桥商圈/单间44分钟前被用户*****5615预定</a></li>
+									<li><a href="javascript:void(0)">南广场/加州民宿/嘉州轻轨观音桥/单间K47分钟前被用户*****5615预定</a></li>
+									<li><a href="javascript:void(0)">（逸馨）北站万达日租短租公寓 欧式房59分钟前被用户*****5876预定</a></li>
+									<li><a href="javascript:void(0)">遂溪边裙岛海边别墅，回家的感觉59分钟前被用户*****4464预定</a></li>
+									<li><a href="javascript:void(0)">遂溪边裙岛海边别墅，回家的感觉1小时10分钟前被用户*****4464预定</a></li>
+									<li><a href="javascript:void(0)">天安门崇文门王府井东单协和同仁医院儿研所1小时22分钟前被用户*****5331预定</a></li>
+									<li><a href="javascript:void(0)">宽窄巷子春熙路锦里地铁口三居室可住七人1小时23分钟前被用户*****622预定</a></li>
+									<li><a href="javascript:void(0)">暗格调&amp;春熙路门口/双地铁/太古里两居1小时33分钟前被用户*****4236预定</a></li>
+						</ul>
+					</div>
+				</div>
+				<!--订单轮播显示 结束-->
+		</div>
+		<div class="mt50 ">
+			<p class="t-center f12 c777776 ">客户服务：400-028-6868 |
+				<a href="http://www.mayi.com/tenantlogin/ " target="_blank " class="c777776 ">&nbsp;用户答疑&nbsp;|</a>
+				<a href="http://www.mayi.com/aboutcompany/ " target="_blank " class="c777776 ">&nbsp;公司信息&nbsp;|</a>
+				<a href="http://www.mayi.com/sitemap/ " target="_blank " class="c777776 ">&nbsp;网站地图&nbsp;|</a>
+				<a href="http://www.mayi.com/ " target="_blank " class="c777776 ">&nbsp;短租房&nbsp;|</a>
+				<a href="http://www.mayi.com/activity/app50 " target="_blank " class="c777776 ">&nbsp;app下载&nbsp;|</a>关注我们
+				<span class="mr10 cursorpt showinfo relave " style="display:inline-block;vertical-align:middle; ">
+		            <img src="./xiangqing/weixin_logo_s.png ">
+		            <img src="./xiangqing/weixin.jpg " class="head_pop absot " style="bottom:24px;left:-32px; ">
+		        </span>
+				<span class="cursorpt " style="display:inline-block;vertical-align:middle; ">
+		            <img src="./xiangqing/xinlang_logo_s.png " onclick="sinaWeibo(); ">
+		        </span>
+			</p>
+			<!--公司切换-->
+			<p class="t-center f12 c777776 ">网站备案/许可证号：京ICP备12051504号-1 <a class="c777776 " href="https://i1.mayi.com/mayi89/M74/TG/UV/NT8CCV8D7CX72KAQWSX5K6KX858T7P.jpg " target="_blank ">营业执照编号：105259760</a> 易云游网络技术（北京）有限公司</p>
+		</div>
+	</div>
+</div>
+<!--底部浮层显示，默认是隐藏-->
+<!--公共尾部结束-->
+<!-- Footer -->
+<!-- 登录弹窗 -->
+<div class="loginbox " id="loginboxdiv " nexturl="none " name="loginboxdiv " style="display:none; ">
+	<a class="login-colse " id="loginclose " name="loginclose " onclick=" " href="javascript:void(0) "></a>
+    <div class="login-ways clearfloat ">
+    	<div class="fl phone-account ">
+            <ul class="c322c27 clearfloat f18 ">
+                <li class="phoneway_current " id="changeloginbyma ">手机验证码登录</li>
+                <li class="mayiway " id="changeloginbyup ">帐号密码登录</li>
+            </ul>
+            <div class="login-phone-account ">
+            	<!-- 手机登陆 -->		
+                <div class="login-input " id="loginbymadiv " name="loginbymadiv ">
+	            	<input type="hidden " id="li_num " value="0 ">
+	            	<input type="hidden " id="code_num " value="86 ">
+	                <div class="input ">
+	                    <span class="phone-icon "></span>
+	                    <input class="dlargeinput " type="text " id="loginmobile " name="loginmobile " placeholder="手机号 " value=" " onafterpaste="mobileRepAndSetPos(this,/[^\d.]/g,&#39;&#39;) " onkeyup="mobileRepAndSetPos(this,/[^\d.]/g,&#39;&#39;) " maxlength="11 ">
+	                    <div class="choice_phone_type ">
+							<i code="86 ">+86</i>
+							<span class="UP_down choice_nation_open "></span>
+						</div>
+	                </div>
+	                <div class="nation_list ">
+						<ul class="continent_list ">
+							<li class=" ">亚洲</li>
+							<li class=" ">欧洲</li>
+							<li class=" ">美洲</li>
+							<li class=" ">大洋洲</li>
+						</ul>
+						<ul class="nation_tel_list ">
+							<!-- countrycode window-->
+							<li style="display: block; ">
+	<a href="javascript:void(0); " value="86 ">中国大陆&nbsp;&nbsp;+86</a>
+	<a href="javascript:void(0); " value="82 ">韩国&nbsp;&nbsp;+82</a>
+	<a href="javascript:void(0); " value="60 ">马来西亚&nbsp;&nbsp;+60</a>
+	<a href="javascript:void(0); " value="81 ">日本&nbsp;&nbsp;+81</a>
+	<a href="javascript:void(0); " value="66 ">泰国&nbsp;&nbsp;+66</a>
+	<a href="javascript:void(0); " value="65 ">新加坡&nbsp;&nbsp;+65</a>
+	<a href="javascript:void(0); " value="91 ">印度&nbsp;&nbsp;+91</a>
+	<a href="javascript:void(0); " value="62 ">印度尼西亚&nbsp;&nbsp;+62</a>
+	<a href="javascript:void(0); " value="84 ">越南&nbsp;&nbsp;+84</a>
+	<a href="javascript:void(0); " value="853 ">中国澳门&nbsp;&nbsp;+853</a>
+	<a href="javascript:void(0); " value="852 ">中国香港&nbsp;&nbsp;+852</a>
+	<a href="javascript:void(0); " value="886 ">中国台湾&nbsp;&nbsp;+886</a>
+</li>
+<li style="display: none; ">
+	<a href="javascript:void(0); " value="49 ">德国&nbsp;&nbsp;+49</a>
+	<a href="javascript:void(0); " value="7 ">俄罗斯&nbsp;&nbsp;+7</a>
+	<a href="javascript:void(0); " value="33 ">法国&nbsp;&nbsp;+33</a>
+	<a href="javascript:void(0); " value="380 ">乌克兰&nbsp;&nbsp;+380</a>
+	<a href="javascript:void(0); " value="34 ">西班牙&nbsp;&nbsp;+34</a>
+	<a href="javascript:void(0); " value="39 ">意大利&nbsp;&nbsp;+39</a>
+	<a href="javascript:void(0); " value="44 ">英国&nbsp;&nbsp;+44</a>
+</li>
+<li style="display: none; ">
+	<a href="javascript:void(0); " value="55 ">巴西&nbsp;&nbsp;+55</a>
+	<a href="javascript:void(0); " value="1 ">加拿大&nbsp;&nbsp;+1</a>
+	<a href="javascript:void(0); " value="1 ">美国&nbsp;&nbsp;+1</a>
+</li>
+<li style="display: none; ">
+	<a href="javascript:void(0); " value="61 ">澳大利亚&nbsp;&nbsp;+61</a>
+	<a href="javascript:void(0); " value="64 ">新西兰&nbsp;&nbsp;+64</a>
+</li>						</ul>
+					</div>
+	                <div class="largeinputbox small-top clearfix ">
+	                    <div class="dinput fl ">
+	                        <span class="verification-icon "></span>
+	                        <input class="dsmallinput " type="text " id="imagecode " placeholder="图形验证码 " value=" ">
+	                    </div>
+	                    <div class="yz-code fr ">
+	                          <img src="http://www.mayi.com/room/854485507 " id="loginauthimage " title="点击刷新 ">
+	                    </div>
+	                </div>
+	                <div class="largeinputbox small-top clearfix " id="maerrordiv ">
+	                    <div class="dinput fl " id="maerrordiv ">
+	                        <span class="password-icon "></span>
+	                        <input class="dsmallinput " type="text " id="loginphonecode " name="loginphonecode " placeholder="短信验证码 " value=" ">
+	                    </div>
+	                    <div class="yz-code fr ">
+	                        <input class="sendnumber defaultsend " type="button " id="getloginphonecode " name="getloginphonecode " value="获取验证码 ">
+	                    </div>
+	                </div>
+	                <div class="logincheckbox large-top clearfix ">
+	                    <label class="fl ">
+	                        <input class="selectcheckbox " type="checkbox " name="rememberloginstate " checked="checked " value=" ">自动登录
+	                    </label>				
+	                </div>	
+	                <div class="logincheckbox large-top clearfix "><font>未注册的手机号将自动创建为富婆短租帐户</font></div>
+	                <div class="btn-wrap btnpdt20 ">
+	                    <a href="javascript:void(0) " id="loginbymado ">登录</a>
+	                </div>
+            	</div>
+            	<!-- 手机登陆 end  -->	
+            	<!-- 密码登陆 start -->
+	            <div class="login-input " id="loginbyupdiv " name="loginbyupdiv " style="display:none; ">
+	            	<input type="hidden " id="li_num_1 " value="0 ">
+	            	<input type="hidden " id="code_num_1 " value="86 ">
+	                <div class="input ">
+	                    <span class="user-icon "></span>
+	                    <input class="dlargeinput " type="text " id="loginnamein " name="loginnamein " placeholder="手机号/邮箱/账号 " value=" " autocomplete="off ">
+	                	<div class="choice_phone_type_1 ">
+							<i tag="CN " code="86 ">+86</i>
+							<span class="UP_down choice_nation_open "></span>
+						</div>
+	                </div>
+	                <div class="nation_list_1 ">
+						<ul class="continent_list_1 ">
+							<li class=" ">亚洲</li>
+							<li class=" ">欧洲</li>
+							<li class=" ">美洲</li>
+							<li class=" ">大洋洲</li>
+						</ul>
+						<ul class="nation_tel_list_1 ">
+							<!-- countrycode window-->
+<li style="display: block; ">
+	<a href="javascript:void(0); " value="86 ">中国大陆&nbsp;&nbsp;+86</a>
+	<a href="javascript:void(0); " value="82 ">韩国&nbsp;&nbsp;+82</a>
+	<a href="javascript:void(0); " value="60 ">马来西亚&nbsp;&nbsp;+60</a>
+	<a href="javascript:void(0); " value="81 ">日本&nbsp;&nbsp;+81</a>
+	<a href="javascript:void(0); " value="66 ">泰国&nbsp;&nbsp;+66</a>
+	<a href="javascript:void(0); " value="65 ">新加坡&nbsp;&nbsp;+65</a>
+	<a href="javascript:void(0); " value="91 ">印度&nbsp;&nbsp;+91</a>
+	<a href="javascript:void(0); " value="62 ">印度尼西亚&nbsp;&nbsp;+62</a>
+	<a href="javascript:void(0); " value="84 ">越南&nbsp;&nbsp;+84</a>
+	<a href="javascript:void(0); " value="853 ">中国澳门&nbsp;&nbsp;+853</a>
+	<a href="javascript:void(0); " value="852 ">中国香港&nbsp;&nbsp;+852</a>
+	<a href="javascript:void(0); " value="886 ">中国台湾&nbsp;&nbsp;+886</a>
+</li>
+<li style="display: none; ">
+	<a href="javascript:void(0); " value="49 ">德国&nbsp;&nbsp;+49</a>
+	<a href="javascript:void(0); " value="7 ">俄罗斯&nbsp;&nbsp;+7</a>
+	<a href="javascript:void(0); " value="33 ">法国&nbsp;&nbsp;+33</a>
+	<a href="javascript:void(0); " value="380 ">乌克兰&nbsp;&nbsp;+380</a>
+	<a href="javascript:void(0); " value="34 ">西班牙&nbsp;&nbsp;+34</a>
+	<a href="javascript:void(0); " value="39 ">意大利&nbsp;&nbsp;+39</a>
+	<a href="javascript:void(0); " value="44 ">英国&nbsp;&nbsp;+44</a>
+</li>
+<li style="display: none; ">
+	<a href="javascript:void(0); " value="55 ">巴西&nbsp;&nbsp;+55</a>
+	<a href="javascript:void(0); " value="1 ">加拿大&nbsp;&nbsp;+1</a>
+	<a href="javascript:void(0); " value="1 ">美国&nbsp;&nbsp;+1</a>
+</li>
+<li style="display: none; ">
+	<a href="javascript:void(0); " value="61 ">澳大利亚&nbsp;&nbsp;+61</a>
+	<a href="javascript:void(0); " value="64 ">新西兰&nbsp;&nbsp;+64</a>
+</li>						</ul>
+					</div>
+	                <div class="input small-top ">
+	                    <span class="password-icon "></span>
+	                    <input class="dlargeinput " type="password " id="loginpassin " name="loginpassin " placeholder="密码 " value=" ">
+	                </div>
+	                <div class="largeinputbox small-top clearfix " id="uperrordiv ">
+	                    <div class="dinput fl " id="yui_3_5_1_1_1434542056373_108 ">
+	                        <span class="verification-icon "></span>
+	                        <input type="text " class="dsmallinput " id="imagecode1 " placeholder="图形验证码 " value=" ">
+	                    </div>
+	                    <div class="yz-code fr ">
+	                          <img src="http://www.mayi.com/room/854485507 " id="loginauthimage1 " title="点击刷新 ">
+	                    </div>
+	                </div>
+	                <div class="logincheckbox large-top clearfix ">
+	                    <label class="fl ">
+	                        <input class="selectcheckbox " type="checkbox " name="rememberpass " checked="checked " value=" ">自动登录
+	                    </label>				
+	                </div>	
+	                <div class="btn-wrap btnpdt20 ">
+	                    <a href="javascript:void(0) " id="loginbyupdo " _mayi_rp="web|condition|loginc ">登录</a>
+	                </div>
+	                <p class="otherwaytitle mt20 ">没有账号密码请 <a href="javascript:void(0) " id="changeloginbymwa ">使用手机验证码登录</a></p>
+	            </div>
+	            <!-- 密码登陆 end -->
+            </div>
+        </div>
+        <div class="fl t-center third-party ">
+        	<p class="f18 c322c27 mb20 ">其他登录方式</p>
+            <ul class="otherway c322c27 ">
+                <li class="wxway " id="loginbywx " _mayi_rp="web|condition|loginc ">微信登录</li>
+                <li class="sinaway " id="loginbysina " _mayi_rp="web|condition|loginc ">微博登录</li>
+                <li class="qqway " id="loginbyqq " _mayi_rp="web|condition|loginc ">QQ登录</li>
+            </ul>
+        </div>
+    </div>
+</div>	
+
+<!-- 登录弹窗 END --> 
+<!--公共尾部结束-->
+<script type="text/javascript " src="/xiangqing/layer.min.js.下载 "></script>
+<script type="text/javascript " src="/xiangqing/jQuery.md5.js.下载 "></script>
+<script type="text/javascript " src="/xiangqing/loginpc.js.下载 "></script>
+<style type="text/css ">
+.email{ position:fixed; bottom:0px; right:0px; width:190px; height:35px; line-height:35px; background:#e8e8e8; border:1px #CCCCCC solid; border-right:none; z-index:400000000;}
+.email a{ padding-left:10px; float:left; font-weight:normal; font-family:"宋体 "; font-size:12px; width:120px; box-shadow:1px 0px 0px 0px #ccc; border-right:1px #fff solid;}
+.email a img{ margin:12px 3px 0px 0px; float:left; width:16px; height:12px;}
+.imjs-status{color:#55aa39 !important}
+#webIM ul.tab-im .offline-icon,#webIM ul.tab-im .online-icon{background-position:0 !important}
+#webIM .all-list a.on, #webIM .all-list a.off{background-position:-239px -297px !important;color:#2883C3 !important}
+#webIM ul.tab-im a{color:#2883C3 !important}
+</style> 
+<script src="/xiangqing/wb.js.下载 " type="text/javascript " charset="utf-8 "></script><div><div class="qimo_chatpup " id="qimo_chatpup " style="display: none; right: 18px; bottom: 0px; width: 355px; height: 500px; "><iframe id="chatIframe " src="./xiangqing/moor_chat.html " height="100% " width="100% "></iframe><div id="maskChat "></div></div><div id="chatBtn " class="chatBtn " style="display: none; right: 18px; z-index: -100; background-color: rgb(25, 202, 166); border-radius: 5px 5px 0px 0px; bottom: -1px; padding: 8px 10px; "><img width="25px " height="25px " src="./xiangqing/1.png " style="margin: 0px 5px -6px 0px; "><span>咨询客服</span><span id="qimo_badge "></span></div><div id="qimo_showNewMsg " class="qimo_showNewMsg " style="display: none; "><div id="qimo_showNewMsg_box " class="qimo_showNewMsg_box "><div id="qimo_showNewMsg_title_box " class="qimo_showNewMsg_title_box "><img src="./xiangqing/agentLogo.png "><span id="qimo_showNewMsg_title " class="qimo_showNewMsg_title "></span></div> <div id="qimo_showNewMsg_content " class="qimo_showNewMsg_content "></div></div><span id="qimo_showNewMsg_close " class="qimo_showNewMsg_close ">x</span></div></div><script type="text/javascript " charset="UTF-8 " src="./xiangqing/online(1) "></script><div><div class="qimo_inviteBox " id="qimo_inviteBox " style="display: none; right: 10px; bottom: 10px; background: rgb(63, 184, 253); "><img class="qimo_invite_close " id="qimo_invite_close " src="./xiangqing/invite-close.png "><div class="qimo_inviteBox_top "><div class="qimo_inviteBox_top_img " id="qimo_inviteBox_top_img "><img id="qimo_inviteBox_img " src="./xiangqing/896beb70-d81a-11e7-b6e7-9da891414b0f.png "></div><div class="qimo_inviteBox_top_right " id="qimo_inviteBox_top_right "><p id="qimo_inviteBox_InviteWords ">欢迎咨询，请问有什么可以帮您的吗？</p><div class="qimo_inviteBox_top_button " id="qimo_inviteBox_top_button "><div id="invite_click_button_1 " class="divbuttons msie11PadTop " style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255); ">立即咨询</div><div id="invite_click_button_2 " class="divbuttons msie11PadTop " style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255); ">以后再说</div></div></div></div><div class="qimo_inviteBox_bottom "><textarea id="sendInviteText " placeholder="请输入您想要输入的内容... " rows="2 "></textarea><div id="sendInviteContent " class="sendInviteContent msie11PadTop " style="background: rgb(63, 184, 253); ">发送</div></div></div></div><div><div class="qimo_screenpop " id="qimo_screenpop " style="display: none "><div class="screendragbar " id="screendrag "></div><div class="qimo_headerimg " id="qimo_headerimg "><div class="screenminimg " style="display: none " id="screenminimg "><img src="./xiangqing/small.png "></div><div class="screenminimg " id="screenmaximg "><img src="./xiangqing/big.png "></div><div class="screenminimg " id="screencloseimg "><img src="./xiangqing/close(1).png " style="width: 16px;height: 16px; "></div></div> <div id="mask "></div><iframe id="screenIframe " src="./xiangqing/saved_resource.html " height="100% " width="100% " allow="microphone; camera "></iframe></div></div><div><div class="qimo_videopup " id="qimo_videopup " style="display: none "><div style=" " class="dragbar " id="drag "></div><div class="qimo_minimg " id="qimo_minimg "><img src="./xiangqing/small.png "></div><img src="./xiangqing/big.png " class="qimo_maximg " id="qimo_maximg " style="display: none "> <div id="mask "></div><iframe id="videoIframe " src="./xiangqing/saved_resource(15).html " height="100% " width="100% " allow="microphone; camera "></iframe></div></div>
+<!-- load statistics js -->
+<!--[statistics start]-->
+<!-- load End--><!-- Footer END -->
+<!-- 房间日历-->
+<div class="calend ">
+	<div class="shadow "></div>
+    <div id="calendar-box " class="calendar-box "> 
+        <!-- 房间日历显示 -->
+        <div class="select "><img src="./xiangqing/select_img.png " width="30 " height="30 "></div>	
+        <div class="calendar-meaning mt20 ">
+            <dl class="clearfix ">
+                <dt class="havehome "></dt>
+                <dd>有房</dd>
+                <dt class="special-price "></dt>
+                <dd>特殊价</dd>
+                <dt class="nohome "></dt>
+                <dd>无房</dd>
+            </dl>
+        </div> 
+        <div id="calOne " class="clearfix mt20 "><div class="jCalMo "><div class="jCal "><div class="left "></div><div class="month "><span class="monthYear ">2019年</span><span class="monthName ">10月</span></div><div class="right "></div></div><div class="dow ">日</div><div class="dow ">一</div><div class="dow ">二</div><div class="dow ">三</div><div class="dow ">四</div><div class="dow ">五</div><div class="dow ">六</div><br style="clear:both; font-size:0.1em; "><div id="c1d1 " class="pday "></div><div id="c1d2 " class="pday "></div><div id="c1d_10_1_2019 " class="pday ">1</div><div id="c1d_10_2_2019 " class="pday ">2</div><div id="c1d_10_3_2019 " class="pday ">3</div><div id="c1d_10_4_2019 " class="pday ">4</div><div id="c1d_10_5_2019 " class="pday ">5</div><br style="clear:both; font-size:0.1em; "><div id="c1d_10_6_2019 " class="pday ">6</div><div id="c1d_10_7_2019 " class="pday ">7</div><div id="c1d_10_8_2019 " class="pday ">8</div><div id="c1d_10_9_2019 " class="pday ">9</div><div id="c1d_10_10_2019 " class="pday ">10</div><div id="c1d_10_11_2019 " class="pday ">11</div><div id="c1d_10_12_2019 " class="pday ">12</div><br style="clear:both; font-size:0.1em; "><div id="c1d_10_13_2019 " class="pday ">13</div><div id="c1d_10_14_2019 " class="pday ">14</div><div id="c1d_10_15_2019 " class="pday ">15</div><div id="c1d_10_16_2019 " class="pday ">16</div><div id="c1d_10_17_2019 " class="pday ">17</div><div id="c1d_10_18_2019 " class="pday ">18<div class="null ">无房</div></div><div id="c1d_10_19_2019 " class="pday ">19<div class="null ">无房</div></div><br style="clear:both; font-size:0.1em; "><div id="c1d_10_20_2019 " class="pday ">20<div class="null ">无房</div></div><div id="c1d_10_21_2019 " class="pday ">21<div class="null ">无房</div></div><div id="c1d_10_22_2019 " class="day ">22<div class="dInfo "><span>￥</span>318</div><div class="surplus ">剩余1套</div></div><div id="c1d_10_23_2019 " class="day ">23<div class="dInfo "><span>￥</span>318</div><div class="surplus ">剩余1套</div></div><div id="c1d_10_24_2019 " class="day ">24<div class="dInfo "><span>￥</span>318</div><div class="surplus ">剩余1套</div></div><div id="c1d_10_25_2019 " class="day ">25<div class="dInfo "><span>￥</span>318</div><div class="surplus ">剩余1套</div></div><div id="c1d_10_26_2019 " class="day ">26<div class="dInfo "><span>￥</span>318</div><div class="surplus ">剩余1套</div></div><br style="clear:both; font-size:0.1em; "><div id="c1d_10_27_2019 " class="day ">27<div class="dInfo "><span>￥</span>338</div><div class="surplus ">剩余1套</div></div><div id="c1d_10_28_2019 " class="day ">28<div class="dInfo "><span>￥</span>338</div><div class="surplus ">剩余1套</div></div><div id="c1d_10_29_2019 " class="day ">29<div class="dInfo "><span>￥</span>338</div><div class="surplus ">剩余1套</div></div><div id="c1d_10_30_2019 " class="day ">30<div class="dInfo "><span>￥</span>338</div><div class="surplus ">剩余1套</div></div><div id="c1d_10_31_2019 " class="day ">31<div class="dInfo "><span>￥</span>338</div><div class="surplus ">剩余1套</div></div><div id="c1d34 " class="aday "></div><div id="c1d35 " class="aday "></div></div></div>
+        <!-- 房间日历显示 END -->
+    </div>
+</div>
+
+<!-- 日历 END -->
+<!--商旅开发票弹层-->
+<div class="invoice_link ">
+    <div class="surveYY "></div> 	
+    <div class="offmax1 " id="offmax2 ">
+    	<div class="b_fff pb70 ">
+    		<div class="invoice_dp_header ">开票须知</div>
+            <div class="invoice_content ">
+                <strong>1、线上开具发票的类型</strong>
+                <p>目前富婆支持线上开具增值税纸质普通发票，最常用发票形式，不能抵扣进项税额，供各种纳税人企业使用。</p>
+                <strong>2、线上开票时长以及发票配送范围</strong>
+                <p>我们将在您入住完成后15个自然日内，完成发票开具、快递寄出。快递运输时长您可参考网购的收件时长。快递配送范围支持中国大陆地区，暂不支持港澳台以及海外。</p>
+                	<strong>3、在线开具发票的额外费用</strong>
+	                <p>若您选择在线开具发票，每笔订单您需额外支付15元的配送服务费，费用会在您支付房费时一并收取。</p>
+	                <strong>4、线上开票金额的计算</strong>
+	                <p>开票金额=在线实际支付的房费+配送服务费。押金、保险以及优惠券抵扣的金额不开具发票。</p>
+	                <strong>5、若订单退款，配送服务费的退还说明</strong>
+	                <p class="pl26 ">一、若订单全额退款，则配送服务费会随同订单金额一起退回原支付账户，并取消开票。</p>
+	                <p class="pl26 ">二、若订单部分退款，则已收取的配送服务费不予退还，富婆会继续为此订单开具发票。</p>
+            </div>
+    	</div>
+        <a class="invoice_close " href="javascript:closeDiv() " ></a>     
+    </div>
+</div>
+<!--判断是否推送给赶集-->
+<input type="hidden " name="channel_ganji " id="channel_ganji " value=" ">
+<!--是否调用 百度主动推送代码-->
+<input type="hidden " name="baidu_push " id="baidu_push " value=" ">
+<!-- 富婆点击 -->
+<script src="/xiangqing/mayi.js.下载 "></script>
+<!-- 富婆分析 -->
+<script src="/xiangqing/mayi_rp.js.下载 "></script>
+<!--GA 统计所需js 新  2018-01-25-->
+<script async=" " src="/xiangqing/js "></script>
+
+<script type="text/javascript " src="/xiangqing/pageModel.js.下载 "></script>
+<script type="text/javascript " src="/xiangqing/room_detail.js.下载 "></script>
+<script type="text/javascript " src="/xiangqing/landlordDesR.js.下载 "></script>
+<!--收藏-->
+<script type="text/javascript " src="/xiangqing/cookieUtil.js.下载 "></script>
+<script type="text/javascript " src="/xiangqing/mayi_ajax.js.下载 "></script>
+<script type="text/javascript " src="/xiangqing/detail_index.js.下载 "></script>
+<!--分享 -->
+<script type="text/javascript " src="/xiangqing/jquery.qrcode.min.js.下载 "></script> 
+<script type="text/javascript " src="/xiangqing/share.js.下载 "></script>
+<script>
+$.ajax({
+	url:"/zsm/userlogin/getSe",
+	dataType:"json",
+	type:"post",
+	success:function(a){
+		if(a!=null){
+		 $("#log").html("<h2 style='color:red' >欢迎&nbsp;&nbsp;&nbsp;"+a.name+"</h2>")
+	}
+	}
+
+})
+
+$("#goBookBtn1").click(function(){
+	var houseid=$("#goBookBtn1").attr("houseid");
+	var money=$("#goBookBtn1").attr("money");
+	var landlordid=$("#goBookBtn1").attr("landlordid");
+/* 	http://127.0.0.1/guest?houseid=100080&money=200.0&landlordid=1 *//* 
+	location.href="127.0.0.1/guest?houseid="+houseid+"&money="+money+"&landlordid="+landlordid; */
+		
+	location.href="http://127.0.0.1/guest?houseid="+houseid+"&money="+money+"&landlordid="+landlordid;
+	
+})
+</script>
+<!--申请成功弹层-->
+<style>
+	/*提交成功弹层*/
+/*.sub_tan{
+	display:none;
+}*/
+.mask{
+	width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #000;
+    opacity: 0.4;
+    filter: Alpha(opacity=40);
+    z-index:100001;
+}
+.sub_cnt{
+	width:440px;
+	position: fixed;
+	left:50%;
+	top:50%;
+	background:#fff;
+	padding:30px 10px 50px;
+	box-sizing: border-box;
+	border-radius: 14px;
+	margin:-230px 0 0 -220px;
+	z-index:100002;
+}
+.sub_cnt img{
+	display: block;
+	margin:0 auto;
+	width:50px;
+}
+.sub_cnt .p1_1{
+	margin:22px 0;
+	text-align: center;
+	color:#333;
+	font-size: 22px;
+	line-height: 36px;
+}
+.sub_cnt .close_active{
+	cursor: pointer;
+    width: 300px;
+    margin: 16px auto 0;
+    background: #279d2d;
+    border: 1px solid #279d2d;
+    color: #fff;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 26px;
+}
+.close_active:hover{
+	background: #fff;
+	color: #279d2d;
+}
+.ss_regular p,.ss_regular strong{
+	line-height: 36px;
+	color:#333;
+	padding:0 60px;
+}
+
+</style>
+<div class="success_reply_tan sub_tan layer_tan " style="display:none; " id="youxuan_alert ">	
+	<div class="mask "></div>
+	<div class="success_cnt sub_cnt ">
+		<img src="/xiangqing/success_icon.png ">
+		<p class="p1_1 ">恭喜您，申请成功！</p>
+		<div class="ss_regular ">
+			<strong>试睡流程:</strong>
+			<p>1.预订下单</p>
+			<p>2.离店后，撰写体验报告</p>
+			<p>3.体验报告审核通过后，短信告知；并在短信发出后5个工作日内返现到您支付订单的账户中。</p>
+	    </div>
+		<div class="close_active " onclick="$(&quot;#youxuan_alert&quot;).hide() ">我知道了</div>
+	</div>
+</div>
+<iframe name="387123 " height="0 " width="0 " src="/xiangqing/mv.html " style="display: none; "></iframe></body></html>

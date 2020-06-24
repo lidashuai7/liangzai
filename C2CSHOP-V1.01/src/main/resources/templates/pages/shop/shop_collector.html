@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>我的收藏</title>
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Additional CSS Files -->
+<link rel="stylesheet" href="../assets/css/fontawesome.css">
+<link rel="stylesheet" href="../assets/css/tooplate-main.css">
+<link rel="stylesheet" href="../assets/css/owl.css">
+<link rel="stylesheet" href="../assets/css/flex-slider.css">
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Additional Scripts -->
+<script src="../assets/js/custom.js"></script>
+<script src="../assets/js/owl.js"></script>
+<script src="../assets/js/isotope.js"></script>
+<script src="../assets/js/flex-slider.js"></script>
+
+<style>
+body {
+	font-family: 微软雅黑, 黑体;
+}
+
+}
+.container {
+	overflow: hidden
+}
+
+.col {
+	width: 800px;
+	margin: 50px auto;
+}
+
+.col-md {
+	overflow: hidden;
+	width: 800px;
+	margin: 50px auto;
+}
+
+.col-md-3 {
+	width: 260px;
+	height: 320px;
+	display: inline-block;
+	margin-top: 5px;
+}
+
+.goods-panel {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: 15px;
+	margin-right: 15px;
+	box-shadow: -3px 5px 20px 0px #e2e0e0;
+	background-color: #f3f3f3;
+}
+
+.goods-panel:hover {
+	box-shadow: 0 1px 10px rgba(51, 51, 51, .25);
+	-webkit-transform: translateY(-10px);
+	-moz-transform: translateY(-10px);
+	transform: translateY(-2px)
+}
+
+.search {
+	float: right
+}
+
+.img-search {
+	width: 260px;
+	height: 320px;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.img-picture {
+	width: 200px
+}
+
+.anniou {
+	text-align: center;
+	height: 30px;
+}
+
+.butto {
+	display: inline-block;
+	padding: 1px 10px;
+	font-size: 15px;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	outline: none;
+	color: #fff;
+	background-color: #b7b5b5;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 2px #999;
+}
+
+.butto:hover {
+	background-color: #828080
+}
+
+.butto:active {
+	background-color: #828080;
+	box-shadow: 0 5px #666;
+	transform: translateY(1px);
+}
+
+.jiage {
+	margin-left: 15px;
+}
+
+.wengbeng {
+	
+}
+
+.text-row-3 {
+	text-align: center;
+	line-height: 1.2em;
+	height: 3.6em;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+</style>
+</head>
+<body>
+	<div class="tou">
+		<div class="col">
+			<div class="a">
+				<h3>收藏夹</h3>
+			</div>
+			<div class="search">
+				<input type="text" id="text-search" onblur="query()" placeholder="请输入商品名称进行搜索">		
+				<button type="button" class="btn-search">搜索</button>
+			</div>
+		</div>	
+		<div class="container">
+			<div class="col-md">
+				<div class="box-body table-responsive no-padding">
+					<table class="table table-hover">
+						<tbody id="tbodyId">
+							<tr>
+								<td colspan="7">数据加载中...</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="pageId" class="box-footer clearfix"
+					style="list-style: none"></div>
+			</div>
+		</div>
+</body>
+<script type="text/javascript">
+	$(function() {
+		$("#pageId").load("/doPageUI", function() {
+			//异步加载日志信息(数据)
+			doGetObjects();
+		});
+		
+		$(".search").on("click", ".btn-search", doQueryObjects);
+		
+	})
+	//当input失去焦点时显示全部数据
+	function query(){
+		doGetObjects();
+	}
+	//根据输入名查询
+	function doQueryObjects() {
+	
+		$("#pageId").data("pageCurrent", 1);
+		doGetObjects();
+	
+	}
+	
+	//根据所选id删除信息
+	function doDelete(dom) {
+		var id = dom.getAttribute("id");
+		var params = {"id" : id};
+		var url = "doDeleteObject";
+		$.post(url, params, function(result) {
+			if (result.state == 1) {
+				alert(result.message);
+				doGetObjects();
+			} else {
+				alert(result.message);
+			}
+		})
+	}
+	
+	//查询所有数据
+	function doGetObjects() {
+		//1.定义请求URL(request url)
+		var url = "doFindPageObjects";
+		//2.定义请求参数(request params)
+		//获取pageCurrent绑定的值
+		var pageCurrent = $("#pageId").data("pageCurrent");
+		//假如pageCurrent没有值,赋值为1
+		if (!pageCurrent)
+			pageCurrent = 1;
+		var params = {
+			"pageCurrent" : pageCurrent
+		};//"pageCurrent=1"
+		//获取用户查询时,输入的用户名
+		var name = $("#text-search").val();
+		if (name) {
+			//在params中动态添加key/value
+			params.name = name;
+		}
+		//3.发送异步请求获取服务端数据(send async request)
+		//getJSON函数为jquery中的函数
+		//当服务端有响应数据时会回调匿名函数并将结果传递给函数参数
+		$.getJSON(url, params, function(result) {//callback
+			//console.log(result);
+			//console.log(result.data.records);
+			doHandleResponseResult(result);
+		});//jquery
+	}
+	
+	//处理响应结果
+	function doHandleResponseResult(result) {//result=JsonResult
+		//判定响应状态(1表示正常数据)
+		if (result.state == 1) {//区别"=","==="
+			//1.呈现记录信息
+			doSetTableBodyRows(result.data.records);
+			//2.呈现分页信息
+			doSetPagination(result.data);
+		} else {
+			//呈现错误信息
+			alert(result.message);
+
+		}
+	}
+
+	//将记录呈现在table内部的tbody中
+	function doSetTableBodyRows(records) {
+
+		//1.获取tbody对象,并清空tbody中数据
+		var tBody = $("#tbodyId");
+		tBody.empty();
+		//2.迭代records,并将记录追加tbody中
+		for (var i = 0; i < records.length; i++) {
+			var div = $("<div class='col-md-3'><div class='goods-panel'></div></div>");
+			var div1 = $("<div class='goods-panel'></div>");
+
+			div.append(div1);
+
+			var tds = doCreateTds(records[i]);
+			div1.append(tds);
+			tBody.append(div);
+		}
+
+	}
+	
+	function doCreateTds(data, i) {
+		var tds = "<div class='+img-search+'><img src="+data.mainPhoto+" class='img-picture'/></div>"
+				+ "<div class='wengbeng'>"
+				+ "<div class='jiage'>￥"
+				+ data.price
+				+ "/斤</div>"
+				+ "<p class='text-row-3'><a href=''><small>"
+				+ data.name
+				+ "</small></a></p>"
+				+ "<div class='anniou'>"
+				+ "<button class='butto delete' id="
+				+ data.id
+				+ " onclick='doDelete(this)'>取消收藏</button>"
+				+ "&nbsp;&nbsp;<button class='butto'>加入购物车</button>"
+				+ "</div></div></div></div>";
+
+		return tds;
+	}
+</script>
+</html>

@@ -1,0 +1,51 @@
+package com.cy.pj.controller.zsm;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cy.pj.entity.tb_userinfo;
+import com.cy.pj.entity.user;
+import com.cy.pj.service.zsm.service.serviceImpl.UserServiceImpl;
+
+@Controller
+@RequestMapping("/zsm/userlogin")
+public class UserController {
+
+	@Autowired
+	private UserServiceImpl biz;
+	
+	@RequestMapping("/login")
+	public String login(String username,String pwd,HttpSession session) {
+	  tb_userinfo u=biz.loginUser(username, pwd);
+	  System.out.println(username);
+	  System.out.println(pwd);
+	  session.setAttribute("USER",u);
+	  return "shouye";
+	}
+	
+	@RequestMapping("/getSe")
+	@ResponseBody
+	public tb_userinfo getSe(HttpSession session) {
+		System.out.println((tb_userinfo) session.getAttribute("USER"));
+		return (tb_userinfo) session.getAttribute("USER");
+	}
+	
+	@RequestMapping("/insertuser")
+	public String insertlogin(String username,String pwd) {
+		int i=biz.insertUser(username, pwd);
+	return "shouye";
+	}
+	
+	@RequestMapping("/queryuser")
+	@ResponseBody
+	public tb_userinfo queryuser(String username) {
+		System.out.println(username);
+		return biz.queryUser(username);
+	}
+	
+
+}

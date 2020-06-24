@@ -1,0 +1,195 @@
+// JavaScript Document
+
+$(function(){
+		/**$("div.fcon").each(function() {
+			if($(this).css("display")=="block"){
+				var h=$(this).css("height");
+					$("#fsD1").css("height",h);	
+			}
+		});*/
+//		Qfast(false, 'widgets',
+//		function() {
+//			K.tabs({
+//				id: 'fsD1',
+//				//焦点图包裹id  
+//				conId: "D1pic1",
+//				//** 大图域包裹id  
+//				tabTn: "a",
+//				conCn: '.fcon',
+//				//** 大图域配置class       
+//				auto: 1,
+//				//自动播放 1或0
+//				effect: 'fade',
+//				//效果配置
+//				eType: 'click',
+//				//** 鼠标事件
+//				pageBt: true,
+//				//是否有按钮切换页码
+//				bns: ['.prev', '.next'],
+//				//** 前后按钮配置class                          
+//				interval: 5000 //** 停顿时间  
+//			})
+//		})
+		/*$('.en-banner').ckSlide({
+			autoPlay:true
+		});*/
+		/*function bannerW(){
+	        var oh = $(".slideshow li").find(".bImg:visible").height();
+	        $(".en-banner").height(oh);
+	    }
+	    $(window).resize(function(){
+	        bannerW();
+	    })
+	    $(window).scroll(function(){
+	        bannerW();
+	    })
+	    bannerW();
+	    $(".bannersmall").hide();*/
+//		function bannerW(){
+//			var oh = $(".slideshow li").find(".bImg").height();
+//			$(".en-banner").height(oh);
+//		}
+//		$(window).resize(function(){
+//			bannerW();
+//		})
+//		bannerW();
+		
+		/**
+		window.onresize=function(){		
+			$("div.fcon").each(function() {
+				if($(this).css("display")=="block"){
+					var h=$(this).children(a).children("img.bImg").height();
+					$("#fsD1").css("height",h);	
+					}
+			});
+		}*/		
+	});
+
+/*推荐主题轮播*/
+$.fn.infiniteCarousel = function () {
+ 
+    function repeat(str, num) {
+        return new Array( num + 1 ).join( str );
+    }
+  
+    return this.each(function () {
+        var $wrapper = $('> div', this).css('overflow', 'hidden'),
+            $slider = $wrapper.find('> ul'),
+            $items = $slider.find('> li'),
+            $single = $items.filter(':first'),
+            
+            singleWidth = $single.outerWidth(), 
+            visible = Math.ceil($wrapper.innerWidth() / singleWidth),
+            currentPage = 1,
+            pages = Math.ceil($items.length / visible);            
+ 
+ 
+        // 1. Pad so that 'visible' number will always be seen, otherwise create empty items
+        if (($items.length % visible) != 0) {
+            $slider.append(repeat('<li class="empty" />', visible - ($items.length % visible)));
+            $items = $slider.find('> li');
+        }
+ 
+        // 2. Top and tail the list with 'visible' number of items, top has the last section, and tail has the first
+        $items.filter(':first').before($items.slice(- visible).clone().addClass('cloned'));
+        $items.filter(':last').after($items.slice(0, visible).clone().addClass('cloned'));
+        $items = $slider.find('> li'); // reselect
+        
+        // 3. Set the left position to the first 'real' item
+        $wrapper.scrollLeft(singleWidth * visible);
+        
+        // 4. paging function
+        function gotoPage(page) {
+            var dir = page < currentPage ? -1 : 1,
+                n = Math.abs(currentPage - page),
+                left = singleWidth * dir * visible * n;
+            
+            $wrapper.filter(':not(:animated)').animate({
+                scrollLeft : '+=' + left
+            }, 500, function () {
+                if (page == 0) {
+                    $wrapper.scrollLeft(singleWidth * visible * pages);
+                    page = pages;
+                } else if (page > pages) {
+                    $wrapper.scrollLeft(singleWidth * visible);
+                    // reset back to start position
+                    page = 1;
+                } 
+ 
+                currentPage = page;
+            });                
+            
+            return false;
+        }
+        
+        $wrapper.after('<a class="arrow back"/><a class="arrow forward"/>');
+        
+        // 5. Bind to the forward and back buttons
+        $('a.back', this).click(function () {
+            return gotoPage(currentPage - 1);                
+        });
+        
+        $('a.forward', this).click(function () {
+            return gotoPage(currentPage + 1);
+        });
+        
+        // create a public interface to move to a specific page
+        $(this).bind('goto', function (event, page) {
+            gotoPage(page);
+        });
+    });  
+};
+
+/* 首页短租公寓推荐tab切换 */
+var TabbedContent = {
+    init: function() {
+        $(".tab_item").mouseover(function() {
+            $(this).addClass("on").siblings().removeClass("on");
+            TabbedContent.slideContent($(this));
+        });
+    },
+    slideContent: function(obj) {
+        var margin = $(obj).parent().parent().find(".slide_content").width();
+        margin = margin * ($(obj).prevAll().size());
+        margin = margin * -1;
+
+        $(obj).parent().parent().find(".tabslider").stop().animate({
+            marginLeft: margin + "px"
+        }, {
+            duration: 800
+        });
+    }
+}
+ 
+$(document).ready(function () {
+  $('.infiniteCarousel').infiniteCarousel();
+  TabbedContent.init();
+});
+
+$(function(){
+	var orderId = $("#depositOrderId").val();
+	if(orderId > 0){
+		var remindCookie = "";
+		var arrStr = document.cookie.split("; ");
+	    for(var i = 0;i < arrStr.length;i ++){
+        	var temp = arrStr[i].split("=");
+            if(temp[0] == 'remindCookie'){
+            	remindCookie = decodeURI(temp[1]);
+            } 
+	    }
+	 	if(remindCookie != null && remindCookie != ""){
+	 		$(".deposit_tip").hide();
+	 	}else{
+	 		$(".deposit_tip").show();
+	 		document.cookie = "remindCookie = mayi"; 
+	 	}
+	}
+
+	$(".deposit_tip .deposit-btn-close,.deposit_tip .wait").click(function(){
+		$(".deposit_tip").fadeOut();
+	});
+});
+
+function toProcess(orderId,tenantId){
+	window.location.href = "/tenant/" + tenantId + "/order/" + orderId + "?state=0&state_type=0";
+}

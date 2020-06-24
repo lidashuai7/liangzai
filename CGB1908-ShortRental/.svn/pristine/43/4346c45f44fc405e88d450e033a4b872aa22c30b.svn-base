@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+<!-- saved from url=(0104)http://www.mayi.com/order/waitinit/room-852087432_roomnum-1_checkinday-2019-10-18_checkoutday-2019-10-19 -->
+<html xmlns:th="http://www.thymeleaf.org">
+	<div id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important" class=""></div>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>下单页</title>
+
+		<link rel="stylesheet" href="/xiadangye/order.css">
+		<link href="/xiadangye/public_element.css" rel="stylesheet">
+		<link href="/xiadangye/order_public.css" rel="stylesheet">
+		<link href="/xiadangye/tel_type.css" rel="stylesheet">
+		<link href="/xiadangye/index_list_calendar.css" rel="stylesheet" type="text/css">
+		<link href="/xiadangye/layer.css" rel="stylesheet" type="text/css">
+		<link href="/xiadangye/fdbx.css" rel="stylesheet">
+		<link href="/xiadangye/book2.css" rel="stylesheet">
+		<script type="text/javascript" async="" src=""></script>
+		<script charset="UTF-8" src="./xiadangye/uba.min.js.下载"></script>
+		<script src="/xiadangye/hm.js.下载"></script>
+		<script charset="UTF-8" src="/xiadangye/QiMoIMSDK.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/jquery-1.9.1.min.js.下载"></script>
+		<script type="text/javascript" language="javascript">
+			$(function() {
+				m = {
+					roomid: '852087432',
+					minday: '1',
+					detialJson: '{"from":2,"refundRullno":"退款政策：下单后取消订单，将收取未住房费的50%作为违约金支付给房东。","totalPrice":14500,"allrefundday":"2019-10-15","checkinday":"2019-10-18","checkoutday":"2019-10-19","onlineAmount":14500,"payRuleRate":100,"roomNum":1,"specialdiscount":true,"originalPrice":145.0,"showtotalprice":145.0,"haveStock":1,"onlinePayAmount":145.0,"priceDetailModel":{"sum":14500,"items":[{"type":10,"date":"2019-10-18","price":14500,"originalPrice":145,"weekNum":5,"dayAmount":145.0,"priceShow":145.0}],"showtotalPrice":145.0},"promotionModel":{},"nights":1,"checkinOfWeek":"周五","checkoutOfWeek":"周六"}'
+				};
+				$('.App_download').mouseover(function() {
+					$(this).find('.order_head_pop').show();
+				})
+				$('.App_download').mouseout(function() {
+					$(this).find('.order_head_pop').hide();
+				})
+				/*查看开票须知*/
+				$(".showInvo").click(function() {
+					$(".invoice_link").show();
+				})
+				$(".invoice_close").click(function() {
+					$(".invoice_link").hide();
+				})
+			});
+		</script>
+		<script type="text/javascript" src="/xiadangye/c.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/ticket.js.下载"></script>
+		<!--kgj add保险JS START-->
+		 <script type="text/javascript" src="/xiadangye/insurance.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/insurance_newbaoxian_supple.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/idcard.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/mayi.validate.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/maputil.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/usercontact.js.下载"></script>
+		<!--kgj add保险JS END-->
+		<!--日历-->
+		<script type="text/javascript" src="/xiadangye/yui-min.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/index_list_calendar1.js.下载"></script>
+
+		<script type="text/javascript" src="/xiadangye/order.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/bookorder.js.下载"></script>
+		<!--右侧滚动效果-->
+		<script type="text/javascript" src="/xiadangye/scroll_zi.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/util.js.下载"></script>
+
+		<link type="text/css" rel="stylesheet" href="/xiadangye/layer.css">
+		<link type="text/css" rel="stylesheet" href="/xiadangye/chatStyle.css">
+	</head>
+
+	<body id="yui_3_5_1_1_1571367117925_27">
+
+		<!--header-->
+		<!-- 拉新入口 -->
+		<link href="/xiadangye/laxin.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="/xiadangye/index_searchlist_public.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/list_header.js.下载"></script>
+		<!-- 房东权限相关 -->
+		<script type="text/javascript" src="/xiadangye/landlordConfig.js.下载"></script>
+		<style>
+			.logo58 {
+				background: url(//staticnew.mayi.com/resourcesWeb/images/index/58logo.png) no-repeat;
+				left: 14px !important;
+				top: 16px !important;
+			}
+			
+			.logomayi {
+				left: 200px !important;
+			}
+			
+			.alert-box1 {
+				width: 100%;
+				height: 100%;
+				z-index: 300000;
+				position: absolute;
+				display: none;
+				line-height: 40px;
+			}
+			
+			.surveYY1 {
+				background: #000;
+				width: 100%;
+				height: 100%;
+				opacity: 0.7;
+				position: fixed;
+				top: 0px;
+				left: 0px;
+			}
+			
+			.offmax_no {
+				width: 400px;
+				height: 186px;
+				position: fixed;
+				top: 50%;
+				margin-top: -93px;
+				left: 50%;
+				margin-left: -200px;
+				background-color: #fff;
+				z-index: 999;
+				text-align: center;
+				box-shadow: 0px 0px 4px #ccc;
+				border-radius: 2px;
+			}
+			
+			.offmax_no p {
+				padding: 0 20px;
+				line-height: 25px;
+			}
+			
+			.alert_tit1 {
+				border-bottom: 1px solid #e0e0e0;
+				font-size: 18px;
+				margin-bottom: 20px;
+			}
+			
+			.close-alert1 {
+				cursor: pointer;
+				width: 50%;
+				margin: 20px auto;
+				background-color: #22bb62;
+				text-align: center;
+				color: #fff;
+				border-radius: 2px;
+			}
+			
+			.alert-box2 {
+				width: 100%;
+				height: 100%;
+				z-index: 300000;
+				position: absolute;
+				display: none;
+				line-height: 40px;
+			}
+			
+			.surveYY2 {
+				background: #000;
+				width: 100%;
+				height: 100%;
+				opacity: 0.7;
+				position: fixed;
+				top: 0px;
+				left: 0px;
+			}
+			
+			.offmax_no2 {
+				width: 400px;
+				height: 186px;
+				position: fixed;
+				top: 50%;
+				margin-top: -93px;
+				left: 50%;
+				margin-left: -200px;
+				background-color: #fff;
+				z-index: 999;
+				text-align: center;
+				box-shadow: 0px 0px 4px #ccc;
+				border-radius: 2px;
+			}
+			
+			.offmax_no2 p {
+				padding: 0 20px;
+				line-height: 25px;
+			}
+			
+			.alert_tit2 {
+				border-bottom: 1px solid #e0e0e0;
+				font-size: 18px;
+				margin-bottom: 20px;
+			}
+			
+			.close-alert2 {
+				cursor: pointer;
+				width: 50%;
+				margin: 20px auto;
+				background-color: #22bb62;
+				text-align: center;
+				color: #fff;
+				border-radius: 2px;
+			}
+		</style>
+		<input type="hidden" name="ctx" id="ctx" value="">
+		<div class="header relave">
+			<a href="" rel="nofollow">
+				<div class="asote head_left"></div>
+			</a>
+			<div class="head_cnt relave">
+				<span class="search"></span>
+				<ul class="nav_R asote nav_right">
+					<li style="margin-left:-211px;">
+						<b class="mayi_tel_top"><img src="/xiadangye/tel_green_icon.png"><span style="font-family: &quot;Hiragino Sans GB&quot;, Arial, Verdana, Tahoma, &quot;微软雅黑&quot; !important;font-size: 14px;" hiragino="" sans="" gb",="" arial,="" verdana,="" tahoma,="" "微软雅黑"="" !important;font-size:="" 14px;"="">客服电话：</span>400-028-6868</b>
+					</li>
+					<li>
+						<div class="showinfo">
+							<a href="" target="_self"><img src="/xiadangye/7BBUSD45HMHH2K9YF75JUZ8BC6JWV8.jpg_35x35c.jpg" id="aaa" class="user_img">
+								<span class="name" id="head_nickname">o</span></a>
+							<div class="head_pop">
+								<div class="pop_column">
+									<p>
+										<a href="" target="_self" id="myorder" rel="nofollow" _mayi_rp="webaround|userinfo|order">我的订单</a>
+									</p>
+									<p>
+										<a href="" target="_self" id="myorder" rel="nofollow" class="slideactive" _mayi_rp="webaround|userinfo|account">我的账户</a>
+									</p>
+									<p>
+										<a href="" target="_self" id="mycollect" rel="nofollow" _mayi_rp="webaround|userinfo|collection">我的收藏</a>
+									</p>
+									<p>
+										<a href="" target="_self" id="mymsg" rel="nofollow" _mayi_rp="webaround|userinfo|inform">消息通知</a>
+									</p>
+									<p class="Invite_friends" _mayi_rp="webaround|userinfo|invite">邀请好友</p>
+									<p class="textCt">
+										<a href="javascript:void(0)" id="loginoutbut" target="_self" class="stclick" clicktag="1_6">退出登录</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="showinfo" id="s_islandlord" hidden="" style="display: block;">
+							<a href="" target="_self" class="stclick">我是房东</a>
+							<div class="head_pop">
+								<div class="pop_column plr10">
+									<p>
+										<a href="">订单管理</a>
+									</p>
+									<p>
+										<a href="">房源管理</a>
+									</p>
+									<p>
+										<a href="">消息通知</a>
+									</p>
+									<p>
+										<a href="">结算管理</a>
+									</p>
+									<p>
+										<a href="">关注房东微信</a>
+									</p>
+							
+									<p>
+										<a href="">我的设置</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<!-- 四元组控制下载元素显示情况 -->
+						<div class="showinfo">
+							<a href="" rel="nofollow" target="_blank" _mayi_rp="webaround|activity|firstorder">下载APP送500元大礼包</a>
+							<div class="b-app-img head_pop "><img src="/xiadangye/8BESRPVFMVRMLWF5DMMQJPXZ3HDEPJ.jpg_110x110c.jpg" class="app_download_qr" style="width:110px;"></div>
+						</div>
+					</li>
+					<li>
+						<a class="recruit" rel="nofollow" href="" target="_blank" _mayi_rp="webaround|activity|company">商旅合作</a>
+					</li>
+					<li>
+						<a rel="nofollow" href="javascript:publish(878244467)" class="room-btn f16 t-center" _mayi_rp="webaround|activity|freepublish">免费发布房源</a>
+						<!--   
+                <a rel="nofollow" href="javascript:publish(878244467)" class="room-btn f16 t-center" _mayi_rp="webaround|activity|freepublish">免费发布房源</a>
+             -->
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+		<!--公共头部结束-->
+		<div class="alert-box1">
+			<div class="surveYY1"></div>
+			<div class="offmax_no">
+				<div class="alert_tit1">温馨提示</div>
+				<p class="frozeninfo">对不起，房东账号被封禁</p>
+				<p>如有疑问，请联系蚂蚁短租客服400-028-6868</p>
+				<div class="close-alert1">我知道了</div>
+			</div>
+		</div>
+		<!-- 免费发布房源提示 -->
+		<div class="alert-box2">
+			<div class="surveYY2"></div>
+			<div class="offmax_no2">
+				<div class="alert_tit2">温馨提示</div>
+				<p class="frozeninfo2"></p>
+				<p>非常抱歉，发布房源功能已关闭，请前往途家房东端发布新房源！</p>
+				<div class="close-alert2">我知道了</div>
+			</div>
+		</div>
+		<!-- 拉新弹层 -->
+		<script type="text/javascript" src="/xiadangye/jquery.qrcode.min.js.下载"></script>
+	
+		<div class="share_tan" style="display: none">
+			<div class="mask"></div>
+			<div class="hongbao_img">
+				<img src="./xiadangye/close.png" alt="" class="hong_close">
+				<img src="./xiadangye/hongbao1.png" alt="" class="hongbao">
+				<div id="qrcode" class="ewm_img"><canvas width="100" height="100"></canvas></div>
+				<!-- <img src="//staticnew.mayi.com/resourcesWeb/v201612/headpub/images/ewm.jpg" alt="" class="ewm_img"/> -->
+				<p class="text_para">扫码后，通过分享活动邀请好友注册蚂蚁短租，双方均可获得100元住宿基金！</p>
+
+			</div>
+		</div>
+		<input type="hidden" name="subdomain" id="subdomain" value="">
+		<input type="hidden" name="mainsite" id="mainsite" value="">
+		<input type="hidden" name="ctx" id="ctx" value="">
+		<input type="hidden" name="ctx1" id="ctx1" value="//staticnew.mayi.com">
+		<input type="hidden" name="uid" id="uid" value="878244467">
+		<input type="hidden" name="loginurl" id="loginurl" value="none">
+		<input type="hidden" name="head_userName" id="head_userName" value="o">
+		<script type="text/javascript" src="/xiadangye/7moorInit.js.下载" async="async"></script>
+
+		<script type="text/javascript" src="/xiadangye/c.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/strophe.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/easemob.im-1.1.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/easemob.im-1.1.shim.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/easemob.im.config.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/bootstrap.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/add_reply.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/jquery-ui.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/IM.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/ajaxfileupload.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/operator.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/webim.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/chat.js.下载"></script>
+		<link rel="stylesheet" href="/xiadangye/IM.css">
+		<link rel="stylesheet" href="/xiadangye/jquery-ui.css">
+
+		<script type="text/javascript" src="/xiadangye/swfupload.js.下载"></script>
+		<script type="text/javascript" charset="UTF-8" src="/xiadangye/online"></script>
+		<script type="text/javascript" src="/xiadangye/swfupload.queue.js.下载"></script>
+
+		<input type="hidden" id="MAYIUID" value="878244467">
+
+		<style>
+			#layer_settimeout {
+				width: 280px;
+				height: 60px;
+				border-radius: 5px;
+				background: rgba(0, 0, 0, .7);
+				color: #fff;
+				position: fixed;
+				top: 300px;
+				left: 50%;
+				margin-left: -140px;
+				z-index: 999999999;
+				line-height: 60px;
+				text-align: center;
+				display: none
+			}
+		</style>
+
+		<script type="text/javascript" src="./xiadangye/fk_index.js.下载"></script>
+
+
+
+	
+
+		<!-- <a class='IM_btn' style='display:none;' href='javascript:;' _mayi_rp="webaround|other|online"><span class='IM_btn_span' ><i style="display:none;">0</i></span>在线聊天</a> -->
+		<div class="im_sfz_tan" style="display: none;">
+			<span></span>
+			<img src="http://www.mayi.com/order/waitinit/room-852087432_roomnum-1_checkinday-2019-10-18_checkoutday-2019-10-19" alt="">
+		</div>
+
+		<!--弹窗start-->
+		<div class="abnormal-tips-wrapper">
+			<div class="abnormal-tips" style="display: none;position: fixed;left: 50%;top: 50%;z-index: 1001;margin-left: -243px;margin-top: -141px;width: 486px;height: 282px;background: #fff;">
+				<div class="abnormal-tips-title" style="box-sizing: border-box;position: relative;height: 60px;line-height: 60px;text-align: center;border: 1px solid #DCDEE0;border-top-left-radius: 3px;border-top-right-radius: 3px;font-size: 18px;color: #5E646B;">
+					<span>异常提示</span>
+					<div class="abnormal-tips-close" style="position: absolute;top: 20px;right: 30px;width: 19px;height: 19px;background: url(&#39;//staticnew.mayi.com/resourcesWeb/im1/images/close.png&#39;) no-repeat center;cursor: pointer;">
+					</div>
+				</div>
+				<div class="abnormal-tips-content" style="padding: 0 48px;">
+					<div id="messageError" class="abnormal-tips-text" style="padding: 50px 0;line-height: 22px;text-align: center;font-size: 16px;color: #2B2F33;">在线聊天登录失败，请点击重新打开或刷新页面后重试</div>
+					<div class="abnormal-tips-btn" style="font-size: 0;">
+						<div class="abnormal-tips-btn-close" style="display: inline-block;box-sizing: border-box;width: 180px;height: 50px;line-height: 50px;margin-right: 30px;text-align: center;border: 1px solid #B4B9BF;border-radius: 3px;font-size: 18px;color: #5E646B;cursor: pointer;">关闭</div>
+						<div class="abnormal-tips-btn-open" style="display: inline-block;box-sizing: border-box;width: 180px;height: 50px;line-height: 50px;text-align: center;border: 1px solid #3EB382;border-radius: 3px;font-size: 18px;color: #3EB382;cursor: pointer;">重新打开</div>
+					</div>
+				</div>
+			</div>
+			<div class="abnormal-tips-mask" style="display: none;position: fixed;left: 0;top: 0;z-index: 1000;width: 100%;height: 100%;opacity: 0.7;background: #000000;"></div>
+		</div>
+		<!--弹窗end-->
+
+		<style>
+			.im_sfz_tan {
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.6);
+				z-index: 1000001;
+				line-height: 100%;
+				text-align: center;
+				display: none;
+			}
+			
+			.im_sfz_tan span {
+				display: inline-block;
+				height: 100%;
+				vertical-align: middle;
+			}
+			
+			.im_sfz_tan img {
+				display: inline;
+				max-width: 1190px;
+				max-height: 700px;
+				min-width: 600px;
+				min-height: 220px;
+				vertical-align: middle;
+				border: 10px solid #fff;
+			}
+		</style>
+
+		<script>
+			var uid = $('#MAYIUID').val();
+			if(uid != '') {
+				$('.IM_btn').css('display', 'block');
+			}
+			//弹窗关闭
+			$('.abnormal-tips-btn-close,.abnormal-tips-close').on('click', function() {
+				$('.abnormal-tips-mask,.abnormal-tips').fadeOut();
+			});
+			//
+			$('.abnormal-tips-mask').click(function() {
+				return false;
+			});
+			
+				
+			/* function yuding(){
+				var name = $("#name").val();
+				var identitycard = $("#identitycard").val();
+				var passport = $("#passport").val();
+				var params = {"name":name,"identitycard":identitycard,"passport":passport};
+				console.log(params)
+				var url = "";
+				$.post(url,params,function(result){
+					if(result.state  == 1){
+						alert("信息保存成功!")
+					}
+				});
+				 */
+				
+		/* 	} */
+			
+		
+	/* 		function dingdan(){
+			var checkinday =${"#checkinday"}.val();
+			var checkoutday = ${"#checkoutday"}.val();
+			var roomnum = ${"#roomNum"}.val();
+			var name = ${"#name"}.val();
+			var familyname = ${"#familyname"}.val();
+			var givenname = ${"#givenname"}.val();
+			var identitycard=${"#identitycard"}.val();
+			var passport = ${"#passport"}.val();
+			var tenantmobile=${"#tenantmobile"}.val();
+			var maxguest = ${"maxguest"}.val();
+			var name1 = ${"name1"}.val();
+			var idcord=${"idcord"}.val();
+			var data = {"checkinday":checkinday,"checkoutday":checkoutday,"roomNum":roomNum,
+					"name":name,"familyname":familyname,"givenname":givenname,"identitycard":identitycard,
+					"passport":passport,"tenantmobile":tenantmobile,"maxguest":maxguest,"name1":name1,"idcord":idcord
+			
+			}
+			var url="/userdingdan"
+				$.post(url,data,function(result){
+					if(result.state==1){
+						alert("订单提交成功")
+						}
+					alert(result.message)
+				}
+			})					
+			} 
+              */
+              
+              
+		
+		</script>
+
+		<div style="" class="Online_btn">
+			<span class="border-left"></span>
+			<a href="javascript:void(0)" id="live800iconlink" _mayi_rp="room|sem_contact|message"><img border="0"  src="/xiadangye/5635PVPKQGH6CND3UTE6WAYHLUXAXB.jpg" id="live800icon" name="live800icon"></a>
+		</div>
+
+		<form id="orderForm" name="orderForm" method="post" style="position:relative">
+
+			<!--内容部分开始-->
+			<!--流程图-->
+			<div class="one_workflow" id="yui_3_5_1_1_1571367117925_84">
+				<div class="workflow relave" id="yui_3_5_1_1_1571367117925_83">
+					<div class="progress progress_0"></div>
+					<b class="workflow1">提交订单</b>
+					<b class="workflow2">支付订金</b>
+					<b class="workflow3">房东确认</b>
+					<b class="workflow4">预订成功</b>
+					<span class="workflow1_1"><a href="javascript:;" class="a_after">1</a></span>
+					<span class="workflow1_2" id="yui_3_5_1_1_1571367117925_82"><a href="javascript:;" id="yui_3_5_1_1_1571367117925_81">2</a></span>
+					<span class="workflow1_3" id="yui_3_5_1_1_1571367117925_90"><a href="javascript:;" id="yui_3_5_1_1_1571367117925_89">3</a></span>
+					<span class="workflow1_4" id="yui_3_5_1_1_1571367117925_96"><a href="javascript:;" class="duigo" id="yui_3_5_1_1_1571367117925_95"></a></span>
+
+				</div>
+			</div>
+			<div class="content clearfloat" id="yui_3_5_1_1_1571367117925_26" style="position: relative;">
+				<div class="fl content_left" id="yui_3_5_1_1_1571367117925_25">
+					<div class="cnt" id="yui_3_5_1_1_1571367117925_24">
+
+						<div class="cnt1 clearfloat" id="yui_3_5_1_1_1571367117925_23">
+							<!--预订信息-->
+							<h2>预订信息</h2>
+							<div class="fl bt-border" id="yui_3_5_1_1_1571367117925_22">
+								<dl class="cnt1_dl clearfloat mt15" id="yui_3_5_1_1_1571367117925_21">
+									<dt class="fl">预订日期</dt>
+									<dd class="fl roomer_cnt" id="yui_3_5_1_1_1571367117925_20">
+										<div class="calendar-input-wrap"><span class="calendar-start-icon trigger-icon-yui_3_5_1_1_1571367117925_14"></span>
+										<input type="text"  id="checkinday" class="date1 trigger-node-yui_3_5_1_1_1571367117925_14" value="" autocomplete="off"></div>&nbsp;&nbsp;至&nbsp;&nbsp;
+										<div class="calendar-input-wrap"><span class="calendar-end-icon trigger-icon-yui_3_5_1_1_1571367117925_14"></span>
+										<input type="text"  id="checkoutday" class="date2 trigger-node-yui_3_5_1_1_1571367117925_14" value="" autocomplete="off"></div>&nbsp;&nbsp;&nbsp;&nbsp;共<span id="nights">1</span>晚
+									</dd>
+								</dl>
+								<!--预订套数-->
+								<!--预订套数-->
+								<dl class="cnt1_dl clearfloat mt15">
+									<dt class="fl">预订套数</dt>	
+									<dd class="fl relave">
+										<!--<div class="dianj2 fl"><i id="roomNum">1</i></div>-->
+										<div class="select_parent w92 mar_r_6 fl">
+											<select class="select_css w92" autocomplete="off" id="roomNum">
+												<option value="1">1套</option>
+												<option value="2">2套</option>
+												<option value="3">3套</option>
+												<option value="4">4套</option>
+												<option value="5">5套</option>
+												<option value="6">6套</option>
+												<option value="7">7套</option>
+												<option value="8">8套</option>
+												<option value="9">9套</option>
+												<option value="10">10套</option>
+												<option value="11">11套</option>
+												<option value="12">12套</option>
+												<option value="13">13套</option>
+												<option value="14">14套</option>
+												<option value="15">15套</option>
+											</select>
+										</div>
+									</dd>
+								</dl>
+								<!--预订人身份认证信息-->
+								<dl class="cnt1_dl clearfloat mt15">
+									<dt class="fl">预订人</dt>
+									<dd class="fl relave">
+										<div class="clearfloat">
+											<input type="text" placeholder="真实姓名" id ="name" class="rzr_list w108 mr10 fl ident_name" value="">
+											<div class="fl ident_overseas" style="display: none;">
+												<input type="text" placeholder="姓(拼音,如ZHANG)" id="familyname"  class="rzr_list mr10 fl ident_lastName" maxlength="25" onkeyup="value=value.replace(/[^a-zA-Z]/g,&#39;&#39;);" style="text-transform:uppercase;">
+												<input type="text" placeholder="名(拼音,如SAN)" id="givenname" class="rzr_list mr10 fl ident_firstName" maxlength="25" onkeyup="value=value.replace(/[^a-zA-Z]/g,&#39;&#39;);" style="text-transform:uppercase;">
+											</div>
+											<div class="border w70 border_r_no fl">
+												<select class="rzr_list pad_l_4 select_ident_idcord w70" autocomplete="off" style="font-size: 14px !important;">
+													<option name="cardtypevalue" id="identitycard" value="111">身份证</option>
+													<option name="cardtypevalue" id="passport" value="414">护照</option>
+												</select>
+											</div>
+											<input type="text" placeholder="证件号码" class="rzr_list w190 fl" value="" id="ident_idcord">
+											<span class="ident_submit ident_submit_sp fl c22bb62">保存</span>
+										</div>
+									</dd>
+								</dl>
+								<!-- 联系人手机号 -->
+								<dl class="cnt1_dl clearfloat tel_box mt15">
+									<dt class="fl">联系人手机号</dt>
+									<dd class="fl relative">
+										<input type="text" placeholder="必填" class="import fl" tabindex="3" id="tenantmobile" name="tenantmobile" value="" autocomplete="off">
+										<input type="hidden" id="mobileareacode" name="mobileareacode" value="86">
+										<div class="tel_type other">
+											<i id="areaCode" code="86">+86</i>
+											<!-- <span class="UP_down choice_nation_open"></span> -->
+										</div>
+										<div class="nation_list_order other" id="nation_list" style="display: none;">
+											<ul class="continent_list_order" id="continent_list">
+												<li class="avtive_green_order">亚洲</li>
+												<li>欧洲</li>
+												<li>美洲</li>
+												<li>大洋洲</li>
+											</ul>
+											<ul class="nation_tel_list_order" id="nation_tel_list_order_ul">
+												<li style="display: block;">
+													<a href="javascript:void(0);" value="86">中国大陆&nbsp;&nbsp;+86</a>
+													<a href="javascript:void(0);" value="82">韩国&nbsp;&nbsp;+82</a>
+													<a href="javascript:void(0);" value="60">马来西亚&nbsp;&nbsp;+60</a>
+													<a href="javascript:void(0);" value="81">日本&nbsp;&nbsp;+81</a>
+													<a href="javascript:void(0);" value="66">泰国&nbsp;&nbsp;+66</a>
+													<a href="javascript:void(0);" value="65">新加坡&nbsp;&nbsp;+65</a>
+													<a href="javascript:void(0);" value="91">印度&nbsp;&nbsp;+91</a>
+													<a href="javascript:void(0);" value="62">印度尼西亚&nbsp;&nbsp;+62</a>
+													<a href="javascript:void(0);" value="84">越南&nbsp;&nbsp;+84</a>
+													<a href="javascript:void(0);" value="853">中国澳门&nbsp;&nbsp;+853</a>
+													<a href="javascript:void(0);" value="852">中国香港&nbsp;&nbsp;+852</a>
+													<a href="javascript:void(0);" value="886">中国台湾&nbsp;&nbsp;+886</a>
+												</li>
+												<li style="display: none;">
+													<a href="javascript:void(0);" value="49">德国&nbsp;&nbsp;+49</a>
+													<a href="javascript:void(0);" value="7">俄罗斯&nbsp;&nbsp;+7</a>
+													<a href="javascript:void(0);" value="33">法国&nbsp;&nbsp;+33</a>
+													<a href="javascript:void(0);" value="380">乌克兰&nbsp;&nbsp;+380</a>
+													<a href="javascript:void(0);" value="34">西班牙&nbsp;&nbsp;+34</a>
+													<a href="javascript:void(0);" value="39">意大利&nbsp;&nbsp;+39</a>
+													<a href="javascript:void(0);" value="44">英国&nbsp;&nbsp;+44</a>
+												</li>
+												<li style="display: none;">
+													<a href="javascript:void(0);" value="55">巴西&nbsp;&nbsp;+55</a>
+													<a href="javascript:void(0);" value="1">加拿大&nbsp;&nbsp;+1</a>
+													<a href="javascript:void(0);" value="1">美国&nbsp;&nbsp;+1</a>
+												</li>
+												<li style="display: none;">
+													<a href="javascript:void(0);" value="61">澳大利亚&nbsp;&nbsp;+61</a>
+													<a href="javascript:void(0);" value="64">新西兰&nbsp;&nbsp;+64</a>
+												</li>
+											</ul>
+										</div>
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<span style="color:#ff5d51;cursor: pointer;" id="editMobile">修改</span>
+										<span class="relave error error_mobile"><i class="absot gou"></i><b>手机号错误，请重新尝试！</b></span>
+									</dd>
+								</dl>
+								<dl class="cnt1_dl clearfloat tel_box mt15" id="imgcode">
+									<dt class="fl">&nbsp;</dt>
+									<dd class="fl" style="width: 340px;">
+										<input type="text" placeholder="图片验证码" id="bookimagecode" value="" class="import fl" tabindex="3">
+										<img src="validcode" id="bookauthimage" title="点击刷新" class="img_yan"/>
+										<span class="relave fl error error_img"><i class="absot gou"></i><b>图片验证码错误，请重新尝试！</b></span>
+									</dd>
+								</dl>
+								<dl class="cnt1_dl clearfloat tel_box mt15" id="mobilecode">
+									<dt class="fl">&nbsp;</dt>
+									<dd class="fl">
+										<!--验证码错误时span的class="gou" ，， 正确时class='gou dui'-->
+										<input class="fl" type="text" tabindex="4" placeholder="短信验证码" id="phonecode" name="phonecode"> &nbsp;&nbsp;<input type="button" style="cursor: pointer;" value="获取验证码" name="egetmobilecode" class="yanzm fl" id="egetmobilecode"><input type="submit" value="60s" name="验证码" class="yanzm_s"><span id="errorMessage"></span>&nbsp;&nbsp;<span id="checkinfo" class="gou dui" style="display:none;"></span>
+									</dd>
+								</dl>
+								<!--海外及港澳台地区需要填写邮箱-->
+								<!--是否开发票-->
+								<input type="hidden" id="isOnlineInvoice" name="isOnlineInvoice" value="2">
+							</div>
+						</div>
+					</div>
+
+					<!--start-->
+					<div id="insuranceDiv" class="cnt1 cnt2 cnt3 cnt4 clearfloat">
+						<h2 class="need"> 入住人信息     
+	          		<div class="insurance relave">
+	          			<span>（蚂蚁免费赠送您《住宿意外险》，所有入住人均可被保障，保额最高12万元）<i class="insurance_layer_icon"></i></span>
+	          			<div class="insurance_layer">
+	          				<dl class="limit_dl">
+	          					<dt>保障范围及保额：</dt>
+	          					<dd>1. 住客人身意外伤害，保额120000元</dd>
+	          					<dd>2. 住客人身意外医疗，保额10000元 </dd>
+	          					<dd>3. 意外造成房屋损坏，保额40000元</dd>
+	          					<dd>4. 意外造成装修、家电、家具损坏，共享保额10000元</dd>
+	          				</dl>
+	                    <p class="limit_remind">详情见<a href="http://www.mayi.com/insurance?assurer=2" target="_blank">《保险条款》</a></p>
+	                </div>
+	          		</div>
+	          	</h2>
+						<!--意外险部分-->
+						<div class="fl cle bt-border" id="yui_3_5_1_2_1571367117925_20">
+							<!--入住人数-->
+							<dl class="cnt1_dl clearfloat mt15">
+								<dt class="fl">入住人数</dt>
+								<dd class="fl relave people_in">
+									<input type="hidden" id="maxguest" value="2">
+									<div class="select_parent w92 mar_r_6 fl">
+										<select class="select_css w92 rens" autocomplete="off">
+											<option value="1">1</option>
+											<option value="2">2</option>
+										</select>
+									</div>
+
+								</dd>
+							</dl>
+							<dl class="cnt1_dl clearfloat mt15">
+								<dt class="fl">选择入住人</dt>
+								<dd class="fl relave clearfloat p_list" style="width:570px;">
+								</dd>
+								<dd class="fr mt10 addvf_icon  gray">+添加入住人</dd>
+							</dl>
+
+							<div class="relave accident1 clearfloat " id="yui_3_5_1_2_1571367117925_19">
+								<div class="optional" id="yui_3_5_1_2_1571367117925_18">
+									<!--已有保险人列表-->
+									<div class="pb10 clearfloat">
+										<ul class="vf_table border_t mt15">
+										</ul>
+									</div>
+									<!--已有保险人列表end-->
+									<dl class="cnt1_dl clearfloat add_newperson" id="yui_3_5_1_2_1571367117925_17"><dt class="fl">添加入住人</dt>
+										<dd class="fl clearfloat" style="position:relative" id="yui_3_5_1_2_1571367117925_16">
+											<div class="fl ruzhu_form" id="yui_3_5_1_2_1571367117925_15">
+												<div class="clearfloat"><input type="text" placeholder="真实姓名"  id= "name1"class="rzr_list w108 mr10 fl rz_name" value="">
+													<div class="fl overseas" style="display: none;"><input type="text" placeholder="姓(拼音,如ZHANG)" class="rzr_list mr10 fl rz_lastName" maxlength="25" onkeyup="value=value.replace(/[^a-zA-Z]/g,&#39;&#39;);" style="text-transform:uppercase;">
+													<input type="text" placeholder="名(拼音,如SAN)" class="rzr_list mr10 fl rz_firstName" maxlength="25" onkeyup="value=value.replace(/[^a-zA-Z]/g,&#39;&#39;);" style="text-transform:uppercase;"></div>
+													<div class="border w70 border_r_no fl">
+														<select class="rzr_list pad_l_4 select_IDcord w70" autocomplete="off">
+															<option name="cardtypevalue" value="111">身份证</option>
+															<option name="cardtypevalue" value="414">护照</option>
+														</select>
+													</div><input type="text" placeholder="证件号码" class="rzr_list w190 fl" value="" id="idcord"></div>
+												<div class="mt16 clearfloat bors_country " id="yui_3_5_1_2_1571367117925_14">
+													<div class="calendar-input-wrap"><span class="calendar-start-icon trigger-icon-yui_3_5_1_2_1571367117925_8"></span><input type="text" placeholder="出生日期" class="J_Select birthday fl w80  mr10 trigger-node-yui_3_5_1_2_1571367117925_8" value=""></div>
+													<div class="border mr10">
+														<select class="rzr_list w84 fl selectNation pl10 c_gray" id="sex" autocomplete="off">
+															<option value="placeholder" class="c_gray" disabled="" selected="">性别</option>
+															<option value="男">男</option>
+															<option value="女">女</option>
+														</select>
+													</div>
+													<div class="border mr10">
+														<select class="rzr_list w112 fl selectNation pl10" id="person_nation1" autocomplete="off">
+															<option value="阿富汗">阿富汗AFGHANISTANA</option>
+														</select>
+													</div><input type="text" placeholder="邮箱(用于接收确认函，详细入住说明)" class="rzr_list w254 rz_email" maxlength="64"></div><span class="error" id="error_show"></span></div>
+											<div class="absot"><span class="rzr_submit fl c22bb62">保存</span><span class="rzr_remove fl dis_no">取消</span></div>
+										</dd>
+									</dl>
+								</div>
+								<div class="add_person_details">
+									<div class="surveYY">
+									</div>
+									<div class="offmax" id="offmax">
+										<div class="dp_header"> 填写投保人信息</div>
+										<div class="dp_daypicker">
+											<span class="color666 mgb10">
+	                      * 您添加的被保险人都为未成年人，根据相关法规，您还需填写一个成年人的身份信息作为保险的投保人，否则将无法完成投保。
+	                    </span>
+											<p>
+												<font class="width150">投保人真实姓名：</font>
+												<input style="width:200px;border-radius:3px" maxlength="15" class="alterInputName" id="policyholdernameF" name="policyholdernameF" value="" autocomplete="off">
+											</p>
+											<p>
+												<font class="width150"> 投保人身份证号码：</font>
+												<input style="width:200px;border-radius:3px" maxlength="18" class="alterInputName" id="policyholderidcardF" name="policyholderidcardF" value="" autocomplete="off">
+											</p>
+											<p class="orange textcenter" id="policyholderspan"></p>
+										</div>
+										<a class="cancel_btn" style="cursor:hand;cursor:pointer;">取消</a>
+										<a class="makeSure_btn" style="cursor:hand;cursor:pointer;">确定</a>
+									</div>
+								</div>
+								<p class="c_333 vf_selected dis_no">已选择 <span class="choice_vfnum c_green">2位</span> 入住人</p>
+							</div>
+							<!--门票-->
+							<!--特色服务-->
+							<div class="relave accident3" style="display:none" id="yui_3_5_1_2_1571367117925_26">
+
+								<p class="insurance"><label class="insurance_label"><input type="checkbox" autocomplete="off" checked="checked" disabled="disabled">房东提供特色服务</label><span class="insurance_btn" style="display: inline;">&nbsp;&nbsp;选择您需要的服务，费用由您入住时支付给房东，蚂蚁不收取此部分费用</span><i style="display: none;">&nbsp;&nbsp;租车&nbsp;&nbsp;早餐&nbsp;&nbsp;机场接送...</i></p>
+
+								<ul class="mingxi clearfloat optional" id="mingxi">
+
+									<!--class=li_click为房客选中特色服务时li的样式-->
+									<li>早餐&nbsp;<span>20</span>/位</li>
+									<li>机场接送&nbsp;<span>20</span>元</li>
+									<li>车站接送&nbsp;<span>200</span>元</li>
+									<li>租车&nbsp;<span>300</span>元</li>
+									<li>自行车&nbsp;<span>200</span>元</li>
+									<li>本地导游&nbsp;<span>300</span>元</li>
+									<li>婴儿车&nbsp;免费</li>
+									<li>婴儿床&nbsp;免费</li>
+									<dl class="cnt1_dl clearfloat add_newperson" id="yui_3_5_1_2_1571367117925_25"><dt class="fl">添加入住人</dt>
+										<dd class="fl clearfloat" style="position:relative" id="yui_3_5_1_2_1571367117925_24">
+											<div class="fl ruzhu_form" id="yui_3_5_1_2_1571367117925_23">
+												<div class="clearfloat"><input type="text" placeholder="真实姓名" class="rzr_list w108 mr10 fl rz_name" value="">
+													<div class="border w70 border_r_no fl">
+														<select class="rzr_list pad_l_4 select_IDcord w70" autocomplete="off">
+															<option name="cardtypevalue" value="111">身份证</option>
+															<option name="cardtypevalue" value="414">护照</option>
+														</select>
+													</div><input type="text" placeholder="证件号码" class="rzr_list w190 fl" value="" id="idcord"></div>
+												<div class="mt16 clearfloat bors_country " id="yui_3_5_1_2_1571367117925_22">
+													<div class="calendar-input-wrap"><span class="calendar-start-icon trigger-icon-yui_3_5_1_2_1571367117925_8"></span><input type="text" placeholder="出生日期" class="J_Select birthday fl w80  mr10 trigger-node-yui_3_5_1_2_1571367117925_8" value=""></div>
+													<div class="border mr10">
+														<select class="rzr_list w84 fl selectNation pl10 c_gray" id="sex" autocomplete="off">
+															<option value="placeholder" class="c_gray" disabled="" selected="">性别</option>
+															<option value="男">男</option>
+															<option value="女">女</option>
+														</select>
+													</div>
+													<div class="border mr10">
+														<select class="rzr_list w112 fl selectNation pl10" id="person_nation1" autocomplete="off">
+															<option value="阿富汗">阿富汗AFGHANISTANA</option>
+															<option value="阿尔巴尼亚">阿尔巴尼亚ALBANIA</option>
+												</select>
+													</div><input type="text" placeholder="邮箱(用于接收确认函，详细入住说明)" class="rzr_list w254 rz_email" maxlength="64"></div><span class="error" id="error_show"></span></div>
+											<div class="absot"><span class="rzr_submit fl c22bb62">保存</span><span class="rzr_remove fl dis_no">取消</span></div>
+										</dd>
+									</dl>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!--end-->
+
+					<div class="cnt1_dl cnt1 clearfloat landlord ">
+						<h2 class="fl need need2">房东规定</h2>
+						<div class="fl relave need2 bt-border">
+							<div class="roomer refundRull">
+								<p>退款政策：下单后取消订单，将收取未住房费的50%作为违约金支付给房东。</p>
+							</div>
+						</div>
+					</div>
+					<div class="cnt_foot" style="position:relative;">
+						<!--温馨提示暂时无特色服务相关的费用 ，以及您选定房东提供的特色服务费用 -->
+						<div class="order_sub_parent">
+							<a class="submit fl" onclick="submitOrder();">提交订单</a>
+						</div>
+					</div>
+
+				</div>
+				<!--右侧开始-->
+				<div class="fr content_right  pin" id="pin1" style="position: static; left: 1206.5px; top: 0px;">
+					<div class="right_cnt">
+						<img src="./xiadangye/jpg" style="vertical-align: middle">
+						<!--右侧房间开始-->
+						<div class="room_intro relave clearfloat">
+							<strong>双床·看雪山·古城大水车·可接机·能洗衣</strong>
+							<span>丽江古城区民主路金甲村107号(狮子山景区内)丽江心飞扬客栈</span>
+						</div>
+						<div style="padding:6px 10px 0 28px;line-height: 22px;position:relative;left:0;top:0px;color:#ef9b3e;"><img src="./xiadangye/suding_icon.png" style="position:absolute;left:10px;top:10px;">此房源为速订房源，无需房东确认，支付后即预订成功。</div>
+						<div class="time_true">
+							<p><span id="checkindayr">2019.10.18</span><span id="checkinOfWeekr">周五</span>&nbsp;至&nbsp;<span id="checkoutdayr">2019.10.19</span><span id="checkoutOfWeekr">周六</span></p>
+							<p>共<span id="totlenight3">1</span>晚&nbsp;&nbsp;<span id="roomNumr">1</span>套<span id="guestnum"></span></p>
+						</div>
+						<!--右侧表格开始-->
+						<table class="tab_fr">
+							<tbody>
+								<tr class="room_tr">
+									<td>
+										<div style="width:178px;">房费</div>
+									</td>
+									<td class="relave bon tab_tex">
+										<div style="width:130px;">¥<i id="showtotalprice2">145</i>
+											<p id="nightShowPrice2" style="display:inline-block;font-size:14px; margin-left:8px;line-height:45px;text-decoration: line-through;color:#777" class="f16"></p><span class="tab_tan tab_tan2"></span>
+											<!--房费弹出层-->
+											<div class="asote price_par price_par2" style="display:none;">
+												<p class="sanj sanj2 asote"></p>
+												<table class="price price_fixed">
+													<tbody>
+														<tr class="relave">
+															<th width="92">
+																<div style="width:92px;">日期</div>
+															</th>
+															<th width="126">
+																<div style="width:126px;">单价</div>
+															</th>
+															<th width="43">
+																<div style="width:43px;">数量</div>
+															</th>
+															<th width="75" class="bon">
+																<div style="width:75px;">小计</div>
+															</th>
+														</tr>
+													</tbody>
+												</table>
+												<div class="tab_par">
+													<table class="price" id="righttable">
+														<tbody>
+															<tr>
+																<td>
+																	<div style="width:92px;">2019-10-18</div>
+																</td>
+																<td>
+																	<div style="width:126px;">￥145</div>
+																</td>
+																<td>
+																	<div style="width:43px;">1</div>
+																</td>
+																<td class="bon">
+																	<div style="width:75px;" title="145">￥145</div>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<div class="tfoot relave">
+													<div class="fr_fu">共<b id="totlenight2">1</b>晚&nbsp;合计¥<b id="totleprice2">145</b></div>
+													<ul class="fl_fu" id="rlandlordrule">
+														<li>特殊价不参与打折</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr id="tr_coupon" style="display: none;">
+									<td>
+										<div style="width:174px;"><span id="ctip">优惠券</span>&nbsp;</div>
+									</td>
+									<td class="relave bon tab_ipt">
+										<div style="width:98px;margin-left:3px;"><i class="jianmq" couponval="0"></i>
+										</div>
+									</td>
+								</tr>
+								<tr id="tr_insruance">
+									<td>
+										<div style="width:174px;">保险</div>
+									</td>
+									<td class="bon tab_tex">
+										<div style="width:104px;" id="rightInsurancePrice">免费</div>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+
+						<!--支付方式-->
+						<div class="on-line">
+							<div class="online_1 relave clearfloat">
+								<div class="clearfloat"><b class="color font">订单总额</b>¥<i class="font2" id="actuallytotalprice">145.00</i></div>
+								<div class="clearfloat invoiceTax" style="display: none;"><b class="color font">手续费</b>¥<i class="font2" id="invoiceTax">0</i></div>
+								<div class="clearfloat invoicepostage" style="display: none;"><b class="color font">配送服务费</b>¥<i class="font2" id="invoicepostage">0</i></div>
+								<div class="clearfloat" style="display: none;"><b class="color font">押金</b>¥<i class="font2" id="depositprice">0</i></div>
+								<div class="clearfloat relave">
+									<b class="color font3">线上支付到蚂蚁</b>
+									<i style="float:left;line-height:35px;margin-right:4px;font-size:24px;color:#ff5d51;">¥</i>
+									<i class="font4" id="onlinePayAmountShow" style="color:#ff5d51">145.00</i>
+									<span class="asote dingw4"></span>
+								</div>
+								<div class="asote online_asote">
+									<p class="sanj sanj3 asote"></p>
+									预付比例由房东设置，当前房间的预付比例为支付总房费的<i id="payRuleRate">100</i>%
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="online_2">
+						<a href="http://www.mayi.com/supportplan/" target="_blank" class="f16">房客安心计划，100%入住保障</a>
+					</div>
+					<p class="f14 c999">房屋描述失真、到店无房、房东恶意涨价，全部退房费并补偿</p>
+				</div>
+			</div>
+		</form>
+
+		<!--底部统计加登录-->
+		<div class="foot index-foot">
+			<div class="footer pt30 over-hidden pb20">
+				<ul>
+					<li class="pl60 w30">
+						<h3 class="f16 mb10">联系我们</h3>
+						<p>客户服务</p>
+						<p class="f20">400-028-6868</p>
+						<p>Email：service@mayi.com</p>
+						<p>商务合作</p>
+						<p>QQ：2656860348</p>
+						<p>Email：marketing@mayi.com</p>
+					</li>
+					<li class="pl60 w20">
+						<h3 class="f16 mb10">帮助中心</h3>
+						<p>
+							<a href="" target="_blank">我是房客</a>
+						</p>
+						<p>
+							<a href="" target="_blank">我是房东</a>
+						</p>
+						<p>
+							<a href="" target="_blank">房源审核规范</a>
+						</p>
+						<p>
+							<a href="" target="_blank">房客安心计划</a>
+						</p>
+						<p>
+							<a href="" target="_blank">房客安心计划</a>
+						</p>
+					</li>
+					<li class="pl40 w10">
+						<h3 class="f16 mb10">公司信息</h3>
+						<p>
+							<a href="" target="">关于蚂蚁</a>
+						</p>
+						<p>
+							<a href="" target="_blank">媒体报道</a>
+						</p>
+						<p>
+							<a href="" target="_blank">服务协议</a>
+						</p>
+						<p>
+							<a href="" target="_blank">隐私条款</a>
+						</p>
+					</li>
+					<li class="pl80 w20">
+						<h3 class="f16 mb10">APP下载</h3>
+						<p><img class="mt10" src="/xiadangye/G3X6887ZM73LURN2YDGJBRZPQRYKD9.jpg_110x110c.jpg" style="width:104px;"></p>
+						<p>
+							<a class="app mt10 t-center" rel="nofollow" href="">Android下载</a>
+						</p>
+						<p>
+							<a class="app mt10 t-center" rel="nofollow" href="" target="_blank">iOS下载</a>
+						</p>
+					</li>
+					<li class="w20">
+						<h3 class="f16 mb10">关注我们</h3>
+						<p class="fl mr20 cursorpt showinfo"><img src="/xiadangye/weixin_logo.png"><img src="/xiadangye/weixin.jpg" class="head_pop absot"></p>
+						<p class="cursorpt"><img src="/xiadangye/xinlang_logo.png" onclick="sinaWeibo();"></p>
+					</li>
+				</ul>
+			</div>
+			<div class="w1190 pb20">
+				<!--公司切换-->
+				<p class="t-center f12 c777776">网站备案/许可证号：京ICP备12051504号-1
+					<a class="c777776" href="" target="_blank">营业执照编号：105259760</a> 易云游网络技术（北京）有限公司</p>
+				<!--<p class="t-center f12 c777776">网站备案/许可证号：京ICP证130021号 北京裕山阳科技发展有限公司</p>-->
+				<!--<p class="t-center f12 c777776">网站备案/许可证号：京ICP证130021号  北京裕山阳科技发展有限公司  公司地址：北京市海淀区上地三街金隅嘉华大厦D座</p>-->
+				<!--<p class="t-center f12 c777776" id="yui_3_5_1_1_1449739086334_68">京公网安备11010802018218号</p>-->
+			</div>
+		</div>
+		<!-- 登录弹窗 -->
+		<div class="loginbox" id="loginboxdiv" nexturl="none" name="loginboxdiv" style="display:none;">
+			<a class="login-colse" id="loginclose" name="loginclose" onclick="" href="javascript:void(0)"></a>
+			<div class="login-ways clearfloat">
+				<div class="fl phone-account">
+					<ul class="c322c27 clearfloat f18">
+						<li class="phoneway_current" id="changeloginbyma">手机验证码登录</li>
+						<li class="mayiway" id="changeloginbyup">帐号密码登录</li>
+					</ul>
+					<div class="login-phone-account">
+						<!-- 手机登陆 -->
+						<div class="login-input" id="loginbymadiv" name="loginbymadiv">
+							<div class="input">
+								<span class="phone-icon"></span>
+								<input class="dlargeinput" type="text" id="loginmobile" name="loginmobile" placeholder="手机号" value="">
+							</div>
+							<div class="largeinputbox small-top clearfix">
+								<div class="dinput fl">
+									<span class="verification-icon"></span>
+									<input class="dsmallinput" type="text" id="imagecode" placeholder="图形验证码" value="">
+								</div>
+								<div class="yz-code fr">
+									<img src="" id="loginauthimage" title="点击刷新">
+								</div>
+							</div>
+							<div class="largeinputbox small-top clearfix" id="maerrordiv">
+								<div class="dinput fl" id="maerrordiv">
+									<span class="password-icon"></span>
+									<input class="dsmallinput" type="text" id="loginphonecode" name="loginphonecode" placeholder="短信验证码" value="">
+								</div>
+								<div class="yz-code fr">
+									<input class="sendnumber defaultsend" type="button" id="getloginphonecode" name="getloginphonecode" value="获取验证码">
+								</div>
+							</div>
+							<div class="logincheckbox large-top clearfix">
+								<label class="fl">
+                        <input class="selectcheckbox" type="checkbox" name="rememberloginstate" checked="checked" value="">自动登录
+                    </label>
+							</div>
+							<div class="logincheckbox large-top clearfix">
+								<font>未注册的手机号将自动创建为蚂蚁短租帐户</font>
+							</div>
+							<div class="btn-wrap btnpdt20">
+								<a href="javascript:void(0)" id="loginbymado">登录</a>
+							</div>
+						</div>
+						<!-- 手机登陆 end  -->
+						<!-- 密码登陆 start -->
+						<div class="login-input" id="loginbyupdiv" name="loginbyupdiv" style="display:none;">
+							<div class="input">
+								<span class="user-icon"></span>
+								<input class="dlargeinput" type="text" id="loginnamein" name="loginnamein" placeholder="手机号/邮箱/账号" value="">
+							</div>
+							<div class="input small-top">
+								<span class="password-icon"></span>
+								<input class="dlargeinput" type="password" id="loginpassin" name="loginpassin" placeholder="密码" value="">
+							</div>
+							<div class="largeinputbox small-top clearfix" id="uperrordiv">
+								<div class="dinput fl" id="yui_3_5_1_1_1434542056373_108">
+									<span class="verification-icon"></span>
+									<input type="text" class="dsmallinput" id="imagecode1" placeholder="图形验证码" value="">
+								</div>
+								<div class="yz-code fr">
+									<img src="" id="loginauthimage1" title="点击刷新">
+								</div>
+							</div>
+							<div class="logincheckbox large-top clearfix">
+								<label class="fl">
+                        <input class="selectcheckbox" type="checkbox" name="rememberpass" checked="checked" value="">自动登录
+                    </label>
+							</div>
+							<div class="btn-wrap btnpdt20">
+								<a href="javascript:void(0)" id="loginbyupdo">登录</a>
+							</div>
+							<p class="otherwaytitle mt20">没有账号密码请
+								<a href="javascript:void(0)" id="changeloginbymwa">使用手机验证码登录</a>
+							</p>
+						</div>
+						<!-- 密码登陆 end -->
+					</div>
+				</div>
+				<div class="fl t-center third-party">
+					<p class="f18 c322c27 mb20">其他登录方式</p>
+					<ul class="otherway c322c27">
+						<li class="wxway" id="loginbywx">微信登录</li>
+						<li class="sinaway" id="loginbysina">微博登录</li>
+						<li class="qqway" id="loginbyqq">QQ登录</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 登录弹窗 END -->
+		<!--公共尾部结束-->
+		<script type="text/javascript" src="/xiadangye/layer.min.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/jQuery.md5.js.下载"></script>
+		<script type="text/javascript" src="/xiadangye/login.js.下载"></script>
+
+		<style type="text/css">
+			.email {
+				position: fixed;
+				bottom: 0px;
+				right: 0px;
+				width: 190px;
+				height: 35px;
+				line-height: 35px;
+				background: #e8e8e8;
+				border: 1px #CCCCCC solid;
+				border-right: none;
+				z-index: 400000000;
+			}
+			
+			.email a {
+				padding-left: 10px;
+				float: left;
+				font-weight: normal;
+				font-family: "宋体";
+				font-size: 12px;
+				width: 120px;
+				box-shadow: 1px 0px 0px 0px #ccc;
+				border-right: 1px #fff solid;
+			}
+			
+			.email a img {
+				margin: 12px 3px 0px 0px;
+				float: left;
+				width: 16px;
+				height: 12px;
+			}
+			
+			.imjs-status {
+				color: #55aa39 !important
+			}
+			
+			#webIM ul.tab-im .offline-icon,
+			#webIM ul.tab-im .online-icon {
+				background-position: 0 !important
+			}
+			
+			#webIM .all-list a.on,
+			#webIM .all-list a.off {
+				background-position: -239px -297px !important;
+				color: #2883C3 !important
+			}
+			
+			#webIM ul.tab-im a {
+				color: #2883C3 !important
+			}
+		</style>
+		<script src="/xiadangye/wb.js.下载" type="text/javascript" charset="utf-8"></script>
+		<!-- load statistics js -->
+		<!--[statistics start]-->
+		<!-- load End-->
+		<!-- footer end -->
+		<!--取消确定按钮弹出层-->
+		<div id="layer_rz">
+			<div class="ruzT_mark"></div>
+			<div class="ruzT">
+				<img src="./xiadangye/btn_pc_close1.png" class="layer_close" id="vf_layer_close">
+				<!--<h2>删除</h2>-->
+				<p>确定删除该入住人吗？</p>
+				<div class="btn_T">
+					<input type="button" value="取消" class="cancel">
+					<input type="button" value="确定" class="sure">
+				</div>
+			</div>
+		</div>
+
+		<!--有未保存入住人保险的提示-->
+		<input type="hidden" id="iseditperson" value="0">
+
+		<!-- 绑定  -->
+		<div id="valid_success_bangding" class="alert-box">
+			<div class="alert-title" style="text-align:center;">
+				验证完成
+				<a class="alert-close" id="valid_success_bangding_close" href="javascript:void(0);"></a>
+			</div>
+			<div class="alert-con">
+				<dl class="proving">
+					<dt class="succeed"></dt>
+					<dd>
+						<p><span>恭喜验证成功！</span></p>
+						<p>通过绑定以后可通过此手机号码登录查看订单信息</p>
+						<!--
+                    <p><input id="nobangding" class="checking-btn large-btn" type="button" name="nobangding" value="以后在说"/> 
+                       <input id="bangding" class="checking-btn large-btn" type="button" onclick="bangding();" name="bangding" value="点击绑定"/></p>
+                       -->
+						<div class="submit-wrap">
+							<a href="javascript:void(0);" rel="nofollow" class="submit" onclick="bangding();">点击绑定</a>
+							<a href="javascript:void(0);" rel="nofollow" class="laterhandle">以后再说</a>
+						</div>
+
+					</dd>
+				</dl>
+			</div>
+		</div>
+		<div id="valid_success" class="alert-box">
+			<div class="alert-title" style="text-align:center;">
+				验证完成
+				<a class="alert-close" id="valid_success_close" rel="nofollow" href="javascript:void(0);"></a>
+			</div>
+			<div class="alert-con">
+				<dl class="proving" style="padding-left:140px;">
+					<dt class="succeed"></dt>
+					<dd>
+						<p><span style="margin-top:20px;line-height:41px;">恭喜验证成功！</span></p>
+					</dd>
+				</dl>
+			</div>
+		</div>
+
+		<div>
+			<div class="qimo_chatpup" id="qimo_chatpup" style="display: none; right: 18px; bottom: 0px; width: 355px; height: 500px;"><iframe id="chatIframe" src="./xiadangye/moor_chat.html" height="100%" width="100%"></iframe>
+				<div id="maskChat"></div>
+			</div>
+			<div id="chatBtn" class="chatBtn" style="display: none; right: 18px; z-index: -100; background-color: rgb(25, 202, 166); border-radius: 5px 5px 0px 0px; bottom: -1px; padding: 8px 10px;"><img width="25px" height="25px" src="./xiadangye/1.png" style="margin: 0px 5px -6px 0px;"><span>咨询客服</span><span id="qimo_badge"></span></div>
+			<div id="qimo_showNewMsg" class="qimo_showNewMsg" style="display: none; ">
+				<div id="qimo_showNewMsg_box" class="qimo_showNewMsg_box">
+					<div id="qimo_showNewMsg_title_box" class="qimo_showNewMsg_title_box"><img src="./xiadangye/agentLogo.png"><span id="qimo_showNewMsg_title" class="qimo_showNewMsg_title"></span></div>
+					<div id="qimo_showNewMsg_content" class="qimo_showNewMsg_content"></div>
+				</div><span id="qimo_showNewMsg_close" class="qimo_showNewMsg_close">x</span></div>
+		</div>
+		<script type="text/javascript" charset="UTF-8" src="./xiadangye/online(1)"></script>
+		<div>
+			<div class="qimo_inviteBox" id="qimo_inviteBox" style="display: none; right: 10px; bottom: 10px; background: rgb(63, 184, 253);"><img class="qimo_invite_close" id="qimo_invite_close" src="./xiadangye/invite-close.png">
+				<div class="qimo_inviteBox_top">
+					<div class="qimo_inviteBox_top_img" id="qimo_inviteBox_top_img"><img id="qimo_inviteBox_img" src="./xiadangye/896beb70-d81a-11e7-b6e7-9da891414b0f.png"></div>
+					<div class="qimo_inviteBox_top_right" id="qimo_inviteBox_top_right">
+						<p id="qimo_inviteBox_InviteWords">欢迎咨询，请问有什么可以帮您的吗？</p>
+						<div class="qimo_inviteBox_top_button" id="qimo_inviteBox_top_button">
+							<div id="invite_click_button_1" class="divbuttons msie11PadTop" style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255);">立即咨询</div>
+							<div id="invite_click_button_2" class="divbuttons msie11PadTop" style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255);">以后再说</div>
+						</div>
+					</div>
+				</div>
+				<div class="qimo_inviteBox_bottom"><textarea id="sendInviteText" placeholder="请输入您想要输入的内容..." rows="2"></textarea>
+					<div id="sendInviteContent" class="sendInviteContent msie11PadTop" style="background: rgb(63, 184, 253);">发送</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<div class="qimo_screenpop" id="qimo_screenpop" style="display: none">
+				<div class="screendragbar" id="screendrag"></div>
+				<div class="qimo_headerimg" id="qimo_headerimg">
+					<div class="screenminimg" style="display: none" id="screenminimg"><img src="./xiadangye/small.png"></div>
+					<div class="screenminimg" id="screenmaximg"><img src="./xiadangye/big.png"></div>
+					<div class="screenminimg" id="screencloseimg"><img src="./xiadangye/close(1).png" style="width: 16px;height: 16px;"></div>
+				</div>
+				<div id="mask"></div><iframe id="screenIframe" src="./xiadangye/saved_resource.html" height="100%" width="100%" allow="microphone; camera"></iframe></div>
+		</div>
+		<div>
+			<div class="qimo_videopup" id="qimo_videopup" style="display: none">
+				<div style="" class="dragbar" id="drag"></div>
+				<div class="qimo_minimg" id="qimo_minimg"><img src="./xiadangye/small.png"></div><img src="./xiadangye/big.png" class="qimo_maximg" id="qimo_maximg" style="display: none">
+				<div id="mask"></div><iframe id="videoIframe" src="./xiadangye/saved_resource(1).html" height="100%" width="100%" allow="microphone; camera"></iframe></div>
+		</div>
+		<div id="calendar-yui_3_5_1_1_1571367117925_14" class="calendar-bounding-box" style="position: absolute; top: -9999px; display: none;">
+			<div class="container">
+				<div class="message-box"></div>
+				<div class="content-box">
+					<div class="arrow">
+						<div class="close-btn delegate-click-yui_3_5_1_1_1571367117925_14" id="clearSelect">清空日期</div><span class="prev-btn delegate-click-yui_3_5_1_1_1571367117925_14 prev-btn-disabled" title="上月"></span><span class="next-btn delegate-click-yui_3_5_1_1_1571367117925_14" title="下月"></span></div>
+					<div class="date-box">
+						<div class="inner">
+							<h4 style="font-size: 15px;">2019年10月</h4>
+							<table>
+								<thead>
+									<tr>
+										<th class="weekend">日</th>
+										<th class="">一</th>
+										<th class="">二</th>
+										<th class="">三</th>
+										<th class="">四</th>
+										<th class="">五</th>
+										<th class="weekend">六</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="2019-10-01" class="disabled">
+											<a id="id-2019-10-01" href="javascript:;" class="">1</a>
+										</td>
+										<td data-date="2019-10-02" class="disabled">
+											<a id="id-2019-10-02" href="javascript:;" class="">2</a>
+										</td>
+										<td data-date="2019-10-03" class="disabled">
+											<a id="id-2019-10-03" href="javascript:;" class="">3</a>
+										</td>
+										<td data-date="2019-10-04" class="disabled">
+											<a id="id-2019-10-04" href="javascript:;" class="">4</a>
+										</td>
+										<td data-date="2019-10-05" class="disabled">
+											<a id="id-2019-10-05" href="javascript:;" class="">5</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-06" class="disabled">
+											<a id="id-2019-10-06" href="javascript:;" class="">6</a>
+										</td>
+										<td data-date="2019-10-07" class="disabled">
+											<a id="id-2019-10-07" href="javascript:;" class="">7</a>
+										</td>
+										<td data-date="2019-10-08" class="disabled">
+											<a id="id-2019-10-08" href="javascript:;" class="">8</a>
+										</td>
+										<td data-date="2019-10-09" class="disabled">
+											<a id="id-2019-10-09" href="javascript:;" class="">9</a>
+										</td>
+										<td data-date="2019-10-10" class="disabled">
+											<a id="id-2019-10-10" href="javascript:;" class="">10</a>
+										</td>
+										<td data-date="2019-10-11" class="disabled">
+											<a id="id-2019-10-11" href="javascript:;" class="">11</a>
+										</td>
+										<td data-date="2019-10-12" class="disabled">
+											<a id="id-2019-10-12" href="javascript:;" class="">12</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-13" class="disabled">
+											<a id="id-2019-10-13" href="javascript:;" class="">13</a>
+										</td>
+										<td data-date="2019-10-14" class="disabled">
+											<a id="id-2019-10-14" href="javascript:;" class="">14</a>
+										</td>
+										<td data-date="2019-10-15" class="disabled">
+											<a id="id-2019-10-15" href="javascript:;" class="">15</a>
+										</td>
+										<td data-date="2019-10-16" class="disabled">
+											<a id="id-2019-10-16" href="javascript:;" class="">16</a>
+										</td>
+										<td data-date="2019-10-17" class="disabled">
+											<a id="id-2019-10-17" href="javascript:;" class="">17</a>
+										</td>
+										<td data-date="2019-10-18" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-18" href="javascript:;" class="today">今天</a>
+										</td>
+										<td data-date="2019-10-19" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-19" href="javascript:;" class="">19</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-20" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-20" href="javascript:;" class="">20</a>
+										</td>
+										<td data-date="2019-10-21" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-21" href="javascript:;" class="">21</a>
+										</td>
+										<td data-date="2019-10-22" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-22" href="javascript:;" class="">22</a>
+										</td>
+										<td data-date="2019-10-23" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-23" href="javascript:;" class="">23</a>
+										</td>
+										<td data-date="2019-10-24" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-24" href="javascript:;" class="">24</a>
+										</td>
+										<td data-date="2019-10-25" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-25" href="javascript:;" class="">25</a>
+										</td>
+										<td data-date="2019-10-26" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-26" href="javascript:;" class="">26</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-27" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-27" href="javascript:;" class="">27</a>
+										</td>
+										<td data-date="2019-10-28" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-28" href="javascript:;" class="">28</a>
+										</td>
+										<td data-date="2019-10-29" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-29" href="javascript:;" class="">29</a>
+										</td>
+										<td data-date="2019-10-30" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-30" href="javascript:;" class="">30</a>
+										</td>
+										<td data-date="2019-10-31" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-10-31" href="javascript:;" class="">31</a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="inner">
+							<h4 style="font-size: 15px;">2019年11月</h4>
+							<table>
+								<thead>
+									<tr>
+										<th class="weekend">日</th>
+										<th class="">一</th>
+										<th class="">二</th>
+										<th class="">三</th>
+										<th class="">四</th>
+										<th class="">五</th>
+										<th class="weekend">六</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="2019-11-01" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-01" href="javascript:;" class="">1</a>
+										</td>
+										<td data-date="2019-11-02" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-02" href="javascript:;" class="">2</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-11-03" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-03" href="javascript:;" class="">3</a>
+										</td>
+										<td data-date="2019-11-04" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-04" href="javascript:;" class="">4</a>
+										</td>
+										<td data-date="2019-11-05" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-05" href="javascript:;" class="">5</a>
+										</td>
+										<td data-date="2019-11-06" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-06" href="javascript:;" class="">6</a>
+										</td>
+										<td data-date="2019-11-07" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-07" href="javascript:;" class="">7</a>
+										</td>
+										<td data-date="2019-11-08" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-08" href="javascript:;" class="">8</a>
+										</td>
+										<td data-date="2019-11-09" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-09" href="javascript:;" class="">9</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-11-10" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-10" href="javascript:;" class="">10</a>
+										</td>
+										<td data-date="2019-11-11" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-11" href="javascript:;" class="">11</a>
+										</td>
+										<td data-date="2019-11-12" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-12" href="javascript:;" class="">12</a>
+										</td>
+										<td data-date="2019-11-13" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-13" href="javascript:;" class="">13</a>
+										</td>
+										<td data-date="2019-11-14" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-14" href="javascript:;" class="">14</a>
+										</td>
+										<td data-date="2019-11-15" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-15" href="javascript:;" class="">15</a>
+										</td>
+										<td data-date="2019-11-16" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-16" href="javascript:;" class="">16</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-11-17" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-17" href="javascript:;" class="">17</a>
+										</td>
+										<td data-date="2019-11-18" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-18" href="javascript:;" class="">18</a>
+										</td>
+										<td data-date="2019-11-19" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-19" href="javascript:;" class="">19</a>
+										</td>
+										<td data-date="2019-11-20" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-20" href="javascript:;" class="">20</a>
+										</td>
+										<td data-date="2019-11-21" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-21" href="javascript:;" class="">21</a>
+										</td>
+										<td data-date="2019-11-22" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-22" href="javascript:;" class="">22</a>
+										</td>
+										<td data-date="2019-11-23" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-23" href="javascript:;" class="">23</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-11-24" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-24" href="javascript:;" class="">24</a>
+										</td>
+										<td data-date="2019-11-25" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-25" href="javascript:;" class="">25</a>
+										</td>
+										<td data-date="2019-11-26" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-26" href="javascript:;" class="">26</a>
+										</td>
+										<td data-date="2019-11-27" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-27" href="javascript:;" class="">27</a>
+										</td>
+										<td data-date="2019-11-28" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-28" href="javascript:;" class="">28</a>
+										</td>
+										<td data-date="2019-11-29" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-29" href="javascript:;" class="">29</a>
+										</td>
+										<td data-date="2019-11-30" class="delegate-click-yui_3_5_1_1_1571367117925_14">
+											<a id="id-2019-11-30" href="javascript:;" class="">30</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="date-box" style="text-align: right;">
+						<div class="inner">
+							<h5 style="font-size: 12px;line-height:30px;margin-right: 8px;">此房源最少入住1晚</h5></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="calendar-yui_3_5_1_2_1571367117925_8" class="calendar-bounding-box" style="position: absolute; top: -9999px; display: none;">
+			<div class="container">
+				<div class="message-box"></div>
+				<div class="content-box">
+					<div class="arrow">
+						<div class="close-btn delegate-click-yui_3_5_1_2_1571367117925_8" id="clearSelect">清空日期</div><span class="prev-btn delegate-click-yui_3_5_1_2_1571367117925_8" title="上月"></span><span class="next-btn delegate-click-yui_3_5_1_2_1571367117925_8 next-btn-disabled" title="下月"></span></div>
+					<div class="date-box">
+						<div class="inner">
+							<h4 style="font-size: 15px;"><select class="delegate-change-yui_3_5_1_2_1571367117925_8"><option selected="selected" value="2019">2019</option>						<table>
+								<thead>
+									<tr>
+										<th class="weekend">日</th>
+										<th class="">一</th>
+										<th class="">二</th>
+										<th class="">三</th>
+										<th class="">四</th>
+										<th class="">五</th>
+										<th class="weekend">六</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="2019-10-01" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-01" href="javascript:;" class="guoqing">国庆</a>
+										</td>
+										<td data-date="2019-10-02" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-02" href="javascript:;" class="">2</a>
+										</td>
+										<td data-date="2019-10-03" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-03" href="javascript:;" class="">3</a>
+										</td>
+										<td data-date="2019-10-04" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-04" href="javascript:;" class="">4</a>
+										</td>
+										<td data-date="2019-10-05" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-05" href="javascript:;" class="">5</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-06" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-06" href="javascript:;" class="">6</a>
+										</td>
+										<td data-date="2019-10-07" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-07" href="javascript:;" class="">7</a>
+										</td>
+										<td data-date="2019-10-08" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-08" href="javascript:;" class="">8</a>
+										</td>
+										<td data-date="2019-10-09" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-09" href="javascript:;" class="">9</a>
+										</td>
+										<td data-date="2019-10-10" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-10" href="javascript:;" class="">10</a>
+										</td>
+										<td data-date="2019-10-11" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-11" href="javascript:;" class="">11</a>
+										</td>
+										<td data-date="2019-10-12" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-12" href="javascript:;" class="">12</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-13" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-13" href="javascript:;" class="">13</a>
+										</td>
+										<td data-date="2019-10-14" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-14" href="javascript:;" class="">14</a>
+										</td>
+										<td data-date="2019-10-15" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-15" href="javascript:;" class="">15</a>
+										</td>
+										<td data-date="2019-10-16" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-16" href="javascript:;" class="">16</a>
+										</td>
+										<td data-date="2019-10-17" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-17" href="javascript:;" class="">17</a>
+										</td>
+										<td data-date="2019-10-18" class="delegate-click-yui_3_5_1_2_1571367117925_8">
+											<a id="id-2019-10-18" href="javascript:;" class="today">今天</a>
+										</td>
+										<td data-date="2019-10-19" class="disabled">
+											<a id="id-2019-10-19" href="javascript:;" class="">19</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-20" class="disabled">
+											<a id="id-2019-10-20" href="javascript:;" class="">20</a>
+										</td>
+										<td data-date="2019-10-21" class="disabled">
+											<a id="id-2019-10-21" href="javascript:;" class="">21</a>
+										</td>
+										<td data-date="2019-10-22" class="disabled">
+											<a id="id-2019-10-22" href="javascript:;" class="">22</a>
+										</td>
+										<td data-date="2019-10-23" class="disabled">
+											<a id="id-2019-10-23" href="javascript:;" class="">23</a>
+										</td>
+										<td data-date="2019-10-24" class="disabled">
+											<a id="id-2019-10-24" href="javascript:;" class="">24</a>
+										</td>
+										<td data-date="2019-10-25" class="disabled">
+											<a id="id-2019-10-25" href="javascript:;" class="">25</a>
+										</td>
+										<td data-date="2019-10-26" class="disabled">
+											<a id="id-2019-10-26" href="javascript:;" class="">26</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-27" class="disabled">
+											<a id="id-2019-10-27" href="javascript:;" class="">27</a>
+										</td>
+										<td data-date="2019-10-28" class="disabled">
+											<a id="id-2019-10-28" href="javascript:;" class="">28</a>
+										</td>
+										<td data-date="2019-10-29" class="disabled">
+											<a id="id-2019-10-29" href="javascript:;" class="">29</a>
+										</td>
+										<td data-date="2019-10-30" class="disabled">
+											<a id="id-2019-10-30" href="javascript:;" class="">30</a>
+										</td>
+										<td data-date="2019-10-31" class="disabled">
+											<a id="id-2019-10-31" href="javascript:;" class="">31</a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="date-box" style="text-align: right;">
+						<div class="inner"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="calendar-yui_3_5_1_3_1571367117925_8" class="calendar-bounding-box" style="position: absolute; top: -9999px; display: none;">
+			<div class="container">
+				<div class="message-box"></div>
+				<div class="content-box">
+					<div class="arrow">
+						<div class="close-btn delegate-click-yui_3_5_1_3_1571367117925_8" id="clearSelect">清空日期</div><span class="prev-btn delegate-click-yui_3_5_1_3_1571367117925_8 prev-btn-disabled" title="上月"></span><span class="next-btn delegate-click-yui_3_5_1_3_1571367117925_8 next-btn-disabled" title="下月"></span></div>
+					<div class="date-box">
+						<div class="inner">
+							<h4 style="font-size: 15px;">2019年10月</h4>
+							<table>
+								<thead>
+									<tr>
+										<th class="weekend">日</th>
+										<th class="">一</th>
+										<th class="">二</th>
+										<th class="">三</th>
+										<th class="">四</th>
+										<th class="">五</th>
+										<th class="weekend">六</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="2019-10-01" class="disabled">
+											<a id="id-2019-10-01" href="javascript:;" class="">1</a>
+										</td>
+										<td data-date="2019-10-02" class="disabled">
+											<a id="id-2019-10-02" href="javascript:;" class="">2</a>
+										</td>
+										<td data-date="2019-10-03" class="disabled">
+											<a id="id-2019-10-03" href="javascript:;" class="">3</a>
+										</td>
+										<td data-date="2019-10-04" class="disabled">
+											<a id="id-2019-10-04" href="javascript:;" class="">4</a>
+										</td>
+										<td data-date="2019-10-05" class="disabled">
+											<a id="id-2019-10-05" href="javascript:;" class="">5</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-06" class="disabled">
+											<a id="id-2019-10-06" href="javascript:;" class="">6</a>
+										</td>
+										<td data-date="2019-10-07" class="disabled">
+											<a id="id-2019-10-07" href="javascript:;" class="">7</a>
+										</td>
+										<td data-date="2019-10-08" class="disabled">
+											<a id="id-2019-10-08" href="javascript:;" class="">8</a>
+										</td>
+										<td data-date="2019-10-09" class="disabled">
+											<a id="id-2019-10-09" href="javascript:;" class="">9</a>
+										</td>
+										<td data-date="2019-10-10" class="disabled">
+											<a id="id-2019-10-10" href="javascript:;" class="">10</a>
+										</td>
+										<td data-date="2019-10-11" class="disabled">
+											<a id="id-2019-10-11" href="javascript:;" class="">11</a>
+										</td>
+										<td data-date="2019-10-12" class="disabled">
+											<a id="id-2019-10-12" href="javascript:;" class="">12</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-13" class="disabled">
+											<a id="id-2019-10-13" href="javascript:;" class="">13</a>
+										</td>
+										<td data-date="2019-10-14" class="disabled">
+											<a id="id-2019-10-14" href="javascript:;" class="">14</a>
+										</td>
+										<td data-date="2019-10-15" class="disabled">
+											<a id="id-2019-10-15" href="javascript:;" class="">15</a>
+										</td>
+										<td data-date="2019-10-16" class="disabled">
+											<a id="id-2019-10-16" href="javascript:;" class="">16</a>
+										</td>
+										<td data-date="2019-10-17" class="disabled">
+											<a id="id-2019-10-17" href="javascript:;" class="">17</a>
+										</td>
+										<td data-date="2019-10-18" class="disabled">
+											<a id="id-2019-10-18" href="javascript:;" class="">18</a>
+										</td>
+										<td data-date="2019-10-19" class="delegate-click-yui_3_5_1_3_1571367117925_8">
+											<a id="id-2019-10-19" href="javascript:;" class="">19</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-20" class="delegate-click-yui_3_5_1_3_1571367117925_8">
+											<a id="id-2019-10-20" href="javascript:;" class="">20</a>
+										</td>
+										<td data-date="2019-10-21" class="disabled">
+											<a id="id-2019-10-21" href="javascript:;" class="">21</a>
+										</td>
+										<td data-date="2019-10-22" class="disabled">
+											<a id="id-2019-10-22" href="javascript:;" class="">22</a>
+										</td>
+										<td data-date="2019-10-23" class="disabled">
+											<a id="id-2019-10-23" href="javascript:;" class="">23</a>
+										</td>
+										<td data-date="2019-10-24" class="disabled">
+											<a id="id-2019-10-24" href="javascript:;" class="">24</a>
+										</td>
+										<td data-date="2019-10-25" class="disabled">
+											<a id="id-2019-10-25" href="javascript:;" class="">25</a>
+										</td>
+										<td data-date="2019-10-26" class="disabled">
+											<a id="id-2019-10-26" href="javascript:;" class="">26</a>
+										</td>
+									</tr>
+									<tr>
+										<td data-date="2019-10-27" class="disabled">
+											<a id="id-2019-10-27" href="javascript:;" class="">27</a>
+										</td>
+										<td data-date="2019-10-28" class="disabled">
+											<a id="id-2019-10-28" href="javascript:;" class="">28</a>
+										</td>
+										<td data-date="2019-10-29" class="disabled">
+											<a id="id-2019-10-29" href="javascript:;" class="">29</a>
+										</td>
+										<td data-date="2019-10-30" class="disabled">
+											<a id="id-2019-10-30" href="javascript:;" class="">30</a>
+										</td>
+										<td data-date="2019-10-31" class="disabled">
+											<a id="id-2019-10-31" href="javascript:;" class="">31</a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+										<td data-date="" class="disabled">
+											<a id="id-" href="javascript:;" class=""></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="date-box" style="text-align: right;">
+						<div class="inner"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+<script type="text/javascript">
+		$("#bookauthimage").click(function(){
+			console.log(111)
+			console.log($("#bookauthimage"));
+			$("#bookauthimage").attr('src', 'validcode?id='+Math.floor(Math.random()*10000));
+		})
+
+		$("#egetmobilecode").click(function(){
+			var tenantmobile = $("#tenantmobile").val()
+			var url="yzm";
+			var params ={"tenantmobile":tenantmobile};
+			$.get(url,params,function(r){
+				if(r.state==1)
+					alert("验证成功");
+			})
+		})
+	
+</script>	
+	
+
+</html>

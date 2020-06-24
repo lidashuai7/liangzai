@@ -1,0 +1,160 @@
+// 发布评论等级选择
+$(function() {
+			$('.rating-star a').click(function() {
+				$(this).addClass('rating-cur').parent().siblings().children()
+						.removeClass('rating-cur');
+				var value = $(this).attr("value");
+				var type = $(this).parent().parent().attr("type");
+				$("#" + type).val(value);
+				return false;
+			});
+		});
+// 显示发表评论
+var k;
+function showPublishComment(bookOrderId, roomTitle, firstDayPrice) {
+	if (bookOrderId > 0) {
+		$("#bookOrderId").val(bookOrderId);
+	}
+	if (roomTitle.length > 15) {
+		roomTitle = roomTitle.substr(0, 15) + "...";
+	}
+	$("#commentLodgTitle").html(roomTitle);
+	$("#commentPrice").html("￥" + firstDayPrice);
+	k = $.layer({
+				type : 1,
+				title : false,
+				offset : ['150px', ''],
+				border : false,
+				closeBtn : false,
+				area : ['auto', 'auto'],
+				page : {
+					dom : '#sendComment'
+				}
+			});
+	$('.alert-close').on('click', function() {
+				layer.close(k);
+			});
+}
+// 评论发表成功：
+var ii;
+function showSuccessComment() {
+	ii = $.layer({
+				type : 1,
+				title : false,
+				offset : ['150px', ''],
+				border : false,
+				closeBtn : false,
+				area : ['auto', 'auto'],
+				page : {
+					dom : '#comment_success'
+				}
+			});
+	$('#pjsucc-close').on('click', function() {
+				layer.close(ii);
+				window.location.reload();
+			});
+	// $('#success').on('click',function(){
+	// layer.close(ii);
+	// window.location.reload();
+	// });
+}
+// 发表错误
+var jj;
+function showErrorComment() {
+	jj = $.layer({
+				type : 1,
+				title : false,
+				offset : ['150px', ''],
+				border : false,
+				closeBtn : false,
+				area : ['auto', 'auto'],
+				page : {
+					dom : '#comment_error'
+				}
+			});
+	$('.alert-close').on('click', function() {
+				layer.close(jj);
+			});
+}
+// 重新发表评论
+function repeatShowPublishComment() {
+	layer.close(jj);
+	showPublishComment();
+}
+
+String.prototype.trim = function() {
+	return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+}
+
+// 发表评论：
+function publishComment() {
+	var bookOrderId = $("#bookOrderId").val();
+	var sanitation = $("#sanitation").val();
+	var security = $("#security").val();
+	var description = $("#description").val();
+	var location = $("#location").val();
+	var performance = $("#performance").val();
+	var content = $("#comment_content").val().trim();
+	if (content.length == 0 || content.length < 15) {
+		layer.alert('请至少输入15个有效文字!', 8, '温馨提示');
+		return;
+	}
+	if (content == "可以围绕住宿感受、环境、交通、服务等多个方面评价，您的评价对其他朋友有狠狠狠大滴帮助哦~~~") {
+		layer.alert('请输入评论内容!', 8, '温馨提示');
+		return;
+	}
+
+	var ctx = $("#ctx").val();
+	var url = ctx + "/comment/addCommentAjax/" + bookOrderId;
+	url += "?sanitation=" + sanitation + "&security=" + security
+			+ "&description=" + description + "&location=" + location
+			+ "&performance=" + performance;
+	url += "&content=" + encodeURIComponent(content);
+	jQuery.post(url, {}, function(result) {
+				if (result == 1) {
+					layer.close(k);
+					$("#" + bookOrderId).hide();
+					showSuccessComment();
+				} else if (result == 2) {
+					layer.close(k);
+					layer.alert("您还未登录，请重新登录！", 5, "温馨提示", function() {
+								window.location.reload();
+							});
+				} else if (result == 3) {
+					layer.close(k);
+					showRepetitionComment();
+				} else if (result == 4) {
+					layer.alert('请勿输入非法字符!', 8, '温馨提示');
+				} else {
+					layer.close(k);
+					showErrorComment();
+				}
+			});
+
+}
+
+//已评论提示：
+var rr;
+function showRepetitionComment() {
+	rr = $.layer({
+		type: 1,
+		title: false,
+		offset: ['150px', ''],
+		border: false,
+		closeBtn: false,
+		area: ['auto', 'auto'],
+		page: {
+			dom: '#comment_repetition'
+		}
+	});
+	$('.alert-close').on('click',
+	function() {
+		layer.close(rr);
+		window.location.reload();
+	});
+	$('#repetition').on('click',
+	function() {
+		layer.close(rr);
+		window.location.reload();
+	});
+}

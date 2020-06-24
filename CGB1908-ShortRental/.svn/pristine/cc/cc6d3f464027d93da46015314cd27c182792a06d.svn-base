@@ -1,0 +1,683 @@
+$(function(){
+	var ctx = $("#ctx").val();
+	//media兼容IE8
+	setwidth();
+	minHeight();
+	$(window).resize(function(){
+		setwidth();
+		minHeight();
+	})
+	filterscroll();
+	var uid = getCookie("MAYIUID");
+	if(uid&&uid!=null&&uid>0)
+	{
+		//足迹
+		getUserTrack();
+		//猜你喜欢
+		getUserLike();
+	}
+	$('.range-slider').jRange({
+		from: 60,
+		to: 1000,
+		step: 1,
+		format: '%s',
+		width: "160px",
+		showLabels: false,
+		isRange: true,
+		onstatechange:function(){
+			var valSpring = $("#filter_price").val();
+			var arr = valSpring.split(",");
+			if(arr[1]-arr[0]<60){
+				if( arr[0]==60){
+					this.setValue("60,120");
+					arr[0]=60;
+					arr[1]=120;
+				}else if(arr[1]==1000){
+					this.setValue("940,1000");
+					arr[0]=940;
+					arr[1]=1000;
+				}
+				else{
+					if($(".last-active").hasClass("high")){
+						arr[1]=parseInt(arr[0])+60;
+						this.setValue(arr.join(","));
+					}else{
+						arr[0]=parseInt(arr[1])-60;
+						this.setValue(arr.join(","));
+					}
+				}
+			}
+			if(arr[1]==1000){
+				arr[1]="1000+";
+			}
+			$(".queding").css("color","#21C890");
+			$("#price_num1").html(arr[0]);
+			$("#price_num2").html(arr[1]);
+		}
+	});
+	$("#mited").click(function(){
+		$(".result-business").show();
+		$('.next .add').eq(0).find('a').addClass('font-bold addOn');
+	});
+	/*var fpNum = $("#list_fastp_num").val();
+	var pageNo = $("#map_pNo").val();
+	if(fpNum >= 20 && $(".set_speed").hasClass("on") == false){
+		var sdqp = getCookie("MAYI_SDQP_T");
+		if(sdqp == "" || sdqp == null || sdqp == "null"){
+			$(".suding_tip").show();
+		}
+		var sdtc = getCookie("MAYI_SDTC_T");
+		if(pageNo != 1 && (sdtc == "" || sdtc == null || sdtc == "null")){
+			$(".layer_set_speed").show();
+		}
+	}*/
+	/***防止冒泡***/
+	$(".suding_tip").click(function(e){
+		e.stopPropagation();
+		return false;
+	});
+	/**速订房源气泡关闭**/
+	$(".suding_close").click(function(e){
+		MY.setCookie("MAYI_SDQP_T","sdqp",".mayi.com","/",365);
+		$(".suding_tip").hide();
+		e.stopPropagation();
+		return false;
+	})
+	/**速订弹层**/
+	$(".close_setspeed,.layer_set_speed a").click(function(){
+		MY.setCookie("MAYI_SDTC_T","sdtc",".mayi.com","/",365);
+		$(this).closest(".layer_set_speed").hide();
+	})
+	//价格选项
+	$("#toup_price").click(function(){
+		//价格由低到高
+		var url = $(this).attr("url");
+		window.location.href = url;
+	})
+	$("#todown_price").click(function(){
+		//价格由高到低
+		var url = $(this).attr("url");
+		window.location.href = url;
+	})
+	
+	$('.tab').on('click','li',function(e){
+    	e.stopPropagation();
+        var name = $(this).prop('class');
+        name = name.split(' ')[0];
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active');
+        $('#'+name).addClass('active');
+        $('#'+name).siblings().removeClass('active');
+    });
+	// 搜索栏 入住人数
+    $('.people .chose-people').click(function(e){
+    	MYRP.rpComm($(this));
+    	$("#index_list_calendar").hide();
+    	$(".search-modal").fadeOut();
+    	var that_model =  $(this).parents('.people').find('.search-modal');
+        $(this).parents('.people').find('.search-modal').fadeIn().on('click','li',function(e){
+        	MYRP.rpComm($(this));
+        	e.stopPropagation();
+            var count = $(this).text();
+            var peoplenum = $(this).attr("peoplenum");
+            $(this).addClass('on').siblings().removeClass('on');
+            $('#countVal').text(count);
+            $('#countVal').attr("popnum",peoplenum);
+            $('#topCountVal').text(count);
+            $(this).closest('.search-modal').hide();
+            setTimeout(function(){
+    			$('#landmarkBtn').click();
+    		},300);
+        });
+        e.stopPropagation(e);
+        $(document).one("click", function (e){
+        	that_model.hide();
+        });
+    });
+    
+   //日历
+    $('.time input').click(function(e){
+    	MYRP.rpComm($(this));
+    	e.stopPropagation();
+        $(".search-modal").fadeOut();
+        $(this).parents('.time').find('#index_list_calendar-box').fadeIn().addClass('active');
+        $(document).one("click", function (){
+            if($('#checkoutday').val() !=="" || $("#checkinday").val() === ""){
+                $('#index_list_calendar-box').fadeOut().removeClass('active');
+            }
+        });
+        $("#index_list_calendar-box").click(function(e1){
+        	e1.stopPropagation();
+        	return;
+        })
+    });
+    //滚动条
+    $('.people .search-modal').niceScroll({
+        cursorcolor: '#484848',
+        cursoropacitymax: '0.25',
+        cursorwidth: '6px',
+        cursorborderradius: '100px'
+    });
+    
+    $('#cityselectul').niceScroll({
+        cursorcolor: '#484848',
+        cursoropacitymax: '0.25',
+        cursorwidth: '6px',
+        cursorborderradius: '100px'
+    });
+    
+	//合并床型、设施、特色房型到其他
+	$("#moreOther .moreOthernav a").mouseover(function(){
+		$(this).addClass("font-bold on_hover addOn");
+		var index = parseInt($(this).parent().attr("more"))-1;
+		$("#moreOther .checkbox").eq(index).show()
+			.siblings('.checkbox').hide();
+	}).mouseleave(function(){
+		var that = $(this);
+		var index = parseInt($(this).parent().attr("more"))-1;
+		$("#moreOther .checkbox").eq(index).hover(function(){
+			$(this).show();
+			that.addClass("font-bold on_hover addOn");
+		},function(){
+			var index = parseInt(that.parent().attr("more"))-1;
+			that.removeClass("font-bold on_hover addOn");
+			$("#moreOther .checkbox").eq(index).hide();
+		})
+		that.removeClass("font-bold on_hover addOn");
+		$("#moreOther .checkbox").eq(index).hide();
+	});
+	$('.room_hover').click(function(){
+		$(this).remove();
+		if($('.gong ul li').length==1){
+			$('.gong').css('display','none');
+		}
+		window.location.href=ctx+$(this).find("a").attr('href');
+	});
+	$('.clearall').click(function(){
+		$('.gong').css('display','none');
+		window.location.href=ctx+$(this).find("a").attr('href');
+	});
+	$('#customPriceBtnNew').click(function(){
+		var minPrice =  $('#price_num1').html();
+		var maxPrice =  $('#price_num2').html();
+		if(isNaN(maxPrice)){
+			maxPrice = "99999";
+		}
+		var priceStr = "p"+minPrice+'-'+maxPrice;
+		var urlRequest = $(this).attr('urlRequest');
+		if((/p[\d]+-[\d]+/).test(urlRequest)){
+			urlRequest = urlRequest.replace(/p[\d]+-[\d]+/,priceStr);
+		}
+		window.location.href=urlRequest;
+	});
+	$(".right_nav li").click(function(){
+		$(this).addClass("on").siblings().removeClass("on");
+		var str = $(this).html();
+		if(str == '我的足迹'){
+			$('.right_nav_guseelike').hide();
+			$('.right_nav_footmark').show();
+		}
+		else{
+			$('.right_nav_footmark').hide();
+			$('.right_nav_guseelike').show();
+		}
+	});
+
+	$(".close_download").click(function(){
+		var date = new Date(); 
+		date.setTime(date.getTime() + 24*60*60*1000);//Cookie生存周期为24小时
+		document.cookie = "downloadApp_list = download;expires=" + date.toGMTString()+"; path=/";
+		$(".downloadApp").hide();
+	});
+	var downloadApp = getCookie("downloadApp_list");
+    if(downloadApp == "download" ){
+    	$(".downloadApp").hide();
+    }else{
+    	$(".downloadApp").show();
+    }
+})
+	
+function minHeight(){
+	var rigth_like_H = $(".rigth_like").height();
+	$("#con-wrap").css('min-height',rigth_like_H+20+"px");
+}
+function filterscroll(){
+	var oH = $("#search_nav_bottom").offset().top-$(".header").height();
+	var filterContH11 = $("#filter").height();
+	var filterContH = $("#filterCont").height();
+	$(window).scroll(function(){
+		var oscroll = $(window).scrollTop();
+		if(oscroll>=oH){
+			$("#filter").css({
+				"position":"fixed",
+				"z-index":1000,
+				'left': 0,
+    			'top':"50px"
+			});
+			if($("#filter_up_down").hasClass("select_up")){
+				$("#filterCont").css({
+					'height':"0px",
+					'overflow':"hidden"
+				})
+				$(".filter_fixed").height(filterContH11);
+			}else{
+				$("#filterCont").css({
+					height:"auto",
+					overflow:"visible"
+				})
+			}
+			$("#filter_up_down").css("display","inline-block");
+		}else{
+			$("#filter").css({
+				"position":"relative",
+				"z-index":1,
+				'left': 0,
+    			'top': 0
+			});
+			$("#filterCont").css({
+				height:"auto",
+				overflow:"visible"
+			});
+			$(".filter_fixed").height(0);
+			$("#filter_up_down").css("display","none").addClass("select_up").removeClass("select_down").html("展开筛选条件");
+		}
+	})
+	$("#filter_up_down").click(function(){
+		//收起状态
+		if($(this).hasClass("select_up")){
+			$("#filter_up_down").html("收起筛选条件");
+			
+			$("#filterCont").css('overflow',"visible").animate({
+				'height':filterContH+"px"
+			},300);
+			$(this).addClass("select_down").removeClass("select_up");
+		}else{
+			$("#filter_up_down").html("展开筛选条件");
+			$("#filterCont").css('overflow',"hidden").animate({
+				'height':0
+			},300)
+			$(this).addClass("select_up").removeClass("select_down");
+		}
+	});
+}
+function setwidth(){
+	var ow = $(window).width();
+	if(ow<=1600){
+		$(".con-wrap-par .con-wrap .searchRoom dd").css("width","33.33%");
+		$(".headW_auto").css({
+			'width':'94.44%',
+            'margin':'0 auto'
+		})
+		$(".w94_94").css({
+			'width':'94.44%',
+            'margin':'0 auto'
+		})
+		if(ow<=1300){
+			$(".cont1 .filter ul li .slider-container").css("width","100px");
+			$("#list_search .search_main").css("width","1050px");
+		}
+		if(ow>1300 && ow<=1440){
+			$(".cont1 .filter ul li .slider-container").css("width","156px");
+			$("#list_search .search_main").css("width","1050px");
+		}
+	}
+	else{
+		$(".con-wrap-par .con-wrap .searchRoom dd").css("width","25%");
+		$(".headW_auto").css({
+			'width':'83%',
+            'margin':'0 auto'
+		});
+		$(".w94_94").css({
+			'width':'83%',
+            'margin':'0 auto'
+		});
+		if(ow>1600 && ow<=1800){
+			$(".cont1 .filter ul li .slider-container").css("width","228px");
+		}
+		if(ow>1800){
+			$(".cont1 .filter ul li .slider-container").css("width","320px");
+			$(".downloadApp .downloadApp_ewm").css({
+				'background':'#fff',
+	            'width':'50px',
+	            'height':'50px',
+	            'position': 'absolute',
+	            'right':'33%',
+	            'top':'50%',
+	            'margin-top':'-25px'
+			})
+		}
+	}
+}
+var mapCollect_flag = false;//收藏
+function lodge_collect(obj){
+	if(mapCollect_flag){
+		return ;
+	}
+	mapCollect_flag =true;
+	var user = getCookie('MAYIUID');
+	if(null==user||user.length==0){
+		$("#loginshow").click();
+	}else{
+		var roomid = $(obj).attr("id");
+		roomid = roomid.replace("map_c_","").replace("c_","");
+		var state = $(obj).attr("state");
+		var ctx = $('#ctx').val();
+		$.ajax({
+			url:ctx+'/user/tenant/setCollection?roomid='+roomid+"&state="+state,
+			type:'POST',
+			dataType:'json',
+			success:function(data){
+				if(data==1){
+					if(state==1){
+						state=2;
+						$("#c_"+roomid).addClass("ct_on").attr("title","取消收藏");
+						$("#map_c_"+roomid).addClass("ct_on").attr("title","取消收藏");
+						if($(obj).attr("id").indexOf("map_c_")>-1){
+							$('#map_price_'+roomid).addClass("map_collect");
+						}else{
+							$('#map_price_'+roomid).attr("data-class","map_collect");
+						}
+					}else{
+						state=1;
+						$("#c_"+roomid).removeClass("ct_on").attr("title","收藏");
+						$("#map_c_"+roomid).removeClass("ct_on").attr("title","收藏");
+						$('#map_price_'+roomid).removeClass("map_collect");
+						$('#map_price_'+roomid).attr("data-class","");
+					}
+					$("#c_"+roomid+"").attr("state",state);
+					$("#map_c_"+roomid+"").attr("state",state);
+				}else{
+					alert('收藏失败！');
+				}
+				mapCollect_flag = false;
+			},
+			error:function(){
+				alert('请求异常，请稍后再试！');
+				mapCollect_flag = false;
+			}
+		});
+	}
+}
+
+//获取我的足迹信息
+function getUserTrack(){
+	var ctx = $('#ctx').val();
+	$.ajax({
+		type: 'POST',
+        url: ctx + '/indexUserTrack/',
+        data:{},
+        success: function(data) {
+        	if(data.list != null && data.list.length > 0){
+        		var ratingscoreDesc = "";
+        		var collect = "";
+        		var commentnum = "";
+        		var str ="";
+        		for(var i=0;i<data.list.length;i++){
+        			//评价处理
+        			ratingscoreDesc = data.list[i].ratingscoreDesc;
+        			if(ratingscoreDesc == null){
+        				ratingscoreDesc = "";
+        			}
+        			commentnum = data.list[i].commentnum;
+        			if(commentnum == null || commentnum == ''){
+        				commentnum = 0 ;
+        			}
+        			//收藏标识处理
+					if(!data.list[i].isCollect){
+						collect = "<div class='collect' title='未收藏'  onclick='lodge_collect(this);' state='1' id='c_"+data.list[i].roomId+"'></div>"
+					}else{
+						collect = "<div class='collect ct_on' title='收藏' onclick='lodge_collect(this);' state='2' id='c_"+data.list[i].roomId+"'></div>"
+					}
+        			if ((i % 2) == 0){
+        				str+='<dl id="'+((i/2)+1)+'page_foot"';
+        				if(i==0){
+        					str+='style="display:block">';
+        				}else{
+        					str+='style="display:none">';
+        				}
+        			}
+        			str +='<dd>';	
+        			str +='<div class="room-img">';
+        			str += collect;
+        			str +='<div>';
+        			str +='<div>';
+        			str +='<a href="/room/'+data.list[i].roomId+'" onclick="goDetail(this)" target="_blank" _mayi_rp="weblist|usertrack|'+data.list[i].roomId+'">';
+        			str +='<img class="lodgelazy" title="'+data.list[i].title+'" src="'+data.list[i].mainUrl+'"  alt="'+data.list[i].title+'" style="display: inline;">';
+        			str +='</a>';
+        			str +='</div>';
+        			str +='</div>';
+        			str +='<b class="moy-b"><p><font>￥</font>'+data.list[i].price+'</p></b>';
+        			str +='</div>';
+        			str +='<a href="/room/'+data.list[i].roomId+'" title="'+data.list[i].title+'" onclick="goDetail(this)" target="_blank" style="position:relative;">';
+        			str +='<div class="room-detail  clearfloat">';
+        			str +='<p style="width:100%;">'+data.list[i].title+'</p>';
+        			str +='<ul>';
+        			if(data.list[i].ratingscore != '0'){
+        				str +='<li><span style="color: #FA8100;">'+data.list[i].ratingscore+'分 '+ratingscoreDesc+'·</span></li>';
+        			}
+        			if(commentnum != 0 ){
+        				str +='<li>'+commentnum+'条评价·</li>';
+        			}
+        			str +='<li>'+data.list[i].bedroomnum+'居·</li>';
+        			str +='<li>'+data.list[i].cityName+'</li>';
+        			str +='</ul>';
+        			str +='</div>';
+        			str +='</a>';
+        			str +='</dd>';	
+        			if( (i % 2) == 1 || (i+1) == (data.list.length)){
+        				str +='</dl>';
+        			}
+        		}
+        		str +='<div class="link_page">';
+    			str +='	<a href="javascript:;" class="prev_link fl"></a>';
+    			var footmarkCount = Math.ceil(data.list.length/2.0);
+				str +='<span class="page_num_link"><i class="pageleft">1</i>/<i class="pagelong">'+footmarkCount+'</i></span>';
+				str +='<a href="javascript:;" class="next_link fr"></a>';
+				str +='</div>';
+				$(".right_nav_footmark").html(str);
+				minHeight();
+				//翻页
+			    var his_flag=false;
+			    var len = parseInt($(".right_nav_footmark .pagelong").html());
+			    if(len<=1){
+			        his_flag=true;
+			        $(".right_nav_footmark .prev_link").addClass("gray");
+			        $(".right_nav_footmark .next_link").addClass("gray");
+			    }
+			    $(".right_nav_footmark .prev_link").click(function(){
+			        if(his_flag)return;
+			        var nownum = parseInt($(".right_nav_footmark .page_num_link").find(".pageleft").html());
+			        if(nownum<=1){
+			            $(this).addClass("gray");
+			            $(".right_nav_footmark .next_link").removeClass("gray");
+			            return;
+			        }else{
+			        	$("#"+nownum+"page_foot").hide();
+			            nownum--;
+			            $(".right_nav_footmark .page_num_link").find(".pageleft").html(nownum+" ");
+			            $(this).removeClass("gray");
+			            $(".right_nav_footmark .next_link").removeClass("gray");
+			            if(nownum <= 1){
+			                $(this).addClass("gray");
+			                $(".right_nav_footmark .next_link").removeClass("gray");
+			            }
+			            $("#"+nownum+"page_foot").show();
+			        }
+			        his_flag = false;
+			    });
+			    $(".right_nav_footmark .next_link").click(function(){
+			        if(his_flag)return;
+			        var nownum = parseInt($(".right_nav_footmark .page_num_link").find(".pageleft").html());
+			        if(nownum>=len){
+			            $(this).addClass("gray");
+			            $(".right_nav_footmark .prev_link").removeClass("gray");
+			            return;
+			        }else{
+			        	$("#"+nownum+"page_foot").hide();
+			            nownum++;
+			            $(".right_nav_footmark .page_num_link").find(".pageleft").html(nownum+" ");
+			            $(this).removeClass("gray");
+			            $(".right_nav_footmark .prev_link").removeClass("gray");
+			            if(nownum>=len){
+			                $(this).addClass("gray");
+			                $(".right_nav_footmark .prev_link").removeClass("gray");
+			            }
+			            $("#"+nownum+"page_foot").show();
+			        }
+			        his_flag = false;
+			    });
+				
+        	}
+        },
+        error: function(data){
+        	
+        }
+    });
+}
+//获取猜你喜欢
+function getUserLike(){
+	var ctx = $('#ctx').val();
+	$.ajax({
+		type: 'POST',
+        url: ctx + '/guessLikeInfo/',
+        data:{},
+        success: function(data) {
+        	console.log(data)
+        	if(data.list != null && data.list.length > 0){
+        		var ratingscoreDesc = "";
+        		var collect = "";
+        		var commentnum = "";
+        		var str ="";
+        		for(var i=0;i<data.list.length;i++){
+        			//评价处理
+        			ratingscoreDesc = data.list[i].ratingscoreDesc;
+        			if(ratingscoreDesc == null){
+        				ratingscoreDesc = "";
+        			}
+        			commentnum = data.list[i].commentnum;
+					if(commentnum == null || commentnum == ''){
+						commentnum = 0 ;
+					}
+					//收藏标识处理
+					if(!data.list[i].isCollect){
+						collect = "<div class='collect' title='未收藏' onclick='lodge_collect(this);' state='1' id='c_"+data.list[i].roomId+"'></div>"
+					}else{
+						collect = "<div class='collect ct_on' title='收藏' onclick='lodge_collect(this);' state='2' id='c_"+data.list[i].roomId+"'></div>"
+					}
+        			if ((i % 2) == 0){
+        				str+='<dl id="'+((i/2)+1)+'page_like"';
+        				if(i==0){
+        					str+='style="display:block">';
+        				}else{
+        					str+='style="display:none">';
+        				}
+        			}
+        			str +='<dd>';	
+        			str +='<div class="room-img">';
+        			str += collect;
+        			str +='<div>';
+        			str +='<div>';
+        			str +='<a href="/room/'+data.list[i].roomId+'" onclick="goDetail(this)" target="_blank" _mayi_rp="weblist|userlike|'+data.list[i].roomId+'">';
+        			str +='<img class="lodgelazy" title="'+data.list[i].title+'" src="'+data.list[i].mainUrl+'"  alt="'+data.list[i].title+'" style="display: inline;">';
+        			str +='</a>';
+        			str +='</div>';
+        			str +='</div>';
+        			str +='<b class="moy-b"><p><font>￥</font>'+data.list[i].price+'</p></b>';
+        			str +='</div>';
+        			str +='<a href="/room/'+data.list[i].roomId+'" title="'+data.list[i].title+'" onclick="goDetail(this)" target="_blank" style="position:relative;">';
+        			str +='<div class="room-detail  clearfloat">';
+        			str +='<p style="width:100%;">'+data.list[i].title+'</p>';
+        			str +='<ul>';
+        			if(data.list[i].ratingscore != '0'){
+        				str +='<li><span style="color: #FA8100;">'+data.list[i].ratingscore+'分 '+ratingscoreDesc+'·</span></li>';
+        			}
+        			if(commentnum != 0 ){
+        				str +='<li>'+commentnum+'条评价·</li>';
+        			}
+        			str +='<li>'+data.list[i].bedroomnum+'居·</li>';
+        			str +='<li>'+data.list[i].cityName+'</li>';
+        			str +='</ul>';
+        			str +='</div>';
+        			str +='</a>';
+        			str +='</dd>';	
+        			if( (i % 2) == 1 || (i+1) == (data.list.length)){
+        				str +='</dl>';
+        			}
+        		}
+        		str +='<div class="link_page">';
+    			str +='	<a href="javascript:;" class="prev_link fl"></a>';
+    			var footmarkCount = Math.ceil(data.list.length/2.0);
+				str +='<span class="page_num_link"><i class="pageleft">1</i>/<i class="pagelong">'+footmarkCount+'</i></span>';
+				str +='<a href="javascript:;" class="next_link fr"></a>';
+				str +='</div>';
+				$(".right_nav_guseelike").html(str);
+				minHeight();
+				//翻页
+			    var his_flag=false;
+			    var len = parseInt($(".right_nav_guseelike .pagelong").html());
+			    if(len<=1){
+			        his_flag=true;
+			        $(".right_nav_guseelike .prev_link").addClass("gray");
+			        $(".right_nav_guseelike .next_link").addClass("gray");
+			    }
+			    $(".right_nav_guseelike .prev_link").click(function(){
+			        if(his_flag)return;
+			        var nownum = parseInt($(".right_nav_guseelike .page_num_link").find(".pageleft").html());
+			        if(nownum<=1){
+			            $(this).addClass("gray");
+			            $(".right_nav_guseelike .next_link").removeClass("gray");
+			            return;
+			        }else{
+			        	$("#"+nownum+"page_like").hide();
+			            nownum--;
+			            $(".right_nav_guseelike .page_num_link").find(".pageleft").html(nownum+" ");
+			            $(this).removeClass("gray");
+			            $(".right_nav_guseelike .next_link").removeClass("gray");
+			            if(nownum <= 1){
+			                $(this).addClass("gray");
+			                $(".right_nav_guseelike .next_link").removeClass("gray");
+			            }
+			            $("#"+nownum+"page_like").show();
+			        }
+			        his_flag = false;
+			    });
+			    $(".right_nav_guseelike .next_link").click(function(){
+			        if(his_flag)return;
+			        var nownum = parseInt($(".right_nav_guseelike .page_num_link").find(".pageleft").html());
+			        if(nownum>=len){
+			            $(this).addClass("gray");
+			            $(".right_nav_guseelike .prev_link").removeClass("gray");
+			            return;
+			        }else{
+			        	$("#"+nownum+"page_like").hide();
+			            nownum++;
+			            $(".right_nav_guseelike .page_num_link").find(".pageleft").html(nownum+" ");
+			            $(this).removeClass("gray");
+			            $(".right_nav_guseelike .prev_link").removeClass("gray");
+			            if(nownum>=len){
+			                $(this).addClass("gray");
+			                $(".right_nav_guseelike .prev_link").removeClass("gray");
+			            }
+			            $("#"+nownum+"page_like").show();
+			        }
+			        his_flag = false;
+			    });
+				
+        	}
+        },
+        error: function(data){
+        	
+        }
+    });
+}
+function goMap(){
+	var url = window.location.href;
+	if(url.indexOf("map=") == -1){
+		if(url.indexOf("?")>-1){
+			url = url + "&map=no"
+		}else{
+			url = url + "?map=no"
+		}
+	}
+	window.location.href = url;
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.pj.dao.hlj.GuestMapper">
+<insert id="addGuest">
+insert into tb_guest(member_id,real_name,idcard,cardtype,lastname,firstname)values
+(#{member_id},#{real_name},#{idcard},#{cardtype},#{lastname},#{firstname})
+  
+</insert>
+<insert id="insertGuest">
+insert into tb_guest(member_id,real_name,idcard)values(#{member_id},#{real_name},#{idcard})
+
+</insert>
+<select id="selectByIdCard" resultType="com.cy.pj.vo.hlj.Guest">
+select * from tb_guest where idcard =#{idcard}
+
+</select>
+<update id="updateByIdCard">
+update tb_guest set real_name=#{name} 
+ where idcard=#{id} 
+
+</update>
+
+
+<select id="selectByIdCard1" resultType="com.cy.pj.vo.hlj.Guest">
+select * from tb_guest where idcard =#{idcard}
+
+</select>
+
+<update id="updateByIdCard1">
+update tb_guest set real_name=#{name} 
+ where idcard=#{id}
+
+</update>
+
+<insert id="addOrder">
+insert into tb_order_item(item_id,check_in_time,check_out_time,house_number,
+	real_name,idcord,tel,guest_num,real_name1,idcord1,gross_price,create_time,
+	trade_status,order_num,order_id,landlord_id,house_id,guest_id,status,affirm_cancel)
+	values(#{item_id},#{check_in_time},#{check_out_time},#{house_number},#{real_name},
+	#{idcord},#{tel},#{guest_num},#{real_name1},#{idcord1},#{gross_price},now(),1,
+	#{order_num},#{order_num},#{landlord_id},#{house_id},#{guest_id},1,1)
+</insert>
+<update id="updateByHouseId">
+	update tb_house set using_status = 1 where house_id =#{houseId};
+</update>
+
+
+</mapper>

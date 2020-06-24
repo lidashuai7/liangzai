@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.pj.dao.zsm.HouseCountMapper">
+
+	<select id="queryHouseCount"
+		resultType="com.cy.pj.vo.zsm.house_count">
+		select h.house_id,h.house_city,COUNT(h.house_city)as
+		shu,p.picture_path
+		from tb_house_picture as p
+		join tb_house as h
+		on
+		h.house_id=p.house_id
+		GROUP by h.house_city
+		LIMIT 0,6
+	</select>
+
+	<select id="queryhouse" resultType="com.cy.pj.vo.zsm.house_de">
+
+		select
+		d.id,h.house_id,h.house_name,h.house_city,h.house_address,h.house_type,m.base_price,d.Landlord_path,p.picture_path
+		from tb_house as h
+		JOIN tb_house_picture as p
+		on h.house_id=p.house_id
+		join tb_landlord as d
+		on h.landlord_id=d.id
+		join tb_house_price as m
+		on
+		h.house_id=m.house_id
+		LIMIT 0,3
+	</select>
+
+	<select id="queryhouse1" resultType="com.cy.pj.vo.zsm.house_de">
+
+		select
+		d.id,h.house_id,h.house_name,h.house_city,h.house_address,h.house_type,m.base_price,d.Landlord_path,p.picture_path
+		from tb_house as h
+		JOIN tb_house_picture as p
+		on h.house_id=p.house_id
+		join tb_landlord as d
+		on h.landlord_id=d.id
+		join tb_house_price as m
+		on
+		h.house_id=m.house_id
+		LIMIT 3,3
+	</select>
+
+	<select id="houseerji" resultType="com.cy.pj.vo.zsm.house_erji">
+		select
+		h.house_id,p.picture_path,h.house_name,h.house_city,h.house_address,m.base_price,h.house_type,h.house_class,h.bed_type,h.position,l.Landlord_path
+		from tb_house as h
+		join tb_house_picture as p
+		on h.house_id=p.house_id
+		join tb_landlord as l
+		on h.landlord_id=l.id
+		join tb_house_price as m
+		on
+		h.house_id=m.house_id
+
+		<where>
+			<if test="position!=null">
+				and h.position=#{position}
+			</if>
+			<if test="housetype!=null">
+				and h.house_type like CONCAT('%',#{housetype},'%')
+			</if>
+			<if test="baseprice1!=null">
+				and m.base_price&gt;=#{baseprice1}
+			</if>
+			<if test="baseprice2!=null">
+				and m.base_price &lt;=#{baseprice2}
+			</if>
+			<if test="weizhi!=null">
+				and h.house_city like CONCAT('%',#{weizhi},'%')
+			</if>
+			    and h.using_status =0
+			<if test="xu==1">
+				order by m.base_price DESC
+			</if>
+			<if test="xu==2">
+				order by m.base_price
+			</if>
+			GROUP BY h.house_id
+		</where>
+
+	</select>
+
+	<select id="queryposition" resultType="com.cy.pj.vo.zsm.povo">
+		select house_type,position
+		from tb_house
+	</select>
+
+
+	<select id="queryhousexq" resultType="com.cy.pj.vo.zsm.house_xq">
+		select
+		h.house_id,h.harea,h.province,h.hproper,h.house_city,h.street_address,h.house_address,h.landlord_id,
+		h.house_Time,h.additional_explanation,h.rental_mode,h.house_class,h.floor_space,
+		h.ambitus,h.house_type,h.house_name,h.house_feature,h.position,h.peripheral_introduction,p.picture_path,m.base_price,m.min_day,s.equipment,s.sanitary_squipment,s.kitchen_equipment,
+		s.entertainment_equipment,s.safety_equipment,s.building_equipment,s.peripheral_equipment,s.other_services
+		from tb_house as h
+		join tb_house_picture as p
+		on h.house_id=p.house_id
+		join tb_house_price as m
+		on p.house_id=m.house_id
+		join
+		tb_house_facilities_services as s
+		on h.house_id=s.id
+		where
+		h.house_id=#{houseid}
+		GROUP BY h.house_id
+	</select>	
+
+
+
+	<select id="querycollect"
+		resultType="com.cy.pj.vo.zsm.tb_collect">
+		select *
+		from tb_collect
+		where houseid=#{houseid}
+	</select>
+
+
+
+
+	<insert id="insertCollect">
+		insert into rental.tb_collect(collectId,userid,houseid,collectTime)values
+		(null,#{collect.userid},#{collect.houseid}, NOW())
+	</insert>
+
+	<select id="querycollecthousexq"
+		resultType="com.cy.pj.vo.zsm.collectVo">
+	select
+		c.collectId,c.collectTime,h.house_id,h.house_address,h.ambitus,h.house_class,m.base_price,m.people_number,p.picture_path,c.userid
+		from tb_collect as c
+		join tb_house as h
+		on c.houseid=h.house_id
+		join tb_house_picture as p
+		on h.house_id=p.house_id
+		join tb_house_price as m
+		on h.house_id=m.house_id
+		where c.userid=#{userid}
+	</select>
+
+
+<delete id="deletecollect">
+delete from rental.tb_collect 
+	where
+	collectId = #{collectId}
+
+</delete>
+
+
+
+
+
+</mapper> 

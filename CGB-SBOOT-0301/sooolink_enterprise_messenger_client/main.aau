@@ -1,0 +1,24 @@
+﻿import win.ui;
+import start;
+import io;
+import login.form;
+import debug.log;
+import console;
+import string;
+import table;
+
+//全局状态
+isLogin = null;
+userInfo= null;
+db 		= null;
+proLastVersion 	= "";
+loginToken 		= null;
+//当前窗口状态
+winStatus  = "show";
+//video
+theVideoUrl = '';
+
+//初始化
+start.init();	
+
+win.loopMessage();

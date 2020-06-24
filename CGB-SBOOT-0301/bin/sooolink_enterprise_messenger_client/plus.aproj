@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project ver="10" name="Sooolink企业信使客户端" libEmbed="true" icon="res\ico\messenger_72px_26597_easyicon.net.ico" ui="win" output="main.exe" CompanyName="Sooolink.com" FileDescription="企业内部沟通系统" LegalCopyright="Copyright (C) sooolink.inc 2020-2030" ProductName="Sooolink企业信使" InternalName="Sooolink企业信使" FileVersion="0.0.1.122" ProductVersion="0.0.1.122" publishDir="/Publish/" dstrip="false" local="false">
+	<file name="main.aau" path="main.aau"/>
+	<folder name="资源文件" path="res" embed="true" local="false">
+		<file name="baoruan.com_8230bb9fe6c77d4.gif" path="res\baoruan.com_8230bb9fe6c77d4.gif" comment="res\baoruan.com_8230bb9fe6c77d4.gif"/>
+		<file name="button-active.png" path="res\button-active.png" comment="res\button-active.png"/>
+		<file name="button-disabled.png" path="res\button-disabled.png" comment="res\button-disabled.png"/>
+		<file name="button-hover.png" path="res\button-hover.png" comment="res\button-hover.png"/>
+		<file name="checked-active.png" path="res\checked-active.png" comment="res\checked-active.png"/>
+		<file name="checked-default.png" path="res\checked-default.png" comment="res\checked-default.png"/>
+		<file name="checked-hover.png" path="res\checked-hover.png" comment="res\checked-hover.png"/>
+		<file name="close-active.png" path="res\close-active.png" comment="res\close-active.png"/>
+		<file name="close-default.png" path="res\close-default.png" comment="res\close-default.png"/>
+		<file name="close-hover.png" path="res\close-hover.png" comment="res\close-hover.png"/>
+		<file name="close-normal.png" path="res\close-normal.png" comment="res\close-normal.png"/>
+		<file name="ding.wav" path="res\ding.wav" comment="res\ding.wav"/>
+		<file name="form-background.jpg" path="res\form-background.jpg" comment="res\form-background.jpg"/>
+		<file name="max-active.png" path="res\max-active.png" comment="res\max-active.png"/>
+		<file name="max-default.png" path="res\max-default.png" comment="res\max-default.png"/>
+		<file name="max-hover.png" path="res\max-hover.png" comment="res\max-hover.png"/>
+		<file name="min-active.png" path="res\min-active.png" comment="res\min-active.png"/>
+		<file name="min-default.png" path="res\min-default.png" comment="res\min-default.png"/>
+		<file name="min-hover.png" path="res\min-hover.png" comment="res\min-hover.png"/>
+		<file name="textbox-password.png" path="res\textbox-password.png" comment="res\textbox-password.png"/>
+		<file name="textbox-username.png" path="res\textbox-username.png" comment="res\textbox-username.png"/>
+		<folder name="ico" path="res\ico" comment="res\ico">
+			<file name="balloon_pleasance_72px_11917_easyicon.net.ico" path="res\ico\balloon_pleasance_72px_11917_easyicon.net.ico" comment="res\ico\balloon_pleasance_72px_11917_easyicon.net.ico"/>
+			<file name="bell_ringtone_72px_11786_easyicon.net.ico" path="res\ico\bell_ringtone_72px_11786_easyicon.net.ico" comment="res\ico\bell_ringtone_72px_11786_easyicon.net.ico"/>
+			<file name="card_christmas_envelope_letter_xmas_72px_339_easyicon.net.ico" path="res\ico\card_christmas_envelope_letter_xmas_72px_339_easyicon.net.ico" comment="res\ico\card_christmas_envelope_letter_xmas_72px_339_easyicon.net.ico"/>
+			<file name="cellphone_mobile_ringtone_72px_3863_easyicon.net.ico" path="res\ico\cellphone_mobile_ringtone_72px_3863_easyicon.net.ico" comment="res\ico\cellphone_mobile_ringtone_72px_3863_easyicon.net.ico"/>
+			<file name="community_home_house_72px_3915_easyicon.net.ico" path="res\ico\community_home_house_72px_3915_easyicon.net.ico" comment="res\ico\community_home_house_72px_3915_easyicon.net.ico"/>
+			<file name="messenger_72px_26597_easyicon.net.ico" path="res\ico\messenger_72px_26597_easyicon.net.ico" comment="res\ico\messenger_72px_26597_easyicon.net.ico"/>
+		</folder>
+		<folder name="js" path="res\js" comment="res\js">
+			<folder name="jQuery" path="res\js\jQuery" comment="res\js\jQuery">
+				<file name="jquery.min.js" path="res\js\jQuery\jquery.min.js" comment="res\js\jQuery\jquery.min.js"/>
+			</folder>
+		</folder>
+	</folder>
+	<folder name="data" path="data" comment="data" local="false" embed="false">
+		<folder name="app" path="data\app" comment="data\app"/>
+		<folder name="face" path="data\face" comment="data\face">
+			<file name="green.jpg" path="data\face\green.jpg" comment="data\face\green.jpg"/>
+		</folder>
+	</folder>
+	<folder name="窗体文件" path="dlg" embed="true" comment="目录" local="false">
+		<file name="chat.aardio" path="dlg\chat.aardio" comment="dlg\chat.aardio"/>
+		<file name="owninfo.aardio" path="dlg\owninfo.aardio" comment="dlg\owninfo.aardio"/>
+		<file name="serverurl.aardio" path="dlg\serverurl.aardio" comment="dlg\serverurl.aardio"/>
+		<file name="video.aardio" path="dlg\video.aardio" comment="dlg\video.aardio"/>
+		<folder name="web" path="dlg\web" comment="dlg\web">
+			<file name="addobj.html" path="dlg\web\addobj.html" comment="dlg\web\addobj.html"/>
+			<file name="app.html" path="dlg\web\app.html" comment="dlg\web\app.html"/>
+			<file name="appcontent.html" path="dlg\web\appcontent.html" comment="dlg\web\appcontent.html"/>
+			<file name="main.html" path="dlg\web\main.html" comment="dlg\web\main.html"/>
+			<file name="sysset.html" path="dlg\web\sysset.html" comment="dlg\web\sysset.html"/>
+			<folder name="css" path="dlg\web\css" comment="dlg\web\css">
+				<file name="app.css" path="dlg\web\css\app.css" comment="dlg\web\css\app.css"/>
+				<file name="chat.css" path="dlg\web\css\chat.css" comment="dlg\web\css\chat.css"/>
+			</folder>
+			<folder name="enoji" path="dlg\web\enoji" comment="dlg\web\enoji">
+				<folder name="arclist" path="dlg\web\enoji\arclist" comment="dlg\web\enoji\arclist">
+					<file name="1.gif" path="dlg\web\enoji\arclist\1.gif" comment="dlg\web\enoji\arclist\1.gif"/>
+					<file name="10.gif" path="dlg\web\enoji\arclist\10.gif" comment="dlg\web\enoji\arclist\10.gif"/>
+					<file name="11.gif" path="dlg\web\enoji\arclist\11.gif" comment="dlg\web\enoji\arclist\11.gif"/>
+					<file name="12.gif" path="dlg\web\enoji\arclist\12.gif" comment="dlg\web\enoji\arclist\12.gif"/>
+					<file name="13.gif" path="dlg\web\enoji\arclist\13.gif" comment="dlg\web\enoji\arclist\13.gif"/>
+					<file name="14.gif" path="dlg\web\enoji\arclist\14.gif" comment="dlg\web\enoji\arclist\14.gif"/>
+					<file name="15.gif" path="dlg\web\enoji\arclist\15.gif" comment="dlg\web\enoji\arclist\15.gif"/>
+					<file name="16.gif" path="dlg\web\enoji\arclist\16.gif" comment="dlg\web\enoji\arclist\16.gif"/>
+					<file name="17.gif" path="dlg\web\enoji\arclist\17.gif" comment="dlg\web\enoji\arclist\17.gif"/>
+					<file name="18.gif" path="dlg\web\enoji\arclist\18.gif" comment="dlg\web\enoji\arclist\18.gif"/>
+					<file name="19.gif" path="dlg\web\enoji\arclist\19.gif" comment="dlg\web\enoji\arclist\19.gif"/>
+					<file name="2.gif" path="dlg\web\enoji\arclist\2.gif" comment="dlg\web\enoji\arclist\2.gif"/>
+					<file name="20.gif" path="dlg\web\enoji\arclist\20.gif" comment="dlg\web\enoji\arclist\20.gif"/>
+					<file name="21.gif" path="dlg\web\enoji\arclist\21.gif" comment="dlg\web\enoji\arclist\21.gif"/>
+					<file name="22.gif" path="dlg\web\enoji\arclist\22.gif" comment="dlg\web\enoji\arclist\22.gif"/>
+					<file name="23.gif" path="dlg\web\enoji\arclist\23.gif" comment="dlg\web\enoji\arclist\23.gif"/>
+					<file name="24.gif" path="dlg\web\enoji\arclist\24.gif" comment="dlg\web\enoji\arclist\24.gif"/>
+					<file name="25.gif" path="dlg\web\enoji\arclist\25.gif" comment="dlg\web\enoji\arclist\25.gif"/>
+					<file name="26.gif" path="dlg\web\enoji\arclist\26.gif" comment="dlg\web\enoji\arclist\26.gif"/>
+					<file name="27.gif" path="dlg\web\enoji\arclist\27.gif" comment="dlg\web\enoji\arclist\27.gif"/>
+					<file name="28.gif" path="dlg\web\enoji\arclist\28.gif" comment="dlg\web\enoji\arclist\28.gif"/>
+					<file name="29.gif" path="dlg\web\enoji\arclist\29.gif" comment="dlg\web\enoji\arclist\29.gif"/>
+					<file name="3.gif" path="dlg\web\enoji\arclist\3.gif" comment="dlg\web\enoji\arclist\3.gif"/>
+					<file name="30.gif" path="dlg\web\enoji\arclist\30.gif" comment="dlg\web\enoji\arclist\30.gif"/>
+					<file name="31.gif" path="dlg\web\enoji\arclist\31.gif" comment="dlg\web\enoji\arclist\31.gif"/>
+					<file name="32.gif" path="dlg\web\enoji\arclist\32.gif" comment="dlg\web\enoji\arclist\32.gif"/>
+					<file name="33.gif" path="dlg\web\enoji\arclist\33.gif" comment="dlg\web\enoji\arclist\33.gif"/>
+					<file name="34.gif" path="dlg\web\enoji\arclist\34.gif" comment="dlg\web\enoji\arclist\34.gif"/>
+					<file name="35.gif" path="dlg\web\enoji\arclist\35.gif" comment="dlg\web\enoji\arclist\35.gif"/>
+					<file name="36.gif" path="dlg\web\enoji\arclist\36.gif" comment="dlg\web\enoji\arclist\36.gif"/>
+					<file name="37.gif" path="dlg\web\enoji\arclist\37.gif" comment="dlg\web\enoji\arclist\37.gif"/>
+					<file name="38.gif" path="dlg\web\enoji\arclist\38.gif" comment="dlg\web\enoji\arclist\38.gif"/>
+					<file name="39.gif" path="dlg\web\enoji\arclist\39.gif" comment="dlg\web\enoji\arclist\39.gif"/>
+					<file name="4.gif" path="dlg\web\enoji\arclist\4.gif" comment="dlg\web\enoji\arclist\4.gif"/>
+					<file name="40.gif" path="dlg\web\enoji\arclist\40.gif" comment="dlg\web\enoji\arclist\40.gif"/>
+					<file name="41.gif" path="dlg\web\enoji\arclist\41.gif" comment="dlg\web\enoji\arclist\41.gif"/>
+					<file name="42.gif" path="dlg\web\enoji\arclist\42.gif" comment="dlg\web\enoji\arclist\42.gif"/>
+					<file name="43.gif" path="dlg\web\enoji\arclist\43.gif" comment="dlg\web\enoji\arclist\43.gif"/>
+					<file name="44.gif" path="dlg\web\enoji\arclist\44.gif" comment="dlg\web\enoji\arclist\44.gif"/>
+					<file name="45.gif" path="dlg\web\enoji\arclist\45.gif" comment="dlg\web\enoji\arclist\45.gif"/>
+					<file name="46.gif" path="dlg\web\enoji\arclist\46.gif" comment="dlg\web\enoji\arclist\46.gif"/>
+					<file name="47.gif" path="dlg\web\enoji\arclist\47.gif" comment="dlg\web\enoji\arclist\47.gif"/>
+					<file name="48.gif" path="dlg\web\enoji\arclist\48.gif" comment="dlg\web\enoji\arclist\48.gif"/>
+					<file name="49.gif" path="dlg\web\enoji\arclist\49.gif" comment="dlg\web\enoji\arclist\49.gif"/>
+					<file name="5.gif" path="dlg\web\enoji\arclist\5.gif" comment="dlg\web\enoji\arclist\5.gif"/>
+					<file name="50.gif" path="dlg\web\enoji\arclist\50.gif" comment="dlg\web\enoji\arclist\50.gif"/>
+					<file name="51.gif" path="dlg\web\enoji\arclist\51.gif" comment="dlg\web\enoji\arclist\51.gif"/>
+					<file name="52.gif" path="dlg\web\enoji\arclist\52.gif" comment="dlg\web\enoji\arclist\52.gif"/>
+					<file name="53.gif" path="dlg\web\enoji\arclist\53.gif" comment="dlg\web\enoji\arclist\53.gif"/>
+					<file name="54.gif" path="dlg\web\enoji\arclist\54.gif" comment="dlg\web\enoji\arclist\54.gif"/>
+					<file name="55.gif" path="dlg\web\enoji\arclist\55.gif" comment="dlg\web\enoji\arclist\55.gif"/>
+					<file name="56.gif" path="dlg\web\enoji\arclist\56.gif" comment="dlg\web\enoji\arclist\56.gif"/>
+					<file name="57.gif" path="dlg\web\enoji\arclist\57.gif" comment="dlg\web\enoji\arclist\57.gif"/>
+					<file name="58.gif" path="dlg\web\enoji\arclist\58.gif" comment="dlg\web\enoji\arclist\58.gif"/>
+					<file name="59.gif" path="dlg\web\enoji\arclist\59.gif" comment="dlg\web\enoji\arclist\59.gif"/>
+					<file name="6.gif" path="dlg\web\enoji\arclist\6.gif" comment="dlg\web\enoji\arclist\6.gif"/>
+					<file name="60.gif" path="dlg\web\enoji\arclist\60.gif" comment="dlg\web\enoji\arclist\60.gif"/>
+					<file name="61.gif" path="dlg\web\enoji\arclist\61.gif" comment="dlg\web\enoji\arclist\61.gif"/>
+					<file name="62.gif" path="dlg\web\enoji\arclist\62.gif" comment="dlg\web\enoji\arclist\62.gif"/>
+					<file name="63.gif" path="dlg\web\enoji\arclist\63.gif" comment="dlg\web\enoji\arclist\63.gif"/>
+					<file name="64.gif" path="dlg\web\enoji\arclist\64.gif" comment="dlg\web\enoji\arclist\64.gif"/>
+					<file name="65.gif" path="dlg\web\enoji\arclist\65.gif" comment="dlg\web\enoji\arclist\65.gif"/>
+					<file name="66.gif" path="dlg\web\enoji\arclist\66.gif" comment="dlg\web\enoji\arclist\66.gif"/>
+					<file name="67.gif" path="dlg\web\enoji\arclist\67.gif" comment="dlg\web\enoji\arclist\67.gif"/>
+					<file name="68.gif" path="dlg\web\enoji\arclist\68.gif" comment="dlg\web\enoji\arclist\68.gif"/>
+					<file name="69.gif" path="dlg\web\enoji\arclist\69.gif" comment="dlg\web\enoji\arclist\69.gif"/>
+					<file name="7.gif" path="dlg\web\enoji\arclist\7.gif" comment="dlg\web\enoji\arclist\7.gif"/>
+					<file name="70.gif" path="dlg\web\enoji\arclist\70.gif" comment="dlg\web\enoji\arclist\70.gif"/>
+					<file name="71.gif" path="dlg\web\enoji\arclist\71.gif" comment="dlg\web\enoji\arclist\71.gif"/>
+					<file name="72.gif" path="dlg\web\enoji\arclist\72.gif" comment="dlg\web\enoji\arclist\72.gif"/>
+					<file name="73.gif" path="dlg\web\enoji\arclist\73.gif" comment="dlg\web\enoji\arclist\73.gif"/>
+					<file name="74.gif" path="dlg\web\enoji\arclist\74.gif" comment="dlg\web\enoji\arclist\74.gif"/>
+					<file name="75.gif" path="dlg\web\enoji\arclist\75.gif" comment="dlg\web\enoji\arclist\75.gif"/>
+					<file name="8.gif" path="dlg\web\enoji\arclist\8.gif" comment="dlg\web\enoji\arclist\8.gif"/>
+					<file name="9.gif" path="dlg\web\enoji\arclist\9.gif" comment="dlg\web\enoji\arclist\9.gif"/>
+				</folder>
+				<folder name="css" path="dlg\web\enoji\css" comment="dlg\web\enoji\css">
+					<file name="bootstrap.min.css" path="dlg\web\enoji\css\bootstrap.min.css" comment="dlg\web\enoji\css\bootstrap.min.css"/>
+					<file name="reset.css" path="dlg\web\enoji\css\reset.css" comment="dlg\web\enoji\css\reset.css"/>
+				</folder>
+				<folder name="js" path="dlg\web\enoji\js" comment="dlg\web\enoji\js">
+					<file name="jquery.min.js" path="dlg\web\enoji\js\jquery.min.js" comment="dlg\web\enoji\js\jquery.min.js"/>
+					<file name="jquery.qqFace.js" path="dlg\web\enoji\js\jquery.qqFace.js" comment="dlg\web\enoji\js\jquery.qqFace.js"/>
+				</folder>
+			</folder>
+			<folder name="img" path="dlg\web\img" comment="dlg\web\img">
+				<file name="applist.png" path="dlg\web\img\applist.png" comment="dlg\web\img\applist.png"/>
+				<file name="blue-2.jpg" path="dlg\web\img\blue-2.jpg" comment="dlg\web\img\blue-2.jpg"/>
+				<file name="blue.jpg" path="dlg\web\img\blue.jpg" comment="dlg\web\img\blue.jpg"/>
+				<file name="favicon.ico" path="dlg\web\img\favicon.ico" comment="dlg\web\img\favicon.ico"/>
+				<file name="green.jpg" path="dlg\web\img\green.jpg" comment="dlg\web\img\green.jpg"/>
+				<file name="red.jpg" path="dlg\web\img\red.jpg" comment="dlg\web\img\red.jpg"/>
+			</folder>
+			<folder name="js" path="dlg\web\js" comment="dlg\web\js">
+				<file name="chat.js" path="dlg\web\js\chat.js" comment="dlg\web\js\chat.js"/>
+				<file name="comstart.js" path="dlg\web\js\comstart.js" comment="dlg\web\js\comstart.js"/>
+				<file name="function.js" path="dlg\web\js\function.js" comment="dlg\web\js\function.js"/>
+				<file name="jquery.min.js" path="dlg\web\js\jquery.min.js" comment="dlg\web\js\jquery.min.js"/>
+				<file name="jquery.nicescroll.min.js" path="dlg\web\js\jquery.nicescroll.min.js" comment="dlg\web\js\jquery.nicescroll.min.js"/>
+				<file name="start.js" path="dlg\web\js\start.js" comment="dlg\web\js\start.js"/>
+				<file name="store.legacy.min.js" path="dlg\web\js\store.legacy.min.js" comment="dlg\web\js\store.legacy.min.js"/>
+				<file name="websocket.js" path="dlg\web\js\websocket.js" comment="dlg\web\js\websocket.js"/>
+			</folder>
+			<folder name="layui" path="dlg\web\layui" comment="dlg\web\layui">
+				<file name="layui.all.js" path="dlg\web\layui\layui.all.js" comment="dlg\web\layui\layui.all.js"/>
+				<file name="layui.js" path="dlg\web\layui\layui.js" comment="dlg\web\layui\layui.js"/>
+				<folder name="css" path="dlg\web\layui\css" comment="dlg\web\layui\css">
+					<file name="layui.css" path="dlg\web\layui\css\layui.css" comment="dlg\web\layui\css\layui.css"/>
+					<file name="layui.mobile.css" path="dlg\web\layui\css\layui.mobile.css" comment="dlg\web\layui\css\layui.mobile.css"/>
+					<folder name="modules" path="dlg\web\layui\css\modules" comment="dlg\web\layui\css\modules">
+						<file name="code.css" path="dlg\web\layui\css\modules\code.css" comment="dlg\web\layui\css\modules\code.css"/>
+						<folder name="laydate" path="dlg\web\layui\css\modules\laydate" comment="dlg\web\layui\css\modules\laydate">
+							<folder name="default" path="dlg\web\layui\css\modules\laydate\default" comment="dlg\web\layui\css\modules\laydate\default">
+								<file name="laydate.css" path="dlg\web\layui\css\modules\laydate\default\laydate.css" comment="dlg\web\layui\css\modules\laydate\default\laydate.css"/>
+							</folder>
+						</folder>
+						<folder name="layer" path="dlg\web\layui\css\modules\layer" comment="dlg\web\layui\css\modules\layer">
+							<folder name="default" path="dlg\web\layui\css\modules\layer\default" comment="dlg\web\layui\css\modules\layer\default">
+								<file name="icon-ext.png" path="dlg\web\layui\css\modules\layer\default\icon-ext.png" comment="dlg\web\layui\css\modules\layer\default\icon-ext.png"/>
+								<file name="icon.png" path="dlg\web\layui\css\modules\layer\default\icon.png" comment="dlg\web\layui\css\modules\layer\default\icon.png"/>
+								<file name="layer.css" path="dlg\web\layui\css\modules\layer\default\layer.css" comment="dlg\web\layui\css\modules\layer\default\layer.css"/>
+								<file name="loading-0.gif" path="dlg\web\layui\css\modules\layer\default\loading-0.gif" comment="dlg\web\layui\css\modules\layer\default\loading-0.gif"/>
+								<file name="loading-1.gif" path="dlg\web\layui\css\modules\layer\default\loading-1.gif" comment="dlg\web\layui\css\modules\layer\default\loading-1.gif"/>
+								<file name="loading-2.gif" path="dlg\web\layui\css\modules\layer\default\loading-2.gif" comment="dlg\web\layui\css\modules\layer\default\loading-2.gif"/>
+							</folder>
+						</folder>
+					</folder>
+				</folder>
+				<folder name="font" path="dlg\web\layui\font" comment="dlg\web\layui\font">
+					<file name="iconfont.eot" path="dlg\web\layui\font\iconfont.eot" comment="dlg\web\layui\font\iconfont.eot"/>
+					<file name="iconfont.svg" path="dlg\web\layui\font\iconfont.svg" comment="dlg\web\layui\font\iconfont.svg"/>
+					<file name="iconfont.ttf" path="dlg\web\layui\font\iconfont.ttf" comment="dlg\web\layui\font\iconfont.ttf"/>
+					<file name="iconfont.woff" path="dlg\web\layui\font\iconfont.woff" comment="dlg\web\layui\font\iconfont.woff"/>
+					<file name="iconfont.woff2" path="dlg\web\layui\font\iconfont.woff2" comment="dlg\web\layui\font\iconfont.woff2"/>
+				</folder>
+				<folder name="images" path="dlg\web\layui\images" comment="dlg\web\layui\images">
+					<folder name="face" path="dlg\web\layui\images\face" comment="dlg\web\layui\images\face">
+						<file name="0.gif" path="dlg\web\layui\images\face\0.gif" comment="dlg\web\layui\images\face\0.gif"/>
+						<file name="1.gif" path="dlg\web\layui\images\face\1.gif" comment="dlg\web\layui\images\face\1.gif"/>
+						<file name="10.gif" path="dlg\web\layui\images\face\10.gif" comment="dlg\web\layui\images\face\10.gif"/>
+						<file name="11.gif" path="dlg\web\layui\images\face\11.gif" comment="dlg\web\layui\images\face\11.gif"/>
+						<file name="12.gif" path="dlg\web\layui\images\face\12.gif" comment="dlg\web\layui\images\face\12.gif"/>
+						<file name="13.gif" path="dlg\web\layui\images\face\13.gif" comment="dlg\web\layui\images\face\13.gif"/>
+						<file name="14.gif" path="dlg\web\layui\images\face\14.gif" comment="dlg\web\layui\images\face\14.gif"/>
+						<file name="15.gif" path="dlg\web\layui\images\face\15.gif" comment="dlg\web\layui\images\face\15.gif"/>
+						<file name="16.gif" path="dlg\web\layui\images\face\16.gif" comment="dlg\web\layui\images\face\16.gif"/>
+						<file name="17.gif" path="dlg\web\layui\images\face\17.gif" comment="dlg\web\layui\images\face\17.gif"/>
+						<file name="18.gif" path="dlg\web\layui\images\face\18.gif" comment="dlg\web\layui\images\face\18.gif"/>
+						<file name="19.gif" path="dlg\web\layui\images\face\19.gif" comment="dlg\web\layui\images\face\19.gif"/>
+						<file name="2.gif" path="dlg\web\layui\images\face\2.gif" comment="dlg\web\layui\images\face\2.gif"/>
+						<file name="20.gif" path="dlg\web\layui\images\face\20.gif" comment="dlg\web\layui\images\face\20.gif"/>
+						<file name="21.gif" path="dlg\web\layui\images\face\21.gif" comment="dlg\web\layui\images\face\21.gif"/>
+						<file name="22.gif" path="dlg\web\layui\images\face\22.gif" comment="dlg\web\layui\images\face\22.gif"/>
+						<file name="23.gif" path="dlg\web\layui\images\face\23.gif" comment="dlg\web\layui\images\face\23.gif"/>
+						<file name="24.gif" path="dlg\web\layui\images\face\24.gif" comment="dlg\web\layui\images\face\24.gif"/>
+						<file name="25.gif" path="dlg\web\layui\images\face\25.gif" comment="dlg\web\layui\images\face\25.gif"/>
+						<file name="26.gif" path="dlg\web\layui\images\face\26.gif" comment="dlg\web\layui\images\face\26.gif"/>
+						<file name="27.gif" path="dlg\web\layui\images\face\27.gif" comment="dlg\web\layui\images\face\27.gif"/>
+						<file name="28.gif" path="dlg\web\layui\images\face\28.gif" comment="dlg\web\layui\images\face\28.gif"/>
+						<file name="29.gif" path="dlg\web\layui\images\face\29.gif" comment="dlg\web\layui\images\face\29.gif"/>
+						<file name="3.gif" path="dlg\web\layui\images\face\3.gif" comment="dlg\web\layui\images\face\3.gif"/>
+						<file name="30.gif" path="dlg\web\layui\images\face\30.gif" comment="dlg\web\layui\images\face\30.gif"/>
+						<file name="31.gif" path="dlg\web\layui\images\face\31.gif" comment="dlg\web\layui\images\face\31.gif"/>
+						<file name="32.gif" path="dlg\web\layui\images\face\32.gif" comment="dlg\web\layui\images\face\32.gif"/>
+						<file name="33.gif" path="dlg\web\layui\images\face\33.gif" comment="dlg\web\layui\images\face\33.gif"/>
+						<file name="34.gif" path="dlg\web\layui\images\face\34.gif" comment="dlg\web\layui\images\face\34.gif"/>
+						<file name="35.gif" path="dlg\web\layui\images\face\35.gif" comment="dlg\web\layui\images\face\35.gif"/>
+						<file name="36.gif" path="dlg\web\layui\images\face\36.gif" comment="dlg\web\layui\images\face\36.gif"/>
+						<file name="37.gif" path="dlg\web\layui\images\face\37.gif" comment="dlg\web\layui\images\face\37.gif"/>
+						<file name="38.gif" path="dlg\web\layui\images\face\38.gif" comment="dlg\web\layui\images\face\38.gif"/>
+						<file name="39.gif" path="dlg\web\layui\images\face\39.gif" comment="dlg\web\layui\images\face\39.gif"/>
+						<file name="4.gif" path="dlg\web\layui\images\face\4.gif" comment="dlg\web\layui\images\face\4.gif"/>
+						<file name="40.gif" path="dlg\web\layui\images\face\40.gif" comment="dlg\web\layui\images\face\40.gif"/>
+						<file name="41.gif" path="dlg\web\layui\images\face\41.gif" comment="dlg\web\layui\images\face\41.gif"/>
+						<file name="42.gif" path="dlg\web\layui\images\face\42.gif" comment="dlg\web\layui\images\face\42.gif"/>
+						<file name="43.gif" path="dlg\web\layui\images\face\43.gif" comment="dlg\web\layui\images\face\43.gif"/>
+						<file name="44.gif" path="dlg\web\layui\images\face\44.gif" comment="dlg\web\layui\images\face\44.gif"/>
+						<file name="45.gif" path="dlg\web\layui\images\face\45.gif" comment="dlg\web\layui\images\face\45.gif"/>
+						<file name="46.gif" path="dlg\web\layui\images\face\46.gif" comment="dlg\web\layui\images\face\46.gif"/>
+						<file name="47.gif" path="dlg\web\layui\images\face\47.gif" comment="dlg\web\layui\images\face\47.gif"/>
+						<file name="48.gif" path="dlg\web\layui\images\face\48.gif" comment="dlg\web\layui\images\face\48.gif"/>
+						<file name="49.gif" path="dlg\web\layui\images\face\49.gif" comment="dlg\web\layui\images\face\49.gif"/>
+						<file name="5.gif" path="dlg\web\layui\images\face\5.gif" comment="dlg\web\layui\images\face\5.gif"/>
+						<file name="50.gif" path="dlg\web\layui\images\face\50.gif" comment="dlg\web\layui\images\face\50.gif"/>
+						<file name="51.gif" path="dlg\web\layui\images\face\51.gif" comment="dlg\web\layui\images\face\51.gif"/>
+						<file name="52.gif" path="dlg\web\layui\images\face\52.gif" comment="dlg\web\layui\images\face\52.gif"/>
+						<file name="53.gif" path="dlg\web\layui\images\face\53.gif" comment="dlg\web\layui\images\face\53.gif"/>
+						<file name="54.gif" path="dlg\web\layui\images\face\54.gif" comment="dlg\web\layui\images\face\54.gif"/>
+						<file name="55.gif" path="dlg\web\layui\images\face\55.gif" comment="dlg\web\layui\images\face\55.gif"/>
+						<file name="56.gif" path="dlg\web\layui\images\face\56.gif" comment="dlg\web\layui\images\face\56.gif"/>
+						<file name="57.gif" path="dlg\web\layui\images\face\57.gif" comment="dlg\web\layui\images\face\57.gif"/>
+						<file name="58.gif" path="dlg\web\layui\images\face\58.gif" comment="dlg\web\layui\images\face\58.gif"/>
+						<file name="59.gif" path="dlg\web\layui\images\face\59.gif" comment="dlg\web\layui\images\face\59.gif"/>
+						<file name="6.gif" path="dlg\web\layui\images\face\6.gif" comment="dlg\web\layui\images\face\6.gif"/>
+						<file name="60.gif" path="dlg\web\layui\images\face\60.gif" comment="dlg\web\layui\images\face\60.gif"/>
+						<file name="61.gif" path="dlg\web\layui\images\face\61.gif" comment="dlg\web\layui\images\face\61.gif"/>
+						<file name="62.gif" path="dlg\web\layui\images\face\62.gif" comment="dlg\web\layui\images\face\62.gif"/>
+						<file name="63.gif" path="dlg\web\layui\images\face\63.gif" comment="dlg\web\layui\images\face\63.gif"/>
+						<file name="64.gif" path="dlg\web\layui\images\face\64.gif" comment="dlg\web\layui\images\face\64.gif"/>
+						<file name="65.gif" path="dlg\web\layui\images\face\65.gif" comment="dlg\web\layui\images\face\65.gif"/>
+						<file name="66.gif" path="dlg\web\layui\images\face\66.gif" comment="dlg\web\layui\images\face\66.gif"/>
+						<file name="67.gif" path="dlg\web\layui\images\face\67.gif" comment="dlg\web\layui\images\face\67.gif"/>
+						<file name="68.gif" path="dlg\web\layui\images\face\68.gif" comment="dlg\web\layui\images\face\68.gif"/>
+						<file name="69.gif" path="dlg\web\layui\images\face\69.gif" comment="dlg\web\layui\images\face\69.gif"/>
+						<file name="7.gif" path="dlg\web\layui\images\face\7.gif" comment="dlg\web\layui\images\face\7.gif"/>
+						<file name="70.gif" path="dlg\web\layui\images\face\70.gif" comment="dlg\web\layui\images\face\70.gif"/>
+						<file name="71.gif" path="dlg\web\layui\images\face\71.gif" comment="dlg\web\layui\images\face\71.gif"/>
+						<file name="8.gif" path="dlg\web\layui\images\face\8.gif" comment="dlg\web\layui\images\face\8.gif"/>
+						<file name="9.gif" path="dlg\web\layui\images\face\9.gif" comment="dlg\web\layui\images\face\9.gif"/>
+					</folder>
+				</folder>
+				<folder name="lay" path="dlg\web\layui\lay" comment="dlg\web\layui\lay">
+					<folder name="modules" path="dlg\web\layui\lay\modules" comment="dlg\web\layui\lay\modules">
+						<file name="carousel.js" path="dlg\web\layui\lay\modules\carousel.js" comment="dlg\web\layui\lay\modules\carousel.js"/>
+						<file name="code.js" path="dlg\web\layui\lay\modules\code.js" comment="dlg\web\layui\lay\modules\code.js"/>
+						<file name="colorpicker.js" path="dlg\web\layui\lay\modules\colorpicker.js" comment="dlg\web\layui\lay\modules\colorpicker.js"/>
+						<file name="element.js" path="dlg\web\layui\lay\modules\element.js" comment="dlg\web\layui\lay\modules\element.js"/>
+						<file name="flow.js" path="dlg\web\layui\lay\modules\flow.js" comment="dlg\web\layui\lay\modules\flow.js"/>
+						<file name="form.js" path="dlg\web\layui\lay\modules\form.js" comment="dlg\web\layui\lay\modules\form.js"/>
+						<file name="jquery.js" path="dlg\web\layui\lay\modules\jquery.js" comment="dlg\web\layui\lay\modules\jquery.js"/>
+						<file name="laydate.js" path="dlg\web\layui\lay\modules\laydate.js" comment="dlg\web\layui\lay\modules\laydate.js"/>
+						<file name="layedit.js" path="dlg\web\layui\lay\modules\layedit.js" comment="dlg\web\layui\lay\modules\layedit.js"/>
+						<file name="layer.js" path="dlg\web\layui\lay\modules\layer.js" comment="dlg\web\layui\lay\modules\layer.js"/>
+						<file name="laypage.js" path="dlg\web\layui\lay\modules\laypage.js" comment="dlg\web\layui\lay\modules\laypage.js"/>
+						<file name="laytpl.js" path="dlg\web\layui\lay\modules\laytpl.js" comment="dlg\web\layui\lay\modules\laytpl.js"/>
+						<file name="mobile.js" path="dlg\web\layui\lay\modules\mobile.js" comment="dlg\web\layui\lay\modules\mobile.js"/>
+						<file name="rate.js" path="dlg\web\layui\lay\modules\rate.js" comment="dlg\web\layui\lay\modules\rate.js"/>
+						<file name="slider.js" path="dlg\web\layui\lay\modules\slider.js" comment="dlg\web\layui\lay\modules\slider.js"/>
+						<file name="table.js" path="dlg\web\layui\lay\modules\table.js" comment="dlg\web\layui\lay\modules\table.js"/>
+						<file name="transfer.js" path="dlg\web\layui\lay\modules\transfer.js" comment="dlg\web\layui\lay\modules\transfer.js"/>
+						<file name="tree.js" path="dlg\web\layui\lay\modules\tree.js" comment="dlg\web\layui\lay\modules\tree.js"/>
+						<file name="upload.js" path="dlg\web\layui\lay\modules\upload.js" comment="dlg\web\layui\lay\modules\upload.js"/>
+						<file name="util.js" path="dlg\web\layui\lay\modules\util.js" comment="dlg\web\layui\lay\modules\util.js"/>
+					</folder>
+				</folder>
+			</folder>
+		</folder>
+	</folder>
+	<file name="favicon.ico" path="favicon.ico" comment="favicon.ico"/>
+</project>

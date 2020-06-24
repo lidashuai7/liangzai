@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)http://www.mayi.com/user/tenant/mycollection -->
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link href="/shoucang/global.css" rel="stylesheet" type="text/css">
+<link href="/shoucang/PCenter.css" rel="stylesheet" type="text/css">
+
+<link href="/shoucang/account.css" rel="stylesheet" type="text/css">
+<link href="/shoucang/collection.css" rel="stylesheet" type="text/css">
+<!-- new header -->
+<link href="/shoucang/public_element.css" rel="stylesheet" type="text/css"> 
+<title>我的收藏</title>
+<script charset="UTF-8" src="/shoucang/uba.min.js.下载"></script><script charset="UTF-8" src="/shoucang/QiMoIMSDK.js.下载"></script><script type="text/javascript" async="" src=""></script><script src="./shoucang/hm.js.下载"></script><script type="text/javascript" src="/shoucang/jquery-1.9.1.min.js.下载"></script>
+<script type="text/javascript" src="/shoucang/layer.min.js.下载"></script><link type="text/css" rel="stylesheet" href="/shoucang/layer.css">
+
+<link type="text/css" rel="stylesheet" href="/shoucang/layer.css"><link type="text/css" rel="stylesheet" href="/shoucang/layer.css"><link type="text/css" rel="stylesheet" href="/shoucang/chatStyle.css"></head>
+<body>
+	<!-- Header -->
+<!-- 拉新入口 -->
+<link href="/shoucang/laxin.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/shoucang/index_searchlist_public.js.下载"></script>
+<script type="text/javascript" src="/shoucang/list_header.js.下载"></script>
+<!-- 房东权限相关 -->
+<script type="text/javascript" src="/shoucang/landlordConfig.js.下载"></script>
+<style>	
+.logo58{background:url(//staticnew.mayi.com/resourcesWeb/images/index/58logo.png) no-repeat;left:14px !important;top:16px !important;}
+.logomayi{left:200px !important;}
+.alert-box1{width:100%;height: 100%;z-index: 300000;position: absolute;display:none;line-height:40px;}
+.surveYY1{background: #000;width:100%;height:100%;opacity: 0.7;position: fixed;top: 0px;left: 0px;}
+.offmax_no{width:400px;height:186px;position:fixed;top:50%;margin-top:-93px;left:50%;margin-left:-200px;background-color:#fff;z-index:999;text-align:center;box-shadow:0px 0px 4px #ccc;border-radius:2px;} 
+.offmax_no p{padding:0 20px;line-height:25px;}
+.alert_tit1{border-bottom:1px solid #e0e0e0;font-size:18px;margin-bottom:20px;}
+.close-alert1{cursor:pointer;width:50%;margin:20px auto;background-color:#22bb62;text-align:center;color:#fff;border-radius:2px;}
+
+.alert-box2{width:100%;height: 100%;z-index: 300000;position: absolute;display:none;line-height:40px;}
+.surveYY2{background: #000;width:100%;height:100%;opacity: 0.7;position: fixed;top: 0px;left: 0px;}
+.offmax_no2{width:400px;height:186px;position:fixed;top:50%;margin-top:-93px;left:50%;margin-left:-200px;background-color:#fff;z-index:999;text-align:center;box-shadow:0px 0px 4px #ccc;border-radius:2px;} 
+.offmax_no2 p{padding:0 20px;line-height:25px;}
+.alert_tit2{border-bottom:1px solid #e0e0e0;font-size:18px;margin-bottom:20px;}
+.close-alert2{cursor:pointer;width:50%;margin:20px auto;background-color:#22bb62;text-align:center;color:#fff;border-radius:2px;}
+
+</style>
+<input type="hidden" name="ctx" id="ctx" value="">
+<div class="header relave">
+		    <a href="" rel="nofollow"><div class="asote head_left"></div></a>
+		<div class="head_cnt relave"> 
+			<span class="search"></span>		
+			<ul class="nav_R asote nav_right">
+				 <li style="margin-left:-211px;">
+				 	<b class="mayi_tel_top"><img src="/shoucang/tel_green_icon.png"><span style="font-family: &quot;Hiragino Sans GB&quot;, Arial, Verdana, Tahoma, &quot;微软雅黑&quot; !important;font-size: 14px;" hiragino="" sans="" gb",="" arial,="" verdana,="" tahoma,="" "微软雅黑"="" !important;font-size:="" 14px;"="">客服电话：</span>400-028-6868</b>
+				 </li>
+                 <li id="log">
+                 
+                 </li>       
+       
+       
+         
+            </ul>
+            
+		</div>
+		
+	</div>
+
+
+<!-- 拉新弹层 -->
+<script type="text/javascript" src="/shoucang/jquery.qrcode.min.js.下载"></script>
+ 
+<div class="share_tan" style="display: none">
+	<div class="mask"></div>
+     <div class="hongbao_img">
+		 <img src="/shoucang/close.png" alt="" class="hong_close">
+		 <img src="/shoucang/hongbao1.png" alt="" class="hongbao">
+		 <div id="qrcode" class="ewm_img"><canvas width="100" height="100"></canvas></div>
+		 <!-- <img src="//staticnew.mayi.com/resourcesWeb/v201612/headpub/images/ewm.jpg" alt="" class="ewm_img"/> -->
+		 <p class="text_para">扫码后，通过分享活动邀请好友注册蚂蚁短租，双方均可获得100元住宿基金！</p>
+		 
+	 </div>
+</div>
+<input type="hidden" name="subdomain" id="subdomain" value="">
+<input type="hidden" name="mainsite" id="mainsite" value="">
+<input type="hidden" name="ctx" id="ctx" value="">
+<input type="hidden" name="ctx1" id="ctx1" value="//staticnew.mayi.com">
+<input type="hidden" name="uid" id="uid" value="878244467">
+<input type="hidden" name="loginurl" id="loginurl" value="none">
+<input type="hidden" name="head_userName" id="head_userName" value="o">
+<script type="text/javascript" src="/shoucang/7moorInit.js.下载" async="async"></script>
+ 
+
+
+<script type="text/javascript" src="/shoucang/c.js.下载"></script>   
+<script type="text/javascript" src="/shoucang/strophe.js.下载"></script> 
+<script type="text/javascript" src="/shoucang/easemob.im-1.1.js.下载"></script>
+<script type="text/javascript" src="/shoucang/easemob.im-1.1.shim.js.下载"></script>
+<script type="text/javascript" src="/shoucang/easemob.im.config.js.下载"></script>
+<script type="text/javascript" src="/shoucang/bootstrap.js.下载"></script>
+<script type="text/javascript" src="/shoucang/add_reply.js.下载"></script>
+<script type="text/javascript" src="/shoucang/jquery-ui.js.下载"></script>  
+<script type="text/javascript" src="/shoucang/IM.js.下载"></script>  
+<script type="text/javascript" src="/shoucang/ajaxfileupload.js.下载"></script>  
+<script type="text/javascript" src="/shoucang/operator.js.下载"></script>  
+<script type="text/javascript" src="/shoucang/webim.js.下载"></script>  
+<script type="text/javascript" src="/shoucang/chat.js.下载"></script>  
+<link rel="stylesheet" href="/shoucang/IM.css">  
+<link rel="stylesheet" href="/shoucang/jquery-ui.css">  
+
+<script type="text/javascript" src="/shoucang/swfupload.js.下载"></script>
+<script type="text/javascript" src="/shoucang/swfupload.queue.js.下载"></script>
+
+ 
+   
+		<input type="hidden" id="MAYIUID" value="878244467">
+
+<style>
+	#layer_settimeout{width:280px;height:60px;border-radius:5px;background:rgba(0,0,0,.7);color:#fff;position:fixed;top:300px;left:50%;margin-left:-140px;z-index:999999999;line-height:60px;text-align:center;display:none}
+</style>
+
+<script type="text/javascript" src="/shoucang/fk_index.js.下载"></script>
+
+
+	
+<style>
+.im_sfz_tan{
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.6);
+	z-index: 1000001;
+	line-height:100%;
+	text-align: center;
+	display:none;
+	
+}
+.im_sfz_tan span{
+	display:inline-block;
+	height:100%;
+	vertical-align:middle;
+}
+.im_sfz_tan img{
+	display:inline;
+	max-width:1190px;
+	max-height:700px;
+	min-width:600px;
+	min-height:220px;
+	vertical-align: middle;
+	border:10px solid #fff;
+}
+</style>
+
+	<!-- Header END -->
+	
+	<!-- Content -->
+	<div class="main">
+		<ul class="breadcrumb clearfix">
+			<li><a href="">我是房客</a> <span class="divider">》</span></li>
+			<li>我的收藏</li>
+		</ul>
+		<div class="personalCenter clearfix">
+			<!-- Center-sidebar -->
+	        <!-- Center-sidebar END -->
+	        <div class="centerCon">
+				<ul class="centerTab">
+					<li class="active">我的收藏</li>
+				</ul>
+				<div class="accountMt save_parent clearfix">
+
+					<!--我的收藏页面开始-->
+						<!--如果有收藏-->
+					<div id="save_parent">
+				
+					
+					<!--我的收藏页面结束-->		
+				</div>
+			</div>
+			<a id="shang">上一页</a>
+			<a id="xia">下一页</a>
+		</div>
+	</div>
+	<!-- Content END -->
+</div>	
+	
+	<!-- Footer -->
+<script type="text/javascript" src="/shoucang/layer.min.js.下载"></script>
+<script type="text/javascript" src="/shoucang/jQuery.md5.js.下载"></script>
+<script type="text/javascript" src="/shoucang/login.js.下载"></script>
+
+
+<div class="foot index-foot clearfloat">
+	<div class="w1190 pb20 clearfloat">
+        	<div class="link_end">
+    <p class="t-center f12 c777776">客户服务：400-028-6868 |<a href="" target="_blank" class="c777776">&nbsp;帮助中心&nbsp;|</a><a href="http://www.mayi.com/aboutcompany/" target="_blank" class="c777776">&nbsp;公司信息&nbsp;|</a><a href="http://www.mayi.com/sitemap" target="_blank" class="c777776">&nbsp;网站地图&nbsp;|</a><a href="http://www.mayi.com/activity/app50" target="_blank" class="c777776">&nbsp;app下载&nbsp;|</a>关注我们
+        <span class="mr10 cursorpt showinfo relave" style="display:inline-block;vertical-align:middle;">
+            <img src="/shoucang/weixin_logo_s.png">
+            <img src="/shoucang/weixin.jpg" class="head_pop absot" style="bottom:24px;left:-32px;">
+        </span>
+        <span class="cursorpt" style="display:inline-block;vertical-align:middle;">
+            <img src="./shoucang/xinlang_logo_s.png" onclick="sinaWeibo();">
+        </span>
+    </p>
+    <!--公司切换-->
+    <p class="t-center f12 c777776">网站备案/许可证号：京ICP备12051504号-1 <a class="c777776" href="" target="_blank">营业执照编号：105259760</a> 易云游网络技术（北京）有限公司</p>
+    <!--<p class="t-center f12 c777776">网站备案/许可证号：京ICP证130021号 北京裕山阳科技发展有限公司</p>-->
+    <!--<p class="t-center f12 c777776">网站备案/许可证号：京ICP证130021号  北京裕山阳科技发展有限公司  公司地址：北京市海淀区上地三街金隅嘉华大厦D座</p>-->
+    <!--<p class="t-center f12 c777776">京公网安备11010802018218号</p>-->
+</div>
+     </div>
+</div>
+<!-- 登录弹窗 END --> 
+<!--公共尾部结束-->
+<script type="text/javascript" src="/shoucang/layer.min.js.下载"></script>
+<script type="text/javascript" src="/shoucang/jQuery.md5.js.下载"></script>
+<script type="text/javascript" src="/shoucang/loginpc.js.下载"></script>
+
+
+<style type="text/css">
+.email{ position:fixed; bottom:0px; right:0px; width:190px; height:35px; line-height:35px; background:#e8e8e8; border:1px #CCCCCC solid; border-right:none; z-index:400000000;}
+.email a{ padding-left:10px; float:left; font-weight:normal; font-family:"宋体"; font-size:12px; width:120px; box-shadow:1px 0px 0px 0px #ccc; border-right:1px #fff solid;}
+.email a img{ margin:12px 3px 0px 0px; float:left; width:16px; height:12px;}
+.imjs-status{color:#55aa39 !important}
+#webIM ul.tab-im .offline-icon,#webIM ul.tab-im .online-icon{background-position:0 !important}
+#webIM .all-list a.on, #webIM .all-list a.off{background-position:-239px -297px !important;color:#2883C3 !important}
+#webIM ul.tab-im a{color:#2883C3 !important}
+</style> 
+<script src="/shoucang/wb.js.下载" type="text/javascript" charset="utf-8"></script>
+<!-- load statistics js -->
+<!--[statistics start]-->
+<!-- load End-->
+<script>
+
+var pageNum;
+//是否有前一页
+var hasPreviousPage;
+//是否有下一页
+var hasNextPage;
+
+
+	var pa={
+			 pagenum:1,
+			 pagesize:4
+		}
+
+jq();
+index();
+
+function jq(){
+	$.ajax({
+		url:"/zsm/userlogin/getSe",
+		dataType:"json",
+		type:"post",
+		success:function(a){
+			if(a!=null){
+			 $("#log").html("欢迎"+a.name);
+		}
+		}
+
+	})
+	
+}
+	
+	
+
+function index(){
+	$.ajax({
+		url:"/zsm/house/queryCollectVo",
+		dataType:"json",
+	    type:"post",
+	    data:pa,
+	    success:function(a){
+	    	if(a!=null){
+	    		pageNum=a.pageNum;
+	    		hasPreviousPage=a.hasPreviousPage;
+	    		hasNextPage=a.hasNextPage;
+	    	$.each(a.list,function(i,obj){
+	    		var save="<div class='save'>"+
+				"<div class='save_left fl'>"+
+					"<div class='save_left_img fl'>"+
+					"		<a href=''><img src='"+obj.picturepath+"' alt='全景图' /></a>"+
+						"</div>"+
+						"<div class='save_left_txt fr'>"+
+						"	<p class='save_left_txt_p1'>"+
+						"			<a href=''>"+obj.ambitus+"</a>	"+
+						"	</p>"+
+						"	<ul class='save_left_txt_p2'>"+
+							"	<li><span>5.0分</span></li>"+
+						"		<li>可住"+obj.peoplenumber+"人</li>"+
+						"		<li>已订<span>5</span>晚</li>"+
+						"	</ul>"+
+						"	<p class='save_left_txt_p3'><a><span></span>"+obj.houseaddress+"</a></p>"+
+					"	</div>"+
+				"	</div>"+
+				"	<div class='save_right fr'>"+
+				"		<p>￥<span>"+obj.baseprice+"</span>/晚<img src='' style='width:9px;vertical-align: middle;margin-left:2px;margin-top:-2px;'/></p>"+
+				"		<p><font style='cursor: pointer;' onclick='quxiao("+obj.collectId+")'>取消收藏</font></p>"+
+				"	</div>"+
+			"	</div>"
+			 $("#save_parent").append(save)
+	    	})
+	          
+	    	}else{
+	    		var s="<div id='no_save'>"+
+						"您还没有收藏"+
+					"</div>"
+	    		$("#save_parent").append(s)
+	    
+	    	}
+	    }
+	})
+}
+
+
+$("#shang").click(function(){
+	var pa={
+			 pagenum:pageNum-1,
+			 pagesize:4
+		}
+	if(hasPreviousPage==false){
+		alert("没有上一页")
+	}
+	$.ajax({
+		url:"/zsm/house/queryCollectVo",
+		dataType:"json",
+	    type:"post",
+	    data:pa,
+	    success:function(a){
+	    	if(a!=null){
+	    		pageNum=a.pageNum;
+	    		hasPreviousPage=a.hasPreviousPage;
+	    		hasNextPage=a.hasNextPage;
+	    		 $("#save_parent").html("")
+	    	$.each(a.list,function(i,obj){
+	    		var save="<div class='save'>"+
+				"<div class='save_left fl'>"+
+					"<div class='save_left_img fl'>"+
+					"		<a href=''><img src='"+obj.picturepath+"' alt='全景图' /></a>"+
+						"</div>"+
+						"<div class='save_left_txt fr'>"+
+						"	<p class='save_left_txt_p1'>"+
+						"			<a href=''>"+obj.ambitus+"</a>	"+
+						"	</p>"+
+						"	<ul class='save_left_txt_p2'>"+
+							"	<li><span>5.0分</span></li>"+
+						"		<li>可住"+obj.peoplenumber+"人</li>"+
+						"		<li>已订<span>5</span>晚</li>"+
+						"	</ul>"+
+						"	<p class='save_left_txt_p3'><a><span></span>"+obj.houseaddress+"</a></p>"+
+					"	</div>"+
+				"	</div>"+
+				"	<div class='save_right fr'>"+
+				"		<p>￥<span>"+obj.baseprice+"</span>/晚<img src='' style='width:9px;vertical-align: middle;margin-left:2px;margin-top:-2px;'/></p>"+
+				"		<p><font style='cursor: pointer;' onclick='quxiao("+obj.collectId+")'>取消收藏</font></p>"+
+				"	</div>"+
+			"	</div>"
+			 $("#save_parent").append(save)
+	    	})
+	          
+	    	}
+	    }
+	})
+})
+
+$("#xia").click(function(){
+	var pa={
+		 pagenum:pageNum+1,
+		 pagesize:4
+	}
+if(hasNextPage==false){
+	alert("没有下一页")
+}else{
+$.ajax({
+	url:"/zsm/house/queryCollectVo",
+	dataType:"json",
+   type:"post",
+   data:pa,
+   success:function(a){
+   	if(a!=null){
+   		pageNum=a.pageNum;
+		hasPreviousPage=a.hasPreviousPage;
+		hasNextPage=a.hasNextPage;
+   		 $("#save_parent").html("")
+   	$.each(a.list,function(i,obj){
+   		var save="<div class='save'>"+
+			"<div class='save_left fl'>"+
+				"<div class='save_left_img fl'>"+
+				"		<a href=''><img src='"+obj.picturepath+"' alt='全景图' /></a>"+
+					"</div>"+
+					"<div class='save_left_txt fr'>"+
+					"	<p class='save_left_txt_p1'>"+
+					"			<a href=''>"+obj.ambitus+"</a>	"+
+					"	</p>"+
+					"	<ul class='save_left_txt_p2'>"+
+						"	<li><span>5.0分</span></li>"+
+					"		<li>可住"+obj.peoplenumber+"人</li>"+
+					"		<li>已订<span>5</span>晚</li>"+
+					"	</ul>"+
+					"	<p class='save_left_txt_p3'><a><span></span>"+obj.houseaddress+"</a></p>"+
+				"	</div>"+
+			"	</div>"+
+			"	<div class='save_right fr'>"+
+			"		<p>￥<span>"+obj.baseprice+"</span>/晚<img src='' style='width:9px;vertical-align: middle;margin-left:2px;margin-top:-2px;'/></p>"+
+			"		<p><font style='cursor: pointer;' onclick='quxiao("+obj.collectId+")'>取消收藏</font></p>"+
+			"	</div>"+
+		"	</div>"
+		 $("#save_parent").append(save)
+   	})
+         
+   	}
+   }
+})
+}
+})
+
+
+
+function quxiao(id){
+
+$.ajax({
+	url:"/zsm/house/deletecollect",
+	dataType:"json",
+	type:"post",
+	data:"collectId="+id,
+    success:function(a){
+    	if(a!=null){
+    		alert("取消成功！")
+    		location.href="/zsm/house/goshouchang";
+    	}
+    }
+})
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" charset="UTF-8" src="./shoucang/online"></script><div><div class="qimo_chatpup" id="qimo_chatpup" style="display: none; right: 18px; bottom: 0px; width: 355px; height: 500px;"><iframe id="chatIframe" src="./shoucang/moor_chat.html" height="100%" width="100%"></iframe><div id="maskChat"></div></div><div id="chatBtn" class="chatBtn" style="display: none; right: 18px; z-index: -100; background-color: rgb(25, 202, 166); border-radius: 5px 5px 0px 0px; bottom: -1px; padding: 8px 10px;"><img width="25px" height="25px" src="./shoucang/1.png" style="margin: 0px 5px -6px 0px;"><span>咨询客服</span><span id="qimo_badge"></span></div><div id="qimo_showNewMsg" class="qimo_showNewMsg" style="display: none; "><div id="qimo_showNewMsg_box" class="qimo_showNewMsg_box"><div id="qimo_showNewMsg_title_box" class="qimo_showNewMsg_title_box"><img src="./shoucang/agentLogo.png"><span id="qimo_showNewMsg_title" class="qimo_showNewMsg_title"></span></div> <div id="qimo_showNewMsg_content" class="qimo_showNewMsg_content"></div></div><span id="qimo_showNewMsg_close" class="qimo_showNewMsg_close">x</span></div></div><script type="text/javascript" charset="UTF-8" src="./shoucang/online(1)"></script><div><div class="qimo_inviteBox" id="qimo_inviteBox" style="display: none; right: 10px; bottom: 10px; background: rgb(63, 184, 253);"><img class="qimo_invite_close" id="qimo_invite_close" src="./shoucang/invite-close.png"><div class="qimo_inviteBox_top"><div class="qimo_inviteBox_top_img" id="qimo_inviteBox_top_img"><img id="qimo_inviteBox_img" src="./shoucang/896beb70-d81a-11e7-b6e7-9da891414b0f.png"></div><div class="qimo_inviteBox_top_right" id="qimo_inviteBox_top_right"><p id="qimo_inviteBox_InviteWords">欢迎咨询，请问有什么可以帮您的吗？</p><div class="qimo_inviteBox_top_button" id="qimo_inviteBox_top_button"><div id="invite_click_button_1" class="divbuttons msie11PadTop" style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255);">立即咨询</div><div id="invite_click_button_2" class="divbuttons msie11PadTop" style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255);">以后再说</div></div></div></div><div class="qimo_inviteBox_bottom"><textarea id="sendInviteText" placeholder="请输入您想要输入的内容..." rows="2"></textarea><div id="sendInviteContent" class="sendInviteContent msie11PadTop" style="background: rgb(63, 184, 253);">发送</div></div></div></div><div><div class="qimo_screenpop" id="qimo_screenpop" style="display: none"><div class="screendragbar" id="screendrag"></div><div class="qimo_headerimg" id="qimo_headerimg"><div class="screenminimg" style="display: none" id="screenminimg"><img src="./shoucang/small.png"></div><div class="screenminimg" id="screenmaximg"><img src="./shoucang/big.png"></div><div class="screenminimg" id="screencloseimg"><img src="./shoucang/close(1).png" style="width: 16px;height: 16px;"></div></div> <div id="mask"></div><iframe id="screenIframe" src="./shoucang/saved_resource.html" height="100%" width="100%" allow="microphone; camera"></iframe></div></div><div><div class="qimo_videopup" id="qimo_videopup" style="display: none"><div style="" class="dragbar" id="drag"></div><div class="qimo_minimg" id="qimo_minimg"><img src="./shoucang/small.png"></div><img src="./shoucang/big.png" class="qimo_maximg" id="qimo_maximg" style="display: none"> <div id="mask"></div><iframe id="videoIframe" src="./shoucang/saved_resource(1).html" height="100%" width="100%" allow="microphone; camera"></iframe></div></div></body></html>

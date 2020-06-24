@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.pj.dao.xbc.InfromationMapper">
+	<insert id="insert">
+		insert into tb_userinfo(username,nickname,name,gender,mailbox,phonenumber,sparephonenumber)
+		values(#{e.username},#{e.nickname},#{e.name},#{e.gender},#{e.mailbox},#{e.phonenumber},
+		#{e.sparephonenumber});
+	</insert>
+	
+	<update id="updateByUsername">
+		update  tb_userinfo set nickname = #{e.nickname},name=#{e.name},gender=#{e.gender},
+		mailbox=#{e.mailbox},phonenumber=#{e.phonenumber},
+		sparephonenumber=#{e.sparephonenumber} where username = #{e.username}
+	</update>
+	
+	<select id="selectByUsername" resultType="com.cy.pj.vo.xbc.PersonalInformation">
+	select * from tb_userinfo where username =  #{username};
+	</select>
+	
+</mapper>

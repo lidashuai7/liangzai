@@ -1,0 +1,13 @@
+package com.cy.pj.controller.xln;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/")
+public class OrderController {
+	@RequestMapping("doWaitPay")
+	public String doWaitPay() {
+		return null;
+	}
+}

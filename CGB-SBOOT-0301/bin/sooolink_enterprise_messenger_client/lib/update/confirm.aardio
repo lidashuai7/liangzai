@@ -1,0 +1,37 @@
+import win.ui;
+
+namespace update;
+class confirm{
+	ctor(parent,tParam){
+	/*DSG{{*/
+	this = ..win.form(text="系统提示";right=455;bottom=116;border="thin";max=false;min=false;mode="popup";parent=parent;title=false)
+	this.add(
+	button={cls="button";text="取消";left=129;top=64;right=212;bottom=93;z=2};
+	button2={cls="button";text="升级";left=241;top=63;right=324;bottom=92;color=255;flat=1;z=3};
+	static={cls="static";text="系统有新版本，需要升级到最新版本吗？";left=114;top=26;right=394;bottom=47;color=255;dl=1;dr=1;font=LOGFONT(weight=700);notify=1;transparent=1;z=1}
+	)
+	/*}}*/
+	
+	this.button2.oncommand = function(id,event){
+		..debug.log.print("执行升级：");
+		import process;
+		var updateExeName = "update.exe";
+		process.execute( ..io.fullpath(updateExeName) )	
+		this.close();
+	}
+
+    this.button.oncommand = function(id,event){
+		this.close();
+		..login.form();
+	}
+	
+	import win.region.round;
+		win.region.round(this);
+
+    }
+}
+
+if( !owner ) ..update.confirm().doModal();
+/**intellisense()
+update.confirm() = 窗口类\n!winform.
+end intellisense**/

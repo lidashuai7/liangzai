@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			body{
+				width: 900px;
+				height: 700px;
+			}
+			li{
+				list-style: none;
+			}
+		</style>
+	</head>
+	<body>
+		<b>&nbsp;&nbsp;&nbsp;转化</b>
+		<br /><br />
+		<div style="width: 900px;">
+		<p style="float: left;height:250px;width:450px;"><img src="../img/捕获.PNG" style=""></p>
+		<p style="float: left;height:250px;width:450px;"><img src="../img/捕获.PNG" style=""></p>
+		</div>
+		<br />
+		<p style="float: none;"><b>&nbsp;&nbsp;&nbsp;收入</b></p>
+		
+		<br />
+		<div>
+			<ul style="width: 300px;border: 1px solid #999999;float: left;margin: 0 10px;">
+			<li><font color="#999999" size="2">总收入</font></li>
+			<li><h2>592.20元</h2></li>
+			<li><font color="#999999" size="2">环比：85% 同比：--</font></li>
+		</ul>
+		<ul style="width: 300px;border: 1px solid #999999;float: left;margin: 0 10px;">
+			<li><font color="#999999" size="2">实住间夜</font></li>
+			<li><h2>2晚</h2></li>
+			<li><font color="#999999" size="2">环比：75% 同比：--</font></li>
+		</ul>
+		<br />
+		</div>
+		
+		<p><img src="../img/捕获2.PNG"></p>
+	</body>
+</html>
+ 

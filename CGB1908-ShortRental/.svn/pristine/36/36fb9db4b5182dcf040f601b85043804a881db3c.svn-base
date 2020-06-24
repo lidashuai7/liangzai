@@ -1,0 +1,63 @@
+package com.cy.pj.controller.zsm;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cy.pj.entity.tb_house;
+import com.cy.pj.service.zsm.service.serviceImpl.HouseCountServiceImpl;
+import com.cy.pj.vo.zsm.house_count;
+import com.cy.pj.vo.zsm.house_de;
+import com.cy.pj.vo.zsm.house_erji;
+import com.cy.pj.vo.zsm.povo;
+import com.github.pagehelper.PageInfo;
+
+@Controller
+@RequestMapping("/zsm/house")
+public class HouseCountController {
+
+	@Autowired
+	private HouseCountServiceImpl biz;
+	
+	@RequestMapping("housecount")
+	@ResponseBody
+	private List<house_count>queryHouse(){
+		System.out.println(biz.queryHouseCount());
+		return biz.queryHouseCount();
+	}
+	
+	@RequestMapping("housede")
+	@ResponseBody
+	private List<house_de>queryHouse1(){
+		System.out.println(biz.queryhouse());
+		return biz.queryhouse();
+	}
+	@RequestMapping("housede1")
+	@ResponseBody
+	private List<house_de>queryHouse2(){
+		System.out.println(biz.queryhouse1());
+		return biz.queryhouse1();
+	}
+	
+	
+	@RequestMapping("houseall")
+	@ResponseBody
+	public PageInfo<house_erji> qureyerji(Integer pagenum,Integer pagesize,String position,
+			String housetype,Integer price1,Integer price2,String weizhi,Integer xu){
+		System.out.println(pagenum+"当前页");
+		System.out.println(pagesize+"每页数量");
+		System.out.println("位置信息"+weizhi);
+		System.out.println("高低顺序"+xu);
+		System.out.println("居室信息"+housetype);
+		PageInfo<house_erji> list = biz.houseerji(pagenum, pagesize, position, housetype, price1, price2,weizhi,xu);
+		System.out.println(list);
+		return list;
+	}
+	
+
+	
+}

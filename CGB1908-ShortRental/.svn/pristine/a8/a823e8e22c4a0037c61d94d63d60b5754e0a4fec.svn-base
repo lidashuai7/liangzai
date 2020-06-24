@@ -1,0 +1,212 @@
+
+function doSearch()
+{
+	var ctx = $('#ctx').val();
+	var cityvalue = $('#searchcityin').val();
+	var cityvalue1 = $('#searchcityin1').val();
+	var cityPin = '';
+//	alert(cityvalue);
+	// $("#searchcityin").val($(".suggest_results li.hover a .leftspan").text());
+	if(cityvalue1=='位置、标题、房东等'||cityvalue1=='')
+	{
+		if($('.error_tip_list').css('display')=='block'&&$('.error_tip_list').css('left')!='100px')
+		{
+			var sUrl =  "/"+$("#searchcityin").attr('citypinyin');
+			$("#searchcityin").attr('surl',sUrl)
+			$(".suggest_results").html('');	 
+		}
+		else if($('.suggest_results').css('display')=='block'&&$('.suggest_results').css('left')!='100px')
+		{
+			var sUrl =  "/"+$("#searchcityin").attr('citypinyin');
+//			alert("sUrl:"+sUrl);
+			$("#searchcityin").attr('surl',sUrl)
+			$(".suggest_results").html('');	 
+		}
+		else{
+			if($(".suggest_results li:first a").attr('url')){
+				$("#searchcityin").attr('surl',$(".suggest_results li:first a").attr('url'));	
+			}
+			
+		} 
+
+	}else{
+		if($(".suggest_results li:first a").attr('url')){
+		$("#searchcityin").attr('surl',$(".suggest_results li:first a").attr('url'));
+		}
+	} 
+
+	//$("#searchcityin").attr('surl',$(".suggest_results li.hover a").attr('url'));	
+
+	searchBtnClick(cityvalue,0,'list');
+	$(".suggest_results").css("display","none");
+
+}
+$(document).ready(function() {
+	//先suggest
+	$('#searchcityin1').keyup();
+	//关掉下拉框
+	$('#key_word_list').hide();
+	$('#landmarkBtn').click(function(){    
+		//选中第一个
+		if($(".suggest_results li:first-child a .leftspan").attr("kw")){
+			$("#searchcityin").attr('citypinyin',$(".suggest_results li:first-child a").attr('url').split("/")[1]);
+		}
+		var kw = $('#suggestul li').first().find('span').attr('kw');
+//		if(kw == undefined || kw == 'undefined'){
+//			kw = $("#searchcityin1").val();
+//		}
+		$('#searchcityin').attr('search',kw);
+		$('#searchcityin').attr('typeid',$('#suggestul li').first().attr('type'));
+		//关键词清空后，点击搜索名宿下方筛选条件随之清空  ---yangyuan
+		if($("#searchcityin1").val() == "" && $("#clearall_term").length > 0){
+			$("#clearall_term").click();
+		}else{
+			doSearch();
+		}
+	});
+
+
+
+	$('#customPriceBtn').click(function(){
+		var minPrice =  $('#minPrice').val();
+		var maxPrice =  $('#maxPrice').val();
+		if(minPrice=='' && maxPrice==''){
+			layer.alert("请输入价格区间");
+			return;
+		}
+		if(minPrice==''){
+			minPrice=1;
+		}
+		if(maxPrice==''){
+			maxPrice=99999;
+		}
+		if(parseInt(maxPrice)<parseInt(minPrice)){
+			layer.alert("起始价不能大于终止价");
+			return;
+		}
+		/*var prarmStr = $(this).attr('urlParam');
+		var urlHost = $(this).attr('urlHost');
+		var url = urlHost+'/price-';
+		var priceStr = minPrice+'-'+maxPrice;
+		url = url+priceStr;
+        if(prarmStr.indexOf('price')!=-1){
+        	var paramArr = prarmStr.split('_',2);        	
+        	if(paramArr.length==2){
+        		url = url+'_'+paramArr[1];
+        	}            
+        }else if(prarmStr!=''){
+        	url = url+'_'+prarmStr;
+        }*/
+
+		var priceStr = "p"+minPrice+'-'+maxPrice;
+		var urlRequest = $(this).attr('urlRequest');
+		if((/p[\d]+-[\d]+/).test(urlRequest)){
+			urlRequest = urlRequest.replace(/p[\d]+-[\d]+/,priceStr);
+		}
+		window.location.href=urlRequest;
+	});
+
+	//城市列表切换
+	var cityTab = $('.cityword span');
+	var nearbyTab = $('.nearbyword span');
+	cityTab.each(function(e){
+		cityTab.eq(e).click(function(){
+			$(this).addClass('current').siblings().removeClass('current');
+		});
+	});
+	nearbyTab.each(function(e){
+		nearbyTab.eq(e).click(function(){
+			$(this).addClass('current').siblings().removeClass('current');
+			$('.nearbywrap').children().eq(e).show().siblings().hide();
+		});
+	});		
+
+
+	//鼠标滑过显示效果
+	var x = 35;
+	var y = 30;
+	var mapy = 30 ;
+	$('.room-data').each(function(){
+		var review = $(this).find('a').eq(1);
+		var thatDay = $(this).find('a:last');
+		review.mouseover(function(e){
+			$('#commentItemId').remove();//很重要
+			var commentNum = $(this).attr('commentnum');
+			var sanratio = $(this).attr('sanratio')*100;
+			sanratio = Math.round(sanratio);
+			var descratio = $(this).attr('descratio')*100;
+			descratio = Math.round(descratio);
+			var saftratio = $(this).attr('saftratio')*100;
+			saftratio = Math.round(saftratio);
+			var trafficratio = $(this).attr('trafficratio')*100;
+			trafficratio = Math.round(trafficratio);
+			var valratio = $(this).attr('valratio')*100;
+			valratio = Math.round(valratio);
+			var hideFlag = false;
+			if(sanratio=="0"&&descratio=="0"&&saftratio=="0"&&trafficratio=="0"&&valratio=="0"){
+				hideFlag = true;
+			}
+			if(commentNum!="0"&&!hideFlag){					
+				var commentRatioHtml = '<ul id="commentItemId" class="review-con"><li><label class="fl">整洁卫生</label><div class="progress fl"><div class="bar" style="width:'+
+				sanratio+'%;"></div></div><label class="rate fl">好评率'+sanratio+'%</label></li><li><label class="fl">描述相符</label><div class="progress fl"><div class="bar" style="width:'+
+				descratio+'%;"></div></div><label class="rate fl">好评率'+descratio+'%</label></li><li><label class="fl">性价比</label><div class="progress fl"><div class="bar" style="width:'+
+				valratio+'%;"></div></div><label class="rate fl">好评率'+valratio+'%</label></li><li><label class="fl">安全程度</label><div class="progress fl"><div class="bar" style="width:'+
+				saftratio+'%;"></div></div><label class="rate fl">好评率'+saftratio+'%</label></li><li><label class="fl">交通位置</label><div class="progress fl"><div class="bar" style="width:'+
+				trafficratio+'%;"></div></div><label class="rate fl">好评率'+trafficratio+'%</label></li></ul>';
+				$('.review').append(commentRatioHtml);
+				$('.review').css({
+					'top':(e.pageY + y)+'px',
+					'left':(e.pageX - x)+'px',
+					'overflow':'visible'
+				}).show('fast');
+			}else{
+				$('.review').hide();  
+			}
+		}).mouseout(function(){				
+			$('.review').hide();  
+		});
+		thatDay.mouseover(function(e){
+			$('.thatday').css({
+				'top':(e.pageY + y)+'px',
+				'left':(e.pageX - x)+'px',
+				'overflow':'visible'
+			}).slideDown(200);
+		}).mouseout(function(){
+			$('.thatday').hide();
+		}).mousemove(function(e){
+			$('.thatday').css({
+				'top':(e.pageY + y)+'px',
+				'left':(e.pageX - x)+'px'
+			});
+		});
+	});
+
+	$(".su-book,.invoice").mouseover(function(event){
+		e = event || window.event;
+		e.preventDefault(); 
+		e.stopPropagation();
+		var $tagMess = $('<div></div>').attr('class','tagMes');
+		if($(this).attr('class')=="su-book"){
+			$tagMess.html("无需等待，直接付款，保证有房").append('<b class="topsj"></b>');
+		}else if($(this).attr('class')=="invoice"){
+			$tagMess.html("房东可提供发票").append('<b class="topsj"></b>');
+		}
+		$(".tagMes").remove();
+		$("body").append($tagMess);
+		$tagMess.css({'top':($(this).offset().top+35)+'px','left':($(this).offset().left-($tagMess.width()-$(this).width())/2-16)+'px'}).show();
+		$(".tagMes b").css("left",+($tagMess.width()/2+10)+"px")
+	}).mouseout(function(){
+		$(".tagMes").hide();
+	});
+});
+
+function getCalPrice(lodgeunitId,startdate,enddate){
+	$.ajax({type:"post",
+		dataType:"json",
+		url: "${ctx}/web/lodgeunit/getCalPrice",
+		async : false,
+		data:{"lodgeunitId":lodgeunitId,"startdate":startdate,"enddate":enddate},
+		success: function(data){ 
+		}
+	});
+}

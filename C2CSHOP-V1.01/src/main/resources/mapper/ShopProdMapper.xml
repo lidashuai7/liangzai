@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.shop.dao.ShopProdDao">
+	<!-- 开启基于redis的二级缓存 -->
+    <cache type="com.cy.shop.cache.RedisCache"/>
+	<!-- 查找分页数据 -->
+	<select id="findPageObjects"
+		resultType="com.cy.shop.entity.ShopProd">
+		select * from shop_prod
+		<include refid="queryWhereId" />
+		order by id desc
+		limit #{startIndex},#{pageSize}
+	</select>
+	<!-- 查询总记录数 -->
+	<select id="getRowCount" resultType="Integer">
+		select count(*) from shop_prod
+		<include refid="queryWhereId" />
+	</select>
+	<insert id="insertObject" flushCache="true">
+		insert into shop_prod 
+		values (
+		null,
+		#{name},
+		#{prodDescribe},
+		#{note},
+		#{placeOfOrigin},
+		#{mainPhoto},
+		#{smallPhoto},
+		#{bigPhoto},
+		#{price},
+		#{kind},
+		now(),
+		#{unit},
+		#{amount}
+		)
+	</insert>
+	
+	<sql id="queryWhereId">
+		<where>
+			<if test="name!=null and name !=''">
+				name like concat('%',#{name},'%')
+			</if>
+		</where>
+	</sql>
+	
+	<delete id="deleteObjects" flushCache="true">
+       delete from shop_prod
+       where id in 
+       <foreach collection="ids"
+                open="("
+                close=")"
+                separator=","
+                item="id">
+               #{id} 
+        </foreach>
+    </delete>
+	
+	
+	<select id="findObjectById" resultType="com.cy.shop.entity.ShopProd" >
+		select * from shop_prod where id=#{prodId}
+	</select>
+	<select id="findNameById" resultType="String">
+		select name from shop_prod where id=#{id}
+	</select>
+	
+	
+	<select id="findCartById" resultType="com.cy.shop.vo.ShopCartVo">
+		select id as prodId,name as prodName,prod_describe as prodDescribe,price as prodPrice,main_photo as photo from shop_prod where id=#{prodId}
+	</select>
+</mapper>
+
+
+
+
+
+

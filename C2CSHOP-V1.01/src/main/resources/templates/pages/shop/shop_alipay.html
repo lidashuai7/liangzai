@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   
+<meta charset="UTF-8">
+   
+<title>Title</title>
+</head>
+<script src="../vendor/jquery/jquery.min.js"></script>
+<body>
+	<H1>支付宝demo测试</H1>
+	<hr>
+	<form action="alipay" method="post">
+		  *商户订单 :<br>    <input id="orderId" type="text" name="out_trade_no"><br>
+		  *订单名称 :<br>    <input id="prodName" type="text" name="subject"><br>
+		  *付款金额 :<br>    <input id="count" type="text" name="total_amount"><br>
+		    商品描述 :<br>    <input type="text" name="body"><br>
+		   <input type="submit" value="支付宝支付">
+	</form>
+</body>
+<script type="text/javascript">
+	$(function() {
+		//获取上一个页面传过来的商品id 和这个商品的数量
+		var orderId = '[[${orderId}]]';
+		var prodName = '[[${prodName}]]';
+		var count = '[[${count}]]';
+		//根据id去查找商品数据
+		$("#orderId").val(orderId);
+		$("#prodName").val(prodName);
+		$("#count").val(count);
+	})
+</script>
+
+</html>

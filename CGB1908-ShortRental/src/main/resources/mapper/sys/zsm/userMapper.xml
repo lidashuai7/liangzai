@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.cy.pj.dao.zsm.UserMapper">
+
+<select id="loginUser" resultType="com.cy.pj.entity.tb_userinfo">
+  select * from tb_userinfo where username=#{username} and pwd=#{pwd};
+</select>
+
+<insert id="insertUser">
+
+insert into rental.tb_userinfo 
+	(
+	userid,username,
+	pwd, 
+	usertype
+	)
+	values
+	(null,
+	#{username}, 
+     #{pwd},
+	 1
+	);
+
+</insert>
+
+<select id="queryUser" resultType="com.cy.pj.entity.tb_userinfo">
+select * from tb_userinfo where username=#{username}
+</select>
+
+</mapper>

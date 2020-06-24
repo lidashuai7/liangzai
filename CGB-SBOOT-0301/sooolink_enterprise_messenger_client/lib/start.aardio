@@ -1,0 +1,33 @@
+﻿import fsys.config;
+import fsys.version;
+import update;
+
+namespace start{
+	update = function(){
+		..debug.log.print("升级检测");
+		..update.checkUpdateInfo();
+	};
+	
+	init = function(){	
+		//调试及日志
+		..debug.log.setPath("log/log.txt");
+		..debug.log.checkSize(0x20000); //设置日志大小
+		//升级
+		self.update();
+		//版本检测
+		var exeInfo = ..fsys.version.getInfo(..io._exepath);
+		..debug.log.print("程序初始化：");
+		//配置文件读取
+		var cfg = ..fsys.config("/config/");
+		//运行配置
+		cfg.init.Version 			= exeInfo.productVersion;
+		cfg.init.ProductName 		= exeInfo.productName;
+		cfg.init.OriginalFileName 	= exeInfo.originalFileName;
+		cfg.init.CompanyName 		= exeInfo.companyName;
+		cfg.init.Copyright 		    = exeInfo.copyright;
+		
+		
+		
+		..debug.log.print("程序初始化完毕：");
+	}	
+}

@@ -1,0 +1,30 @@
+package com.cy;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.cy.pj.entity.user;
+import com.cy.pj.service.xln.impl.OrderManageServiceImpl;
+import com.cy.pj.service.zsm.service.serviceImpl.HouseCountServiceImpl;
+import com.cy.pj.service.zsm.service.serviceImpl.UserServiceImpl;
+import com.cy.pj.vo.zsm.tb_collect;
+
+@SpringBootTest
+class Cgb1908ShortRentalApplicationTests {
+
+	@Autowired
+	private UserServiceImpl biz;
+	
+	@Autowired
+	private HouseCountServiceImpl biz1;
+
+	@Test
+	public void test() {
+
+	
+
+		
+	}
+
+}

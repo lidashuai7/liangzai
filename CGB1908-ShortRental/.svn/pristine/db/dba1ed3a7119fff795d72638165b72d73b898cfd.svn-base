@@ -1,0 +1,292 @@
+var MYRP = window.MYRP || {};
+var iiii = 0;
+(function() {
+	var namespace = "mayi";
+	// 默认参数
+	var options = {
+		host : 'http://rpclick.mayi.com',
+		img_file : 'p.gif',
+		uuid : '',
+		uuid_name : 'mayi_rp_uuid',
+		refer : '',
+		selector : '_mayi_rp',
+		cookie : '_click_rp',
+		domain : 'mayi.com',
+		delay : false,
+		delay_attr : '_delay'
+	};
+	var params = {};
+	var clickObj = null; // 当前点击对象
+	var rp_names = [ 'pname', 'pos', 'name' ];
+//	// 获得选择器
+//	MYRP.getSelector = function(selector) {
+//		return $("[" + selector + "]");
+//	}
+	MYRP.init = function() {
+//		var arrayObj = MYRP.getSelector(options.selector);
+		var _time = new Date().valueOf();
+//		if (arrayObj.length > 0) {
+//			arrayObj.each(function(index, element) {
+					$("body").on('click',"["+options.selector+"]", function() {
+						// 连续点击限制
+						if (new Date().valueOf() - _time < 300) {
+							return;
+						}
+						console.log($(this))
+						MYRP.rpComm($(this));
+					});
+//			});
+//		}
+	}
+	// js上报函数
+	MYRP.rpComm = function(obj) {
+		// console.info('click');
+		clickObj = obj;
+		if (MYRP.getIsDelay()) {
+			// setDelayCookie();
+		} else {
+			MYRP.rpClick();
+		}
+	}
+	// 是否立即上报，如果跳转页面，则计入延时上报
+	MYRP.getIsDelay = function() {
+		return false;
+	}
+	// 上报
+	MYRP.rpClick = function(args) {
+		if (args == undefined) {
+			args = MYRP.getParamStr();
+		}
+		// 无上报参数不调用
+		if (args == '')
+			return;
+		var url = options.host + "/" + options.img_file + "?";
+		var img = new Image(1, 1);
+		img.src = url + args+"&ca_s="+(MY.getCookie("_channel") || "-")+"&ca_n="+(MY.getCookie("_caname") || "-")+"&v="+iiii;
+//		console.info(img.src);
+		MYRP.clearParam();
+		iiii++;
+	}
+
+	MYRP.getParamStr = function() {
+		MYRP.getAttrParam();
+		if (params.lenth < 0)
+			return '';
+		MYRP.getDefaultParam();
+		// 拼接参数串
+		var args = '';
+		for ( var i in params) {
+			if (args != '') {
+				args += '&';
+			}
+			args += i + '=' + encodeURIComponent(params[i]);
+		}
+		return args;
+	}
+	// 获得标签中的参数
+	MYRP.getAttrParam = function() {
+		if (clickObj) {
+			var attrs = clickObj.get(0).attributes;
+			$.each(attrs, function(i) {
+				var name = attrs[i].name;
+				if (name.indexOf(options.selector) == 0) {
+					var value = attrs[i].value;
+					values = value.split('|');
+					for (var i = 0; i < rp_names.length; i++) {
+						if (i < values.length) {
+							params[rp_names[i]] = values[i];
+						} else {
+							params[rp_names[i]] = '';
+						}
+					}
+					return false;
+				}
+			});
+			if (params.length > 0) {
+				params.sort();
+			}
+		}
+	}
+	// 获得默认参数
+	MYRP.getDefaultParam = function() {
+		if (document) {
+			// params.url = document.URL || '';
+			// params.referrer = document.referrer || '';
+		}
+		// 时间
+		var date = new Date();
+		// params.ltime = date.getTime() / 1000;
+		// 年月日
+		// params.time = date.getTime();
+		// params.createtime = MYRP.getYMDHMS(date);
+		// params.dt = MYRP.getYMD(date);
+		params.uuid = MYRP.getUuid();
+		params.platform = MYRP.getPlatform();
+		params.url = MYRP.getUrl() || '';
+		params.refer = MYRP.getRefer() || '';
+	}
+	// 清空参数
+	MYRP.clearParam = function() {
+		params = {};
+	}
+	MYRP.getUuid = function() {
+		uuidMYRP = MYRP.getCookie(options.uuid_name);
+		uuidMY = MYRP.getCookie(MY.uuid_name);
+		options.uuid = uuidMYRP;
+		if(!uuidMYRP&&uuidMY){
+			options.uuid = uuidMY;
+			MYRP.setCookie(MY.uuid_name,options.uuid,MYRP.getDomain(),"/",365);
+		}
+		
+		if (!options.uuid) {
+			var t = +new Date(), v = MYRP.rand(10000000, 99999999), u = function(
+					A) {
+				var y = "", z, x = A.length;
+				while (x > 0) {
+					x--;
+					y += A.substr(x, 1)
+				}
+				return y;
+			}, w = u(t + "" + MYRP.rand(1, 9));
+			w = (w * 1 + v) + "" + v;
+			options.uuid = w;
+			MYRP.setCookie(options.uuid_name, w, MYRP.getDomain(), "/", 365);
+		}
+		return options.uuid;
+	}
+	MYRP.getRefer = function() {
+		var refer = '';
+		if (window.parent != window.self) {
+			try {
+				refer = parent.document.referrer;
+			} catch (err) {
+				refer = document.referrer;
+			}
+		} else {
+			refer = document.referrer;
+		}
+		// console.log("refer = "+refer);
+		refer = MYRP._encodeURI(refer);
+		return refer;
+	}
+	MYRP.getUrl = function() {
+		var url = window.location.href;
+		return MYRP._encodeURI(url);
+	}
+	MYRP.getPlatform = function() {
+		return (window.location.href.indexOf("m.mayi.com") > -1 ? "wap" : "web");
+	}
+	/** *********************工具类参数************************************************* */
+	MYRP.rand = function(min, max) {
+		return parseInt(Math.random() * (max - min + 1) + max)
+	}
+	MYRP.getDomain = function() {
+		var arydomain = new Array(".com.cn", ".net", ".net.cn", ".cc", ".org",
+				".org.cn", ".gov.cn", ".info", ".biz", ".tv", ".cn", ".com");
+		var domain = document.domain;
+		var tmpdomain = "";
+		for (var i = 0; i < arydomain.length; i++) {
+			tmpdomain = arydomain[i];
+			var k = domain.lastIndexOf(tmpdomain);
+			if (k != -1 && k + tmpdomain.length == domain.length) {
+				domain = domain.substr(0, k);
+				domain = domain.substring(domain.lastIndexOf(".") + 1,
+						domain.length);
+				domain = domain + tmpdomain;
+				break;
+			}
+		}
+		return domain;
+	}
+	MYRP.isUndefined = function(e) {
+		if (typeof (e) == "undefined") {
+			return true;
+		}
+		return false;
+	}
+
+	MYRP.formatNumber = function(n) {
+		n = n.toString()
+		return n[1] ? n : '0' + n
+	}
+	MYRP.getDate = function(date) {
+		var year = date.getFullYear();
+		var month = date.getMonth() + 1;
+		var day = date.getDate();
+		var hour = date.getHours();
+		var minute = date.getMinutes();
+		var second = date.getSeconds();
+		var mseconds = date.getMilliseconds();
+		return [ year, month, day ].map(MYRP.formatNumber).join('-') + ' '
+				+ [ hour, minute, second ].map(MYRP.formatNumber).join(':')
+	}
+	MYRP.getYMD = function(date) {
+		return MYRP.getDate(date).substring(0, 10);
+	}
+	MYRP.getYMDHMS = function(date) {
+		return MYRP.getDate(date);
+	}
+	MYRP.getCookie = function(c_name) {
+		var value = null, cookie;
+		if (document.cookie) {
+			cookie = document.cookie.match(new RegExp("(^| )" + c_name
+					+ "=([^;]*)(;|$)"));
+			if (cookie != null) {
+				value = decodeURIComponent(cookie[2]);
+			}
+		}
+		return value;
+	}
+	MYRP.setCookie = function(c_name, value, domain, path, exdays) {
+		exdays = !MYRP.isNumber(exdays) ? 0 : parseInt(exdays);
+		var exdate = new Date();
+		exdate.setTime(exdate.getTime() + exdays * 24 * 60 * 60 * 1000);
+		var c_value = encodeURIComponent(value)
+				+ ((exdays) ? "; expires=" + exdate.toGMTString() : "")
+				+ "; domain=" + (domain || options.domain) + "; path="
+				+ (path || "/");
+		document.cookie = c_name + "=" + c_value;
+		return true;
+	}
+
+	MYRP.delCookie = function(c_name, value, domain, path) {
+		var c_value = encodeURIComponent(value) + "; expires="
+				+ (new Date(0)).toGMTString()
+				+ ((domain) ? "; domain=" + domain : "") + "; path="
+				+ (path || "/");
+		document.cookie = c_name + "=" + c_value;
+		return true;
+	}
+	MYRP.isArray = function(e) {
+		return MYRP.typeOf(e) === "array";
+	}
+
+	MYRP.isFunction = function(e) {
+		return MYRP.typeOf(e) === "function";
+	}
+
+	MYRP.isObject = function(f, e) {
+		return (f && (typeof f === "object" || (!e && MYRP.isFunction(f)))) || false;
+	}
+
+	MYRP.isString = function(e) {
+		return typeof e === "string";
+	}
+
+	MYRP.isNumber = function(e) {
+		return typeof e === "number" && isFinite(e);
+	}
+	MYRP._encodeURI = function(k, l) {
+		if (k != null && k != undefined && k != "") {
+			var g = encodeURIComponent;
+			if (g instanceof Function) {
+				return l ? encodeURI(k) : g(k)
+			} else {
+				return escape(k)
+			}
+		} else {
+			return "-";
+		}
+	}
+	MYRP.init();
+})();

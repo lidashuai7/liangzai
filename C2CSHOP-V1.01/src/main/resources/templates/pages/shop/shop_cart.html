@@ -1,0 +1,289 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>购物车</title>
+<!-- Additional CSS Files -->
+<!--<link rel="stylesheet" href="assets/css/fontawesome.css">-->
+
+
+<!-- Bootstrap -->
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="../assets/css/tooplate-main.css">
+<link rel="stylesheet" href="../assets/css/owl.css">
+
+<style>
+.navbar>.container-fluid .navbar-brand {
+	margin-left: 0px;
+}
+
+a {
+	
+}
+</style>
+
+
+</head>
+<body>
+<!-- 导航栏 start -->
+	<nav class="navbar navbar-default"
+		style="margin-bottom: 0px; background-color: white;">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar "></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a id="homepage" class="navbar-brand" href="#"
+					style="color: black; font-weight: 500">鲜果网</a>
+			</div>
+
+
+			<form class="navbar-form navbar-left">
+				<div class="form-group ">
+					<input type="text" class="form-control" placeholder="新鲜水果">
+				</div>
+				<button type="submit" class="btn btn-default">搜索</button>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a id="loginName" href="/loginpage">登陆/注册</a></li>
+				<li><a id="shopCar" href="/loginpage">购物车</a></li>
+				<li><a id="favourite" href="/loginpage">收藏夹</a></li>
+				<li><a id="order" href="/loginpage">我的订单</a></li>
+				<li><a  href="/homepage">退出登录</a></li>
+				<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">我的 XX<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul></li> -->
+			</ul>
+		</div>
+		</div>
+	</nav>
+	<!-- 导航栏 end -->
+
+
+
+
+<section class="cartMain">
+	<div style="margin-top: 70px">
+		<h1 align="center" style="font-size: 35px;font-family:inherit;" >
+		我的购物车
+		</h1>
+	</div>
+	<div class="cartMain_hd"> 
+		<ul class="order_lists cartTop">
+			<li class="list_chk">
+				<!--所有商品全选-->
+				<input type="checkbox"  id="all" class="whole_check">
+				<label for="all"></label>
+				全选
+			</li>
+			<li class="list_con">商品名</li>
+			<li class="list_info">商品信息</li>
+			<li class="list_price">单价</li>
+			<li class="list_amount">数量</li>
+			<li class="list_sum">金额</li>
+			<li class="list_op">操作</li>
+		</ul>
+	</div>
+	
+	<div class="cartBox">
+		<div class="shop_info">
+			<div class="all_check">
+				<!--店铺全选-->
+				<input type="checkbox" id="shop_a" class="shopChoice">
+				<label for="shop_a" class="shop"></label>
+			</div>
+			<div class="shop_name">
+				店铺：<a href="javascript:;">爱果坊</a>
+			</div>
+		</div>
+		<div class="order_content">
+			<ul class="order_lists">
+				<li class="list_chk">
+					<input type="checkbox" id="checkbox_2" class="son_check">
+					<label for="checkbox_2"></label>
+				</li>
+				<li class="list_con">
+					<div class="list_img"><a href="javascript:;"><img src="" alt=""></a></div>
+					<div class="list_text" align="center"><a id="prodName" href="javascript:;" >商品名</a></div>
+				</li>
+				<li class="list_info">
+					<p id ="describe">商品描述...</p>
+				</li>
+				<li class="list_price">
+					<p class="price">￥0</p>
+				</li>
+				<li class="list_amount">
+					<div class="amount_box">
+						<a href="javascript:;" class="reduce reSty">-</a>
+						<input type="text" value="1" class="sum">
+						<a href="javascript:;" class="plus">+</a>
+					</div>
+				</li>
+				<li class="list_sum">
+					<p class="sum_price">￥0</p>
+				</li>
+				<li class="list_op">
+					<p class="del"><a href="javascript:;" class="delBtn">移除商品</a></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<!--底部-->
+	<div class="bar-wrapper">
+		<div class="bar-right"> 
+			<div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
+			<div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
+			<div class="calBtn"><a href="javascript:;">结算</a></div>
+		</div>
+	</div>
+</section>
+<section class="model_bg"></section>
+<section class="my_model">
+	<p class="title">删除宝贝<span class="closeModel">X</span></p>
+	<p>您确认要删除该宝贝吗？</p>
+	<div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;" class="dialog-close">关闭</a></div>
+</section>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/carts.js"></script>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+
+</div>
+
+<h1 id="username1" th:text="${username}" style="display:none"></h1>
+	<h1 id="userId1"  th:text="${userId}" style="display:none"></h1>
+</body>
+<script type="text/javascript">
+	$(function(){
+		//获取上一个页面传过来的商品id 和这个商品的数量
+		var prodId= '[[${prodId}]]';
+		var payAmount= '[[${payAmount}]]';
+		var userId= '[[${userId}]]';
+		
+		loginINFO();
+		//根据id去查找商品数据
+		doFindObjects(prodId,payAmount,userId);
+		$("#homepage").click(doHomepage);
+	})
+	function doHomepage(){
+		var username = $("#username1").html();
+		var userId1 = $("#userId1").html();
+		window.open('/homepage?username='+username+'&id='+userId1,"_self")
+	}
+	
+	function doFindObjects(prodId,payAmount,userId){
+		var url="/cart/doFindObjects";
+		var params={"prodId":prodId,"payAmount":payAmount,"userId":userId};
+		$.getJSON(url,params,function(result){
+			if(result.state==0){
+				alert(result.message);
+				window.location.href="/loginpage";
+			}else{
+				console.log(result.data);
+				doInitPageFirst(result.data[0]);
+				doCreateUl(result.data.length-1);
+				result.data.shift();
+				doInitPage(result.data);
+				console.log(result.data);
+				doInitAll();
+			}
+		});
+	}
+	function loginINFO(){
+		var username = $("#username1").html();
+		var userId1 = $("#userId1").html();
+		if(username!=""){
+			$("#loginName").removeAttr('href');
+			$("#loginName").html("您好："+username);
+		}
+	}
+	
+	
+	//创建多行空白数据
+	function doCreateUl(length) {
+		$(this).find(".order_content").empty();
+		for (var i = 0; i < length; i++) {
+			var xx = $("<ul class='order_lists'>"
+					+ "<li class='list_chk'>"
+					+ "<input type='checkbox' id='checkbox_2' class='son_check'>"
+					+ "<label for='checkbox_2'></label>"
+					+ "</li>"
+					+ "<li class='list_con'>"
+					+ "<div class='list_img'><a href='javascript:;'><img id='picimg"+i+"' src='' alt=''></a></div>"
+					+ "<div class='list_text' align='center'><a id='prodName"+i
+					+"' href='javascript:;' >商品名</a></div>"
+					+ "</li>"
+					+ "<li class='list_info'>"
+					+ "<p id ='describe"+i
+					+"'>商品描述...</p>"
+					+ "</li>"
+					+ "<li class='list_price'>"
+					+ "<p id='prodPrice"+i+"' class='price'>￥0</p>"
+					+ "</li>"
+					+ "<li class='list_amount'>"
+					+ "<div class='amount_box'>"
+					+ "<a href='javascript:;' class='reduce reSty'>-</a>"
+					+ "<input id='payAmount"+i+"' type='text' value='1' class='sum'>"
+					+ "<a href='javascript:;' class='plus'>+</a>"
+					+ "</div>"
+					+ "</li>"
+					+ "<li class='list_sum'>"
+					+ "<p id='prodAmount"+i+"' class='sum_price'>￥0</p>"
+					+ "</li>"
+					+ "<li class='list_op'>"
+					+ "<p class='del'><a href='javascript:;' class='delBtn'>移除商品</a></p>"
+					+ "</li>" + "</ul>");
+			$(".order_content").append(xx);
+		}
+		$(".order_content").trigger("create");
+
+	}
+
+	function doInitPage(data) {
+		for(var i=0;i<data.length;i++){
+			$("#prodName"+i).html(data[i].prodName);
+			$("#prodName"+i).prop("href","/prod/single-product?prodId=" + data[i].prodId);
+			$("#describe"+i).html(data[i].prodDescribe);
+			$("#prodPrice"+i).html("￥" + data[i].prodPrice);
+			$("#picimg"+i).prop("src", data[i].photo);
+			$("#payAmount"+i).val(data[i].payAmount);
+			var acount = data[i].prodPrice * data[i].payAmount
+			$("#prodAmount"+i).html("￥" + acount);
+		}
+	}
+	
+	function doInitPageFirst(data){
+		$("#prodName").html(data.prodName);
+		$("#prodName").prop("href","/prod/single-product?prodId="+data.prodId);
+		$("#describe").html(data.prodDescribe);
+		$(".list_price .price").html("￥"+data.prodPrice);
+		$(".list_con .list_img img").prop("src",data.photo);
+		$(".amount_box input").val(data.payAmount);
+		var acount=data.prodPrice*data.payAmount
+		$(".list_sum .sum_price").html("￥"+acount);
+	/* 	$(".bar-right .piece_num").html(data.payAmount);
+		$(".bar-right .total_text").html("￥"+acount); */
+		
+	}
+	
+</script>
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/carts.css">
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.pj.dao.xln.OrderDao">
+	<sql id="queryWhere">
+		<where>
+			o.house_id=h.house_id and h.house_id=p.house_id		
+			<if test="username!=null and username!='' ">
+			and	u.username=#{username}
+			</if>
+			<if test="tradeStatus!=null and tradeStatus!='' ">
+			and	o.trade_status=#{tradeStatus}
+			</if>
+		</where>
+	</sql>
+	<select id="allOrderFind"
+		resultType="com.cy.pj.vo.xln.Order">
+	select o.order_num orderNum,o.house_id houseId,o.gross_price grossPrice,
+	o.trade_status tradeStatus,o.create_time createTime,o.affirm_cancel affirmCancel,
+	o.status,o.check_in_time checkInTime,o.check_out_time checkOutTime,
+	h.house_address houseAddress,h.house_name houseName,p.picture_path
+	picturePath from tb_order_item o,tb_house h,tb_house_picture p,tb_userinfo u
+	<include refid="queryWhere"/>
+	order by createTime desc 
+	</select>
+</mapper>

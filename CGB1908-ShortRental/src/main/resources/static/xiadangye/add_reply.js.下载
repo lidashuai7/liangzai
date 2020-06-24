@@ -1,0 +1,43 @@
+/*添加到聊天*/
+function text_reply(obj){
+	var text_reply_stt = obj.text();
+	add_text(text_reply_stt);
+	talk_bottom();
+}
+
+
+
+	
+/*删除其中一个自定义回复*/
+	
+function reply_x(obj2){
+	obj2.parents('li').remove(); 
+}
+	
+	
+	
+	
+$(function(){
+	/*自定义回复按钮改变颜色，自定义文本框消失*/
+	function inint(){
+		$('.add_reply_li').hide().children('input').val('');
+		$('.add_reply_btn button').removeClass('add');
+	}
+	 
+	/*推荐房源按钮点击*/
+	$('.recommend_btn').click(function(){
+		var title_room = $(this).prev().find('.room_title span').attr('sttt');
+		var img_room = $(this).prev().prev().find('img').attr('src');
+		
+		var str = "<div class='talk_left_room_roomer talk_p talk_right'>";
+		str += "<strong class='talk_p_head'>奔跑的小老虎</strong>";
+		str +="<div class='talk_left_room talk_p_room'>";
+		str += "<span class='sanjiao sanjiaoR'></span><div class='room clearfloat'>";
+		str += "<a href='http://www.mayi.com/room/850394976' target='_blank'><img  class='lazy fl' src='"+img_room+"' style='display: block;'>";
+		str += "<div class='room_instro clearfloat fl'><strong>"+title_room+"</strong></div></a></div></div></div>";				
+		$('.talk_parent').append(str);
+		talk_bottom();
+	})
+	
+	
+})

@@ -1,0 +1,8 @@
+package com.cy.pj.dao.xbc;
+
+import org.apache.ibatis.annotations.Mapper;
+@Mapper
+public interface InfromationMapper {
+Integer insert();
+	
+}

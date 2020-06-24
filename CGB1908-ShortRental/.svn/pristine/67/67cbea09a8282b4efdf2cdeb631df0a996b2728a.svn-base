@@ -1,0 +1,47 @@
+package com.cy.pj.controller.zsm;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.cy.pj.entity.user;
+import com.cy.pj.service.zsm.service.serviceImpl.UserServiceImpl;
+
+@Controller
+@RequestMapping("/zsm/userlogin")
+public class UserController {
+
+	@Autowired
+	private UserServiceImpl biz;
+	
+	@RequestMapping("/login")
+	public String login(String useraccount,String userpwd,HttpSession session) {
+	  user u=biz.loginUser(useraccount, userpwd);
+	  System.out.println(useraccount);
+	  System.out.println(userpwd);
+	  session.setAttribute("USER",u);
+	  return "shouye";
+	}
+	
+	@RequestMapping("/getSe")
+	@ResponseBody
+	public user getSe(HttpSession session) {
+		return (user) session.getAttribute("USER");
+	}
+	
+	@RequestMapping("/insertuser")
+	public String insertlogin(String useraccount,String userpwd) {
+		int i=biz.insertUser(new user(null, null, useraccount, userpwd));
+	return "shouye";
+	}
+	
+	@RequestMapping("/queryuser")
+	@ResponseBody
+	public user queryuser(String useraccount) {
+		System.out.println(useraccount);
+		return biz.queryUser(useraccount);
+	}
+}

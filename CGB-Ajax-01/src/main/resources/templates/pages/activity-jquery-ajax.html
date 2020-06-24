@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+	    <h1>The Activity Page</h1>
+		<div>
+			<button type="button" class="btn btn-primary"
+				data-toggle="modal" onclick="doShowAddDialog()">模态框方式添加</button>
+			<button type="button" class="btn btn-success"
+				data-toggle="modal" onclick="doGetActivitys()">刷  新</button>
+		</div>
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>title</th>
+						<th>category</th>
+						<th>startTime</th>
+						<th>endTime</th>
+						<th>state</th>
+						<th>createdTime</th>
+						<th colspan="2">Operation</th>
+					</tr>
+				</thead>
+				<tbody>
+				   <tr><td colspan="8">Data is Loading....</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<form id="atyFormId" class="form-horizontal">
+						<input type="hidden" name="id" id="atyId">
+						<div class="form-group">
+							<label for="titleId" class="col-sm-2 control-label">title</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="title"
+									id="titleId" placeholder="title">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="categoryId" class="col-sm-2 control-label">category</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="category"
+									id="categoryId" placeholder="category">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="startTimeId" class="col-sm-2 control-label">startTime</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="startTime"
+									id="startTimeId" placeholder="yyyy/MM/dd">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="endTimeId" class="col-sm-2 control-label">endTime</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="endTime"
+									id="endTimeId" placeholder="yyyy/MM/dd">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="remarkId" class="col-sm-2 control-label">remark</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" id="remarkId" name="remark"
+									placeholder="remark"></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" onclick="doSaveActivity()">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 当在页面中需要使用bootstrap插件时，需要添加如下两个js，但也要注意顺序 -->
+	<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+	<!-- 假如要在js中获取thymeaf表达式中的数据script标签内部需要th:inline="javascript" -->
+	<script type="text/javascript" src="/module/activityJQ.js"></script>
+</body>
+</html>
+
+
+
+

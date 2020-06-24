@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>注册页面</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="stylesheet" href="../assets/css/amazeui.min.css"/>
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" /> -->
+  <link href="../assets/css/toastr.css" rel="stylesheet" />
+  
+  <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      color: #333;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<div id="zhuce">
+<div class="header">
+  <div class="am-g">
+    <h1>注册</h1>
+  </div>
+  <hr />
+</div>
+<div class="am-g" style="display: block;">
+  <div class="col-lg-6 col-md-8 col-sm-centered">
+<form class="am-form am-input-sm">
+  <fieldset>
+	<div class="am-form-group">
+      <label for="doc-ipt-username-1">用户名</label>
+      <input type="text" class="" id="username" placeholder="输入用户名">
+    </div>
+
+	<div class="am-form-group">
+      <label for="doc-ipt-password-1">密码</label>
+      <input type="password" class="" id="password" placeholder="输入密码">
+    </div>
+
+    <div class="am-form-group">
+      <label for="doc-ipt-password-1">确认密码</label>
+      <input type="password" class="" id="passwordCfg" placeholder="输入密码">
+    </div>
+
+	<div class="am-form-group">
+      <label for="doc-ipt-phone-1">手机</label>
+      <input type="text" class="" id="phone" placeholder="输入手机号码">
+    </div>
+
+    <div class="am-form-group">
+      <label for="doc-ipt-email-1">邮件</label>
+      <input type="email" class="" id="email" placeholder="输入电子邮件">
+    </div>
+
+
+    <div class="am-checkbox">
+      <label>
+        <input type="checkbox"> 同意《鲜果网使用协议》
+      </label>
+    </div>
+
+    <p><button type="button" id="dosave" class="am-btn am-square am-btn-danger am-btn-block">注册</button></p>
+  </fieldset>
+</form>
+
+    
+    <hr>
+    <p>© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+  </div>
+</div>
+</div>
+
+<script src="../assets/js/jq3.4.1.js"></script>
+<script src="../assets/js/toastr.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> -->
+<script type="text/javascript">
+toastr.options = {  
+        closeButton: false,                                            // 是否显示关闭按钮，（提示框右上角关闭按钮）
+        debug: false,                                                    // 是否使用deBug模式
+        progressBar: false,                                            // 是否显示进度条，（设置关闭的超时时间进度条）
+        positionClass: "toast-top-center",              // 设置提示款显示的位置
+        onclick: null,                                                     // 点击消息框自定义事件 
+        showDuration: "300",                                      // 显示动画的时间
+        hideDuration: "1000",                                     //  消失的动画时间
+        timeOut: "2000",                                             //  自动关闭超时时间 
+        extendedTimeOut: "1000",                             //  加长展示时间
+        showEasing: "swing",                                     //  显示时的动画缓冲方式
+        hideEasing: "linear",                                       //   消失时的动画缓冲方式
+        showMethod: "fadeIn",                                   //   显示时的动画方式
+        hideMethod: "fadeOut"                                   //   消失时的动画方式
+    };
+
+	$(function(){
+		
+		$("#dosave").click(function(){
+			var params = getParams();
+			doSave(params);
+		})
+		
+		
+	})
+	
+	
+	function doSave(params){
+		var url = "/user/doSaveUser";
+	 	 $.getJSON(url,params,function(status){
+			if(status.state==1){
+				toastr.success('注册成功');
+				setTimeout(function(){ 
+					window.open('loginpage','_self');
+				}, 1000);
+			}
+			if(status.state==0){
+				alert(status.message)
+			}
+				
+		})  
+		
+	}
+	
+	function getParams(){
+		var username = $("#username").val();
+		var password = $("#password").val();
+		var passwordCfg = $("#passwordCfg").val();
+		var phone = $("#phone").val();
+		var email = $("#email").val();
+		
+		var params = {
+				"username" : username,
+				"password" : password,
+				"passwordCfg" : passwordCfg,
+				"phone" : phone,
+				"email" : email
+		};
+		return params;
+	}
+
+</script>
+
+</body>
+</html>

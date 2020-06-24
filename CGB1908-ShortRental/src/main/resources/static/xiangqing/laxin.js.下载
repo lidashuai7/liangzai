@@ -1,0 +1,8 @@
+$(function(){
+	$('.Invite_friends').click(function(){
+		$('.share_tan').show();
+	})
+	$('.hong_close').click(function(){
+		$('.share_tan').hide();
+	})
+})

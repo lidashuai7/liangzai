@@ -1,0 +1,242 @@
+/**
+ * 页面加载时触发事件
+ */
+$(function(){
+	var user = getCookie('MAYIUID');
+	if(user){
+		getIndexUserTrack();
+		guessLikeInfo();
+	}else{
+		$("#myfootBox").remove();
+		$("#guessLikeBox").remove();
+	}
+});
+//获取我的足迹信息
+function getIndexUserTrack(){
+	var ctx = $('#ctx').val();
+	$.ajax({
+		type: 'POST',
+        url: ctx + '/indexUserTrack/',
+        data:{},
+        success: function(data) {
+        	if(data.list != null && data.list.length >= 6){
+        		$("#myfootBox").css("display","block");
+        		var title = "";
+        		var ratingscoreDesc = "";
+        		var collect = "";
+        		var commentnum = "";
+        		for(var i=0;i<data.list.length;i++){
+        			var str = "";
+        			//标题处理
+        			title = data.list[i].title;
+        			title = title.substr(0,12);
+        			//评价处理
+        			ratingscoreDesc = data.list[i].ratingscoreDesc;
+        			if(ratingscoreDesc == null){
+        				ratingscoreDesc = "";
+        			}
+        			commentnum = data.list[i].commentnum;
+        			//收藏标识处理
+        			if(!data.list[i].isCollect){
+        				collect = "<div class='collect cursorpt' title='未收藏' onclick='collectChange("+data.list[i].roomId+",event);' state='1' id='c_"+data.list[i].roomId+"'></div>"
+        			}else{
+        				collect = "<div class='collect cursorpt active' title='收藏' onclick='collectChange("+data.list[i].roomId+",event);' state='2' id='c_"+data.list[i].roomId+"'></div>"
+        			}
+        			
+        			str+="<li>"+
+							"<a class='room_img' href='/room/"+data.list[i].roomId+"' target='_blank'  _mayi_rp='webindex|zuji|"+data.list[i].roomId+"'>"+
+							"<img class='radius-12' src='"+data.list[i].mainUrl+"'>"+
+							"<div class='price'>"+
+							"<span class='f22 fw600 '>￥"+data.list[i].price+"</span>"+
+							"</div>"+
+							"</a>"+
+							"<p class='excellent'>"+
+							"<a href='/goodlodgeunit' target='_blank'  _mayi_rp='webindex|zuji|"+data.list[i].roomId+"'>"+
+							"<img src='http://staticnew.mayi.com/resourcesWeb/topic/2016/yzfy/images/level9-2_1.png'>"+
+							"</a>"+
+							"</p>"+
+							collect+
+							"<div class='info clearfloat f0'>"+
+							"<a href='/room/"+data.list[i].roomId+"' target='_blank' _mayi_rp='webindex|zuji|"+data.list[i].roomId+"'>"+
+							"<div class='fl c_gray_dark f18'>"+
+							"<h2 class='fw700 hidden-txt'>"+title+"</h2>"+
+							"<p class='c_orange f14'>";
+        			if(data.list[i].ratingscore > 0){
+        				str+="<span>"+data.list[i].ratingscore+"</span>分"+"<span class='ml5 mr5'>"+ratingscoreDesc+"</span>·";
+        			}
+        			if(commentnum == null || commentnum == ''){
+        				str+="<span class='c_gray_dark  mr10 ml5'>暂无评价</span><span class='f12 c_gray_light ver-t mr10'>|</span>";
+        			}else{
+        				"<span class='c_gray_dark  mr10 ml5'>"+commentnum+"条评价</span><span class='f12 c_gray_light ver-t mr10'>|</span>";
+        			}
+        			str+="<span class='c_gray_dark ver-t'>"+data.list[i].bedroomnum+"居</span><span class='f12 c_gray_light ver-t ml10'>|</span>"+   
+							"<span class='c_gray_dark ml10'>"+data.list[i].cityName+"</span>"+
+							"</p>"+
+							"</div>"+
+							"</a>"+
+							"<a href='/room/"+data.list[i].roomId+"' target='_blank'  _mayi_rp='webindex|zuji|"+data.list[i].roomId+"'>"+
+							"<img class='headimg fr circle' src='"+data.list[i].landlord.headImageUrl+"' alt='头像'"+
+							"</a>"+
+							"</div>"+
+							"</li>";
+        			$("#myfoot").append(str);
+        		}
+        		//调整足迹样式，调用插件添加左右按钮
+        		$('#myfoot').bxSlider({
+        			auto: false,
+        			controls: true,
+        			pager: false,
+        			maxSlides: 3,
+        			moveSlides:1,
+        			slideWidth: 337,
+        			slideMargin: 20,
+        		});
+        	}else{
+        		$("#myfootBox").remove();
+        	}
+        },
+        error: function(data){
+        	
+        }
+    });
+}
+//获取猜你喜欢信息
+function guessLikeInfo(){
+	var ctx = $('#ctx').val();
+	$.ajax({
+		type: 'POST',
+		url: ctx + '/guessLikeInfo/',
+		data:{},
+		success: function(data) {
+			if(data.list != null && data.list.length >= 6){
+				$("#guessLikeBox").css("display","block");
+				var title = "";
+				var ratingscoreDesc = "";
+				var collect = "";
+				var commentnum = "";
+				for(var i=0;i<data.list.length;i++){
+					var str = "";
+					//标题处理
+					title = data.list[i].title;
+					title = title.substr(0,12);
+					//评价处理
+					ratingscoreDesc = data.list[i].ratingscoreDesc;
+					if(ratingscoreDesc == null){
+						ratingscoreDesc = "";
+					}
+					commentnum = data.list[i].commentnum;
+					//收藏标识处理
+					if(!data.list[i].isCollect){
+						collect = "<div class='collect cursorpt' title='未收藏' onclick='collectChange("+data.list[i].roomId+",event);' state='1' id='c_"+data.list[i].roomId+"'></div>"
+					}else{
+						collect = "<div class='collect cursorpt active' title='收藏' onclick='collectChange("+data.list[i].roomId+",event);' state='2' id='c_"+data.list[i].roomId+"'></div>"
+					}
+					
+					str+="<li>"+
+							"<a class='room_img' href='/room/"+data.list[i].roomId+"' target='_blank'  _mayi_rp='webindex|zuji|"+data.list[i].roomId+"'>"+
+							"<img class='radius-12' src='"+data.list[i].mainUrl+"'>"+
+							"<div class='price'>"+
+							"<span class='f22 fw600 '>￥"+data.list[i].price+"</span>"+
+							"</div>"+
+							"</a>"+
+							"<p class='excellent'>"+
+							"<a href='/goodlodgeunit' target='_blank'  _mayi_rp='webindex|zuji|"+data.list[i].roomId+"'>"+
+							"<img src='http://staticnew.mayi.com/resourcesWeb/topic/2016/yzfy/images/level9-2_1.png'>"+
+							"</a>"+
+							"</p>"+
+							collect+
+							"<div class='info clearfloat f0'>"+
+							"<a href='/room/"+data.list[i].roomId+"' target='_blank' _mayi_rp='webindex|zuji|"+data.list[i].roomId+"'>"+
+							"<div class='fl c_gray_dark f18'>"+
+							"<h2 class='fw700 hidden-txt'>"+title+"</h2>"+
+							"<p class='c_orange f14'>";
+					if(data.list[i].ratingscore > 0){
+						str+="<span>"+data.list[i].ratingscore+"</span>分"+"<span class='ml5 mr5'>"+ratingscoreDesc+"</span>·";
+					}
+					if(commentnum == null || commentnum == ''){
+        				str+="<span class='c_gray_dark  mr10 ml5'>暂无评价</span><span class='f12 c_gray_light ver-t mr10'>|</span>";
+        			}else{
+        				str+="<span class='c_gray_dark  mr10 ml5'>"+commentnum+"条评价</span><span class='f12 c_gray_light ver-t mr10'>|</span>";
+        			}
+					str+="<span class='c_gray_dark ver-t'>"+data.list[i].bedroomnum+"居</span><span class='f12 c_gray_light ver-t ml10'>|</span>"+   
+							"<span class='c_gray_dark ml10'>"+data.list[i].cityName+"</span>"+
+							"</p>"+
+							"</div>"+
+							"</a>"+
+							"<a href='/room/"+data.list[i].roomId+"' target='_blank'  _mayi_rp='webindex|zuji|"+data.list[i].roomId+"'>"+
+							"<img class='headimg fr circle' src='"+data.list[i].headurl+"' alt='头像'"+
+							"</a>"+
+							"</div>"+
+							"</li>";
+					$("#guessLike").append(str);
+				}
+				//调整足迹样式，调用插件添加左右按钮
+				$('#guessLike').bxSlider({
+					auto: false,
+					controls: true,
+					pager: false,
+					maxSlides: 3,
+					moveSlides:1,
+					slideWidth: 337,
+					slideMargin: 20,
+				});
+			}else{
+				$("#guessLikeBox").remove();
+			}
+		},
+		error: function(data){
+			
+		}
+	});
+}
+//首页房源收藏心型按钮
+function collectChange(roomid,event){
+		var user = getCookie('MAYIUID');
+		if(!user){
+			$("#loginshow").click(); //未登录状态点击收藏显示登录框
+		}else{
+			var ctx = $('#ctx').val();
+			var state = parseInt($("#c_"+roomid+"").attr("state"));
+			$.ajax({
+				url:ctx+'/user/tenant/setCollection?roomid='+roomid+"&state="+state,
+				type:'POST',
+				dataType:'json',
+				success:function(data){
+					if(data==1){
+						if(state==1){
+							state=2;
+							// $("#c_"+roomid+"").addClass("active").attr("title","取消收藏");
+							event.target.className+=" active";
+						}else{
+							state=1;
+							// $("#c_"+roomid+"").removeClass("active").attr("title","收藏");
+							event.target.className ="collect cursorpt";
+						}
+						$("#c_"+roomid+"").attr("state",state);
+					}else{
+						alert('收藏失败！');
+					}
+					//getIndexUserTrack();
+				},
+				error:function(){
+					alert('请求异常，请稍后再试！');
+				}
+			});
+		}
+}
+//登录后用户头像位置信息
+function menufrozen(userid, url, frozentype) {
+	var ctx = $('#ctx').val();
+	var furl = ctx + "/user/checkFrozenAccount?frozenOwnerid=" + userid;
+	furl += "&frozentype=" + frozentype;
+	$.get(furl, function(re) {
+		if (re == 1) {
+			if (frozentype == 'user') {
+				$(".frozeninfo").text("对不起，用户账号被封禁");
+			}
+			$(".alert-box1").show();
+		} else {
+			location.href = url;
+		}
+	});
+}

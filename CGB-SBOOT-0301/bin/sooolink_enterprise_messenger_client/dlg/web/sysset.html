@@ -1,0 +1,378 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<head>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="css/chat.css" media="all">
+
+
+</head>
+
+<body style="height:100%;overflow-y: hidden;">
+    <div style="height:100%;" id="main">
+        <div class="left" style="padding-top:0px;">
+
+            <div class="user-list" style="overflow-y: auto;overflow-x: hidden;" id="chat-show-user-list">
+
+                <div class="user-item" onclick="setComInfo()">
+                    <div class="user-face">
+                        <div class="img" style="background-image:;">
+                            <i class="layui-icon layui-icon-set-fill" style="font-size: 33px;color:#5FB878;"></i>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-header">
+                            <div class="user-name">公司信息</div>
+                            <div class="user-date">
+                                <span class="layui-badge-dot layui-bg-green"></span>
+                            </div>
+                        </div>
+                        <div style="clear: both"></div>
+                        <div class="user-dis">设置公司的基本信息</div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+
+
+                <div class="user-item" onclick="setDepartInfo();">
+
+                    <div class="user-face">
+                        <div class="img" style="background-image: ;">
+                            <i class="layui-icon layui-icon-group" style="font-size: 25px;color:#1E9FFF;"></i>
+                        </div>
+                    </div>
+                    <div class="user-info">
+
+                        <div class="user-header">
+                            <div class="user-name">部门管理</div>
+                            <div class="user-date">
+                                <span class="layui-badge-dot layui-bg-blue"></span>
+                            </div>
+
+                        </div>
+                        <div style="clear: both"></div>
+                        <div class="user-dis">组织，部门管理</div>
+                    </div>
+                </div>
+                <div style="clear: both"></div>
+
+
+            </div>
+
+        </div>
+
+        <div class="middle">
+            <!-- 公司信息 -->
+            <div class="middle-item" id="com-info" style="display: none;">
+
+                <form class="layui-form" name="form-cominfo" id="form-cominfo" action="#"
+                    style="width: 400px;margin: 5px;" lay-filter="form-cominfo">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公司名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="name" id="name" placeholder="请输入公司名称" autocomplete="off"
+                                class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公司电话</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="tel" id="tel" placeholder="请输入公司电话" autocomplete="off"
+                                class="layui-input">
+                        </div>
+
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">负责人手机</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="mobile_tel" id="mobile_tel" placeholder="请输入负责人手机号"
+                                autocomplete="off" class="layui-input">
+                        </div>
+
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公司地址</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="addr" id="addr" placeholder="请输入公司地址" autocomplete="off"
+                                class="layui-input">
+                        </div>
+
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">公司邮箱</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="email" id="email" placeholder="请输入邮箱" autocomplete="off"
+                                class="layui-input">
+                        </div>
+
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit="" lay-filter="form-cominfo"
+                                id="checkSetComInfo();">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                    <input type="hidden" name="id" id="id" value="" autocomplete="off" class="layui-input">
+                </form>
+            </div>
+
+            <!-- 部门管理 -->
+            <div class="middle-item" id="depart-info" style="display: none;">
+                <div style="margin: 4px 4px 0px 4px;">
+                    <!-- 部门 -->
+                    <div style="float: left;width: 241px;border-right: solid 2px #f5f5f5;">
+                        <div style="border-bottom: #f5f5f5 dashed 2px;margin-left: 8px;margin-right: 15px;">
+                            <div style="height: 30px;font-size: 16px;line-height: 30px;float: left;">
+                                部门管理
+                            </div>
+                            <div style="float: right;line-height: 30px;padding-top:3px;">
+                                <button type="button" class="layui-btn layui-btn-xs"
+                                    onclick="addTopDepart()">添加</button>
+                            </div>
+                            <div style="clear: both;"></div>
+                        </div>
+
+
+                        <div id="depart-list" class="demo-tree demo-tree-box"
+                            style="width: 240px; height: 80%; overflow: auto;"></div>
+                    </div>
+                    <!-- 部门用户 -->
+                    <div id="depart-user" style="float: left;">
+                        <div style="margin-left: 5px;" id="show-depart-users">
+                            <div style="border-bottom: #f5f5f5 dashed 2px;">
+                                <div style="height: 30px;font-size: 16px;line-height: 30px;float: left;">部门员工</div>
+                                <div style="float: right;line-height: 30px;padding-top:3px;padding-right: 10px;">
+                                    <button type="button" class="layui-btn layui-btn-xs"
+                                        onclick="addDepartUser('add',{})">添加</button>
+                                </div>
+                                <div style="clear: both;"></div>
+                            </div>
+                            <div id="depart-user-lists" style="overflow: auto;height: 80%;">
+                                <table class="layui-table" lay-skin="nob" lay-size="sm">
+                                    <colgroup>
+                                        <col width="80">
+                                        <col width="80">
+                                        <col width="80">
+                                        <col width="80">
+                                        <col width="80">
+                                        <col width="100">
+                                        <col width="80">
+                                        <col width="80">
+                                        <col>
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>部门</th>
+                                            <th>姓名</th>
+                                            <th>昵称</th>
+                                            <th>账户</th>
+                                            <th>性别</th>
+                                            <th>电话</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody id="depart-user-list">
+                                       
+                                 
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="right" style="display: none;">
+
+
+        </div>
+        <div style="clear:both;"></div>
+
+    </div>
+
+    <!-- 添加/编辑用户的样式模板 -->
+    <div id="tpl-depart-user-info">
+        <div class="layui-tab-item layui-show" style="width: 100%;">
+            <br><br>
+            <!-- 个人/群信息 -->
+            <form class="layui-form" action="" lay-filter="edit-depart-user" >
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">账户</label>
+                        <div class="layui-input-inline" style="width: 140px;">
+                            <input type="text" name="name" id="name" placeholder="" autocomplete="off" class="layui-input" >
+                        </div>
+                        <div class="layui-form-mid">密码</div>
+                        <div class="layui-input-inline" style="width: 140px;">
+                            <input type="password" name="pwd" id="pwd" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">姓名</label>
+                        <div class="layui-input-inline" style="width: 140px;">
+                            <input type="text" name="real_name" id="real_name" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid">昵称</div>
+                        <div class="layui-input-inline" style="width: 140px;">
+                            <input type="text" name="nick_name" id="nick_name" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="sex" value="男" title="男" checked="">
+                        <div class="layui-unselect layui-form-radio layui-form-radioed"><i
+                                class="layui-anim layui-icon"></i>
+                            <div>男</div>
+                        </div>
+                        <input type="radio" name="sex" value="女" title="女">
+                        <div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i>
+                            <div>女</div>
+                        </div>
+                        <input type="radio" name="sex" value="无" title="无">
+                        <div class="layui-unselect layui-form-radio layui-radio-disbaled layui-disabled"><i
+                                class="layui-anim layui-icon"></i>
+                            <div>无</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline" onclick="$(this).find('.layui-anim-upbit').height(200);">
+                        <label class="layui-form-label">部门</label>
+                        <div class="layui-input-inline" style="width: 326px;">
+                            <select name="department_id" lay-verify="" lay-search="" class="depatment-choose-list">
+                                
+                            </select>
+                            <div class="layui-form-select">
+                                <div class="layui-select-title"><input id="choose-depart-id" type="text"
+                                        placeholder="直接选择或搜索选择" value="" class="layui-input">
+                                    <i class="layui-edge"></i></div>
+                                <dl class="layui-anim layui-anim-upbit depatment-choose-list-dd">
+                                    
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">手机</label>
+                        <div class="layui-input-inline" style="width: 326px;">
+                            <input type="tel" name="tel" lay-verify="" autocomplete="off"
+                                class="layui-input">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">QQ号</label>
+                        <div class="layui-input-inline" style="width: 140px;">
+                            <input type="text" name="qq" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid">微信</div>
+                        <div class="layui-input-inline" style="width: 140px;">
+                            <input type="text" name="weixin" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">邮箱</label>
+                        <div class="layui-input-inline" style="width: 326px;">
+                            <input type="text" name="email" lay-verify="" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="id" value="0">
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="button" class="layui-btn layui-btn-primary" onclick="layer.closeAll();" style="width: 155px;"> 取 消 </button>
+                        <button type="button" class="layui-btn check-save-form" lay-submit="" lay-filter="edit-depart-user"
+                            style="width: 158px;">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary reset" style="width: 150px;display: none;">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 添加一个部门 -->
+    <div id="tpl-depart-add-info">
+        <div class="layui-tab-item layui-show" style="width: 100%;padding-top:20px;">
+            <form class="layui-form" action="" lay-filter="edit-depart-user">
+                <div class="layui-form-item">
+                    <div class="layui-inline" onclick="$(this).find('.layui-anim-upbit').height(170);">
+                        <label class="layui-form-label">上级部门</label>
+                        <div class="layui-input-inline" >
+                            <select name="parent_id" id="parent_id" lay-verify="" lay-search="" class="depatment-choose-list">
+                            </select>
+                            <div class="layui-form-select">
+                                <div class="layui-select-title"><input id="choose-depart-id" type="text"
+                                        placeholder="直接选择或搜索选择" value="" class="layui-input">
+                                    <i class="layui-edge"></i></div>
+                                <dl class="layui-anim layui-anim-upbit" class="depatment-choose-list-dd">
+                                    
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">部门名称</label>
+                        <div class="layui-input-inline" >
+                            <input type="text" name="name" id="name" placeholder="" autocomplete="off" class="layui-input">
+                        </div>
+                       
+                    </div>
+                </div>
+                
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="button" class="layui-btn layui-btn-primary" onclick="layer.closeAll();" style="width:88px;"> 取 消 </button>
+                        <button type="button" class="layui-btn" id="submit-save-form" lay-submit="" lay-filter="edit-depart-user"
+                        style="width:90px;" >立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary reset" style="display: none;">重新填写</button>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+<script src="enoji/js/jquery.min.js"></script>
+<script src="js/jquery.nicescroll.min.js"></script>
+<script src="layui/layui.all.js"></script>
+<script src="js/function.js"></script>
+<script src="js/comstart.js"></script>
+
+<script>
+
+
+
+
+</script>
+
+</html>

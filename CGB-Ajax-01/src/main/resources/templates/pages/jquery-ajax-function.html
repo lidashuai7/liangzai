@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+</head>
+<body>
+  <h1>JQuery Ajax Function</h1>
+  <div>
+     <button onclick="doAjax()">Ajax</button>
+     <button onclick="doGet()">Get</button>
+     <button onclick="doGetJSON()">GetJSON</button>
+     <button onclick="doPost()">Post</button>
+     <button onclick="doLoad()">Load</button>
+  </div>
+  <div id="container">
+  
+  </div>
+  <script type="text/javascript">
+      function doAjax(){
+          $.ajax({//---具体语法实现参考jquery.com
+    		  "url":"doFindActivitys",
+    		  "type":"GET",
+    		  "dataType":"json",
+    		  "success":function(result){
+        		  console.log("ajax",result)
+        	  }
+    	  });
+      }
+      function doGet(){
+    	  var url="doFindActivitys";
+    	  var params="";
+    	  $.get(url,params,function(result){
+    		  console.log("get",result)
+    	  },"json");//get请求的ajax函数
+      }
+      function doGetJSON(){
+    	  var url="doFindActivitys";
+    	  $.getJSON(url,function(result){
+    		  console.log("getJSON",result)
+    	  });//get请求的ajax函数，固化了响应数据的类型
+      }
+      function doPost(){
+    	  var url="doFindActivitys";
+    	  var params="";
+    	  $.post(url,params,function(result){
+    		  console.log("post",result)
+    	  });//post请求方式的ajax函数
+      }
+      function doLoad(){
+    	  var url="doFindActivitys";
+    	  //在id为container的位置加载url对应的资源
+    	  $("#container").load(url,function(){//加载完成以后回调此函数
+    		  console.log("data load complete");
+    	  });
+      }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

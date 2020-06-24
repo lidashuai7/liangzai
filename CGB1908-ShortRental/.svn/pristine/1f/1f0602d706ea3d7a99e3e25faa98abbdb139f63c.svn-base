@@ -1,0 +1,54 @@
+<ul class="pagination pagination-sm no-margin pull-right">
+	<li><a class="first">首页</a></li>
+	<li><a class="pre">上一页</a></li>
+	<li><a class="next">下一页</a></li>
+	<li><a class="last">尾页</a></li>
+</ul>
+<style>
+.pagination{
+	margin-top:20px;
+	float:right;
+}
+
+.pagination li{
+	border: 2px solid #e8e8ea;
+	background-color: #f8f8f9;
+	display:block;
+	float:left;
+	padding:5px 5px;
+	font-size:14px;
+	margin-left: -2px;
+}
+</style>
+<script type="text/javascript">
+	$(function(){
+		$("#pageId").on("click",".first,.pre,.next,.last",doJumpToPage);
+	})
+	function doJumpToPage(){
+		var cls=$(this).prop("class");
+		var pageCurrent=$("#pageId").data("pageCurrent");
+		var pageCount=$("#pageId").data("pageCount");
+		if(cls=="first"){
+			pageCurrent=1;
+		}else if(cls=="next"&&pageCurrent<pageCount){
+			pageCurrent++;
+		}else if(cls=="pre"&&pageCurrent>1){
+			pageCurrent--;
+		}else if(cls=="last"){
+			pageCurrent=pageCount;
+		}
+		$("#pageId").data("pageCurrent",pageCurrent);
+		dogetRecords();
+	}
+	function doSetPagination(pageObject){
+		  $("#pageId").data("pageCurrent",pageObject.pageCurrent);
+		  $("#pageId").data("pageCount",pageObject.pageCount);
+		  
+	}
+</script>
+
+
+
+
+
+

@@ -1,0 +1,117 @@
+@charset 'utf-8';
+	/* <!--我的收藏页面开始-->
+		<!--如果有收藏--> */
+	
+			*{
+				margin:0;
+				padding:0;
+			}
+			.fl{
+				float:left;
+			}
+			.fr{
+				float:right;
+			}
+			a{
+				text-decoration: none;
+			}
+			#save_parent{
+				display: block;
+			}
+			#no_save{
+				display: block;
+			}
+			.save_Li{
+				background-image:url(/resourcesWeb/images/Pcenter/save_bj.png)  !important;
+				background-position: 0 -36px;
+			}
+			.save_Li_hover,.center-sidebar li:hover .save_Li{
+				background-image:url(/resourcesWeb/images/Pcenter/save_bj.png)  !important;
+				background-position: 0 -14px !important;
+			}
+			
+			.save{
+				margin:10px;
+				padding-top:10px;
+				border:1px solid #d7dbde;
+				width:766px;
+				height:120px;
+			}
+			.save_left_img{
+				padding:0 10px;
+			}
+			.save_left_img img{
+				width:110px;
+				height:110px;
+			}
+			.save_left_txt p{
+				color:#333;
+			}
+			.save_left_txt span{
+				color:#f80;
+			}
+			.save_left_txt_p1 a{
+				font:16px/28px '微软雅黑';
+				color:#333;
+			}
+			.save_left_txt_p1 a:hover{
+				color:#f80;
+			}
+			.save_left_txt_p2{
+				height:36px;
+				font:14px/36px '微软雅黑';
+			}
+			.save_left_txt_p2 li{
+				float:left;
+				margin-right:8px;
+			}
+			.save_left_txt_p3{
+				padding-top:18px;
+				position:relative;
+			}
+			.save_left_txt_p3 a{
+				font:14px/24px '微软雅黑';
+				color:#333;
+				display:block;
+				padding-left:16px;
+			}
+			.save_left_txt_p3 span{
+				position:absolute;
+				left:2px;
+				top:24px;
+				width:10px;
+				height:12px;
+				background-image:url(/resourcesWeb/images/Pcenter/save_bj.png);
+				background-repeat:no-repeat;
+				background-position:-3px -1px; 
+			}
+			.save_right{
+				width:156px;
+				text-align: center;
+			}
+			.save_right p{
+				font:14px/32px '微软雅黑';
+			}
+			.save_right span{
+				font:bold 20px/32px '微软雅黑';
+				color:#f80;
+			}
+			.save_right a{
+				font:14px/28px '微软雅黑';
+				color:#458fce;
+			}
+			.save_right a:hover{
+				color:#f80;
+			}
+			/*<!--如果有收藏结束--> */
+
+
+			/*<!--如果没有有收藏开始--> */
+
+			#no_save{
+				text-align: center;
+				font:16px/120px '微软雅黑';
+				color:#999;
+			}
+
+			/*<!--如果没有有收藏结束--> */

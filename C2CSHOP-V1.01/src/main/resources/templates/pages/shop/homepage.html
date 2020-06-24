@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title>鲜果网</title>
+<meta name="generator" content="EverEdit" />
+<meta name="author" content="" />
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+
+
+<!-- Additional CSS Files -->
+<!--<link rel="stylesheet" href="assets/css/fontawesome.css">-->
+
+
+<!-- Bootstrap -->
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="../assets/css/tooplate-main.css">
+<link rel="stylesheet" href="../assets/css/owl.css">
+
+<style>
+.navbar>.container-fluid .navbar-brand {
+	margin-left: 0px;
+}
+
+a {
+	
+}
+</style>
+
+</head>
+<body>
+	<!-- 导航栏 start -->
+	<nav class="navbar navbar-default"
+		style="margin-bottom: 0px; background-color: white;">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar "></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"
+					style="color: black; font-weight: 500">鲜果网</a>
+			</div>
+
+
+			<form class="navbar-form navbar-left">
+				<div class="form-group ">
+					<input type="text" class="form-control" placeholder="新鲜水果">
+				</div>
+				<button type="submit" class="btn btn-default">搜索</button>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a id="loginName" href="/loginpage">登陆/注册</a></li>
+				<li><a id="shopCar" href="/loginpage">购物车</a></li>
+				<li><a id="favourite" href="/loginpage">收藏夹</a></li>
+				<li><a id="order" href="/loginpage">我的订单</a></li>
+				<li><a  href="/homepage">退出登录</a></li>
+				<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">我的 XX<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul></li> -->
+			</ul>
+		</div>
+		</div>
+	</nav>
+	<!-- 导航栏 end -->
+
+
+
+
+
+	<!-- 轮播 start -->
+	<div id="demo" class="carousel slide" data-ride="carousel">
+
+		<!-- 指示符 -->
+		<ul class="carousel-indicators">
+			<li data-target="#demo" data-slide-to="0"></li>
+			<li data-target="#demo" data-slide-to="1" class="active"></li>
+			<li data-target="#demo" data-slide-to="2"></li>
+		</ul>
+
+		<!-- 轮播图片 -->
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+				<img style="width: 100%" src="../assets\pic\首页\1.jpg">
+			</div>
+			<div class="item">
+				<img style="width: 100%" src="../assets\pic\首页\2.jpg">
+			</div>
+			<div class="item">
+				<img style="width: 100%" src="../assets\pic\首页\3.jpg">
+			</div>
+		</div>
+
+		<!-- 左右切换按钮 -->
+		<a class="carousel-control-prev" href="#demo" data-slide="prev"> <span
+			class="carousel-control-prev-icon"></span>
+		</a> <a class="carousel-control-next" href="#demo" data-slide="next">
+			<span class="carousel-control-next-icon"></span>
+		</a>
+
+	</div>
+	<!-- 轮播 end -->
+
+
+	<!-- 1. 分类栏 start -->
+	<!-- <nav class="navbar navbar-default"
+		style="margin-top: 5px; background-color: white; border: 0px;">
+		<div class="container-fluid">
+			Brand and toggle get grouped for better mobile display
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar "></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"></a>
+			</div>
+
+			<ul class="nav navbar-nav ">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false" style="color: #3a8bcd;">荔枝 <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false" style="color: #3a8bcd;">西瓜 <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false" style="color: #3a8bcd;">菠萝 <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false" style="color: #3a8bcd;">火龙果 <span
+						class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul></li>
+			</ul>
+		</div>
+		</div>
+	</nav> -->
+	<!-- 分类栏 end -->
+
+	<!-- 占位 -->
+	
+
+
+	<!-- Featured Starts Here -->
+
+	<div class="row"
+		style="text-align: center; margin-right: 0px; margin-left: 0px;margin-top:40px"
+		id="dddd">
+		<!-- <div class="col-sm-6 col-md-3">
+    <div class="thumbnail">
+      <img src="../assets\pic\百香果\main.jpg" alt="">
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>$100</p>     
+      </div>
+    </div>
+  </div> -->
+	</div>
+
+
+	<h1 id="username1" th:text="${username}" style="display:none"></h1>
+	<h1 id="userId1"  th:text="${userId}" style="display:none"></h1>
+
+
+
+
+
+
+
+	<!-- 引入js -->
+	<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	<!-- <script src="../assets/js/jquery-1.12.4.min.js"></script> -->
+	<script src="../assets/js/jq3.4.1.js"></script>
+	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	<script src="../assets/js/bootstrap.min.js"></script>
+
+
+
+
+	<script>
+	
+	  
+		$(function() {
+			//debugger
+			var userId = $("#userId1").html();
+			$(".dropdown").mouseover(function() {
+				$(this).addClass("open");
+			});
+			$(".dropdown").mouseleave(function() {
+				$(this).removeClass("open");
+			})
+			
+			loginINFO();			
+			findObject();
+			
+			//购物车 收藏夹 我的订单
+			if(userId!=""){
+				$("#shopCar").attr('href','?userId='+userId);
+				$("#favourite").attr('href','?userId='+userId);
+				$("#order").attr('href','?userId='+userId);	
+			}
+			
+		
+					
+		})
+		
+		function loginINFO(){
+			var username = $("#username1").html();
+			var userId1 = $("#userId1").html();
+			if(username!=""){
+				$("#loginName").removeAttr('href');
+				$("#loginName").html("您好："+username);
+			}
+		}
+		
+		
+		function findObject(){
+			var url = "findObject";
+			$.getJSON(url, function(result) {
+				console.log(result);
+				if(result.state==0){
+					alert(result.message)
+				}
+				createList(result);
+			})
+		}
+		
+		function createList(result){
+			if(result.state!=1){
+				return;
+			}
+			var userId=$("#userId1").html();
+			var listSize = result.data.length;
+			console.log(listSize);
+			var text="";
+			for(var i=0;i<listSize; i++){
+				var data = result.data[i];
+				var id = data.id;
+				var imgSrc =data.mainPhoto;
+				var name = data.name;
+				var price = data.price;
+				text += `<div class="col-sm-6 col-md-3">
+				<a class="thumbnail"  href="prod/single-product?prodId=${id}&userId=${userId}" >
+				<img src="${imgSrc}" alt="" class="img-rounded">
+				<div class="caption">
+				<h3>${name}</h3>
+				<p>$${price}</p>
+				</div>
+				</a>
+				</div>`;			
+			}
+		
+			$("#dddd").append(text);	
+		}
+		
+		
+		
+	</script>
+
+
+</body>
+</html>

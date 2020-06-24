@@ -1,0 +1,45 @@
+$(function(){
+	//我是房东
+	var s_islandlord = getCookie("s_islandlord");
+	if(s_islandlord=="true"){
+		$('#s_islandlord').show();
+	};
+	//房东微店
+	var s_micro = getCookie("s_micro");
+	if(s_micro=="true"){
+		$('#s_micro').show();
+		$('#s_micro_landlord').show();
+	};
+	//房态日历
+	var s_calender =getCookie("s_calender");
+	if(s_calender=="true"){
+		$('#s_calender').show();
+		$('#changeBtn').show();
+		$('#cancelChangeBtn').show();	
+	};
+	//收款设置
+	var s_receive = getCookie("s_receive");
+	if(s_receive=="true"){
+		$('#s_receive').show();
+	};
+	//房源上线
+	var s_online = getCookie("s_online");
+	if(s_online=="true"){
+		$('.s_online').show();
+	};
+	//房源下线
+	var s_offline = getCookie("s_offline");
+	if(s_offline=="true"){
+		$('.s_offline').show();
+	};
+	//房源删除
+	var s_remove = getCookie("s_remove");
+	if(s_remove=="true"){
+		$('.s_remove').show();
+	};
+	//房源编辑（修改价格、上传认证资料、继续发布、修改资料）
+	var s_edit = getCookie("s_edit");
+	if(s_edit=="true"){
+		$('.s_edit').show();
+	};	
+})

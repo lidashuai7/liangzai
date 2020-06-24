@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<!--edge浏览器H5兼容设置-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--360浏览器H5兼容设置-->
+<meta name="renderer" content="webkit" />
+<title>商品订单页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--导入核心文件-->
+<script src="../order/bootstrap3/js/holder.js"></script>
+<link href="../order/bootstrap3/css/bootstrap.css" rel="stylesheet"
+	type="text/css">
+<script src="../order/bootstrap3/jquery-1.9.1.min.js"></script>
+<script src="../order/bootstrap3/js/bootstrap.js"></script>
+<script type="text/javascript"
+ src="http://api.map.baidu.com/api?v=2.0&ak=lA7RuFAekjlWgt6OgHoG1gxq5vmSrETq"></script>
+<!-- 字体图标 -->
+<link rel="stylesheet"
+	href="../order/bootstrap3/font-awesome-4.7.0/css/font-awesome.css" />
+<link rel="stylesheet" type="text/css" href="../order/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="../order/css/top.css" />
+<link rel="stylesheet" type="text/css" href="../order/css/footer.css" />
+<link rel="stylesheet" type="text/css" href="../order/css/order.css" />
+</head>
+
+<body>
+	<!--导航 -->
+	<!--分割导航和顶部-->
+	<div class="row top-nav">
+		<div class="col-md-6">
+			<ul class="nav nav-pills">
+				<li><a href="#"></a></li>
+				<li class="active"><a href="/homepage"><span
+						class="fa fa-home"></span></a></li>
+			</ul>
+		</div>
+		<div class="col-md-6">
+			<form action="search.html" class="form-inline pull-right" role="form">
+				<div class="form-group">
+					<input type="text" class="form-control" id="search" name="search"
+						placeholder="请输入商品名称进行搜索">
+				</div>
+				<button type="submit" class="btn btn-default btn-sm">
+					<span class="fa fa-search"></span>
+				</button>
+			</form>
+		</div>
+	</div>
+	<!--头部结束-->
+
+	<!--导航结束-->
+	<div class="container">
+		<div class="col-md-2">
+			<!--左侧导航开始-->
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<!--主选项：我的订单-->
+						<p class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion"
+								href="#collapseOne">我的订单</a>
+						</p>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in">
+						<div class="panel-body">
+							<div>
+								<a href="orders.html"><b>全部订单</b></a>
+							</div>
+							<div>
+								<a href="orders.html">待付款</a>
+							</div>
+							<div>
+								<a href="orders.html">待收货</a>
+							</div>
+							<div>
+								<a href="orders.html">待评价</a>
+							</div>
+							<div>
+								<a href="orders.html">退货退款</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<!--主选项：资料修改-->
+						<p class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion"
+								href="#collapseTwo">资料修改</a>
+						</p>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div>
+								<a href="password.html"><b>修改密码</b></a>
+							</div>
+							<div>
+								<a href="userdata.html">个人资料</a>
+							</div>
+							<div>
+								<a href="upload.html">上传头像</a>
+							</div>
+							<div>
+								<a href="address.html">收货管理</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--左侧导航结束-->
+		<div class="col-md-10">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<p class="panel-title" id="orderId"></p>
+				</div>
+				<div class="panel-body">
+					<table class="orders-table" width="100%">
+						<thead>
+							<tr>
+								<th width="15%"></th>
+								<th width="30%">商品</th>
+								<th width="8%">单价</th>
+								<th width="8%">数量</th>
+								<th width="9%">小计</th>
+								<th width="10%">售后</th>
+								<th width="10%">状态</th>
+								<th width="10%">操作</th>
+							</tr>
+						</thead>
+						<tbody class="orders-body">
+							<tr>
+								<td><img id="prodPhoto" src="" class="img-responsive" /></td>
+								<td id="prodName"></td>
+								<td>¥<span id="prodPrice"></span></td>
+								<td id="prodUnit"></td>
+								<td>¥<span id="count"></span></td>
+								<td><a href="#">申请售后</a></td>
+								<td>
+									<div id="ifPay">待付款</div>
+									<div>
+										<a href="orderInfo.html">订单详情</a>
+									</div>
+								</td>
+								<td><input id="paynow" type="button" value="确认支付"
+									class="btn btn-default btn-xs"></input></td>
+							</tr>
+						</tbody>
+					</table>
+					<div>
+						<span class="pull-right" id="allcount"></span>
+					</div>
+				</div>
+			</div>
+			<div id="container" style="border: 1px solid; height: 450px;display:none">
+
+
+			</div>
+		</div>
+	</div>
+	<!--页脚开始-->
+	<div class="clearfix"></div>
+</body>
+<script type="text/javascript">
+	$(function() {
+		doRuncar();
+		
+		var orderId = '[[${orderId}]]';
+		if(orderId!=null&&orderId>1){
+			$("#container").show();
+			$("#ifPay").html("已付款");
+		}
+		var payAmount;
+		var prodId;
+		if (orderId == null || orderId < 1) {
+			payAmount = '[[${payAmount}]]';
+			prodId = '[[${prodId}]]';
+		}
+		doFindObjects(prodId, payAmount, orderId);
+		$("#paynow").click(doAlipay);
+
+	})
+	//跳转支付页面
+	function doAlipay() {
+		if (confirm("确认支付？")) {
+			var orderId = $("#payId").html();
+			var prodName = $("#prodName").html();
+			var count = $("#count").html();
+			window.location.href = "/alipayOrder/doPay?orderId=" + orderId
+					+ "&prodName=" + prodName + "&count=" + count;
+		}
+		;
+	}
+	function doFindObjects(prodId, payAmount, orderId) {
+		var params = {
+			"prodId" : prodId,
+			"payAmount" : payAmount,
+			"orderId" : orderId
+		};
+		var url = "doFindObjects";
+		$.getJSON(url, params, function(result) {
+			doInitPage(result.data);
+		})
+	}
+	function doInitPage(data) {
+		console.log(data);
+		$("#prodName").html(data.prodName);
+		$("#prodPrice").html(data.prodPrice);
+		$("#prodUnit").html(data.payAmount + data.prodUnit);
+		var acount = data.prodPrice * data.payAmount;
+		$("#count").html(acount);
+		$("#allcount").html("订单总金额：¥" + acount);
+		$("#orderId").html(
+				"订单号：" + "<a id='payId'>" + data.orderId + "</a>"
+						+ "，下单时间：2019-7-23 10:50:30 ，收货人：qilei");
+		$("#prodPhoto").prop("src", data.photo);
+	}
+function doRuncar(){
+	var map = new BMap.Map("container");
+	map.centerAndZoom("广州", 12);
+	map.addControl(new BMap.NavigationControl()); //添加默认缩放平移控件
+	map.addControl(new BMap.OverviewMapControl()); //添加默认缩略地图控件
+	var localSearch = new BMap.LocalSearch(map);
+
+	map.clearOverlays();//清空原来的标注
+	var myP1 = new BMap.Point(113.33908, 23.153638); //起点
+	var myP2 = new BMap.Point(113.379481, 23.130168);
+
+	var myIcon = new BMap.Icon("../assets/pic/falali.png", new BMap.Size(70, 32), { //小车图片
+		//offset: new BMap.Size(0, -5),    //相当于CSS精灵
+		imageOffset : new BMap.Size(0, 0)
+	//图片的偏移量。为了是图片底部中心对准坐标点。
+	});
+	var driving2 = new BMap.DrivingRoute(map, {
+		renderOptions : {
+			map : map,
+			autoViewport : true
+		}
+	}); //驾车实例
+	driving2.search(myP1, myP2); //显示一条公交线路
+
+	window.run = function() {
+		var driving = new BMap.DrivingRoute(map); //驾车实例
+		driving.search(myP1, myP2);
+		driving.setSearchCompleteCallback(function() {
+			var pts = driving.getResults().getPlan(0).getRoute(0).getPath(); //通过驾车实例，获得一系列点的数组
+			var paths = pts.length; //获得有几个点
+
+			var carMk = new BMap.Marker(pts[0], {
+				icon : myIcon
+			});
+			map.addOverlay(carMk);
+			i = 0;
+			function resetMkPoint(i) {
+				carMk.setPosition(pts[i]);
+				if (i < paths) {
+					setTimeout(function() {
+						i++;
+						resetMkPoint(i);
+					}, 100);
+				}
+			}
+			setTimeout(function() {
+				resetMkPoint(5);
+			}, 100)
+
+		});
+	}
+
+	setTimeout(function() {
+		run();
+	}, 1500);
+}
+</script>
+</html>

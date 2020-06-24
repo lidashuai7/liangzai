@@ -1,0 +1,258 @@
+.fk_refuse_info{
+    margin-top:-320px;
+    box-sizing:border-box;
+    padding-bottom:10px;
+    width:560px !important;
+    margin-left:-280px;
+    border:#c1bcbc;
+}
+.fk_refuse_info .decoration{
+    padding:0;
+    margin-top:5px;
+    color:#b4b5bf;
+    font-size: 12px
+}
+.fk_refuse_info .dp_header,.tk_page_cont .dp_header{
+    height: 50px;
+    line-height: 50px;
+    background: #3eb382;
+    font-size:18px;
+    color:#FFFFFF;
+}
+.amount_title{
+    font-size: 18px;
+    color: #2b2f33;
+    font-weight: bold;
+}
+.amount_num{
+    font-size: 24px;
+    color: #3eb382;
+    font-weight: bold;
+}
+.tk_refunds{
+    color:#b4b5bf;
+    font-size: 12px
+}
+.refunds_list ul li{
+    float: left;
+    font-size: 14px;
+    color: #2b2f33;
+    width: 100%;
+    line-height: 35px;
+}
+
+.fk_refuse_info .complete_success{margin-left:0;}
+.fk_refuse_info .complete_cancel{margin-right:0;}
+.fk_refuse_info .t_area{width:270px;height:100px;display:none;margin-left:0;position:relative;}
+.fk_refuse_info_input{color:#322c27;}
+.fk_refuse_info_input label input{margin-right:5px;margin-top:-4px;}
+.fk_refuse_info .dp_daypicker{padding:10px 50px 10px 50px;}
+.reason_select{
+    color: #2b2f33;
+    font-size: 18px;
+}
+
+.noramal_input{
+    width: 292px;
+    border: 1px solid #dcdee0;
+    margin-left: 20px;
+    border-radius: 3px;
+    padding: 8px 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+}
+.sj_down{
+    background: url("../images/icon_jiantouxia.jpg") no-repeat  right center;
+}
+.sj_up{
+    background: url("../images/icon_jt.jpg") no-repeat  right center;
+}
+.font_bold{
+    font-weight: bold;
+}
+.font_normal{
+	font-weight: normal;
+}
+.select_box{
+    position: absolute;
+    left: 151px;
+    /*top: 37px;*/
+    z-index: 100;
+    background: #fff;
+    width: 292px;
+    box-sizing: border-box;
+    border-left: 1px solid #dcdee0;
+    border-bottom: 1px solid #dcdee0;
+    border-right: 1px solid #dcdee0;
+}
+.select_box li{
+    font-size: 14px;
+    color: #2b2f33;
+    cursor: pointer;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 14px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.select_box li:hover{
+    background: #3eb382;
+    color: #fff!important;
+}
+
+.spacial_remind ul li{
+    float: left;
+    font-size: 12px;
+    color: #b4b9bf;
+    margin-bottom: 5px;
+    text-indent: 10px;
+    position: relative;
+}
+.spacial_remind ul li:before{
+    content: '';
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #b4b9bf;
+    position: absolute;
+    left: 0;
+    top: 8px;
+}
+.bottom_btn_list ul li{
+    float: left;
+    width: 180px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.mar_r_80{
+    margin-right: 80px;
+}
+.sure_cancle{
+    color: #3eb382;
+    border: 1px solid #3eb382;
+}
+.talk_later{
+    background: #3eb382;
+    color: #FFFFFF;
+}
+
+/*取消订单弹层 弹层上的弹层*/
+.make_sure_layer{
+    width: 100%;
+    height: 100%;
+    z-index: 400000;
+    position: fixed;
+}
+.cancle_layer{
+    background: #000;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.makeSure_cancle{
+    box-sizing: border-box;
+    width:340px;
+    margin-left: -170px;
+    position: fixed;
+    z-index: 50000;
+    background-color: #FFF;
+    border-radius: 3px;
+    left: 50%;
+    top: 50%;
+    padding: 40px;
+    margin-top: -200px;
+
+}
+.makeSure_cancle p{
+    color: #2f2f2f;
+}
+.cancle_btn_ul li{
+    float: left;
+    width: 118px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+}
+#sure_cancle_btn{
+    border: 1px solid #3eb382;
+    color:#3eb382 ;
+}
+#think_again{
+    color: #fff;
+    background: #3eb382;
+}
+
+/*退款成功详情页*/
+.tk_detail_layer{
+    width: 100%;
+    height: 100%;
+    z-index: 300000;
+    position: fixed;
+}
+.tk_page_cont{
+    position: fixed;
+    z-index: 10000;
+    background-color: #FFF;
+    border-radius: 3px;
+    margin-top: -320px;
+    box-sizing: border-box;
+    padding-bottom: 10px;
+    width: 560px;
+    margin-left: -280px;
+    border: #c1bcbc;
+    left: 50%;
+    top: 50%;
+}
+.tk_main_cont{
+    padding: 30px 50px 10px;
+}
+
+.c_2b2f33{
+    color: #2b2f33;
+}
+.c_b4b9bf{
+    color: #b4b9bf;
+}
+.border_b{
+    border-bottom: 1px solid #DCDEE0;
+}
+.tk_regular_list ul li{
+    float: left;
+    width: 100%;
+    text-indent: 10px;
+    position: relative;
+    color: #b4b9bf;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.sure_tk_detail{
+    width: 180px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #fff;
+    background: #3eb382;
+    margin: 15px auto 0;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.return_redmin{
+    font-size: 18px;
+    color: #3eb382;
+    font-weight: bold;
+}

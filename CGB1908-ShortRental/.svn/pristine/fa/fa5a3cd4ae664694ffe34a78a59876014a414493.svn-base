@@ -1,0 +1,470 @@
+var ctx = $('#ctx').val();
+var Urls = {
+	relationRoom : ctx + "/room/getRelationRoom",
+	getCalPrice : ctx + "/room/getCalPrice",
+	getComment : ctx + "/room/getComment"
+}
+function floatVal(s,n)
+{
+	s= $.trim(s);
+	if(s!=null && s!='')
+		return parseFloat(s).toFixed(n);
+	else
+		return 0;
+}
+function intVal(s)
+{
+	s= $.trim(s);
+	if(s!=null && s!='')
+		return parseInt(s);
+	else
+		return 0;
+}
+var detailManager = {
+	addHistory : function(roomId, roomTitle, roomdayprice, historyRoomImg) {
+		var historys = getCookie("_historys");
+		var roomStr = roomId + "=" + roomTitle + "=" + roomdayprice + "="
+				+ historyRoomImg;
+		if (historys == null || historys == "") {
+			historys = roomStr;
+		} else if (historys.split("&").length < 10) {
+			historys += "&" + roomStr;
+		} else {
+			var oldArray = historys.split("&");
+			historys = oldArray[1] + "&" + oldArray[2] + "&" + oldArray[3]
+					+ "&" + roomStr;
+		}
+		setCookie("_historys", historys, 5 * 365 * 24 * 60 * 60);
+	},
+	getRelationRoom : function(roomId, d1) {
+		var data = {
+			roomId : roomId,
+			d1 : d1
+		};	
+		AjaxRequest.get(Urls.relationRoom, data, function(result) {			
+			var ownerOtherRooms = result.ownerOtherRooms;
+			var otherOwnerRooms = result.otherOwnerRooms;
+			if(ownerOtherRooms.length>0)
+				detailManager.relationHmtl("landlord_room",ownerOtherRooms);
+		    if(otherOwnerRooms.length>0)
+		    	detailManager.relationHmtl("near_room",otherOwnerRooms);
+		});
+	},
+	relationHmtl:function(objid,roomData)
+	{
+		var  numberroom=new Array("零","一","二","三","四");
+		var sb = '';
+		var jssorId='';
+		var h4Ttile='';
+		if(objid=="landlord_room")
+	    {
+			jssorId ='jssor_2';
+			h4Ttile = '该房东的其他房源';
+	    }
+		else if(objid=="near_room")
+		{
+			jssorId ='jssor_1';
+			h4Ttile = '附近推荐房源';
+		}
+		else if(objid=="like_room")
+		{
+			jssorId ='jssor_3';
+			h4Ttile = '您可能喜欢的短租房源';
+		}
+		else
+		{
+			
+		}
+		sb += '<h4 class="near_h4">'+h4Ttile+'</h4>';
+		sb += '<div class="wrapper infiniteCarousel" id="'+jssorId+'"  style="position: relative; top: 0px; left: 0px; width: 1190px;height:242px;">';
+		sb += ' <div class="clearfloat nearby_room" data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1190px;overflow: hidden;height:242px;">';
+		for(var i=0;i<roomData.length;i++)
+		{
+			var mainurl = roomData[i].mainurl;
+			var roomId = roomData[i].id;
+			var price = roomData[i].price;
+			var preferential = roomData[i].preferential;
+			var commonDiscount = roomData[i].commonDiscount;
+			var score = floatVal(roomData[i].score,1);		
+			var commentcnt = intVal(roomData[i].commentcnt);
+			var distance = floatVal(roomData[i].distance,1);
+			var roomnum = intVal(roomData[i].roomnum);
+			var title = roomData[i].title;
+			sb+='<div class="fl cont relave">';
+			sb+= '<a href="'+ctx+'/room/'+roomId+'">';
+			if(mainurl!=null&&mainurl!='')
+			{
+				sb+='<img src="'+mainurl+'" alt=""/>';
+			}
+			else
+			{
+			  sb+='<img src="'+ctx+'/resourcesWeb/images/detail/icon_detail.png" />';
+			}
+			sb+='<div class="moy_a asote clearfloat">';
+			sb+='<p class="room_price fl">';
+			sb+='<span class="fl"><b>￥</b>'+price+'</span>';
+			sb+='</p>';
+			if(preferential!=null)
+			{
+			   if(commonDiscount!=null)
+			   {
+				   sb+='<div class="xiq_count_icon" >';
+				   sb+='<div class="ft-layer" id="dis_'+roomId+'" style="display: none;">';
+				   sb+='<div class="main-wz">';
+				   sb+='<span class="la-nav">日常优惠</span><br />'+commonDiscount+'';
+				   sb+='</div>';
+				   sb+='</div>';
+				   sb+='</div>';
+			   }			   
+			}
+			sb+='</div>';
+			sb+='<dl>';
+			sb+='<dt><b class="dx-b01">';
+			if(title!=null&&title.length>15)
+			{
+				sb+=title.substring(0,15);
+			}
+			else
+				sb+=title;
+			sb+='</b>';	
+			sb+='</dt>';
+			sb+='<dd>';
+			sb+='<nav class="d-nr">';
+			if(score>0)
+			{
+				sb+='<b class="C_22bb62">'+floatVal(score*5,1)+'分</b>·';
+			}
+			if(commentcnt!=0)
+			{
+			   sb+='<b>'+commentcnt+'条评论</b>·';
+			}
+			sb+='<b>';
+			if(roomnum>3)
+			{
+				sb+='<font>四</font>居+';
+			}
+			else
+			{
+				sb+='<font>'+numberroom[roomnum]+'</font>居';
+			}
+			sb+='</b>';
+			if(distance!=null)
+			{
+				if(distance>0.2)
+					sb+='<b class="d-km fr">距离'+distance+'km</b>';
+				else
+					sb+='<b class="d-km fr">同一地点</b>';
+			}
+			sb+='</nav>';
+			sb+='</dd>';
+			sb+='</dl>';
+			sb+='</a>';
+			sb+='</div>';
+		}
+	    sb+='</div>';
+	    if(roomData.length>4)
+	    {
+	    	sb+='<span class="arrow jssora03l" data-u="arrowleft" data-autocenter="2"></span>';
+	    	sb+='<span class="arrow jssora03r" data-u="arrowright" data-autocenter="2"></span>';
+	    }
+        sb+='</div>';        
+        if(sb!='')
+        {
+           $("#"+objid).html(sb);	
+           $("#"+objid).show();
+           detailManager.jssor_1_slider_init();
+        }        
+	 },
+	  jssor_1_slider_init: function() {        
+	        var jssor_1_options = {
+	          $AutoPlay: false,
+	          $AutoPlaySteps: 4,
+	          $SlideDuration: 160,
+	          $SlideWidth: 282,
+	          $SlideSpacing: 20,
+	          $Cols: 4,
+	          $ArrowNavigatorOptions: {
+	            $Class: $JssorArrowNavigator$,
+	            $Steps: 4
+	          },
+	          $BulletNavigatorOptions: {
+	            $Class: $JssorBulletNavigator$,
+	            $SpacingX: 1,
+	            $SpacingY: 1
+	          }
+	        };
+	        if($('#jssor_1').length==1){
+	        	 var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+	        }
+	       if($('#jssor_2').length==1){
+	        	 var jssor_2_slider = new $JssorSlider$("jssor_2", jssor_1_options);
+	        }
+	        if($('#jssor_3').length==1){
+	        	 var jssor_3_slider = new $JssorSlider$("jssor_3", jssor_1_options);
+	        }
+	        //responsive code begin
+	        //you can remove responsive code if you don't want the slider scales while window resizing
+	        function ScaleSlider() {
+	        	if(jssor_1_slider){
+	        		var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+	        	}
+	            if(jssor_2_slider){
+	                var refSize2 = jssor_2_slider.$Elmt.parentNode.clientWidth;
+	           }
+	            if(jssor_3_slider){
+	           	    var refSize3 = jssor_3_slider.$Elmt.parentNode.clientWidth;
+	            }
+	           
+	            if (refSize) {
+	                refSize = Math.min(refSize, 1190);
+	                if(jssor_1_slider){
+	                	jssor_1_slider.$ScaleWidth(refSize);
+	                }
+	                 if(jssor_2_slider){
+	                	jssor_2_slider.$ScaleWidth(refSize);
+	                }
+	                 if(jssor_3_slider){
+	                	jssor_3_slider.$ScaleWidth(refSize);
+	                }
+	            }
+	            else {
+	                //window.setTimeout(ScaleSlider, 30);
+	            }
+	        }
+	        //ScaleSlider();
+	        $Jssor$.$AddEvent(window, "load", ScaleSlider);
+	        //responsive code end
+	    },
+	 getCalPrice:function(roomId, d1)
+	 {
+		 var data = {roomId : roomId,d1 : d1};	
+		 AjaxRequest.get(Urls.getCalPrice, data, function(result) {	
+		 if(result.calendarList!=null)
+			{
+			   var str = '';			   
+			   var datas = result.calendarList;			 
+			   str +='<ul id="calendarUl">';
+			   for(var i=0;i<datas.length;i++){   
+				   var stock = intVal(datas[i].stock);				  
+				   if(stock==0)
+				   {
+					   str +='<li class="none">';
+					   str +='<b style="font-size: 13px;">'+datas[i].date+'</b>';
+					   str +='<p class="priceCal">无房</p>';
+					   str +='</li>';
+				   }
+				   else
+				   {
+					   str +='<li>';
+					   str +='<b style="font-size: 13px;">'+datas[i].date+'</b>';
+					   str +='<p class="priceCal">￥<span>'+datas[i].price+'</span></p>';
+					   str +='</li>';
+				   }				   
+			   }
+			   str +='</ul>';
+			   str +='<div class="calendarB">完整房态日历</div>';
+			   if(datas.length>0)
+			   {
+				   $("#calendarM").html(str);
+				   $("#calendarM").show();
+			   }
+			}				   
+			if(result.calPrice!=null)
+			{				
+				var firstDate = new Date();
+				firstDate.setDate(1); //第一天
+				var endDate = new Date(firstDate);
+				//房间日历显示
+				$('#calOne').jCal({
+				    calPrice: result.calPrice,
+				    day: endDate,
+				    days: 1,
+				    showMonths: 1,
+				    monthSelect: true
+				});
+				$(".calendarB").click(function(){
+					var citypinyin = $("#my_p_y").val();
+					if(citypinyin=="beijing"){
+						var user = getCookie('MAYIUID');
+						if(null==user){
+							$("#loginshow").click();
+						}else{
+							$(".calend").show();
+						}
+					}
+					else{
+						$(".calend").show();
+					}					
+			    })
+			}			
+		});
+	 },	    
+	 getComment:function(roomId)
+	 {
+		var data = {
+			roomId : roomId
+		};
+		AjaxRequest.get(Urls.getComment, data, function(result) {			
+			var responseRatio = result.responseRatio;
+			var confirmMinute = result.confirmMinute;	
+			var orderNightNum = intVal(result.orderNightNum);
+			var roomCntCount = intVal(result.roomCntCount);
+			var lodgeunitStat = result.lodgeunitStat;				
+			var landlordCntCount = intVal(result.landlordCntCount);
+			var landlordStatEntity = result.landlordStatEntity;				
+			var commentNum = roomCntCount;
+			if(commentNum<=0)
+				commentNum = landlordCntCount;
+			$("#responseRatio").html(responseRatio+'%');
+			$("#confirmMinute").html(confirmMinute);
+			$("#landLordCommentCnt").html(landlordCntCount+'条');
+			var roomStr='';
+			var spanStr='';
+			var pStr='';			
+			if(roomCntCount>0)
+			{
+				var integrated_praise_ratio=0;
+				if(lodgeunitStat!=null&&floatVal(lodgeunitStat.integrated_praise_ratio)>0)
+            	{
+            		integrated_praise_ratio = intVal(lodgeunitStat.integrated_praise_ratio*100);
+            	}
+				spanStr=integrated_praise_ratio+'%好评';
+				pStr = roomCntCount+'条评价';				
+			}
+			else
+			{
+				if(orderNightNum>0)
+				{
+					spanStr='已订'+orderNightNum+'晚';
+				}
+				else
+				{
+					spanStr='新房上线';					
+				}
+				pStr = '暂无评价';
+			}			
+			roomStr+='<div class="clearfloat feature_chansu">';
+			roomStr+='<img src='+ctx+'"/resourcesWeb/v201510/images/haoping.png" class="fl"/>';
+			roomStr+='<span class="fl">'+spanStr+'</span>';
+			roomStr+='</div>';
+			roomStr+='<p>'+pStr+'</p>';
+			$("#feature_chansu").html(roomStr);			
+			$("#pjskip").html("评价(<span>"+commentNum+"</span>条)");			
+			detailManager.commentHtml(roomCntCount,lodgeunitStat,"1");			
+			detailManager.commentHtml(landlordCntCount,landlordStatEntity,"2");
+		});
+	 },
+	 commentHtml:function(count,statObj,type)
+	 {
+			if (count>0) {
+				if(type=="1")
+				{
+	                $('#ffComment').html('('+count+')');
+	                $('#landCommentP').show();
+				}
+				if(type=="2")
+				{
+					$('#llComment').html('('+count+')');
+		            $('#lordCommentP').show();
+				}
+                $('#pjContent').show();
+                var str='';                
+                if(count>=5)
+                {
+                	var integrated_praise_ratio = 0;
+                	var sanitation_praise_ratio=0;
+                	var traffic_praise_ratio=0;
+                	var match_description_praise_ratio=0;
+                	var safety_praise_ratio = 0 ;
+                	var value_praise_ratio = 0;
+                	var ratio = 1;                	
+                	if(type=="1")
+                		ratio=100;
+                	if(statObj!=null&&statObj.integrated_praise_ratio>0)
+                	{
+                		integrated_praise_ratio = intVal(statObj.integrated_praise_ratio*ratio);
+                	}
+                	if(statObj!=null&&statObj.sanitation_praise_ratio>0)
+                	{
+                		sanitation_praise_ratio = intVal(statObj.sanitation_praise_ratio*ratio);
+                	}
+                	if(statObj!=null&&statObj.traffic_praise_ratio>0)
+                	{
+                		traffic_praise_ratio = intVal(statObj.traffic_praise_ratio*ratio);
+                	}
+                	if(statObj!=null&&statObj.match_description_praise_ratio>0)
+                	{
+                		match_description_praise_ratio = intVal(statObj.match_description_praise_ratio*ratio);
+                	}    
+                	if(statObj!=null&&statObj.value_praise_ratio>0)
+                	{
+                		value_praise_ratio = intVal(statObj.value_praise_ratio*ratio);
+                	}   
+                	if(statObj!=null&&statObj.safety_praise_ratio>0)
+                	{
+                		safety_praise_ratio = intVal(statObj.safety_praise_ratio*ratio);
+                	}   
+                	var integrated_Str='';    
+                	var id_Str='';
+                	if(type=="1")
+                	{
+                		integrated_Str='房源';
+                		id_Str='lodge_score';
+                	}
+                	else if(type=="2")
+                	{
+                		integrated_Str='房东';
+                		id_Str='landlord_score';
+                	}
+                	str+='<div class="scoreL">';
+                	str+='<p>'+integrated_Str+'总好评率</p>';                	
+                	str+='<p class="C_00897b font24">';                	
+                	str+=integrated_praise_ratio+'%';
+                	str+='</p>';
+                	str+='<div class="star relave"><span class="star_grey"></span><span class="star_red absot" style="width:'+integrated_praise_ratio+'%"></span></div>';
+                	str+='</div>';
+                	////右边开始//////////////
+                	str+='<div class="scoreR">';
+                	str+='<div class="scoreR1 clearfloat">';                	
+                	str+='<span class="fl scoreR3_span">整洁卫生</span>';                	        
+                	str+='<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:'+sanitation_praise_ratio+'%"></span></div>';
+                	str+='</div>';
+                	str+='<div class="scoreR2 clearfloat">';                	
+                	str+='<span class="fl scoreR3_span">交通位置</span>';                	        
+                	str+='<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:'+traffic_praise_ratio+'%"></span></div>';
+                	str+='</div>';
+                	str+='<div class="scoreR3 clearfloat">';                	
+                	str+='<span class="fl scoreR3_span">设施环境</span>';                	        
+                	str+='<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:'+match_description_praise_ratio+'%"></span></div>';
+                	str+='</div>';
+                	str+='<div class="scoreR4 clearfloat">';                	
+                	str+='<span class="fl scoreR3_span">房东服务</span>';                	        
+                	str+='<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:'+safety_praise_ratio+'%"></span></div>';
+                	str+='</div>';
+                	str+='<div class="scoreR5 clearfloat">';                	
+                	str+='<span class="fl scoreR3_span">性价比</span>';                	        
+                	str+='<div class="starR relave fl"><span class="star_grey"></span><span class="star_red absot" style="width:'+value_praise_ratio+'%"></span></div>';
+                	str+='</div>';
+                	str+='</div>';
+                	$("#"+id_Str).html(str);
+                	$("#"+id_Str).show();                	
+                }
+                loadPageComment(1,type,false);
+			}	
+			else
+			{
+				var str=''
+				if(type=="1")
+				{
+					str+='<div class="nopingjia"> <p>该房源暂无评价，您可以用APP对已入住的房源进行评价，评价后即可获得彩票红包</p></div>';
+					$("#lodgeunitPJ_cnt").html(str);
+				}
+				if(type=="2")
+				{
+					str+='<div class="nopingjia"> <p>暂无评价</p></div>';
+					$("#lordPJ_cnt").html(str);
+				}				
+			}				
+	 }
+	
+}

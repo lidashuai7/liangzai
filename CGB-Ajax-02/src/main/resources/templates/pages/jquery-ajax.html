@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="/jquery/jquery.min.js"></script>
+</head>
+<body>
+	<h1>JQuery Ajax Function</h1>
+	<div>
+		<button onclick="doAjax()">Ajax</button>
+		<button onclick="doGet()">Get</button>
+		<button onclick="doGetJSON()">GetJSON</button>
+		<button onclick="doPost()">Post</button>
+		<button onclick="doLoad()">Load</button>
+	</div>
+	<div id="id1">
+	</div>
+	<script type="text/javascript">
+			function doAjax(){
+				$.ajax({//----具体语法实现参考jquery.com
+					"url":"doFindActivitys",
+					"type":"Post",
+					"dateType":"html",
+					"success":function(result){
+						console.log(result);
+					}
+				});//基于XMLHttpRequest对象访问服务端资源
+			}
+			function doGet(){
+				var url="doFindActivitys";
+				var params="";
+				$.get(url,params,function(result){
+					console.log("get",result);
+				},"json");//get请求的ajax函数
+			}
+			function doGetJSON(){
+				var url="doFindActivitys";
+				var params="";
+				$.getJSON(url,params,function(result){
+					console.log("getJSON",result);
+				});//getJSON请求的ajax函数,固话了响应数据的类型
+			}
+			function doPost(){
+				var url="doFindActivitys";
+				var params="";
+				$.post(url,params,function(result){
+					console.log("Post",result);
+				});//Post请求的ajax函数
+			}
+			function doLoad(){
+				var url="doFindActivitys";
+				var params="";
+				$("#id1").load(url,function(){
+					console.log("数据加载完成")
+				});
+			}
+	</script>
+</body>
+</html>

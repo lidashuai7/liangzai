@@ -1,0 +1,39 @@
+﻿import fsys.update.dlMgr; 
+namespace update{
+    var cfg = ..fsys.config("/config/");
+	if(!cfg.update.url){
+		cfg.update.url = "http://www.sooolink.com/update/client/version.txt";
+	}
+	
+	updateUrl   = cfg.update.url;
+    downloadDir = "download/update-files";
+    
+	checkUpdateInfo = function(){
+		var dlMgr = ..fsys.update.dlMgr(updateUrl,downloadDir);
+		
+		dlMgr.onError = function(err,filename){
+    		//错误信息 err,错误文件名 filename 这里可以不用做任何处理,因为出错了就是没有升级包了
+    		..win.msgboxErr("无法获取到最新的版本,您无法使用最新版本的功能，请检查网络是否正常","提示");
+    		..login.form();
+		}
+		
+		dlMgr.onConfirmDownload = function(isUpdated,appVersion,latestVersion,description){ 
+			//版本号写入
+			..proLastVersion = "当前 "++ tostring(appVersion) ++ " / 最新 "++tostring(latestVersion);
+    		if( ! isUpdated ){
+        		//已经是最新版本了
+        		..login.form();
+    		}
+    		else {
+        		//检测到最新版本，版本号 latestVersion
+        		import update.confirm;
+    			update.confirm().doModal();
+    		};	
+    		
+    		return false; //暂不下载
+		} 
+		
+		dlMgr.create(); 
+		
+	}
+}

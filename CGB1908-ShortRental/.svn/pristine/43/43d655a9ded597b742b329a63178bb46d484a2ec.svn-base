@@ -1,0 +1,589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0044)http://www.mayi.com/user/tenant/mycollection -->
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1">
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link href="/shoucang/global.css" rel="stylesheet" type="text/css">
+<link href="/shoucang/PCenter.css" rel="stylesheet" type="text/css">
+
+<link href="/shoucang/account.css" rel="stylesheet" type="text/css">
+<link href="/shoucang/collection.css" rel="stylesheet" type="text/css">
+<!-- new header -->
+<link href="/shoucang/public_element.css" rel="stylesheet" type="text/css"> 
+<title>我的收藏</title>
+<script charset="UTF-8" src="/shoucang/uba.min.js.下载"></script><script charset="UTF-8" src="/shoucang/QiMoIMSDK.js.下载"></script><script type="text/javascript" async="" src=""></script><script src="./shoucang/hm.js.下载"></script><script type="text/javascript" src="/shoucang/jquery-1.9.1.min.js.下载"></script>
+<script type="text/javascript" src="/shoucang/layer.min.js.下载"></script><link type="text/css" rel="stylesheet" href="/shoucang/layer.css">
+
+<link type="text/css" rel="stylesheet" href="/shoucang/layer.css"><link type="text/css" rel="stylesheet" href="/shoucang/layer.css"><link type="text/css" rel="stylesheet" href="/shoucang/chatStyle.css"></head>
+<body>
+	<!-- Header -->
+<!-- 拉新入口 -->
+<link href="/shoucang/laxin.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/shoucang/index_searchlist_public.js.下载"></script>
+<script type="text/javascript" src="/shoucang/list_header.js.下载"></script>
+<!-- 房东权限相关 -->
+<script type="text/javascript" src="/shoucang/landlordConfig.js.下载"></script>
+<style>	
+.logo58{background:url(//staticnew.mayi.com/resourcesWeb/images/index/58logo.png) no-repeat;left:14px !important;top:16px !important;}
+.logomayi{left:200px !important;}
+.alert-box1{width:100%;height: 100%;z-index: 300000;position: absolute;display:none;line-height:40px;}
+.surveYY1{background: #000;width:100%;height:100%;opacity: 0.7;position: fixed;top: 0px;left: 0px;}
+.offmax_no{width:400px;height:186px;position:fixed;top:50%;margin-top:-93px;left:50%;margin-left:-200px;background-color:#fff;z-index:999;text-align:center;box-shadow:0px 0px 4px #ccc;border-radius:2px;} 
+.offmax_no p{padding:0 20px;line-height:25px;}
+.alert_tit1{border-bottom:1px solid #e0e0e0;font-size:18px;margin-bottom:20px;}
+.close-alert1{cursor:pointer;width:50%;margin:20px auto;background-color:#22bb62;text-align:center;color:#fff;border-radius:2px;}
+
+.alert-box2{width:100%;height: 100%;z-index: 300000;position: absolute;display:none;line-height:40px;}
+.surveYY2{background: #000;width:100%;height:100%;opacity: 0.7;position: fixed;top: 0px;left: 0px;}
+.offmax_no2{width:400px;height:186px;position:fixed;top:50%;margin-top:-93px;left:50%;margin-left:-200px;background-color:#fff;z-index:999;text-align:center;box-shadow:0px 0px 4px #ccc;border-radius:2px;} 
+.offmax_no2 p{padding:0 20px;line-height:25px;}
+.alert_tit2{border-bottom:1px solid #e0e0e0;font-size:18px;margin-bottom:20px;}
+.close-alert2{cursor:pointer;width:50%;margin:20px auto;background-color:#22bb62;text-align:center;color:#fff;border-radius:2px;}
+
+</style>
+<input type="hidden" name="ctx" id="ctx" value="">
+<div class="header relave">
+		    <a href="" rel="nofollow"><div class="asote head_left"></div></a>
+		<div class="head_cnt relave"> 
+			<span class="search"></span>		
+			<ul class="nav_R asote nav_right">
+				 <li style="margin-left:-211px;">
+				 	<b class="mayi_tel_top"><img src="/shoucang/tel_green_icon.png"><span style="font-family: &quot;Hiragino Sans GB&quot;, Arial, Verdana, Tahoma, &quot;微软雅黑&quot; !important;font-size: 14px;" hiragino="" sans="" gb",="" arial,="" verdana,="" tahoma,="" "微软雅黑"="" !important;font-size:="" 14px;"="">客服电话：</span>400-028-6868</b>
+				 </li>
+            	 <li>
+	                <div class="showinfo">
+	                    <a href="" target="_self"><img src="/shoucang/7BBUSD45HMHH2K9YF75JUZ8BC6JWV8.jpg_35x35c.jpg" id="aaa" class="user_img">                	
+	                    <span class="name" id="head_nickname">o</span></a>
+	                    <div class="head_pop">
+	                        <div class="pop_column">
+	                            <p><a href="" target="_self" id="myorder" rel="nofollow" _mayi_rp="webaround|userinfo|order">我的订单</a></p>
+	                            <p><a href="" target="_self" id="myorder" rel="nofollow" class="slideactive" _mayi_rp="webaround|userinfo|account">我的账户</a></p>
+	                            <p><a href="" target="_self" id="mycollect" rel="nofollow" _mayi_rp="webaround|userinfo|collection">我的收藏</a></p>
+	                            <p><a href="" target="_self" id="mymsg" rel="nofollow" _mayi_rp="webaround|userinfo|inform">消息通知</a></p>
+	                            <p class="Invite_friends" _mayi_rp="webaround|userinfo|invite">邀请好友</p>
+	                            <p class="textCt"><a href="javascript:void(0)" id="loginoutbut" target="_self" class="stclick" clicktag="1_6">退出登录</a></p>
+	                        </div>
+	                    </div>
+	                </div>
+               </li>          
+            	<li>
+	            	<div class="showinfo" id="s_islandlord" hidden="" style="display: block;">
+	            		<a href="javascript:loginowner(878244467)" target="_self" class="stclick">我是房东</a>
+	                	<div class="head_pop">
+		                	<div class="pop_column plr10">
+		                        <p><a href="">订单管理</a></p>
+		                        <p><a href="">房源管理</a></p>
+		                        <p><a href="">消息通知</a></p>
+		                        <p><a href="">结算管理</a></p>
+		                        <p><a href="">我的设置</a></p>
+		                    </div>
+	                	</div>
+	                </div>
+                </li>  
+       
+         
+            </ul>
+            
+		</div>
+		
+	</div>
+
+
+<!-- 拉新弹层 -->
+<script type="text/javascript" src="/shoucang/jquery.qrcode.min.js.下载"></script>
+ 
+<div class="share_tan" style="display: none">
+	<div class="mask"></div>
+     <div class="hongbao_img">
+		 <img src="/shoucang/close.png" alt="" class="hong_close">
+		 <img src="/shoucang/hongbao1.png" alt="" class="hongbao">
+		 <div id="qrcode" class="ewm_img"><canvas width="100" height="100"></canvas></div>
+		 <!-- <img src="//staticnew.mayi.com/resourcesWeb/v201612/headpub/images/ewm.jpg" alt="" class="ewm_img"/> -->
+		 <p class="text_para">扫码后，通过分享活动邀请好友注册蚂蚁短租，双方均可获得100元住宿基金！</p>
+		 
+	 </div>
+</div>
+<input type="hidden" name="subdomain" id="subdomain" value="">
+<input type="hidden" name="mainsite" id="mainsite" value="">
+<input type="hidden" name="ctx" id="ctx" value="">
+<input type="hidden" name="ctx1" id="ctx1" value="//staticnew.mayi.com">
+<input type="hidden" name="uid" id="uid" value="878244467">
+<input type="hidden" name="loginurl" id="loginurl" value="none">
+<input type="hidden" name="head_userName" id="head_userName" value="o">
+<script type="text/javascript" src="/shoucang/7moorInit.js.下载" async="async"></script>
+ 
+
+
+<script type="text/javascript" src="/shoucang/c.js.下载"></script>   
+<script type="text/javascript" src="/shoucang/strophe.js.下载"></script> 
+<script type="text/javascript" src="/shoucang/easemob.im-1.1.js.下载"></script>
+<script type="text/javascript" src="/shoucang/easemob.im-1.1.shim.js.下载"></script>
+<script type="text/javascript" src="/shoucang/easemob.im.config.js.下载"></script>
+<script type="text/javascript" src="/shoucang/bootstrap.js.下载"></script>
+<script type="text/javascript" src="/shoucang/add_reply.js.下载"></script>
+<script type="text/javascript" src="/shoucang/jquery-ui.js.下载"></script>  
+<script type="text/javascript" src="/shoucang/IM.js.下载"></script>  
+<script type="text/javascript" src="/shoucang/ajaxfileupload.js.下载"></script>  
+<script type="text/javascript" src="/shoucang/operator.js.下载"></script>  
+<script type="text/javascript" src="/shoucang/webim.js.下载"></script>  
+<script type="text/javascript" src="/shoucang/chat.js.下载"></script>  
+<link rel="stylesheet" href="/shoucang/IM.css">  
+<link rel="stylesheet" href="/shoucang/jquery-ui.css">  
+
+<script type="text/javascript" src="/shoucang/swfupload.js.下载"></script>
+<script type="text/javascript" src="/shoucang/swfupload.queue.js.下载"></script>
+
+ 
+   
+		<input type="hidden" id="MAYIUID" value="878244467">
+
+<style>
+	#layer_settimeout{width:280px;height:60px;border-radius:5px;background:rgba(0,0,0,.7);color:#fff;position:fixed;top:300px;left:50%;margin-left:-140px;z-index:999999999;line-height:60px;text-align:center;display:none}
+</style>
+
+<script type="text/javascript" src="/shoucang/fk_index.js.下载"></script>
+
+<input type="hidden" name="btnCanGo" id="btnCanGo" value="1">
+
+<div class="report-alert-box t-center" id="jubao1" name="jubao1Boxdiv" style="display:none;">
+	<div class="report-alert-title mb30">匿名举报该房客</div>
+	<ul class="jubao">
+		<li class="mb20" id="jubaochat">该房客在聊天过程中有不良行为</li>
+		<li class="mb30" id="jubaorz">该房客在入住过程中有不良行为</li>
+	</ul>
+</div>
+
+<div class="report-alert-box t-center" id="jubaochatChoice" name="jubaochatChoiceBoxdiv" style="display:none;">
+	<div class="report-alert-title mb30">匿名举报该房客</div>
+	<ul class="jubao chat">
+		<li class="mb10">出言辱骂</li>
+		<li class="mb10">坚持要求看房 / 线下交易</li>
+		<li class="mb10">发布垃圾广告、淫秽色情信息</li>
+		<li class="mb10">不订房，频繁骚扰</li>
+		<li class="mb30">其他短租平台工作人员</li>
+	</ul>
+	<p class="tc_submit mb20">下一步</p>
+</div>
+
+<!--上传图片证据-->
+<div class="report-alert-box t-center" id="jubaochatUpImage" name="jubaochatUpImageBoxdiv" style="display: none;">
+	<div class="report_host">
+		<p>匿名举报该房客</p>
+	</div>
+	<div class="report_add_pic">
+		<p class="f16 mt20 up_img">请上传图片证据</p>
+		<p class="f14 chat_desc">请上传聊天记录截图，现场图片等证据（选填），方便工作人员进行审核</p>
+		<ul class="img_box" id="IMImageList">
+			<li id="li_IM_upload">
+
+			</li>
+		</ul>
+	</div>
+	<div class="tc_submit mb20 report_btn_checked">提交</div>
+</div>
+
+<!--主体结束-->
+<div class="report-alert-box t-center" id="jubaorzChoice" name="jubaorzChoice" style="display:none;">
+	<div class="report-alert-title mb30">匿名举报该房客</div>
+	<ul class="jubao ruzhu">
+		<li class="mb10">在房内从事黄赌毒等不法行为</li>
+		<li class="mb10">利用房子进行诈骗</li>
+		<li class="mb10">非法传销</li>
+		<li class="mb10">恶意损坏、偷窃家具</li>
+		<li class="mb10">利用差评威胁房东</li>
+		<li class="mb30">素质低下辱骂房东</li>
+	</ul>
+	<p class="tc_submit mb20">下一步</p>
+</div>
+
+<div class="report-alert-box t-center" id="jubaoSuccess" name="jubaoSuccess" style="display:none;">
+	<div class="c22bb62 f16 mb20">
+		<img src="/shoucang/check-img.png" class="mr10" style="vertical-align: middle;">提交成功，请勿重复举报
+	</div>
+	<p class="report-t-left">感谢您抽出时间举报此用户，您的参与有助于蚂蚁短租建设成一个安全、值得信赖的平台。</p>
+	<p class="report-t-left">您的举报内容如果经过核查属实，我们会对该用户处以蚂蚁短租全站禁言或禁止登录的惩罚。</p>
+	<div id="jubaoSuccessBoxclose" class="report-green-btn f16" style="vertical-align: middle;background-image: none;">确定</div>
+</div>
+
+<div id="layer_settimeout" style="display:none;">您不是房东，无权举报</div>	<div id="point" class="contacts_landlord clearfloat IM_content ui-draggable" style="display:none;">
+		<span class="right_open_btn"></span>
+	<div class="fl contacter_left"><h3>最近联系人</h3><div class="" id="noContact"><p class="null_list">联系人列表是空的</p><a target="_blank" class="check_near" href="http://www.mayi.com/user/tenant/msgmanager">查看最近联系人</a></div><ul class="contacter_ul"></ul></div><div class="contacter_right clearfloat fl"><div class="p_talk_right" id="contacter_right_0"><div class="fl contacter_right_talk" id="talk_0"><h3 class="clearfloat head_talk"></h3><div class="contacter_talk clearfloat"><div class="talk_parent"></div></div> <div class="xiaoxi_record"><a target="_blank" href="" class="xiaoxi_record_a clearfloat"><i class="fr">消息记录</i><span class="xiaoxi_bj fr"></span></a></div><textarea disabled="" class="xiaoxi_text xiaoxi_text_none" cols="" rows="" name=""></textarea><div class="xiaoxi_btn clearfloat"><button class="contacts_null send fr send_none" a="0">发送</button></div></div></div><div class="tj_swiper_wrap_div fl" style=""><ul class="font_inner_ul" style="top: 0px;"><li></li></ul></div><div class="fl auto_reply_hover about"><span class="auto_reply_img"></span></div><div class="about auto_reply_tan" style="display: none;"><div class="fl auto_reply_hover about"><span class="auto_reply_img"></span></div><ul id="auto_reply_tan_ul" class="auto_reply_tan_ul"><li><span class="text_reply">您好，请问几人入住呢？</span><!--<span class="reply_x"></span>--></li><li><span class="text_reply">抱歉，您看中的房源已经订出去了。</span><!--<span class="reply_x"></span>--></li><li><span class="text_reply" title="抱歉，蚂蚁禁止透露联系方式，您预订成功后蚂蚁会自动把我的联系方式发送给您。">抱歉，蚂蚁禁止透露联系方式，您预订成功后蚂蚁会自动把我的...</span><!--<span class="reply_x"></span>--></li><li><span class="text_reply">照片都是实地拍摄的，请放心下单。</span><!--<span class="reply_x"></span>--></li></ul></div><div class="fl auto_reply_hover about"><span class="auto_reply_img"></span></div></div></div>
+	<!-- <a class='IM_btn' style='display:none;' href='javascript:;' _mayi_rp="webaround|other|online"><span class='IM_btn_span' ><i style="display:none;">0</i></span>在线聊天</a> -->
+	<div class="im_sfz_tan" style="display: none;">
+		<span></span>
+		<img src="" alt="">
+	</div>
+	
+	<!--弹窗start-->
+	<div class="abnormal-tips-wrapper">
+        <div class="abnormal-tips" style="display: none;position: fixed;left: 50%;top: 50%;z-index: 1001;margin-left: -243px;margin-top: -141px;width: 486px;height: 282px;background: #fff;">
+            <div class="abnormal-tips-title" style="box-sizing: border-box;position: relative;height: 60px;line-height: 60px;text-align: center;border: 1px solid #DCDEE0;border-top-left-radius: 3px;border-top-right-radius: 3px;font-size: 18px;color: #5E646B;">
+                <span>异常提示</span>
+                <div class="abnormal-tips-close" style="position: absolute;top: 20px;right: 30px;width: 19px;height: 19px;background: url(&#39;//staticnew.mayi.com/resourcesWeb/im1/images/close.png&#39;) no-repeat center;cursor: pointer;">
+                </div>
+            </div>
+            <div class="abnormal-tips-content" style="padding: 0 48px;">
+                <div id="messageError" class="abnormal-tips-text" style="padding: 50px 0;line-height: 22px;text-align: center;font-size: 16px;color: #2B2F33;">在线聊天登录失败，请点击重新打开或刷新页面后重试</div>
+                <div class="abnormal-tips-btn" style="font-size: 0;">
+                   <div class="abnormal-tips-btn-close" style="display: inline-block;box-sizing: border-box;width: 180px;height: 50px;line-height: 50px;margin-right: 30px;text-align: center;border: 1px solid #B4B9BF;border-radius: 3px;font-size: 18px;color: #5E646B;cursor: pointer;">关闭</div>
+                   <div class="abnormal-tips-btn-open" style="display: inline-block;box-sizing: border-box;width: 180px;height: 50px;line-height: 50px;text-align: center;border: 1px solid #3EB382;border-radius: 3px;font-size: 18px;color: #3EB382;cursor: pointer;">重新打开</div>
+                </div>
+            </div>
+        </div>
+        <div class="abnormal-tips-mask" style="display: none;position: fixed;left: 0;top: 0;z-index: 1000;width: 100%;height: 100%;opacity: 0.7;background: #000000;"></div>
+    </div>
+	<!--弹窗end-->
+	
+	
+<style>
+.im_sfz_tan{
+	position:fixed;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.6);
+	z-index: 1000001;
+	line-height:100%;
+	text-align: center;
+	display:none;
+	
+}
+.im_sfz_tan span{
+	display:inline-block;
+	height:100%;
+	vertical-align:middle;
+}
+.im_sfz_tan img{
+	display:inline;
+	max-width:1190px;
+	max-height:700px;
+	min-width:600px;
+	min-height:220px;
+	vertical-align: middle;
+	border:10px solid #fff;
+}
+</style>
+
+	<div style="" class="Online_btn">
+    	<span class="border-left"></span>
+         <a href="javascript:void(0)" id="live800iconlink" _mayi_rp="room|sem_contact|message"><img border="0" onclick="" src="/shoucang/5635PVPKQGH6CND3UTE6WAYHLUXAXB.jpg" id="live800icon" name="live800icon"></a>
+    </div>
+	<!-- Header END -->
+	
+	<!-- Content -->
+	<div class="main">
+		<ul class="breadcrumb clearfix">
+			<li><a href="">我是房客</a> <span class="divider">》</span></li>
+			<li>我的收藏</li>
+		</ul>
+		<div class="personalCenter clearfix">
+			<!-- Center-sidebar -->
+<ul class="center-sidebar">
+			<li><a href="">订单管理<span class="ddgl"></span></a></li>
+		<li><a href="">消息通知<span class="xxtz"></span></a></li>
+		<li><a href="">账户管理<span class="zhgl"></span></a></li>
+		<li><a class="slideactive" href="">我的收藏<span class="save_Li save_Li_hover"></span></a></li>
+	
+</ul>
+
+	        <!-- Center-sidebar END -->
+	        <div class="centerCon">
+				<ul class="centerTab">
+					<li class="active">我的收藏</li>
+				</ul>
+				<div class="accountMt save_parent clearfix">
+
+					<!--我的收藏页面开始-->
+						<!--如果有收藏-->
+					<div id="save_parent">
+					<!--如果没有收藏页面-->
+					<div id="no_save">
+						您还没有收藏
+					</div>
+					<!--我的收藏页面结束-->		
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Content END -->
+</div>	
+	
+	<!-- Footer -->
+<script type="text/javascript" src="/shoucang/layer.min.js.下载"></script>
+<script type="text/javascript" src="/shoucang/jQuery.md5.js.下载"></script>
+<script type="text/javascript" src="/shoucang/login.js.下载"></script>
+
+
+<div class="foot index-foot clearfloat">
+	<div class="w1190 pb20 clearfloat">
+        	<div class="link_end">
+    <p class="t-center f12 c777776">客户服务：400-028-6868 |<a href="" target="_blank" class="c777776">&nbsp;帮助中心&nbsp;|</a><a href="http://www.mayi.com/aboutcompany/" target="_blank" class="c777776">&nbsp;公司信息&nbsp;|</a><a href="http://www.mayi.com/sitemap" target="_blank" class="c777776">&nbsp;网站地图&nbsp;|</a><a href="http://www.mayi.com/activity/app50" target="_blank" class="c777776">&nbsp;app下载&nbsp;|</a>关注我们
+        <span class="mr10 cursorpt showinfo relave" style="display:inline-block;vertical-align:middle;">
+            <img src="/shoucang/weixin_logo_s.png">
+            <img src="/shoucang/weixin.jpg" class="head_pop absot" style="bottom:24px;left:-32px;">
+        </span>
+        <span class="cursorpt" style="display:inline-block;vertical-align:middle;">
+            <img src="./shoucang/xinlang_logo_s.png" onclick="sinaWeibo();">
+        </span>
+    </p>
+    <!--公司切换-->
+    <p class="t-center f12 c777776">网站备案/许可证号：京ICP备12051504号-1 <a class="c777776" href="" target="_blank">营业执照编号：105259760</a> 易云游网络技术（北京）有限公司</p>
+    <!--<p class="t-center f12 c777776">网站备案/许可证号：京ICP证130021号 北京裕山阳科技发展有限公司</p>-->
+    <!--<p class="t-center f12 c777776">网站备案/许可证号：京ICP证130021号  北京裕山阳科技发展有限公司  公司地址：北京市海淀区上地三街金隅嘉华大厦D座</p>-->
+    <!--<p class="t-center f12 c777776">京公网安备11010802018218号</p>-->
+</div>
+     </div>
+</div>
+<!--[statistics start]-->
+	<!-- Footer END -->
+<!-- 登录弹窗 -->
+<div class="loginbox" id="loginboxdiv" nexturl="none" name="loginboxdiv" style="display:none;">
+	<a class="login-colse" id="loginclose" name="loginclose" onclick="" href="javascript:void(0)"></a>
+    <div class="login-ways clearfloat">
+    	<div class="fl phone-account">
+            <ul class="c322c27 clearfloat f18">
+                <li class="phoneway_current" id="changeloginbyma">手机验证码登录</li>
+                <li class="mayiway" id="changeloginbyup">帐号密码登录</li>
+            </ul>
+            <div class="login-phone-account">
+            	<!-- 手机登陆 -->		
+                <div class="login-input" id="loginbymadiv" name="loginbymadiv">
+	            	<input type="hidden" id="li_num" value="0">
+	            	<input type="hidden" id="code_num" value="86">
+	                <div class="input">
+	                    <span class="phone-icon"></span>
+	                    <input class="dlargeinput" type="text" id="loginmobile" name="loginmobile" placeholder="手机号" value="" onafterpaste="mobileRepAndSetPos(this,/[^\d.]/g,&#39;&#39;)" onkeyup="mobileRepAndSetPos(this,/[^\d.]/g,&#39;&#39;)" maxlength="11">
+	                    <div class="choice_phone_type">
+							<i code="86">+86</i>
+							<span class="UP_down choice_nation_open"></span>
+						</div>
+	                </div>
+	                <div class="nation_list">
+						<ul class="continent_list">
+							<li class="">亚洲</li>
+							<li class="">欧洲</li>
+							<li class="">美洲</li>
+							<li class="">大洋洲</li>
+						</ul>
+						<ul class="nation_tel_list">
+							<!-- countrycode window-->
+							<li style="display: block;">
+	<a href="javascript:void(0);" value="86">中国大陆&nbsp;&nbsp;+86</a>
+	<a href="javascript:void(0);" value="82">韩国&nbsp;&nbsp;+82</a>
+	<a href="javascript:void(0);" value="60">马来西亚&nbsp;&nbsp;+60</a>
+	<a href="javascript:void(0);" value="81">日本&nbsp;&nbsp;+81</a>
+	<a href="javascript:void(0);" value="66">泰国&nbsp;&nbsp;+66</a>
+	<a href="javascript:void(0);" value="65">新加坡&nbsp;&nbsp;+65</a>
+	<a href="javascript:void(0);" value="91">印度&nbsp;&nbsp;+91</a>
+	<a href="javascript:void(0);" value="62">印度尼西亚&nbsp;&nbsp;+62</a>
+	<a href="javascript:void(0);" value="84">越南&nbsp;&nbsp;+84</a>
+	<a href="javascript:void(0);" value="853">中国澳门&nbsp;&nbsp;+853</a>
+	<a href="javascript:void(0);" value="852">中国香港&nbsp;&nbsp;+852</a>
+	<a href="javascript:void(0);" value="886">中国台湾&nbsp;&nbsp;+886</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="49">德国&nbsp;&nbsp;+49</a>
+	<a href="javascript:void(0);" value="7">俄罗斯&nbsp;&nbsp;+7</a>
+	<a href="javascript:void(0);" value="33">法国&nbsp;&nbsp;+33</a>
+	<a href="javascript:void(0);" value="380">乌克兰&nbsp;&nbsp;+380</a>
+	<a href="javascript:void(0);" value="34">西班牙&nbsp;&nbsp;+34</a>
+	<a href="javascript:void(0);" value="39">意大利&nbsp;&nbsp;+39</a>
+	<a href="javascript:void(0);" value="44">英国&nbsp;&nbsp;+44</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="55">巴西&nbsp;&nbsp;+55</a>
+	<a href="javascript:void(0);" value="1">加拿大&nbsp;&nbsp;+1</a>
+	<a href="javascript:void(0);" value="1">美国&nbsp;&nbsp;+1</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="61">澳大利亚&nbsp;&nbsp;+61</a>
+	<a href="javascript:void(0);" value="64">新西兰&nbsp;&nbsp;+64</a>
+</li>						</ul>
+					</div>
+	                <div class="largeinputbox small-top clearfix">
+	                    <div class="dinput fl">
+	                        <span class="verification-icon"></span>
+	                        <input class="dsmallinput" type="text" id="imagecode" placeholder="图形验证码" value="">
+	                    </div>
+	                    <div class="yz-code fr">
+	                          <img src="http://www.mayi.com/user/tenant/mycollection" id="loginauthimage" title="点击刷新">
+	                    </div>
+	                </div>
+	                <div class="largeinputbox small-top clearfix" id="maerrordiv">
+	                    <div class="dinput fl" id="maerrordiv">
+	                        <span class="password-icon"></span>
+	                        <input class="dsmallinput" type="text" id="loginphonecode" name="loginphonecode" placeholder="短信验证码" value="">
+	                    </div>
+	                    <div class="yz-code fr">
+	                        <input class="sendnumber defaultsend" type="button" id="getloginphonecode" name="getloginphonecode" value="获取验证码">
+	                    </div>
+	                </div>
+	                <div class="logincheckbox large-top clearfix">
+	                    <label class="fl">
+	                        <input class="selectcheckbox" type="checkbox" name="rememberloginstate" checked="checked" value="">自动登录
+	                    </label>				
+	                </div>	
+	                <div class="logincheckbox large-top clearfix"><font>未注册的手机号将自动创建为蚂蚁短租帐户</font></div>
+	                <div class="btn-wrap btnpdt20">
+	                    <a href="javascript:void(0)" id="loginbymado">登录</a>
+	                </div>
+            	</div>
+            	<!-- 手机登陆 end  -->	
+            	<!-- 密码登陆 start -->
+	            <div class="login-input" id="loginbyupdiv" name="loginbyupdiv" style="display:none;">
+	            	<input type="hidden" id="li_num_1" value="0">
+	            	<input type="hidden" id="code_num_1" value="86">
+	                <div class="input">
+	                    <span class="user-icon"></span>
+	                    <input class="dlargeinput" type="text" id="loginnamein" name="loginnamein" placeholder="手机号/邮箱/账号" value="" autocomplete="off">
+	                	<div class="choice_phone_type_1">
+							<i tag="CN" code="86">+86</i>
+							<span class="UP_down choice_nation_open"></span>
+						</div>
+	                </div>
+	                <div class="nation_list_1">
+						<ul class="continent_list_1">
+							<li class="">亚洲</li>
+							<li class="">欧洲</li>
+							<li class="">美洲</li>
+							<li class="">大洋洲</li>
+						</ul>
+						<ul class="nation_tel_list_1">
+							<!-- countrycode window-->
+<li style="display: block;">
+	<a href="javascript:void(0);" value="86">中国大陆&nbsp;&nbsp;+86</a>
+	<a href="javascript:void(0);" value="82">韩国&nbsp;&nbsp;+82</a>
+	<a href="javascript:void(0);" value="60">马来西亚&nbsp;&nbsp;+60</a>
+	<a href="javascript:void(0);" value="81">日本&nbsp;&nbsp;+81</a>
+	<a href="javascript:void(0);" value="66">泰国&nbsp;&nbsp;+66</a>
+	<a href="javascript:void(0);" value="65">新加坡&nbsp;&nbsp;+65</a>
+	<a href="javascript:void(0);" value="91">印度&nbsp;&nbsp;+91</a>
+	<a href="javascript:void(0);" value="62">印度尼西亚&nbsp;&nbsp;+62</a>
+	<a href="javascript:void(0);" value="84">越南&nbsp;&nbsp;+84</a>
+	<a href="javascript:void(0);" value="853">中国澳门&nbsp;&nbsp;+853</a>
+	<a href="javascript:void(0);" value="852">中国香港&nbsp;&nbsp;+852</a>
+	<a href="javascript:void(0);" value="886">中国台湾&nbsp;&nbsp;+886</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="49">德国&nbsp;&nbsp;+49</a>
+	<a href="javascript:void(0);" value="7">俄罗斯&nbsp;&nbsp;+7</a>
+	<a href="javascript:void(0);" value="33">法国&nbsp;&nbsp;+33</a>
+	<a href="javascript:void(0);" value="380">乌克兰&nbsp;&nbsp;+380</a>
+	<a href="javascript:void(0);" value="34">西班牙&nbsp;&nbsp;+34</a>
+	<a href="javascript:void(0);" value="39">意大利&nbsp;&nbsp;+39</a>
+	<a href="javascript:void(0);" value="44">英国&nbsp;&nbsp;+44</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="55">巴西&nbsp;&nbsp;+55</a>
+	<a href="javascript:void(0);" value="1">加拿大&nbsp;&nbsp;+1</a>
+	<a href="javascript:void(0);" value="1">美国&nbsp;&nbsp;+1</a>
+</li>
+<li style="display: none;">
+	<a href="javascript:void(0);" value="61">澳大利亚&nbsp;&nbsp;+61</a>
+	<a href="javascript:void(0);" value="64">新西兰&nbsp;&nbsp;+64</a>
+</li>						</ul>
+					</div>
+	                <div class="input small-top">
+	                    <span class="password-icon"></span>
+	                    <input class="dlargeinput" type="password" id="loginpassin" name="loginpassin" placeholder="密码" value="">
+	                </div>
+	                <div class="largeinputbox small-top clearfix" id="uperrordiv">
+	                    <div class="dinput fl" id="yui_3_5_1_1_1434542056373_108">
+	                        <span class="verification-icon"></span>
+	                        <input type="text" class="dsmallinput" id="imagecode1" placeholder="图形验证码" value="">
+	                    </div>
+	                    <div class="yz-code fr">
+	                          <img src="http://www.mayi.com/user/tenant/mycollection" id="loginauthimage1" title="点击刷新">
+	                    </div>
+	                </div>
+	                <div class="logincheckbox large-top clearfix">
+	                    <label class="fl">
+	                        <input class="selectcheckbox" type="checkbox" name="rememberpass" checked="checked" value="">自动登录
+	                    </label>				
+	                </div>	
+	                <div class="btn-wrap btnpdt20">
+	                    <a href="javascript:void(0)" id="loginbyupdo" _mayi_rp="web|condition|loginc">登录</a>
+	                </div>
+	                <p class="otherwaytitle mt20">没有账号密码请 <a href="javascript:void(0)" id="changeloginbymwa">使用手机验证码登录</a></p>
+	            </div>
+	            <!-- 密码登陆 end -->
+            </div>
+        </div>
+  
+    </div>
+</div>	
+<!-- 登录弹窗 END --> 
+<!--公共尾部结束-->
+<script type="text/javascript" src="/shoucang/layer.min.js.下载"></script>
+<script type="text/javascript" src="/shoucang/jQuery.md5.js.下载"></script>
+<script type="text/javascript" src="/shoucang/loginpc.js.下载"></script>
+
+
+<style type="text/css">
+.email{ position:fixed; bottom:0px; right:0px; width:190px; height:35px; line-height:35px; background:#e8e8e8; border:1px #CCCCCC solid; border-right:none; z-index:400000000;}
+.email a{ padding-left:10px; float:left; font-weight:normal; font-family:"宋体"; font-size:12px; width:120px; box-shadow:1px 0px 0px 0px #ccc; border-right:1px #fff solid;}
+.email a img{ margin:12px 3px 0px 0px; float:left; width:16px; height:12px;}
+.imjs-status{color:#55aa39 !important}
+#webIM ul.tab-im .offline-icon,#webIM ul.tab-im .online-icon{background-position:0 !important}
+#webIM .all-list a.on, #webIM .all-list a.off{background-position:-239px -297px !important;color:#2883C3 !important}
+#webIM ul.tab-im a{color:#2883C3 !important}
+</style> 
+<script src="./shoucang/wb.js.下载" type="text/javascript" charset="utf-8"></script>
+<!-- load statistics js -->
+<!--[statistics start]-->
+<!-- load End-->
+<script>
+var lock = false;
+function cancelColl(roomid){
+	if(roomid!=''){
+		var ctx = $('#ctx').val();
+		$.ajax({
+			url:ctx+'/user/tenant/setCollection?roomid='+roomid+'&state=2',
+			type:'POST',
+			dataType:'json',
+			success:function(data){
+				if(data==1){
+					window.location.href=window.location.href;
+				}else{
+					alert('取消收藏失败！');
+				}
+			},	
+			 error: function() {
+            	alert("请求异常，请稍后再试！");
+              	window.location.href=window.location.href;  
+            }
+		});
+	}else{
+		alert('房间ID为空！');
+	}
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" charset="UTF-8" src="./shoucang/online"></script><div><div class="qimo_chatpup" id="qimo_chatpup" style="display: none; right: 18px; bottom: 0px; width: 355px; height: 500px;"><iframe id="chatIframe" src="./shoucang/moor_chat.html" height="100%" width="100%"></iframe><div id="maskChat"></div></div><div id="chatBtn" class="chatBtn" style="display: none; right: 18px; z-index: -100; background-color: rgb(25, 202, 166); border-radius: 5px 5px 0px 0px; bottom: -1px; padding: 8px 10px;"><img width="25px" height="25px" src="./shoucang/1.png" style="margin: 0px 5px -6px 0px;"><span>咨询客服</span><span id="qimo_badge"></span></div><div id="qimo_showNewMsg" class="qimo_showNewMsg" style="display: none; "><div id="qimo_showNewMsg_box" class="qimo_showNewMsg_box"><div id="qimo_showNewMsg_title_box" class="qimo_showNewMsg_title_box"><img src="./shoucang/agentLogo.png"><span id="qimo_showNewMsg_title" class="qimo_showNewMsg_title"></span></div> <div id="qimo_showNewMsg_content" class="qimo_showNewMsg_content"></div></div><span id="qimo_showNewMsg_close" class="qimo_showNewMsg_close">x</span></div></div><script type="text/javascript" charset="UTF-8" src="./shoucang/online(1)"></script><div><div class="qimo_inviteBox" id="qimo_inviteBox" style="display: none; right: 10px; bottom: 10px; background: rgb(63, 184, 253);"><img class="qimo_invite_close" id="qimo_invite_close" src="./shoucang/invite-close.png"><div class="qimo_inviteBox_top"><div class="qimo_inviteBox_top_img" id="qimo_inviteBox_top_img"><img id="qimo_inviteBox_img" src="./shoucang/896beb70-d81a-11e7-b6e7-9da891414b0f.png"></div><div class="qimo_inviteBox_top_right" id="qimo_inviteBox_top_right"><p id="qimo_inviteBox_InviteWords">欢迎咨询，请问有什么可以帮您的吗？</p><div class="qimo_inviteBox_top_button" id="qimo_inviteBox_top_button"><div id="invite_click_button_1" class="divbuttons msie11PadTop" style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255);">立即咨询</div><div id="invite_click_button_2" class="divbuttons msie11PadTop" style="color: rgb(255, 255, 255); border-color: rgb(255, 255, 255);">以后再说</div></div></div></div><div class="qimo_inviteBox_bottom"><textarea id="sendInviteText" placeholder="请输入您想要输入的内容..." rows="2"></textarea><div id="sendInviteContent" class="sendInviteContent msie11PadTop" style="background: rgb(63, 184, 253);">发送</div></div></div></div><div><div class="qimo_screenpop" id="qimo_screenpop" style="display: none"><div class="screendragbar" id="screendrag"></div><div class="qimo_headerimg" id="qimo_headerimg"><div class="screenminimg" style="display: none" id="screenminimg"><img src="./shoucang/small.png"></div><div class="screenminimg" id="screenmaximg"><img src="./shoucang/big.png"></div><div class="screenminimg" id="screencloseimg"><img src="./shoucang/close(1).png" style="width: 16px;height: 16px;"></div></div> <div id="mask"></div><iframe id="screenIframe" src="./shoucang/saved_resource.html" height="100%" width="100%" allow="microphone; camera"></iframe></div></div><div><div class="qimo_videopup" id="qimo_videopup" style="display: none"><div style="" class="dragbar" id="drag"></div><div class="qimo_minimg" id="qimo_minimg"><img src="./shoucang/small.png"></div><img src="./shoucang/big.png" class="qimo_maximg" id="qimo_maximg" style="display: none"> <div id="mask"></div><iframe id="videoIframe" src="./shoucang/saved_resource(1).html" height="100%" width="100%" allow="microphone; camera"></iframe></div></div></body></html>

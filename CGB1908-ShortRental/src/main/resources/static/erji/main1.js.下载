@@ -1,0 +1,446 @@
+//JavaScript Document
+/*2014-12-23*/
+/*热门城市+友情链接*/
+$(document).ready(function(){
+	$("#close").click(function(){
+		$("#close-city").show();
+		$("#open").show();
+		$("#close").hide();
+	});
+});
+$(document).ready(function(){
+	$("#open").click(function(){
+		$("#close-city").hide();
+		$("#open").hide();
+		$("#close").show();
+	});
+});
+
+/* 城市精品房源推荐轮播 */
+$.fn.infiniteCarousel = function () {
+	
+	var cityId = $("#cityid").val();
+	$.ajax({
+        url: "/web/search/getJingPinRoomByCity",
+        type: "POST",
+        data: {cityId: cityId},
+        dataType: 'json',
+        success: function(data) {
+            if (data.status == "1") {
+            	var specialDataList = data.data;
+            	/* 精品房源数量超过30个以上 按30个轮播 */
+            	if (specialDataList && specialDataList.length >= 3) {
+            		var size = specialDataList.length >= 30 ? 30 : specialDataList.length;
+            		// 去除不是3的倍数个
+            		size = parseInt(size/3)*3;
+            		$(".infiniteCarousel ul").html("");
+            		var content = "";
+            		for (var i = 0; i < size; i ++) {
+            			var entity = specialDataList[i];
+            			content += "<li class='cloned'>";
+            			content += "<a href='/room/" + entity.objid + "' target='_blank'></a>";
+            			content += "<img src='" + entity.imgurlwap + "' alt='" + entity.title + "' />";
+            			content += "<p class='p-tit'>" + entity.title + "</p>";
+            			content += "<p class='ff3d4b f16 mt10'><span class='f12'>¥</span>" + entity.price + "</p>";
+            			content += "<p class='f12 mt10'>";
+            			/*
+            			if (entity.ratingscore && entity.ratingscore != "0.0" && entity.commentnum && entity.commentnum > 4) {
+            				content += "<span class='c22bb62'>" + entity.ratingscore + "分·</span>";
+            			}
+            			*/
+            			if (entity.commentnum && entity.commentnum != 0) {
+            				content += entity.commentnum + "条评论·";
+            			}
+            			if (entity.bedroomnum) {
+            				content += entity.bedroomnum + "居·";
+            			}
+            			if (entity.guestnum) {
+            				content += "可住" + entity.guestnum + "人";
+            			}
+            			content += "</p></li></ul></div></div></div>";
+            		}
+            		$(".infiniteCarousel ul").html(content);
+            		$("#wrap-list").children("div").show();
+            		$(".infiniteCarousel").toHandle();
+            	} else {
+            		$("#wrap-list").css("margin-bottom", "0px");
+            	}
+            } else if (data.status == '0') {
+                return;
+            }
+        }
+    });
+};
+
+$.fn.toHandle = function () {
+	
+	function repeat(str, num) {
+		return new Array( num + 1 ).join( str );
+	}
+	
+	var $wrapper = $('> div', this).css('overflow', 'hidden'),
+	$slider = $wrapper.find('> ul'),
+	$items = $slider.find('> li'),
+	$single = $items.filter(':first'),
+
+	singleWidth = $single.outerWidth(), 
+	visible = Math.ceil($wrapper.innerWidth() / singleWidth),
+	currentPage = 1,
+	pages = Math.ceil($items.length / visible);            
+
+	// 1. Pad so that 'visible' number will always be seen, otherwise create empty items
+	if (($items.length % visible) != 0) {
+		$slider.append(repeat('<li class="empty" />', visible - ($items.length % visible)));
+		$items = $slider.find('> li');
+	}
+
+	// 2. Top and tail the list with 'visible' number of items, top has the last section, and tail has the first
+	$items.filter(':first').before($items.slice(- visible).clone().addClass('cloned'));
+	$items.filter(':last').after($items.slice(0, visible).clone().addClass('cloned'));
+	$items = $slider.find('> li'); // reselect
+
+	// 3. Set the left position to the first 'real' item
+	$wrapper.scrollLeft(singleWidth * visible);
+
+	// 4. paging function
+	function gotoPage(page) {
+		var dir = page < currentPage ? -1 : 1,
+				n = Math.abs(currentPage - page),
+				left = singleWidth * dir * visible * n;
+
+		$wrapper.filter(':not(:animated)').animate({
+			scrollLeft : '+=' + left
+		}, 500, function () {
+			if (page == 0) {
+				$wrapper.scrollLeft(singleWidth * visible * pages);
+				page = pages;
+			} else if (page > pages) {
+				$wrapper.scrollLeft(singleWidth * visible);
+				// reset back to start position
+				page = 1;
+			} 
+
+			currentPage = page;
+		});                
+
+		return false;
+	}
+
+	$wrapper.after('<a class="arrow back"/><a class="arrow forward"/>');
+
+	// 5. Bind to the forward and back buttons
+	$('a.back', this).click(function () {
+		return gotoPage(currentPage - 1);                
+	});
+
+	$('a.forward', this).click(function () {
+		return gotoPage(currentPage + 1);
+	});
+
+	// create a public interface to move to a specific page
+	$(this).bind('goto', function (event, page) {
+		gotoPage(page);
+	});
+}
+
+$(document).ready(function () {
+	$('.infiniteCarousel').infiniteCarousel();
+});
+
+
+/*首页广告按钮*/
+function onLeave(){
+	$('.nivo-directionNav').hide();
+}
+
+function onCheck(){
+	$('.nivo-directionNav').show();
+}
+
+/*列表位置区域12.5*/
+$(function() {
+	$('.item a').each(
+			function(i) {
+				$(this).mouseover(
+					
+						function(){
+//							console.log(i)
+							//$(this).addClass('on_hover').parent().siblings().children().removeClass('on_hover');
+							//$(this).addClass('on_hover').siblings().removeClass('on_hover');
+							if($(this).attr("class")){
+								if($(this).attr("class").indexOf(" on ")>-1){
+									$(this).find("i").addClass('i-hover');
+								}
+							}
+						}).mouseleave(function(){
+							//$(this).removeClass('on_hover');
+							if($(this).attr("class")){
+								if($(this).attr("class").indexOf(" on ")>-1){
+									$(this).find("i").removeClass('i-hover');
+								}	
+							}
+						});
+				$(this).click(
+						function(){
+							$(this).addClass('font-bold').parent().siblings().children().removeClass('font-bold');
+							$(this).addClass('on_hover');
+							$(this).addClass('font-bold').siblings().removeClass('font-bold');
+							$("#mited").removeClass('font-bold');
+						});
+			});
+	$('.lever a').each(
+			function(i) {
+				$(this).mouseover(
+						function(){
+							$(this).addClass('le-hover').parent().siblings().children().removeClass('le-hover');
+							$(this).addClass('le-hover').siblings().removeClass('le-hover');
+						}).mouseleave(function(){
+							$(this).removeClass('le-hover');
+						});
+				$(this).click(function(){
+							$(this).addClass('font-bold').parent().siblings().children().removeClass('font-bold');
+							var name = $(this).addClass('font-bold').parent().attr("class");
+							name = name.substring(name.indexOf("result-")+7,name.length);
+							$(".search-"+name).addClass("font-bold").parent().siblings().children().removeClass("font-bold");
+							$(this).addClass('font-bold').siblings().removeClass('font-bold');
+						});
+			});
+});
+
+$(document).ready(function(){
+//	$(".position_choose .add a").mouseover(function(){
+//		$(this).addClass("font-bold on_hover addOn");
+//		$(this).closest(".add").siblings().find('a').removeClass("font-bold on_hover addOn");
+//	})
+	$(".search-area").mouseover(function(){
+		$(".search-area").addClass("font-bold on_hover addOn");
+		$(".result-area").show();
+		var le_on = $(".area.le-on");
+		if(le_on.length == 1){
+			var num = le_on.attr("linenum");
+			$('.two-subarea').hide();
+			$('.two-subarea.' + num).show();
+		}else{
+			$($(".area").get(0)).addClass("font-bold");
+			$('.two-subarea').hide();
+			$('.two-subarea.0').show();
+		}
+		
+		$(".result-business").hide();
+		$(".result-scenic").hide();
+		$(".result-traffic").hide();
+		$(".result-metro").hide();
+		$(".result-school").hide(); 
+		$(".result-hospital").hide(); 
+	}).mouseleave(function(){
+		$('.result-area').hover(function(){
+			$(this).show();
+			$(".search-area").addClass("font-bold on_hover addOn");
+			if($('.search-area').attr("class").indexOf(" on ")>-1){
+				$('.search-area').find("i").addClass('i-hover');
+			}
+		}, function(){
+			$(this).hide();
+			$(".search-area").removeClass("font-bold on_hover addOn");
+			$(".result-area a").removeClass("font-bold");
+			if($('.search-area').attr("class").indexOf(" on ")>-1){
+				$('.search-area').find("i").removeClass('i-hover');
+			}
+		});		
+		$(".result-area").hide();
+		$(this).removeClass("font-bold on_hover addOn");
+		$(this).find("i").removeClass('i-hover');
+	});
+
+	$(".search-business").mouseover(function(){
+		$(".search-business").addClass("font-bold on_hover addOn");
+		$(".result-area").hide();
+		$(".result-business").show();
+		$(".result-scenic").hide();
+		$(".result-traffic").hide();
+		$(".result-metro").hide();
+		$(".result-school").hide(); 
+		$(".result-hospital").hide(); 
+	}).mouseleave(function(){
+		$('.result-business').hover(function(){
+			$(this).show();
+			$(".search-business").addClass("font-bold on_hover addOn");
+			if($('.search-business').attr("class").indexOf(" on ")>-1){
+				$('.search-business').find("i").addClass('i-hover');
+			}
+		}, function(){
+			$(this).hide();
+			$(".search-business").removeClass("font-bold on_hover addOn");
+			if($('.search-business').attr("class").indexOf(" on ")>-1){
+				$('.search-business').find("i").removeClass('i-hover');
+			}
+		});		
+		$(".result-business").hide();
+		$(this).removeClass("font-bold on_hover addOn");
+		$(this).find("i").removeClass('i-hover');
+	});
+
+	$(".search-scenic").mouseover(function(){
+		$(".search-scenic").addClass("font-bold on_hover addOn");
+		$(".result-area").hide();
+		$(".result-business").hide();
+		$(".result-scenic").show();
+		$(".result-traffic").hide();
+		$(".result-metro").hide();
+		$(".result-school").hide(); 
+		$(".result-hospital").hide(); 
+	}).mouseleave(function(){
+		$('.result-scenic').hover(function(){
+			$(this).show();
+			$(".search-scenic").addClass("font-bold on_hover addOn");
+			if($('.search-scenic').attr("class").indexOf(" on ")>-1){
+				$('.search-scenic').find("i").addClass('i-hover');
+			}
+		}, function(){
+			$(this).hide();
+			$(".search-scenic").removeClass("font-bold on_hover addOn");
+			if($('.search-scenic').attr("class").indexOf(" on ")>-1){
+				$('.search-scenic').find("i").removeClass('i-hover');
+			}
+		});		
+		$(".result-scenic").hide();
+		$(this).removeClass("font-bold on_hover addOn");
+		$(this).find("i").removeClass('i-hover');
+	});
+
+	$(".search-traffic").mouseover(function(){
+		$(".search-traffic").addClass("font-bold on_hover addOn");
+		$(".result-area").hide();
+		$(".result-business").hide();
+		$(".result-scenic").hide();
+		$(".result-traffic").show();
+		$(".result-metro").hide();
+		$(".result-school").hide(); 
+		$(".result-hospital").hide(); 
+	}).mouseleave(function(){
+		$('.result-traffic').hover(function(){
+			$(this).show();
+			$(".search-traffic").addClass("font-bold on_hover addOn");
+			if($('.search-traffic').attr("class").indexOf(" on ")>-1){
+				$('.search-traffic').find("i").addClass('i-hover');
+			}
+		}, function(){
+			$(this).hide();
+			$(".search-traffic").removeClass("font-bold on_hover addOn");
+			if($('.search-traffic').attr("class").indexOf(" on ")>-1){
+				$('.search-traffic').find("i").removeClass('i-hover');
+			}
+		});		
+		$(".result-traffic").hide();
+		$(this).removeClass("font-bold on_hover addOn");
+		$(this).find("i").removeClass('i-hover');
+	});
+
+	$(".search-school").mouseover(function(){
+		$(".search-school").addClass("font-bold on_hover addOn");
+		$(".result-area").hide();
+		$(".result-business").hide();
+		$(".result-scenic").hide();
+		$(".result-traffic").hide();
+		$(".result-metro").hide();
+		$(".result-school").show(); 
+		$(".result-hospital").hide(); 
+	}).mouseleave(function(){
+		$('.result-school').hover(function(){
+			$(this).show();
+			$(".search-school").addClass("font-bold on_hover addOn");
+			if($('.search-school').attr("class").indexOf(" on ")>-1){
+				$('.search-school').find("i").addClass('i-hover');
+			}
+		}, function(){
+			$(this).hide();
+			$(".search-school").removeClass("font-bold on_hover addOn");;
+			if($('.search-school').attr("class").indexOf(" on ")>-1){
+				$('.search-school').find("i").removeClass('i-hover');
+			}
+		});		
+		$(".result-school").hide();
+		$(this).removeClass("font-bold on_hover addOn");
+		$(this).find("i").removeClass('i-hover');
+	});
+
+	$(".search-hospital").mouseover(function(){
+		$(".search-hospital").addClass("font-bold on_hover addOn");
+		$(".result-area").hide();
+		$(".result-business").hide();
+		$(".result-scenic").hide();
+		$(".result-traffic").hide();
+		$(".result-metro").hide(); 
+		$(".result-school").hide(); 
+		$(".result-hospital").show(); 
+	}).mouseleave(function(){
+		$('.result-hospital').hover(function(){
+			$(this).show();
+			$(".search-hospital").addClass("font-bold on_hover addOn");
+			if($('.search-hospital').attr("class").indexOf(" on ")>-1){
+				$('.search-hospital').find("i").addClass('i-hover');
+			}
+		}, function(){
+			$(this).hide();
+			$(".search-hospital").removeClass("font-bold on_hover addOn");
+			if($('.search-hospital').attr("class").indexOf(" on ")>-1){
+				$('.search-hospital').find("i").removeClass('i-hover');
+			}
+		});		
+		$(".result-hospital").hide();
+		$(this).removeClass("font-bold on_hover addOn");
+		$(this).find("i").removeClass('i-hover');
+	});
+
+	$(".search-metro").mouseover(function(){
+		$(".search-metro").addClass("font-bold on_hover addOn");
+		$(".result-metro").show();
+		var le_on = $(".line.le-on");
+		if(le_on.length == 1){
+			var num = le_on.attr("linenum");
+			$('.two-sub').hide();
+			$('.two-sub.' + num).show();
+		}else{
+			$($(".line").get(0)).addClass("font-bold");
+			$('.two-sub').hide();
+			$('.two-sub.0').show();
+		}
+		
+		$(".result-area").hide();
+		$(".result-business").hide();
+		$(".result-scenic").hide();
+		$(".result-traffic").hide();
+		$(".result-school").hide(); 
+		$(".result-hospital").hide(); 
+	}).mouseleave(function(){
+		$('.result-metro').hover(function(){
+			$(this).show();
+			$('.search-metro').addClass("font-bold on_hover addOn");
+			if($('.search-metro').attr("class").indexOf(" on ")>-1){
+				$('.search-metro').find("i").addClass('i-hover');
+			}
+		}, function(){
+			$(this).hide();
+			$(".two_sub").hide();
+			$(".search-metro").removeClass("font-bold on_hover addOn");
+			$(".result-metro a").removeClass("font-bold");
+			if($('.search-metro').attr("class").indexOf(" on ")>-1){
+				$('.search-metro').find("i").removeClass('i-hover');
+			}
+		});		
+		$('.result-metro').hide();
+		$(this).removeClass("font-bold on_hover addOn");
+		$(this).find("i").removeClass('i-hover');
+	});
+
+	$("#mited").click(function(){
+		$("#mited").addClass('font-bold');
+		$(".result-area").hide();
+		$(".result-business").hide();
+		$(".result-scenic").hide();
+		$(".result-traffic").hide();
+		$(".result-metro").hide();
+		$(".result-school").hide(); 
+		$(".result-hospital").hide(); 
+	});
+});

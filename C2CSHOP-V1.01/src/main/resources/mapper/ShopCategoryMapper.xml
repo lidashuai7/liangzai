@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.shop.dao.ShopCategoryDao">
+	<!-- 1.查询所有类目信息 -->
+	<select id="findObjects" resultType="map">
+		select c.*,p.name parentName
+		from shop_categories c left join shop_categories p on c.parentId=p.id
+	</select>
+
+	<!-- 2.根据类目id统计子类目的个数 -->
+	<select id="getChildCount" resultType="int">
+		select count(*) from
+		shop_categories
+		where parentId=#{id}
+	</select>
+
+	<!-- 3.根据id 删除类目 -->
+	<delete id="deleteObject">
+		delete from shop_categories where id=#{id}
+	</delete>
+
+	<!-- 4.获取数据库对应的类目表中的所有类目信息 -->
+	<select id="findZtreeMenuNodes"
+		resultType="com.cy.shop.common.vo.Node">
+		select id,name,parentId
+		from shop_categories
+	</select>
+
+	<!-- 5.新增类目 -->
+	<insert id="insertObject">
+		insert into shop_categories
+		(name,sort,note,parentId,createdTime,modifiedTime)
+		values
+		(#{name},#{sort},#{note},#{parentId},now(),now())
+	</insert>
+
+	<!-- 6.修改类目 -->
+	<update id="updateObject">
+		update shop_categories set
+		name=#{name},
+		sort=#{sort},
+		parentId=#{parentId},
+		modifiedTime=now()
+		where id=#{id}
+	</update>
+
+</mapper>

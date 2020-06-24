@@ -1,0 +1,45 @@
+import win.ui;
+/*DSG{{*/
+var winform = win.form(text="aardio form";right=759;bottom=469)
+winform.add(
+static={cls="static";text="应用中心";left=226;top=53;right=391;bottom=123;transparent=1;z=1}
+)
+/*}}*/
+
+import web.blink.form; //导入miniblink支持库
+var mb = web.blink.form(winform); //创建miniblink浏览器窗口
+
+/*
+只要写到 mb.external里面的本地函数在JS中都可以直接调用。
+*/
+//屏蔽js错误
+mb.noScriptErr = true;
+//屏蔽右键
+mb.showMenu = function(){
+	return false;
+}
+
+mb.external = {
+	
+    
+}
+mb.html = /**
+    <a href='javascript:external.close();'>关闭窗口</a>
+   
+    <div onmousedown='javascript:  
+        external.hitCaption();
+        return false;
+    ' style="-webkit-user-select: none;cursor:default;background:#cce;padding:25px;margin:10px;">拖动窗口</div>
+   
+    <a href='javascript:
+        external.aardioCall("你好,我是miniblink");
+    '>调用aardio函数external.aardioCall()</a>
+    <a href='/dlg/web/main.html'>mai</a>
+**/
+mb.go("\dlg\web\app.html");
+//mb.showDevTools()
+//mb.wait();
+
+winform.show();
+win.loopMessage();
+return winform;

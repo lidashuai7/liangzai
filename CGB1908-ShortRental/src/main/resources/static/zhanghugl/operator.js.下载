@@ -1,0 +1,593 @@
+var chatOption = {
+		sendingMsgSet:new ItemSet(),
+		login:false,
+		chooseContactDivClick:function(node)
+		{ 
+			var chatId = $(node).attr('id').replace('li_','');
+			currChat = contactOption.get(chatId);
+			if(!currChat)
+			{
+				return ;
+			}
+		
+			chatOption.scroll(chatId);
+			var talkId= "contacter_right_"+chatId;  
+			$('#talk_num_'+chatId).attr('num',0).html('0'); 
+			$('#talk_num_'+chatId).hide();
+			chatOption.resetUnReadNum();
+			$('.IM_remind').hide();
+			
+			//FIXME 判断已存在
+			var tnode = document.getElementById(talkId)
+			if( tnode)
+			{
+				
+				//聊天窗口显示
+				$('.p_talk_right').hide();
+				$('.contacter_ul').find('li').removeClass("on");
+				$(node).addClass('on');
+				$('#'+talkId).css('display','block'); 
+				chatWindow.changePrompt(currChat.type); 
+			}
+			else
+			{
+				$('.contacter_ul').find('li').removeClass("on");
+				$(node).addClass('on');
+				//创建聊天窗口
+				chatWindow.createTalkDiv(chatId);
+				//显示
+				$('.p_talk_right').hide();
+				//其他隐藏
+				$('#'+talkId).css('display','block');
+				chatWindow.changePrompt(currChat.type); 
+			}
+			$('#notice_'+chatId).show();
+			
+			 $('.IM_remind').css('display','none');
+			 $('#notice_'+currChat.code).css('display','block');
+			 $('#in_'+chatId).focus();
+			document.onkeydown=function(event){
+				if(!_browser.IE8)
+				{
+				 if (event.ctrlKey && event.keyCode == 13) {
+					if( $('#point').css('display')!='none')
+					{
+						$('#sendbtn_'+chatId).click();
+					}
+				 }
+				}
+		    };
+		},
+		resetUnReadNum:function()
+		{
+			//未读消息数
+			var numbs = $('.talk_num');
+			var total = 0;
+			for(var i=0;i<numbs.length;i++)
+			{
+				total += parseInt($(numbs[i]).attr('num')); 
+			}
+			var nli = $('.IM_btn_span i').attr('num',total)
+			if(total>99)
+			{
+				nli.html('99+'); 
+			}else
+			{
+				nli.html(total); 
+			}
+			 
+			if(total==0)
+			{
+				imTimer.clearInterval(imTimer.oTimer);
+				msgPrompt.clearInterval(msgPrompt.blink);
+				nli.hide(); 
+			}else
+			{
+				imTimer.init();
+				msgPrompt.init();
+			}
+		},
+		delContact:function(node)
+		{
+			var obj = $(node).parents('li');
+			var chatId = $(obj).attr('id').replace('li_','');
+			contactOption.del(chatId);
+			if($(".contacter_ul").find('li').hasClass('on')){
+				var Length = $('.contacter_ul li').length;
+				
+				/*如果删除的是最后一个联系人*/
+				if(obj.index()==Length-1){  
+					/*如果只有一个联系人*/
+					if(Length==1){ 
+						$(obj).remove();
+						chatOption.resetUnReadNum();
+						chatWindow.createContactDiv();
+						return false;
+					} 
+					this.chooseContactDivClick(obj.prev());
+					
+				}else
+				{  
+					this.chooseContactDivClick(obj.next());
+				}
+			}
+			$(obj).remove();
+			chatOption.resetUnReadNum();
+			var talkId= "contacter_right_"+chatId; 
+			$('#'+talkId).css('display','none');
+		},
+		sendText:function(node,type,sMsg,stateN)
+		{ 
+			var cId = $(node).attr('cid');
+			var price = $("#price").val();
+			var roomtitle = $("#roomtitle").val();
+			var mainImageUrl = $("#mainImageUrl").val();
+			if($("#landLordCommentCnt").html() != null){
+                var commentCount = $("#landLordCommentCnt").html().replace(/条/,"");
+			}
+			var commentRate = $("#commentRate").val();
+			var commentRateDesc = $("#commentRateDesc").val();
+			var districtName = $("#districtName").val();
+			if(_browser.IE8)
+			{
+				var record =  $('#record_'+cId);
+				chatWindow.appendWarn(record,'ie8暂不支持站内信功能，请使用其他浏览器或扫码下载手机app<br/><IMG alt="" style="margin-left:100px;" src="http://staticnew.mayi.com/resourcesWeb/v201510/images/commom/app.jpg">',1);
+				return;
+			}
+		
+			var msg = $('#in_'+cId).val();
+			if(type&&(type=='recommend'||type=='replay')||type=='img')
+			{
+				msg = sMsg;
+			} 
+			
+	        if (msg == null || msg.trim().length == 0) 
+	        { 
+	        	var record =  $('#record_'+cId);
+	        	chatWindow.appendWarn(record,"发送内容不能为空。",1);
+	            return;
+	        }
+	        //FIXME 超长 
+	        if(msg.length>400)
+        	{ 
+	        	var record =  $('#record_'+cId);
+	        	chatWindow.appendWarn(record,"发送消息内容超长，请分条发送。",1);
+	        	return;
+        	}
+	        msg= msg.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+	        
+	        if (cId == null) {
+	            return;
+	        }
+	       
+	        var from =$('#MAYIUID').val();
+	        var options = {
+	            to : cId,
+	            msg : msg,
+	            type : "chat",
+	            from:from,
+	            roomId:currChat.room.id
+	        };
+	        options.mtId=new Date().getTime();
+	        var msgType="text";
+	        var replayData = {
+	        		msg:msg
+	        }
+	        if(type&&type=='recommend')
+        	{
+	        	options.msgType='recommend';
+                replayData.msgType='recommend';
+                replayData.id = sMsg;
+                replayData.price = price;
+                replayData.roomtitle = roomtitle;
+                replayData.mainImageUrl = mainImageUrl;
+				replayData.commentCount = commentCount;
+				replayData.commentRate = commentRate;
+				replayData.commentRateDesc = commentRateDesc;
+				replayData.districtName = districtName;
+                replayData.recommendRoom=roomList.get(sMsg);
+        	}
+	        else if(type&&type=='img')
+        	{
+	        	options.msgType='img';
+	        	replayData.msgType='img';
+	        	replayData.msg=sMsg; 
+        	}else
+    		{
+        		options.msgType='text';
+        		replayData.msgType='text';
+    		}
+	         
+
+	        //当前登录人发送的信息在聊天窗口中原样显示
+	        
+	       var stateNode = stateN;
+	       if(!stateNode)
+    	   {
+	    	   stateNode =  chatWindow.appendReplyMsg(cId,replayData); 
+    	   } 	
+	       if(type&&(type=='recommend'||type=='replay'||type=='img'))
+	       {
+	    	  
+	       }else
+    	   {
+	    	   $('#in_'+cId).val('');
+    	   }
+	       if(type)
+    	   {
+	    	   chatOption._send(stateNode,options);
+    	   }
+	       $('#in_'+cId).focus();
+	       
+		},
+		autoReply:function(msg)
+		{
+			if(!currChat)
+			{
+				return ;
+			}
+			var cid= currChat.code;
+			
+			//$('#in_'+cid).val(msg);
+			chatOption.sendText($("#sendbtn_"+cid),'replay',msg);
+		},
+		recommendRoom:function(node)
+		{
+			if(!currChat)
+			{
+				return ;
+			}
+			var cid= currChat.code;
+			var roomId = $(node).attr('data');
+			chatOption.sendText($("#sendbtn_"+cid),'recommend',roomId);
+		},
+		/*聊天始终内容显示最后一条*/
+		scroll:function(cid){
+			var oDiv = $('#contacter_talk_'+cid)[0];
+			if(oDiv){
+				oDiv.scrollTop=oDiv.scrollHeight; 
+			}else
+			{
+			 
+			}
+		}, 
+		_send:function(stateNode,obj)
+		{ 
+			
+			if(!conn.isOpened())
+			{
+				obj.state=-2; //发送失败，服务器异常
+				obj.error="发送失败，服务器异常";
+				chatOption.changeState(stateNode,obj);
+				
+				login(); 
+				if(!conn.isOpened())
+				{
+					// callTimeout(chatOption, chatOption._send,5000, stateNode, obj); 
+					 return;
+				}
+			}
+			if(chatOption.sendingMsgSet.get(obj.mtId)==1)
+			{
+				return;
+			}
+			
+			chatOption.sendingMsgSet.put(obj.mtId,"1");
+			var ctx = $('#ctx').val();
+			
+			var url = ctx+"/im/msg/send"; 
+			$.ajax({
+				url :url,
+				type : 'POST',
+				async:true,
+				data : obj,
+				dataType:'json',
+				timeout: 5000,
+				error: function(data){
+					obj.state=-2; //发送失败，服务器异常
+					obj.error="发送失败，服务器异常";
+					chatOption.changeState(stateNode,obj);
+					chatOption.sendingMsgSet.del(obj.mtId);
+				},
+				success : function(data){
+					if(data.error){
+						obj.state=data.state; //发送失败，服务器异常
+						obj.error=data.error;
+						chatOption.changeState(stateNode,obj);
+						chatOption.sendingMsgSet.del(obj.mtId);
+					}else
+					{
+						//成功发送
+						obj.state=data.state;
+						//easemobwebim-sdk发送文本消息的方法 to为发送给谁，meg为文本消息对象
+						obj.ext=data.data;
+						var options1 = {
+					            to : obj.to,
+					            msg : obj.msg,
+					            type : "chat"
+					        };
+						options1.ext=obj.ext;
+						options1.ext.roomId=""+options1.ext.roomId;
+				        conn.sendTextMessage(options1);   
+						chatOption.changeState(stateNode,obj);
+						chatOption.sendingMsgSet.del(obj.mtId);
+					}
+				}
+			}); 
+		},
+		setMaxMsgId : function(msgId,contact,type)
+	    {
+			var d={'mid':msgId,
+				  "code":contact.code,
+				  'name':contact.name,
+				  'type':contact.type,
+				  'head':contact.head,
+				  'room':contact.room?contact.room.id:0,
+				  'opType':type
+			};
+	    	var room =$.ajax({
+				url :'/im/webmsgid/put',
+				type : 'POST',
+				async:false, 
+				dataType:'json',
+				data:d,
+				timeout: 15000,
+				error: function(data){
+					obj.state=-2; //发送失败，服务器异常 
+				},
+				success : function(data){
+					if(data.error){ 
+						return;
+					}else
+					{
+						 if(data.state==1)
+						 {
+							// chatWindow.maxMsgId=data.msgId;
+						 }
+					}
+				}
+			});  
+	    },
+		changeState:function(stateNode,obj)
+		{
+			if(obj.state==1)
+        	{  
+	        	if(obj.ext.msgType=='img')
+        		{
+	        		$(stateNode).parent().find('img').attr({'src':obj.msg });
+	        		$(stateNode).parent().find('img').click(function(event){
+		        		event.stopPropagation();
+		    			var line_h = $(window).outerHeight();
+		    			$('.im_sfz_tan').css('line-height',line_h+'px');
+		    			$('.im_sfz_tan').css('display','block');
+		    			src = $(this).attr('src');
+		    			var src1=src.substring(0,src.indexOf('_') )+'_620-500_8-11.jpg';
+		    			$('.im_sfz_tan img').attr('src',src);
+	        		});
+        		}else
+    			{
+        			if(obj.ext.userType=='landlord'&&(obj.msg.indexOf('没房')!=-1||obj.msg.indexOf('没有房')!=-1||obj.msg.indexOf('无房')!=-1||obj.msg.indexOf('满房')!=-1||obj.msg.indexOf('无房')!=-1))
+    				{
+        				chatWindow.createHomelessDiv(obj.to);
+    				}
+    			}
+	        	
+	        	$(stateNode).remove();
+        	}
+	        if(obj.state==-2)
+        	{
+	        	$(stateNode).attr({"class":"no_send","title":"点击重新发送"});
+	        	$(stateNode).click(function()
+				{
+	        		$(this).attr('class','loading_send').click(function(){
+	        			
+	        		});
+	        		setTimeout(function()
+        				{
+        					chatOption._send(stateNode,obj); 
+        				},2000);
+	        		
+	        		
+				}) ;
+        	}
+	        if(obj.state==0)
+        	{
+        		$(stateNode).attr('class','loading_send').click(function(){
+        			
+        		}); 
+        	}
+	        if(obj.state==-1)
+        	{
+	        	$(stateNode).remove();
+	        	var record =  $('#record_'+obj.to);
+	        	chatWindow.appendWarn(record,obj.error,1);
+        	}
+	        chatOption.scroll(obj.to);
+		},
+		pictype : {
+		        "jpg" : true,
+		        "gif" : true,
+		        "png" : true,
+		        "bmp" : true
+		    },
+		sendFile: function() {
+	        /*var type = $("#sendfiletype").val();
+	        if (type == 'pic') {
+	            sendPic();
+	        } else {
+	            sendAudio();
+	        }*/
+		},
+	    //发送图片消息时调用方法
+	     sendPic : function() {
+	         
+	    },
+	  //图片异步上传
+	    ajaxFileUpload:function(obj,code){
+	    	console.log(2);
+		   if(chatOption.validateImage(obj))
+		   { 
+			  
+            var options = {"msgType":"img",
+            					"msg":"http://staticnew.mayi.com/resourcesWeb/images/index/house_default_list_img.png"};
+            var stateNode = chatWindow.appendReplyMsg(code,options);
+            	
+			 var node =$('#record_'+code);
+	    	 $.ajaxFileUpload({
+             	url:'/im/image/upload?c='+code,   //需要链接到服务器地址  
+             	secureuri:false,  
+             	fileElementId:'imageupload_'+code,                        //文件选择框的id属性  
+             	dataType: 'json',                                     //服务器返回的格式，可以是json  
+             	success: function (data, status){            //相当于java中try语句块的用法   
+             		if(data.error){
+	             			$('#img_btn_'+code).empty();
+	                     	//
+	                     	var image = chatWindow._getUploadImg(code);
+	                     	$('#img_btn_'+code).append(image);
+             	        	chatWindow.appendWarn(node,data.error.message,1);
+             	        	$(stateNode).remove();
+                 	}else
+                 	{ 
+                     	if(!currChat)
+               			{ 
+               				return ;
+               			} 
+                     	chatOption.sendText($("#sendbtn_"+code),'img',data.data.result,stateNode);
+                     	$('#img_btn_'+code).empty();
+                     	//
+                     	var image = chatWindow._getUploadImg(code);
+                     	$('#img_btn_'+code).append(image);
+                 	}
+            	 },  
+             	 error: function (data, status, e){ 
+             		$('#img_btn_'+code).empty();
+                 	//
+                 	var image = chatWindow._getUploadImg(code);
+                 	$('#img_btn_'+code).append(image);
+                 	console.log(e);
+             		chatWindow.appendWarn(node,e,1);
+             		$(stateNode).remove();
+            	 }  
+	          }); 
+	       }
+		   else
+		   {
+			   chatWindow.appendWarn(node,"图片格式错误",1);
+		   }
+	     },
+	     validateImage:function(obj) {
+	        var file = obj;
+	        var tmpFileValue = file.value;
+	        
+	        //校验图片格式
+	        if(/^.*?\.(gif|png|jpg|jpeg|bmp)$/.test(tmpFileValue.toLowerCase())){
+	            return true;
+	        } else {
+	            layer.alert("请您上传jpg、jpeg、png、bmp或gif格式的图片！",8);
+	            return false;
+	        }
+	        
+	        //校验图片大小,这段代码需调整浏览器安全级别(调到底级)和添加可信站点(将服务器站点添加到可信站点中)
+	        //var imgSize = 1024 * 100; //最大100K
+	        //var img = new Image();
+	        if(file.value != ""){            
+	         
+	        }else{
+	            layer.alert("请选择上传的文件!",8);
+	            return false;
+	        }
+	    }      
+}
+
+var contactOption={ 
+	contacts :new ItemList(),
+	initContacts:function()
+	{  
+//		var sContact = getCookie('im_contact');
+//		var cid=$("#MAYIUID").val();
+//		if(sContact)
+//		{
+//			var aContacts =sContact.split(';');
+//			
+//			for(var i=0;i<aContacts.length;i++)
+//			{
+//				
+//				if(aContacts[i].length<10)
+//				{
+//					continue;
+//				}
+//				var st = aContacts[i].split(',|');
+//				var d ={"code":0};
+//				for(var j=0;j<st.length;j++)
+//				{
+//					var sv = st[j].split('=|');
+//					if(sv[0]=='code')
+//					{
+//						d.code=sv[1];
+//					}
+//					if(sv[0]=='curr')
+//					{
+//						d.curr=sv[1];
+//					}
+//					if(sv[0]=='type')
+//					{
+//						d.type=sv[1];
+//					}
+//					if(sv[0]=='name')
+//					{
+//						d.name=sv[1];
+//					}
+//					if(sv[0]=='head')
+//					{
+//						d.head=sv[1];
+//					} 
+//					if(sv[0]=='roomId')
+//					{
+//						d.roomId=sv[1];
+//					} 
+//				} 
+//				if(d.curr==cid)
+//				{
+//					if(d.roomId)
+//					{
+//						contactOption.contacts.put(d); 
+//					}
+//				} 
+//			} 
+//		} 
+	},
+	get:function(code)
+	{
+		return contactOption.contacts.get(code);
+	},
+	put:function(d)
+	{
+		contactOption.contacts.put(d);
+		contactOption._setCookie();
+	},
+	del:function(code)
+	{
+		chatOption.setMaxMsgId(0,contactOption.get(code),-1);
+		contactOption.contacts.del(code);
+		contactOption._setCookie();
+	},
+	isEmpty:function()
+	{
+		return contactOption.contacts.length==0;
+	},
+	getList:function()
+	{
+		return contactOption.contacts;
+	},
+	_setCookie:function()
+	{ 
+		var cid=$("#MAYIUID").val();
+		var sCookie="";
+		for(var i=0;i<contactOption.contacts.length;i++)
+		{
+			var d = contactOption.contacts.items[i];
+			sCookie+='code=|'+d.code+',|'+'name=|'+d.name+',|'+'type=|'+d.type+',|'+'head=|'+d.head+',|'+'roomId=|'+d.roomId+',|'+'curr=|'+cid+";";  
+		}
+		 setCookie('im_contact',sCookie,1);
+	}
+};

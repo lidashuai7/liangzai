@@ -1,0 +1,14 @@
+package com.cy.pj.service.zsm;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.cy.pj.entity.user;
+
+public interface UserService {
+
+	user loginUser(String useraccount,String userpwd);
+	
+	int insertUser(user user);
+	
+	user queryUser(String useraccount);
+}

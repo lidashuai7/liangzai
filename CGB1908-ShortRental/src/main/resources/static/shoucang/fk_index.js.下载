@@ -1,0 +1,503 @@
+
+var ctx;
+var ctx1;
+var queueErrorArray;
+var uploadNum = 0;
+var uploadErrNum = 0;
+
+function getCookie(name){
+	var arr = document.cookie.split("; ");
+	for(var i=0,len=arr.length;i<len;i++){
+		var item = arr[i].split("=");
+		if(item[0]==name){
+			return unescape(item[1]);
+		}
+	}
+	return "";
+}
+
+var fkindex_i=0;
+var fkindex_j=0;
+var reportType = 0;
+var tenantid = 0;
+function jubaoclick(event) {
+	fkindex_i=0;
+    fkindex_j=0;
+	tenantid = $('#tenantid').val();
+	if (!tenantid) {
+		tenantid = $(this).attr("tenantId_val");
+	}
+	var data ={};
+	$.ajax({
+		url : ctx+'/tenant/checkReportStatus/'+tenantid+'',
+		type : 'POST',
+		data:data,
+        dataType:'json',
+        error: function(data){
+            layer.alert("网络连接失败，请稍后重试！",8);
+        },
+        success : function(re){
+        	var jsonData = eval(re);
+        	if(jsonData.status == "1"){
+        		jubaoSuccessBoxDiv();
+        	}
+        	else if(jsonData.status == "2"){
+        		$(".jubao li").removeClass("on");
+        		jubao1BoxDiv();
+        	}
+        	else if(jsonData.status == "0"){
+        		$("#layer_settimeout").show();
+        		setTimeout(function(){
+					$("#layer_settimeout").hide();
+				},1500);
+        	}
+        }
+	});
+}
+
+function jubaoSuccessBoxDiv(){
+	jubaoSuccessBoxlayer = $.layer({
+		closeBtn : [0 , false],
+		type : 1,
+		title : false,
+		offset:['250px' , ''],
+		border : [0,0,'',false],
+		area : ['auto','auto'],
+		move : ['.report-alert-title',true],
+		page : {dom : '#jubaoSuccess'}
+	});
+}
+
+function jubao1BoxDiv(){
+	jubao1Boxlayer = $.layer({
+		closeBtn : [0 , true],
+		type : 1,
+		title : false,
+		offset:['250px' , ''],
+		border : [0,0,'',false],
+		area : ['auto','auto'],
+		move : ['.report-alert-title',true],
+		page : {dom : '#jubao1'}
+	});
+}
+
+$(function(){
+	ctx = $('#ctx').val();
+	ctx1 = $("#ctx1").val();
+	var sessionid = getCookie("sessionid");
+	
+	var	swfUploadIM = new SWFUpload({
+		upload_url: ctx+"/room/publish/uploadImage?cityId=0&roomId=0&jsessionid="+sessionid,
+		flash_url : ctx+"/resourcesWeb/js/swfupload2/Flash/swfupload.swf",
+
+		file_post_name: 'uploadFile',
+
+		file_types : "*.jpg;*.jpeg;*.gif;*.png;*.bmp;",
+		file_types_description: '文件类型',
+		file_size_limit : "5MB",
+		file_upload_limit: 9,
+		file_queue_limit: 9,
+
+		// handlers
+		file_dialog_start_handler: fileDialogStartIM,
+		file_queued_handler: fileQueuedIM,
+		file_queue_error_handler: fileQueueErrorIM,
+		file_dialog_complete_handler: fileDialogCompleteIM,
+		upload_start_handler: uploadStartIM,
+		upload_progress_handler: uploadProgressIM,
+		upload_success_handler: uploadSuccessIM,
+		upload_error_handler:uploadErrorIM,
+		upload_complete_handler: uploadCompleteIM,
+
+		button_placeholder_id: 'uploadIMImage',
+		button_text_style: ".uploading {font-size: 14px;position:relative;z-index:99999999;}",
+		button_image_url: ctx1 + '/resourcesWeb/tentantIndex/images/add_img.png',
+		button_width: 30,
+		button_height: 30,
+		button_cursor: SWFUpload.CURSOR.HAND,
+		button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+
+		debug: false,
+
+		custom_settings: {}
+	});
+	
+	// 主体内容最小高度
+	$(".fk_index").css("min-height",$(window).height()-$(".header").outerHeight()-$(".foot").outerHeight());
+	$("#jubao").on('click', jubaoclick);
+	
+	$("#jubaochat").on('click',function(e){
+		$('#type').val(0);
+		reportType = 0;
+		layer.close(jubao1Boxlayer);
+		jubaochatChoiceBoxDiv();
+	});
+	
+	$("#jubaorz").on('click',function(e){
+		$('#type').val(1);
+		reportType = 1;
+		layer.close(jubao1Boxlayer);
+		jubaorzChoiceBoxDiv();
+	});
+	
+	$("#jubaoSuccessBoxclose").on('click',function(e){
+		layer.close(jubaoSuccessBoxlayer);
+		$("#jubao").addClass("jubao_checked");
+	})
+	
+	function jubaochatChoiceBoxDiv(){
+		$("#jubaochatChoice").find(".tc_submit").removeClass("report_btn_checked");
+		jubaochatChoiceBoxlayer = $.layer({
+			closeBtn : [0 , true],
+			type : 1,
+			title : false,
+			offset:['150px' , ''],
+			border : [0,0,'',false],
+			area : ['auto','auto'],
+			move : ['.report-alert-title',true],
+			page : {dom : '#jubaochatChoice'}
+		});
+	}
+	
+	$("#jubaochatChoice, #jubaorzChoice").on('click','.report_btn_checked',function(){
+		if (reportType == 0) {
+			layer.close(jubaochatChoiceBoxlayer);
+		} else {
+			layer.close(jubaorzChoiceBoxlayer);
+		}
+		// 隐藏之前上传过的图片
+		cleanUpImageBox();
+		jubaochatUpImageBoxdiv();
+	});
+	
+	function cleanUpImageBox() {
+		var $IMImageList_li = $("#IMImageList").children("li");
+		var liSize = $IMImageList_li.length;
+		if (liSize > 1) {
+			$.each($IMImageList_li, function(index, item) {
+				if (index < liSize - 1) {
+					$(item).hide();
+				}
+			});
+		}
+	}
+	
+	function jubaochatUpImageBoxdiv(){
+		jubaochatUpImageBoxlayer = $.layer({
+			closeBtn : [0 , true],
+			type : 1,
+			title : false,
+			offset:['50px' , ''],
+			border : [0,0,'',false],
+			area : ['500px','auto'],
+			move : ['.report_host',true],
+			page : {dom : '#jubaochatUpImage'}
+		});
+	}
+	
+	function jubaorzChoiceBoxDiv(){
+		$("#jubaorzChoice").find(".tc_submit").removeClass("report_btn_checked");
+		jubaorzChoiceBoxlayer = $.layer({
+			closeBtn : [0 , true],
+			type : 1,
+			title : false,
+			offset:['150px' , ''],
+			border : [0,0,'',false],
+			area : ['auto','auto'],
+			move : ['.report-alert-title',true],
+			page : {dom : '#jubaorzChoice'}
+		});
+	}
+	
+	$(".jubao li").on('click',function(e){
+		if(!($(this).attr("id")=="jubaochat" || $(this).attr("id")=="jubaorz")){
+			$(this).toggleClass("on");
+			if($(this).hasClass("on")){
+				fkindex_i++;
+			}else{
+				fkindex_j++
+			}
+			if(fkindex_i==fkindex_j){
+				$(this).parent(".jubao").siblings(".tc_submit").removeClass("report_btn_checked");
+			}else{
+				$(this).parent(".jubao").siblings(".tc_submit").addClass("report_btn_checked");
+			}
+		}
+	});
+	
+	$("#jubaochatUpImage").on('click','.report_btn_checked',function(){
+		var data ={};
+		var type = $('#type').val()
+		var reason = getReasonByType(reportType);
+		var imageUrls = getImageUrls();
+		data.type = reportType;
+		data.reason = reason;
+		data.imageUrls = imageUrls;
+		$.ajax({
+			url : ctx+'/tenant/reportTenant/'+tenantid+'',
+			type : 'POST',
+			data:data,
+	        dataType:'json',
+	        error: function(data){
+	            layer.alert("网络连接失败，请稍后重试！",8);
+	        },
+	        success : function(re){
+	        	var jsonData = eval(re);
+	        	if(jsonData.status == "0"){
+	        		$("#layer_settimeout").show();
+	        		setTimeout(function(){
+						$("#layer_settimeout").hide();
+					},1500);
+	        	}
+	        	else if(jsonData.status == "1"){
+	        		$(".jubao li").removeClass("on");
+	        		jubao1BoxDiv();
+	        	}
+	        	else if(jsonData.status == "2"){
+	        		//layer.msg('您没有和该房客聊过天，无权举报');
+					$("#layer_settimeout").html("您没有和该房客聊过天，无权举报").show();
+					setTimeout(function(){
+						$("#layer_settimeout").hide();
+					},1500);
+	        	}
+	        	else if(jsonData.status == "3"){
+	        		$("#layer_settimeout").html("该房客没有正在入住的订单，您无权举报").show();
+					setTimeout(function(){
+						$("#layer_settimeout").hide();
+					},1500);
+	        	}else if(jsonData.status == "4"){
+	        		jubaoSuccessBoxDiv();
+	        		layer.close(jubaochatUpImageBoxlayer);
+	        	}else if(jsonData.status == "5"){
+	        		jubaoSuccessBoxDiv();
+	        		layer.close(jubaochatUpImageBoxlayer);
+	        	}
+	        }
+		});
+	});
+	
+	function getReasonByType(type) {
+		var reason = "";
+		var $obj;
+		if (type == 0) {
+			$obj = $("#jubaochatChoice");
+		} else {
+			$obj = $("#jubaorzChoice");
+		}
+		var eachli = $obj.children(".jubao").children("li");
+		eachli.each(function() {
+			if($(this).hasClass("on")){
+				reason += $(this).index()+",";
+			}
+		});
+		return reason;
+	}
+	
+	function getImageUrls() {
+		var imgUrl = "";
+		$("#IMImageList").find("img:visible").each(function(){
+			imgUrl += $(this).attr("value");
+			imgUrl += "---" + $(this).attr("realwidth");
+			imgUrl += "---" + $(this).attr("realheight");
+			imgUrl += "---" + $(this).attr("content");
+			imgUrl += "|||";
+		});
+		return imgUrl;
+	}
+	
+})
+
+/* 图片上传相关 */
+$(function(){
+	
+});
+
+//========================================  回调函数Handlers  ===================================
+
+/**
+ * 打开文件选择对话框时响应
+ */
+function fileDialogStartIM() {
+	if (queueErrorArray) {
+		queueErrorArray = null;
+	}
+	uploadNum = 0;
+	uploadErrNum = 0;
+}
+
+/**
+ * 文件被加入上传队列时的回调函数,增加文件信息到列表并自动开始上传.<br />
+ * <p></p>
+ * SWFUpload.startUpload(file_id)方法导致指定文件开始上传,
+ * 如果参数为空,则默认上传队列第一个文件;<br />
+ * SWFUpload.cancelUpload(file_id,trigger_error_event)取消指定文件上传并从队列删除,
+ * 如果file_id为空,则删除队列第一个文件,trigger_error_event表示是否触发uploadError事件.
+ * @param file 加入队列的文件
+ */
+function fileQueuedIM(file) {
+	var swfUploadIM = this;
+	var listItem = '<li id="' + file.id + '">'; 
+	listItem += '<img src="" alt=""/><div class="report-pic-con"><span id="progressBar' + file.id + '" class="report-upload-bar"></span></div></li>';  
+	$("#li_IM_upload").before(listItem);
+	/*
+	$("li#" + file.id + " .report-upload-colse").click(function(e) {  
+		swfUpload.cancelUpload(file.id);  
+		$("li#" + file.id).slideUp('fast');  
+	});  
+	*/
+}
+
+/**
+ * 文件加入上传队列失败时触发,触发原因包括:<br />
+ * 文件大小超出限制<br />
+ * 文件类型不符合<br />
+ * 上传队列数量限制超出等.
+ * @param file 当前文件
+ * @param errorCode 错误代码(参考SWFUpload.QUEUE_ERROR常量)
+ * @param message 错误信息
+ */
+function fileQueueErrorIM(file,errorCode,message) {
+	if (!queueErrorArray) {
+		queueErrorArray = [];
+	}
+	var errorFile = {
+			file: file,
+			code: errorCode,
+			error: ''
+	};
+	switch (errorCode) {
+	case SWFUpload.QUEUE_ERROR.FILE_EXCEEDS_SIZE_LIMIT:
+		errorFile.error = '文件大小超出限制.';
+		break;
+	case SWFUpload.QUEUE_ERROR.INVALID_FILETYPE:
+		errorFile.error = '文件类型受限.';
+		break;
+	case SWFUpload.QUEUE_ERROR.ZERO_BYTE_FILE:
+		errorFile.error = '文件为空文件.';
+		break;
+	case SWFUpload.QUEUE_ERROR.QUEUE_LIMIT_EXCEEDED:
+		errorFile.error = '最多上传9张图片！';
+		if (layer.alert) {
+			layer.alert(errorFile.error, 3);
+		} else {
+			alert(errorFile.error);
+		}
+		break;
+	default:
+		alert('加载入队列出错.');
+	break;
+	}
+	queueErrorArray.push(errorFile);
+	uploadErrIM();
+}
+
+/**
+ * 选择文件对话框关闭时触发,报告所选文件个数、加入上传队列文件数及上传队列文件总数
+ * @param numSelected 选择的文件数目
+ * @param numQueued 加入队列的文件数目
+ * @param numTotalInQueued 上传文件队列中文件总数
+ */
+function fileDialogCompleteIM(numSelected,numQueued,numTotalInQueued) {
+	var swfUploadIM = this;
+	if (numSelected > 0) {
+		uploadNum = numSelected - uploadErrNum;
+		this.startUpload();
+		uploadEndIM();
+	}
+}
+
+/**
+ * 文件开始上传时触发
+ * @param file 开始上传目标文件
+ */
+function uploadStartIM(file) {
+	if (file) {
+		$("#progressBar" + file.id).css('width','1%');
+	}
+}
+
+/**
+ * 文件上传过程中定时触发,更新进度显示
+ * @param file 上传的文件
+ * @param bytesCompleted 已上传大小
+ * @param bytesTotal 文件总大小
+ */
+function uploadProgressIM(file,bytesCompleted,bytesTotal) {
+	var percentage = Math.ceil((bytesCompleted / bytesTotal) * 100);  
+	$("#progressBar" + file.id).css('width',percentage + '%'); 
+}
+
+/**
+ * 文件上传完毕并且服务器返回200状态码时触发
+ * @param file 上传的文件
+ * @param serverData 
+ * @param response
+ */
+function uploadSuccessIM(file,serverData,response) {
+	$("#progressBar" + file.id).css('width','100%');
+	if(serverData != "" && serverData != null){
+		var jsonData = eval('(' + serverData + ')');
+		addImageIM(jsonData,file);
+	}else{
+		uploadErrIM();
+		$("#"+file.id).remove();
+	}
+}
+
+function addImageIM(imgData,file) {
+	var imgDiv = '';
+	var item = $("#IMImageList li#" + file.id);
+	imgDiv = '<img src="'+imgData.url+'" value="' + imgData.savekey + 
+				'" width="146px" height="100px" realwidth="'+imgData.width+'" realheight="'+imgData.height+'" content="'+imgData.localUrl+'"/>';
+	item.html(imgDiv);
+}
+
+//上传结束判断
+function uploadEndIM(){
+	if(uploadNum == 0 && uploadErrNum > 0){
+		layer.alert("图片中有大于5M或受损文件，系统已自动过滤",3);
+	}
+}
+//错误文件+1
+function uploadErrIM(){
+	uploadErrNum = uploadErrNum + 1;
+}
+/**
+ *  上传错误返回
+ * @param file 上传的文件
+ * @param errorCode 
+ * @param message
+ */
+function uploadErrorIM(file, errorCode, message) {
+	layer.alert("上传失败",3);
+	$("#"+file.id).remove();
+	uploadErrIM();
+	uploadEndIM();
+	console.log("上传失败，fileId:"+file.id+";errorCode:"+errorCode+";errorMessage:"+message);
+}
+
+/**
+ * 在一个上传周期结束后触发(uploadError及uploadSuccess均触发)
+ * 在此可以开始下一个文件上传(通过上传组件的uploadStart()方法)
+ * @param file 上传完成的文件对象
+ */
+function uploadCompleteIM(file) {
+	uploadNumFuncIM();
+	if(this.getStats().files_queued > 0) {
+		$("#btnCanGo").val(0);
+	} else if(this.getStats().files_queued ==0){
+		$("#btnCanGo").val(1);
+		uploadEndIM();
+	}
+}
+//上传序列减一
+function uploadNumFuncIM(){
+	if(uploadNum > 0){
+		uploadNum = uploadNum - 1;
+	}else{
+		uploadNum = 0;
+	}
+}
+
+
+				

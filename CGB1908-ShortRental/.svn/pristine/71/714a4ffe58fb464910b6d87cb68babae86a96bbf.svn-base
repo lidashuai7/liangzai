@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.pj.dao.zsm.HouseCountMapper">
+
+	<select id="queryHouseCount"
+		resultType="com.cy.pj.vo.zsm.house_count">
+		select h.house_id,h.house_city,COUNT(h.house_city)as
+		shu,p.picture_path
+		from tb_house_picture as p
+		join tb_house as h
+		on
+		h.house_id=p.house_id
+		GROUP by h.house_city
+		LIMIT 0,6
+	</select>
+
+	<select id="queryhouse" resultType="com.cy.pj.vo.zsm.house_de">
+		select
+		d.id,h.house_id,h.house_name,h.house_city,h.house_address,h.house_type,h.base_price,d.Landlord_path,p.picture_path
+		from tb_house as h
+		JOIN tb_house_picture as p
+		on h.house_id=p.house_id
+		join td_landlord as d
+		on h.landlord_id=d.id
+		LIMIT 0,3
+	</select>
+
+	<select id="queryhouse1" resultType="com.cy.pj.vo.zsm.house_de">
+		select
+		d.id,h.house_id,h.house_name,h.house_city,h.house_address,h.house_type,h.base_price,d.Landlord_path,p.picture_path
+		from tb_house as h
+		JOIN tb_house_picture as p
+		on h.house_id=p.house_id
+		join td_landlord as d
+		on h.landlord_id=d.id
+		LIMIT 3,3
+	</select>
+
+	<select id="houseerji" resultType="com.cy.pj.vo.zsm.house_erji">
+		select
+		h.house_id,p.picture_path,h.house_name,h.house_city,h.house_address,h.base_price,h.house_type,h.house_class,h.bed_type,h.position,l.Landlord_path
+		from tb_house as h
+		join tb_house_picture as p
+		on h.house_id=p.house_id
+		join td_landlord as l
+		on h.landlord_id=l.id
+		<where>
+			<if test="position!=null">
+				and h.position=#{position}
+			</if>
+			<if test="housetype!=null">
+				and h.house_type like CONCAT('%',#{housetype},'%')
+			</if>
+			<if test="baseprice1!=null">
+				and h.base_price&gt;=#{baseprice1}
+			</if>
+			<if test="baseprice2!=null">
+				and h.base_price &lt;=#{baseprice2}
+			</if>
+			<if test="weizhi!=null">
+				and h.house_city like CONCAT('%',#{weizhi},'%')
+			</if>
+			<if test="xu==1">
+				order by h.base_price DESC
+			</if>
+			<if test="xu==2">
+				order by h.base_price
+			</if>
+		</where>
+
+	</select>
+
+	<select id="queryposition" resultType="com.cy.pj.vo.zsm.povo">
+		select house_type,position from tb_house
+	</select>
+
+
+	<select id="queryhousexq" resultType="com.cy.pj.vo.zsm.house_xq">
+		select h.house_id,h.landlord_id,h.house_name,h.houseTime,
+		h.house_city,h.house_address,h.master_phone
+		,h.lease_way,h.house_class,h.floor_space,
+		h.house_type,h.bed_type,h.house_number,
+		h.house_feature,h.position,h.ambitus,h.status,
+		h.base_price,h.min_day,p.picture_path
+		from tb_house as h
+		join tb_house_picture as p
+		on h.house_id=p.house_id
+		where h.house_id=#{houseid}
+	</select>
+
+</mapper> 

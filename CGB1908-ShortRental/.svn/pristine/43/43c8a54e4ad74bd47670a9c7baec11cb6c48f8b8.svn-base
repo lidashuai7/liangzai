@@ -1,0 +1,1305 @@
+
+var currChat; //当前聊天人标识
+var roomList = new ItemList();
+ 
+var chatWindow = {
+		maxMsgId:0,
+		d1:0,
+		d2:0,
+		init:function()
+		{
+			var talkNode = $('#point');
+			//FIXME 初始化联系人列表
+			this.initContacts(talkNode);
+			//FIXME 初始化 聊天窗口
+			if($('#ruzhustart').val() )
+			{
+				this.d1=$('#ruzhustart').val();
+			}
+			if($('#checkinday').val())
+			{
+				this.d1=$('#checkinday').val();
+			}
+			if($('#tuifangend').val())
+			{
+				this.d2=$('#tuifangend').val();
+			}
+			if($('#checkoutday').val())
+			{
+				this.d2=$('#checkoutday').val()
+			}
+			  
+			this.initTalk(talkNode);
+		
+			//swiperPromp.init();
+//			this.initHistoryContacts(); 
+		}, 
+		/**
+		 * 创建联系人列表
+		 * */
+		initContacts:function(talkNode)
+		{ 
+			var dContacts =  $('<div>').attr({
+	                'class' : 'fl contacter_left'
+	          }).appendTo(talkNode);
+			dContacts.append("<h3>最近联系人</h3>");
+			var noContact = $('<div>').attr({
+                'class' : '',
+                'id' : 'noContact',
+	          }).appendTo(dContacts);
+			noContact.html('<p class="null_list">联系人列表是空的</p><a target="_blank" class="check_near" href="/user/tenant/msgmanager">查看最近联系人</a>');
+			var uielem =$('<ul>').attr({
+				"class":'contacter_ul'
+			}).appendTo(dContacts);
+			//talkNode.css("width","183");
+		},
+		initHistoryContacts:function()
+		{
+			contactOption.initContacts();
+			if(contactOption.isEmpty())
+			{
+				return;
+			}
+			var list = contactOption.getList()
+			var cid=$("#MAYIUID").val();
+			for(var i=0;i<list.length;i++)
+			{
+				var d=list.items[i];
+				var ext = {
+						 "roomId":d.roomId,
+						 "nickName":d.name,
+						 "headImageUrl":d.head,
+						 "userType":d.type
+				};
+				chatWindow.appendMsg(d.code,cid,"",ext); 		
+			} 
+		},
+		/**
+		 * 
+		 * 初始化聊天窗口
+		 * */
+		initTalk:function(talkNode)
+		{
+			//FIXME 空白窗口
+			var dtalk = $('<div>').attr({ 
+                'class' : 'contacter_right clearfloat fl'
+          }).appendTo(talkNode); 
+			//FIXME 提示区 prompt
+			this.createPromptDiv(dtalk);
+			this.createTalkDiv(0);
+			this.createReplayDiv(dtalk);
+		},  
+		createContactDiv:function()
+		{
+			//联系人为空
+			if(contactOption.isEmpty())
+			{
+				$('#noContact').css("display","block");
+				$('#contacter_right_0').css('display','block');
+				this.changePrompt("");
+				$('.contacter_ul').css("display","none");
+				$('.contacter_ul').find('li').removeClass('on');
+				return;
+				//$('#point').css("width","183");
+			}else
+			{  
+				$('#noContact').css("display","none"); 
+				$('.contacter_ul').css("display","block");
+				var uielem = $('.contacter_ul');
+				for(var i=0;i<contactOption.getList().length;i++)
+				{
+					var d = contactOption.getList().items[i];
+					//"li_"+d.id
+					var linode = document.getElementById('li_'+d.code);
+					if(linode)
+					{
+						continue;
+					} 
+					var lielem = $('<li>').attr({
+			                'id' : "li_"+d.code,
+			                'class' : 'clearfloat',
+			                'className' : 'online',
+			                'type' : 'chat',
+			                'displayName' : d.nickName
+			            }).click(function() { 
+			            	$('.IM_btn').removeClass('IM_btn_hover');
+			            	chatOption.chooseContactDivClick(this);
+			            });
+					 $('<span>').attr({ 
+			                'class' : 'fl IM_contacter_close', 
+			                }).click(function(){
+			                	chatOption.delContact(this); 	
+			                }).appendTo(lielem);
+			            $('<img>').attr({"src":d.head,"class":"fl IM_head_photo"}).appendTo(
+			                    lielem);
+			            $('<strong>').attr("class","fl IM_contacter").html(UI.maxText(d.name,4)).appendTo(lielem);
+			            $('<span>').attr({"class":"fr talk_num","id":"talk_num_"+d.code,"num":'0'}).html("0").appendTo(lielem).hide();
+			            uielem.append(lielem);
+				}
+				if($(".contacter_ul").find('li').hasClass('on')||$('.IM_content').css("display")=="none")
+				{
+					
+				}else{ 
+					chatOption.chooseContactDivClick($('.contacter_ul').find('li')[0]);
+				}
+			}  
+		},
+		buildEmptyRoom:function(parNode)
+	    { 
+			var talkNode =  $('<div>').attr({"class":"fl contacter_right_talk","id":"talk_0"});
+			var stalk=	 '<h3 class="clearfloat head_talk">'
+						+'</h3>'
+						+'<div class="contacter_talk clearfloat">'
+							+'<div class="talk_parent">'
+							+'</div>' 
+						+'</div> '
+						+'<div class="xiaoxi_record">'
+							+'<a target="_blank" href="/user/tenant/msgmanager" class="xiaoxi_record_a clearfloat">'
+								+'<i class="fr">消息记录</i>'
+								+'<span class="xiaoxi_bj fr"></span>'
+							+'</a>'
+						+'</div>'
+						+'<textarea disabled="" class="xiaoxi_text xiaoxi_text_none" cols="" rows="" name=""></textarea>'
+						+'<div class="xiaoxi_btn clearfloat">'
+						+'<button class="contacts_null send fr send_none" a="0">发送</button>'
+					+'</div>' 
+					+'</div>' ;
+					
+
+			talkNode.html(stalk);
+		
+			parNode.append(talkNode);
+		// var swiper= '<div class="swiper_wrap_div fl" style="">'
+         //    +'<ul class="font_inner_ul" style="top: 0px;">'
+         //    +'<li class="tooltip_warm_li" style=""></li>'
+         //    +'</div>';
+         //    $(parNode).parent().append(swiper);
+
+            var tj_swiper= '<div class="tj_swiper_wrap_div fl" style="">'
+                +'<ul class="font_inner_ul" style="top: 0px;">'
+                +'<li></li>'
+                +'</div>';
+            $(parNode).parent().append(tj_swiper);
+
+
+			/*var right = '<div class="fl relave">'
+			+'<ul class="clearfloat room_nav absot">' 
+			+'</ul>'
+			+'<div class="fl room_recommend_roomer">' 
+			+'</div>' ;
+			parNode.append(right);*/
+			
+	    },
+	    
+		createTalkDiv:function(chatUserId)
+		{  
+			var talkNode = document.getElementById('talk_'+chatUserId);
+			var oldUserType = "";
+			var userTypeChange = true;
+			//已存在
+			if(talkNode)
+			{
+				var d = contactOption.get(chatUserId);
+				if(d.type != $('#usertype'+d.code+'').val()){
+					userTypeChange =false;
+					//alert("aa");
+//					var rtd =$('<div>').attr({"class":"p_talk_right","id":'contacter_right_'+chatUserId}).appendTo(rightDiv);
+//					var talkNode =  $('<div>').attr({"class":"fl contacter_right_talk","id":"talk_"+chatUserId}).appendTo(rtd);
+//					if(d.type=="tenant"){
+//						alert("房东推荐");
+						//if($('#landlord_more_room_'+d.code+'')){
+							//$('#landlord_more_room_'+d.code+'').remove();//查看该房东的其他房源
+							//$('#landlord_more_roomdiv_'+d.code+'').remove();
+							//创建房东推荐
+							//this.createExtDiv(rtd,d);
+							//alert("??");
+						//}
+//					}else if(d.type=="landlord"){
+	                    //创建房东其他房源		
+						//alert("其他房源");
+						//if($('#tuijianRooms')){
+							//$('#tuijianRooms').remove();
+							//this.createExtDiv(rtd,d);
+							//alert("???");
+						//}
+//					}
+				}
+				if(userTypeChange){
+					$('#userType'+d.code+'').val(d.type);
+				    var roomId = Number($('#'+d.code+'').val());
+				   
+					    if(d.room.id != roomId ){
+						    	var  fromRoomId = Number(d.room.id);
+						    	 $("input[id^='"+d.code+"rRoom_']").each(function (index,element) {
+								    	if(fromRoomId == Number($(this).val())){
+								    		fromRoomId = $(this).attr("id").split("_")[1];
+								    	}
+								    })
+							    //房东推荐
+							    if($('#'+d.code+'rRoom1_'+fromRoomId+'').attr("href")){
+							    	$('#'+d.code+'rRoom_'+fromRoomId+'').val($('#'+d.code+'').val());
+							    	$('#'+d.code+'rRoom1_'+fromRoomId+'').attr("href",$('#sRoom1_'+d.code+'').attr("href"));
+									$('#'+d.code+'rRoom2_'+fromRoomId+'').attr("href",$('#sRoom2_'+d.code+'').attr("href"));
+									$('#'+d.code+'rRoomImg_'+fromRoomId+'').attr("src",$('#sRoomImg_'+d.code+'').attr("src"));
+									$('#'+d.code+'rRoomTitle_'+fromRoomId+'').text($('#sRoomTitle_'+d.code+'').text());
+									$('#'+d.code+'rRoomTitle_'+fromRoomId+'').attr("sttt",$('#sRoomTitle_'+d.code+'').attr("sttt"));
+									$('#'+d.code+'rRoomPrice_'+fromRoomId+'').html($('#sRoomPrice_'+d.code+'').html());
+							    }
+					    }
+						//FIXME 扩展区
+				        $('#'+d.code+'').val(d.room.id)
+						$('#sRoom1_'+d.code+'').attr("href","/room/"+d.room.id);
+						$('#sRoom2_'+d.code+'').attr("href","/room/"+d.room.id);
+						$('#sRoomImg_'+d.code+'').attr("src",d.room.mainImageUrl);
+						$('#sRoomTitle_'+d.code+'').text(UI.maxText(d.room.title,18));
+						$('#sRoomTitle_'+d.code+'').attr("sttt",d.room.title);
+						$('#sRoomPrice_'+d.code+'').html('<font>￥</font>'+d.room.dayPrice+'');
+						if($('#go_order_'+d.code+'').attr("href")){
+							var orderHref = $('#go_order_'+d.code+'').attr("href").replace(d.roomId,d.room.id);
+							$('#landlord_more_room_'+d.code+'').attr("href",'javascript:animateRooms('+d.room.id+');');
+						}
+						
+					return ;
+				}
+		    }
+			var rightDiv = $('.contacter_right');
+			if(0==chatUserId)
+			{ 
+				var rtd =$('<div>').attr({"class":"p_talk_right","id":'contacter_right_'+chatUserId}).appendTo(rightDiv);
+				this.buildEmptyRoom(rtd);
+			}else
+			{   
+				var rtd =$('<div>').attr({"class":"p_talk_right","id":'contacter_right_'+chatUserId}).appendTo(rightDiv);
+				
+				var talkNode =  $('<div>').attr({"class":"fl contacter_right_talk","id":"talk_"+chatUserId}).appendTo(rtd);
+				
+				//FIXME 创建头
+				var d = contactOption.get(chatUserId);
+			
+				//添加防骗提醒
+				/**
+				var startExt = $('#point');
+				var notice = $('<div id="notice_'+d.code+'">').attr({"class":"IM_remind"}).appendTo(startExt);
+				var noticeExt =  '<span class="IM_biaohong"></span><strong>若房东提出线下交易，请立即举报，核实后蚂蚁将最高给予入住订单金额5%的现金奖励哦~</strong><a href="/report?ldid='+d.code+'&roomid='+d.roomId+'" target="_blank" class="report_link">我要举报</a>';
+					
+				if(d.type!="landlord"){
+					noticeExt =  '<span class="IM_biaohong"></span>'
+						+'<strong>蚂蚁工作人员不会通过站内信与您联系，也不会线下收取任何费用，请勿轻信，谨防受骗！</strong>';
+				}
+			    notice.append(noticeExt);
+				var sCloce =	$('<span>').attr({"class":"IM_closeremind"}).click(function()
+				{
+				  $('.IM_remind').hide();
+					$('.contacter_talk').removeClass('pt72');
+				}  );
+			    notice.append(sCloce); 
+				**/
+				this.createTalkHeaderDiv(talkNode,d);
+				//FIXME 创建聊天记录div
+				this.createMsgRecordDiv(talkNode,d);
+				//FIXME 创建功能区
+				this.createDomainDiv(talkNode,d);
+				//FIXME 聊天输入框
+				this.createInputDiv(talkNode,d);
+				this.createBtnDiv(talkNode,d); 
+				//FIXME 扩展区
+				this.createExtDiv(rtd,d);
+			}
+		}, 
+		/**
+		 * 联系人
+		 * */
+		createTalkHeaderDiv:function(talkNode,d)
+		{ 
+			if(d&&d.type=='landlord') {
+				var sheader = '<h3 class="clearfloat head_talk"><a href="#" style="cursor:pointer;" ><img src="'+d.head +'" alt="" class="fl"/></a><strong class="fl">'+d.name+'</strong></h3>'
+				talkNode.append(sheader);
+			} else {
+				var sheader = '<h3 class="clearfloat head_talk"><a href="/tenant/tenantIndex/'+d.code+'"style="cursor:pointer;" target="_blank"><img src="'+d.head +'" alt="" class="fl"/></a><strong class="fl">'+d.name+'</strong><span class="report_IM_btn" tenantId_val='+d.code+'>举报</span></h3>'
+				talkNode.append(sheader);
+				$(".report_IM_btn").off("click").on("click", jubaoclick);
+			}
+			
+		},
+		/**
+		 * 消息记录
+		 * */
+		createMsgRecordDiv:function(talkNode,d)
+		{
+			var record = $('<div>').attr({"class":"contacter_talk clearfloat pt72","id":"contacter_talk_"+d.code}).appendTo(talkNode);
+			var talkp = $('<div>').attr({"class":"talk_parent","id":"record_"+d.code}).appendTo(record);  
+			if(chatWindow.d1&&chatWindow.d2&&d.talkTo&&d.type=="landlord")
+			{ 
+				var dH = $('<div>').attr({"class":"block_h6"}).appendTo(talkp);
+				var dTalkR =	$('<h6>').attr({"class":"rili_talk"}).html("请问，"+chatWindow.d1+" 至 "+chatWindow.d2+" 有房吗？").appendTo(dH);
+//				var dTalkRi =	$('<div>').attr({"class":"rili_talk"}).html("请问，<p class='date'><input type='text' id='data_talkstart' value='"+chatWindow.d1+"'/>至<input type='text' id='data_talkend' value='"+chatWindow.d2+"'/></p>有房吗？").appendTo(dTalkR);
+				var iTalkRi =	$('<input>').attr({"class":"data_send","type":"button","value":"发送"}).click(function()
+					{
+						chatOption.autoReply("请问，"+chatWindow.d1+"至"+chatWindow.d2+" 有房吗？"); 
+						$(this).parent().parent().remove();
+								 
+					}).appendTo(dTalkR); 
+			}
+			var sm = getCookie('sysme');
+			var date = new Date();
+			//加起来是个数字
+			var t = date.getYear()+date.getMonth()+date.getDay();
+			if((null==sm || sm != t) && d.type == 'landlord'){
+				//提示房客的系统消息
+				/**
+				var html = '<p class="talk_left talk_p clearfloat"><strong class="talk_p_head">系统消息</strong><i class="talk_text"><span class="talk_L_bj"></span>为了保障您的利益，请您在与房东聊天前，了解以下几点：<br/>1.在未完成交易的情况下，请不要和房东交换联系方式，包括主动提供<br/>或索要手机号、QQ或微信等。预订成功后，平台会将房东的联系方式发<br/>送给您。<br/>2.平台信息均真实有效，并会提供 一系列的保障来保证您的权益，因此不鼓励线下看房。<br/>3.请勿通过微信支付或者支付宝等方式直接将任何款项打给房东，以防诈骗，造成您的钱款损失！蚂蚁平台将提供全方位的服务，保障您的交易安全和入住权益。<br/><a style="color: #0096ff;text-decoration:underline" href="http://www.mayi.com/supportplan" target="_blank">点此查看房客安心计划>></a></i></p>';
+				html+='<div class="block_h6"><h6 class="block_h6_bj" style="padding-left: 10px;background-image:none;">以上是系统提示内容，您和房东的正常聊天不受影响</h6></div>';
+				$("#record_"+d.code).append(html);
+				**/
+				setCookie('sysme', t, 7);
+			}
+		},
+		createReplayDiv:function(node)
+		{
+			 var sReply =  '<div class="fl auto_reply_hover about">'
+				+'<span class="auto_reply_img"></span>'
+				+'</div>' ;
+			 node.append(sReply);
+			 
+			 
+			var tanDiv =  $('<div>').attr({"class":"about auto_reply_tan"}).appendTo(node);
+			tanDiv.append(sReply);
+			 var tanUl = $('<ul>').attr({"id":"auto_reply_tan_ul","class":"auto_reply_tan_ul"}).appendTo(tanDiv);
+			 var li1 = $('<li>').html('<span class="text_reply">您好，请问几人入住呢？</span><!--<span class="reply_x"></span>-->').click(function(){
+				 chatOption.autoReply("您好，请问几人入住呢？");
+			 }).appendTo(tanUl);
+			 var li2 = $('<li>').html('<span class="text_reply">抱歉，您看中的房源已经订出去了。</span><!--<span class="reply_x"></span>-->').click(function(){
+				 chatOption.autoReply("抱歉，您看中的房源已经订出去了。");
+			 }).appendTo(tanUl);
+			 var li3 = $('<li>').html('<span class="text_reply" title="抱歉，蚂蚁禁止透露联系方式，您预订成功后蚂蚁会自动把我的联系方式发送给您。">抱歉，蚂蚁禁止透露联系方式，您预订成功后蚂蚁会自动把我的...</span><!--<span class="reply_x"></span>-->').click(function(){
+				 chatOption.autoReply("抱歉，蚂蚁禁止透露联系方式，您预订成功后蚂蚁会自动把我的联系方式发送给您。");
+			 }).appendTo(tanUl); 
+			 var li4 = $('<li>').html('<span class="text_reply">照片都是实地拍摄的，请放心下单。</span><!--<span class="reply_x"></span>-->').click(function(){
+				 chatOption.autoReply("照片都是实地拍摄的，请放心下单。");
+			 }).appendTo(tanUl); 
+			 
+			 node.append(sReply);
+				/*点击别处自定义浮层消失*/
+				$(document).click(function(e){
+					if(!$(e.target).hasClass('auto_reply')) 
+					{
+						$('.auto_reply_tan').hide();
+					} 
+				})
+		},
+		_getUploadImg:function(code)
+		{
+			return $('<input>').attr({'class':'file_img',
+				 'id':"imageupload_"+code,
+				 'value':"选取照片",
+				 'name':"imageupload_"+code,
+				 'accept':"image/jpg,image/png,image/gif,image/bmp,image/jpeg",
+				 'type':'file'}).change(function(){ 
+					 	
+					 	chatOption.ajaxFileUpload(this, code); 
+//					 	uploadImg.replaceWith(uploadImg.clone(true));
+					 }) ;
+		},
+		createUploadIngPic:function(code)
+		{
+			
+		},
+		createDomainDiv:function(talkNode,d)
+		{
+			var domain =	$('<div>').attr({"class":"xiaoxi_record","id":"xiaoxi_record_"+d.code}).appendTo(talkNode); 
+		 
+			if(d.type!="landlord"){  
+				
+				var replay_a = $('<div>').attr({'class':'fl auto_reply_parent relave'}).appendTo(domain);
+				var replay_s = $('<span>').attr({'class':'auto_reply','title':'快捷回复'}).click(function()
+				{
+					$('.auto_reply_tan').show(); 
+				}).appendTo(replay_a); 
+				domain.append('<a href="/user/landlord/roommanager?tab=cal" target="_blank"><p title="修改房态" class="fl img_btn_room relave"></p>');
+				var replap_p = $('<p>').attr({'class':'fl img_btn relave','id':'img_btn_'+d.code}).appendTo(domain);
+				var uploadImg = this._getUploadImg(d.code);
+				uploadImg.appendTo(replap_p);
+				
+				var sDomain  ='<p class="fl shortcutKey">按Ctrl+Enter键发送消息</p>'
+					+'<a target="_blank" href="/user/landlord/msgmanager" class="xiaoxi_record_a clearfloat">'
+					+'<i class="fr">消息记录</i>'
+					+'<span class="xiaoxi_bj fr"></span>'
+					+'</a>' ;
+				domain.append(sDomain);
+				
+			}else{
+				var sDomain  ='<p class="fl shortcutKey">按Ctrl+Enter键发送消息</p>'
+					+'<a target="_blank" href="/user/tenant/msgmanager" class="xiaoxi_record_a clearfloat">'
+					+'<i class="fr">消息记录</i>'
+					+'<span class="xiaoxi_bj fr"></span>'
+					+'</a>' ;
+				domain.html(sDomain);
+			}
+			
+		},
+		createInputDiv:function(talkNode,d)
+		{
+			//输入区
+			$('<textarea>').attr({"class":"xiaoxi_text","id":"in_"+d.code,"maxlength":1000}).appendTo(talkNode);  
+		},
+		createBtnDiv:function(talkNode,d)
+		{
+		    var platform = $("#platform").val();
+		    var luid = $("#luid").val();
+			var promNode = $('<div>').attr({"class":"xiaoxi_btn clearfloat"}).appendTo(talkNode);
+			if(platform == 10){
+                $('<button>').attr({"class":"send_room_link  fr","cid":d.code,"href":"#"}).html("发送房屋链接").click(function()
+                {
+                    chatOption.sendText(this,"recommend",luid);
+                }).appendTo(promNode);
+            }
+			$('<button>').attr({"class":"send fr","cid":d.code,"id":"sendbtn_"+d.code,"title":"按 Ctrl+Enter键发送消息"}).html('发送').click(function()
+					{
+						chatOption.sendText(this,"text");
+					}).appendTo(promNode);
+			 
+		},
+		createPromptDiv:function(promNode)
+		{ 
+			if($('.swiper_wrap_div'))
+			{
+				return ;
+			}
+            // var swiper =  $('<div>').attr({"class":"swiper_wrap_div fl"}).appendTo(promNode);
+	        // var sProm = '<ul class="font_inner_ul" style="top: 0px;">'
+	        // 	+'<li class="tooltip_warm_li" style="">在线预订支付后蚂蚁会互发联系方式，保障您的入住及资金安全</li>'
+	        // 	+'<li class="tooltip_warm_li">房东可能休息了，请您稍等片刻，或者等待房东明天回复。</li>'
+
+			var tj_swiper = $('<div>').attr({"class":"tj_swiper_wrap_div fl"}).appendTo(promNode);
+            var tj_sProm = '<ul class="font_inner_ul" style="top: 0px;">'
+                 +'<li class="" style="">在线预订支付后蚂蚁会互发联系方式，保障您的入住及资金安全</li>'
+                 +'<li class="">房东可能休息了，请您稍等片刻，或者等待房东明天回复。</li>'
+	        // swiper.append(sProm);
+			tj_swiper.append(tj_sProm);
+		},
+		createHomelessDiv:function(cid)
+		{ 
+			var record=$('#record_'+cid);
+			var dStatus = $('<div>').attr({"class":"block_h6 room_status"}).appendTo(record);  
+			dStatus.append('<p>您是否需要将当前房源状态置为不可租？</p>');
+			$('<input>').attr({"type":"button","value":"是",'class':'yes on'}).click(function(){
+				$(dStatus).remove();
+				window.open('/user/landlord/roommanager?tab=cal');
+			}).appendTo(dStatus);  
+			$('<input>').attr({"type":"button","value":"否",'class':'no'}).click(function(){
+				$(dStatus).remove();
+			}).appendTo(dStatus);   
+		},
+		changePrompt:function(type)
+		{
+			$('.font_inner_ul').find("li").remove();
+			if(type=='landlord')
+			{
+				$('.font_inner_ul').append('<li class="tooltip_warm_li" style="">在线预订支付后蚂蚁会互发联系方式，保障您的入住及资金安全</li>');
+				var hours = new Date().getHours()
+				if(hours>=23||hours<7){
+					$('.font_inner_ul').append('<li class="tooltip_warm_li">房东可能休息了，请您稍等片刻，或者等待房东明天回复。</li>');
+				}
+			}
+			else  if(type=='tenant')
+			{
+				// $('.font_inner_ul').append('<li class="tooltip_warm_li" style="">请勿引导房客线下交易，以免影响您的房源排名</li>');
+				$('.font_inner_ul').append('<li class="tooltip_warm_li" style="">房客入住完成后，要个评价吧，增加好评率可以提升您房源排名</li>');
+				if(hours>=23||hours<7){
+					$('.font_inner_ul').append('<li class="tooltip_warm_li">夜间23：00-7：00，自动为您开启震动提醒</li>');
+				}
+			}else
+			{
+				
+			}
+		},
+		createExtDiv:function(talkNode,d)
+		{
+			//FIXME 
+			if(d.type!="landlord")
+			{   
+				//toubu
+				var ext = $('<div id="tuijianRooms">').attr({"class":"fl relave rihgt_roomer"}).appendTo(talkNode);
+				var orderurl='/landlord/'+$('#MAYIUID').val()+'/orders';
+				 $('<a>').attr({"class":"clearfloat room_nav_a absot","target":"_blank","href":orderurl}).html('<span classs="fl">查看订单</span><i class="fl right_go"></i> ').appendTo(ext);   
+				 //当前房源
+				var currRoom =  $('<div>').attr({"class":"room_recommend_roomer now_room_parent rihgt_roomer_now"}).appendTo(ext);  
+				 $('<h5>').attr({"class":"now_h5"}).html('当前房源').click(function(){
+					 $(this).siblings('.rihgt_roomer_now').addClass('now_hid').animate({height:'30px'},300);
+					  $($(ext).find('.tuij_room')[0]).addClass('tuij_hide');
+				 }).appendTo(currRoom);
+				var roomDiv= $('<div>').attr({"class":"now_room"}).appendTo(currRoom);
+				
+				var sRoom = '<input id="usertype'+d.code+'" type="hidden" value="'+d.type+'"/><input id="'+d.code+'" type="hidden" value="'+d.room.id+'"/><a id="sRoom1_'+d.code+'" target="_blank" href="/room/'+d.room.id+'">'
+	    			+'<img id="sRoomImg_'+d.code+'" src="'+d.room.mainImageUrl+'" >'
+	    			+'</a>'
+	                +'<a id="sRoom2_'+d.code+'" target="_blank" href="/room/'+d.room.id+'">'
+	                +'<strong class="room_title"><span id="sRoomTitle_'+d.code+'" sttt="'+d.room.title+'">'+UI.maxText(d.room.title,18)+'</span>'
+	                +'<p id="sRoomPrice_'+d.code+'" class="room_price"><font>￥</font>'+d.room.dayPrice+'</p>'
+	                +'</strong>'
+	                +'</a>'
+                roomDiv.html(sRoom);
+				 
+				// 推荐房源 
+				var otherRoom =  $('<div >').attr({"class":"room_recommend_roomer now_room_parent tuij_room_parent"}).appendTo(ext);  
+				$('<h5>').html('我的其他房源').appendTo(otherRoom);
+				var oRoomDiv= $('<div>').attr({"class":"tuij_room tuij_hide"}).appendTo(otherRoom);
+				//FIXME 后台获取 
+
+			  this.getMoreRoomList(ext,oRoomDiv,d.room.id,d.code); 
+				
+			}
+			else
+			{
+			 
+				//toubu
+				var ext = $('<div id="landlord_more_roomdiv_'+d.code+'">').attr({"class":"fl relave contacter_right_room"}).appendTo(talkNode);  
+				var sExt = '<ul class="clearfloat im_room_nav absot">'
+					+'<li class="on">当前房源</li>'
+					+'</ul>'
+					+'<div class="room_recommend_roomer">'
+					+'<input id="usertype'+d.code+'" type="hidden" value="'+d.type+'"/><input id="'+d.code+'" type="hidden" value="'+d.room.id+'"/><a id="sRoom1_'+d.code+'" target="_blank" href="/room/'+d.room.id+'">'		        
+					+'<img id="sRoomImg_'+d.code+'" src="'+d.room.mainImageUrl+'" >'
+					+'</a>'		  
+					+'<a id="sRoom2_'+d.code+'" target="_blank" href="/room/'+d.room.id+'">'	
+					+'<strong class="room_title"><span id="sRoomTitle_'+d.code+'" sttt="'+d.room.title+'">'+UI.maxText(d.room.title,18)+'</span>'
+					+'<p id="sRoomPrice_'+d.code+'" class="room_price"><font>￥</font>'+d.room.dayPrice+'</p>'
+					+'</strong>'    
+					+'</a>'
+					+'</div>' ;
+				ext.append(sExt); 
+				var sd1=chatWindow.d1;
+				var sd2=chatWindow.d2;
+				if(chatWindow.d1==0||chatWindow.d2==0)
+				{
+					sd1= $FMT.fmtDate(new Date());
+
+					sd2=$FMT.fmtDate($DTU.addDays(new Date(),1))
+				}
+				var sOth ='<a id="go_order_'+d.code+'" class="go_order" target="_blank" href="/order/waitinit/room-'+d.room.id+'_roomnum-1_checkinday-'+sd1+'_checkoutday-'+sd2+'"  >立即下单</a>' 
+//				+'<a class="landlord_more_room"  href="/room/'+d.room.id+'#landlord_room"  >查看该房东的其他房源<span class="room_sanjiao"><i class="sanjiao_i"></i></span></a>';
+				+'<a  class="landlord_more_room"  href="javascript:animateRooms('+d.room.id+');"  >查看该房东的其他房源<span class="room_sanjiao"><i class="sanjiao_i"></i></span></a>'
+				+'<p class="dowload_app">下载APP注册立送<span>500元</span>大礼包，随时随地保持畅聊！</p>'
+				+'<span class="chat_img"></span>';
+				ext.append(sOth); 
+				//toubu
+				$('<p id="landlord_more_room_'+d.code+'">').attr({"class":"right_bottom"}).html('房东不回复？<span class="system_tjRoom">系统智能推荐</span>').click(function(){
+					chatWindow.appendSysRecommend(d.code);
+				}).appendTo(talkNode);
+				//$('.IM_btn').click();
+				 
+			}  
+		},
+		createMoreRooms:function(extNode,oRoomDiv,rooms,cid)
+		{
+			if(rooms&&rooms.length>0)
+			{
+				console.log(rooms.length);
+				for(var i=0;i<rooms.length;i++)
+				{
+					var room = rooms[i];
+					room.code=room.id;
+					roomList.put(room);
+					var oDiv= $('<div>').attr({"class":"now_room_child"}).appendTo(oRoomDiv);
+					var sORoom = '<input id="'+cid+'rRoom_'+room.id+'" type="hidden" value="'+room.id+'"/><a id="'+cid+'rRoom1_'+room.id+'"  target="_blank" href="/room/'+room.id+'">'		        
+	        			+'<img id="'+cid+'rRoomImg_'+room.id+'"  src="'+room.mainImage+'">'
+	        			+'</a>	 '
+	        			+'<a id="'+cid+'rRoom2_'+room.id+'" target="_blank" href="/room/'+room.id+'">	'
+	        			+'<strong class="room_title"><span id="'+cid+'rRoomTitle_'+room.id+'" sttt="'+room.title+'">'+UI.maxText(room.title,18)+'</span>'
+	        			+'<p id="'+cid+'rRoomPrice_'+room.id+'" class="room_price"><font>￥</font>'+room.dayPrice+'</p>'
+	        			+'</strong>'
+	        			+'</a>';
+						oDiv.append(sORoom);
+	        			var recommDiv = $('<div>').attr({"class":"recommend_btn mb5","data":room.id,"chartId":cid}).click(function(){
+	        				chatOption.recommendRoom(this);
+	        			}).appendTo(oDiv);
+	        			recommDiv.append('<a   href="javascript:;"><span></span>推荐此房</a>'); 
+				}
+				oRoomDiv.scrollTop=0; 
+			}
+			
+			
+			//点击加载更多 
+//			if(rooms&&rooms.length>0){
+//				var moreRoom =  $('<div>').attr({"class":"click_more"}).html("点击加载更多").click(function(){
+//					$(this).siblings('.rihgt_roomer_now').addClass('now_hid').animate({height:'30px'},300);
+//					$($(ext).find('.tuij_room')[0]).addClass('tuij_hide');
+//				}).appendTo(extNode);  
+//			}
+		},
+		getMoreRoomList:function(extNode,oRoomDiv,roomId,cid)
+		{
+			var ctx = $('#ctx').val();
+			var obj={"roomId":roomId};
+			var url = ctx+"/landlord/moreRooms"; 
+			$.ajax({
+				url :url,
+				type : 'POST',
+				async:true,
+				data : obj,
+				dataType:'json',
+				timeout: 15000,
+				error: function(data){
+					obj.state=-2; //发送失败，服务器异常 
+				},
+				success : function(data){
+					if(data.error){ 
+					}else
+					{
+						chatWindow.createMoreRooms(extNode,oRoomDiv,data.data,cid);
+					}
+				}
+			}); 
+		},
+		/**
+		 * 设置未读消息数
+		 * 
+		 */
+		resetNum:function(chatUserId,num)
+		{
+			var msgNum = $('#talk_num_'+chatUserId);
+			if(msgNum)
+			{
+				if(num>0)
+				{
+					if($(msgNum).parent().hasClass("on"))
+					{
+						
+					}else
+					{
+						var n = $(msgNum).attr("num");
+						var showNum = parseInt(n)+num;
+						if(showNum>99)
+						{
+							showNum='99+';
+						}
+						$(msgNum).attr("num",parseInt(n) + num).html(showNum);
+						$(msgNum).show(); 
+						
+					}
+					//打开且命中当前
+					if($(msgNum).parent().hasClass("on")&&$('.IM_content').css("display")!="none")
+					{
+						
+					}else{						 
+						var nli = $('.IM_btn_span i');
+						var snum = $(nli).attr("num");
+						if(!snum)
+						{
+							snum='0';
+						}
+						var nNum = parseInt(snum)+num;
+						$(nli).attr('num',nNum);
+						if(nNum>99)
+						{
+							nli.html('99+');
+						}else
+						{
+							nli.html(nNum);
+						}
+						
+						if(nNum>0)
+						{
+							nli.show();
+							imTimer.init();
+						}
+					}
+				}else
+				{
+					msgNum.attr('num',0);
+					msgNum.html('');
+					msgNum.css('display','none');
+				}
+			}
+		},
+		appendReplyMsg:function(cid,options)
+		{
+			var record =  $('#record_'+cid);
+			
+			var d =  contactOption.get(cid);
+			this._appendTime(record,d,new Date()); 
+			
+			var cuName=$('#head_nickname').html();
+			if(options.msgType=='text')
+			{
+				var replay= $('<p>').attr({"class":"talk_right talk_p clearfloat"}).appendTo(record);
+				
+				var self= $('<strong>').attr({"class":"talk_p_head"}).html(cuName).appendTo(replay);
+				var stateNode = $('<span>').attr({"class":"loading_send"}) ;
+				var text = $('<i>').attr({"class":"talk_text"}).appendTo(replay);
+				text.append(stateNode);
+				
+				text.append("<span class='talk_R_bj'></span>"+options.msg) 
+			}
+			else if(options.msgType=='recommend')
+			{
+				 var roomDiv = $('<div>').attr({"class":"talk_left_room_roomer talk_p talk_right"}).appendTo(record);
+				 var strongDiv = $('<strong>').attr({"class":"talk_p_head"}).html(cuName).appendTo(roomDiv);
+				 var stateNode = $('<span>').attr({"class":"loading_send"}).appendTo(roomDiv);
+				 var pRoomDiv = $('<div>').attr({"class":"talk_left_room "}).appendTo(roomDiv);
+				 var rightSpan = $('<span>').attr({"class":"sanjiao sanjiaoR"}).appendTo(pRoomDiv);
+				 var roomD = $('<div>').attr({"class":"room clearfloat ml100"}).appendTo(pRoomDiv);
+				 var roomA = $('<a>').attr({"href":"/room/"+options.id,"target":"_blank"}).appendTo(roomD);
+
+				 // roomA.append('<img style="display: block;" src="'+options.recommendRoom.mainImage+'" class="lazy fl">'
+					// 			+'<div class="room_instro clearfloat fl">'
+					// 			+'<strong>'
+					// 			+options.price
+					// 			+'<strong>'
+					// 			+'</div>') ;
+                if(options.commentRate < 4.0){
+                    options.commentRateDesc = '';
+                }
+                roomA.append('<img style="display: block;" src="'+options.mainImageUrl+'" class="lazy fl roomImg">'
+                  +'<div class="room_instro clearfloat fl">'
+                    +'<div class="roomTitle">'
+                    +options.roomtitle
+                    +'</div>'
+                    +'<div class="roomPrice mt10">'
+                        +'¥'+options.price/100
+                    +'</div>'
+                        +'<div class="detail_list mt10">'
+                           +'<span class="room_addres icon_after">'+options.districtName
+                           +'</span>'
+                           +'<span class="valate_num icon_after">'+options.commentCount
+                            +'评价</span>'
+                           +'<span class="room_score">'+options.commentRate
+                           +'分&nbsp</span>'
+                                +'<span>'+options.commentRateDesc
+                                +'</span>'
+
+                         +'</div>'
+                    +'</div>'
+                 +'</div>') ;
+			}
+			else if(options.msgType=='img')
+			{
+				var replay= $('<p>').attr({"class":"talk_right talk_p clearfloat"}).appendTo(record);
+				var self= $('<strong>').attr({"class":"talk_p_head"}).html(cuName).appendTo(replay);
+				var stateNode = $('<span>').attr({"class":"loading_send"}) ;
+				var text = $('<i>').attr({"class":"talk_text"}).appendTo(replay);
+				text.append(stateNode);
+				
+				text.append("<span class='talk_R_bj'></span>"+'<img alt="" src="'+options.msg+'">') 
+			}
+			
+			 chatOption.scroll(cid);
+			 return stateNode;
+		},
+		appendMsg:function(from,to,msg,ext)
+		{
+			var chatUserId = from;  
+			var d = contactOption.get(from);
+			 var currU =$('#MAYIUID').val();
+			if(chatUserId==currU)
+			{
+				return;
+			}
+			if(d==null)
+			{   
+				if(!ext)
+				{
+					return ;
+				}
+				//
+				if(ext.isShow==10)
+				{
+				
+					return;
+				}  
+				d = {"code": from ,"name":ext.nickName,"type":ext.userType,"head":ext.headImageUrl,"roomId":ext.roomId}; 
+				d.talkTo = ext.talkTo;
+				contactOption.put(d);  
+			}else
+			{
+				var roomchange = false;
+				if(ext)
+				{
+					d.head=ext.headImageUrl;
+					d.name=ext.nickName;
+					d.talkTo = ext.talkTo;
+					roomchange = d.roomId != ext.roomId;
+					if(d.room){
+						roomchange = d.roomId != d.room.d;
+					}
+				}
+				if(ext.isShow==10)
+				{
+					return;
+				}  
+			}
+			if(ext.msgId<=chatWindow.maxMsgId)
+			{
+				console.log('消息已接收'+" "+ext.msgId+" "+chatWindow.maxMsgId);
+				return;
+			}
+			
+			var obj = {"roomId":ext.roomId};
+			if(d.room==null || d.talkTo || roomchange)
+			{
+				var room =$.ajax({
+					url :'/im/room',
+					type : 'POST',
+					async:false,
+					data : obj,
+					dataType:'json',
+					timeout: 15000,
+					error: function(data){
+						obj.state=-2; //发送失败，服务器异常 
+					},
+					success : function(data){
+						if(data.error){  
+							return '';
+						}else
+						{
+							d.room ={
+									 "id":data.roomId,
+									 "title":data.title,
+									 "mainImageUrl":data.mainImageUrl,
+									 "dayPrice":data.dayPrice/100,
+                                     "distractName":data.distractName,
+									 "landLordCommentCnt":data.landLordCommentCnt,
+									 "ratingScore":data.ratingScore,
+                                     "ratingScoreDesc":data.ratingScoreDesc,
+									 "address":data.address 
+									};  
+							if(data.ownerId==from)
+							{
+								d.type='landlord';
+							}else
+							{
+								d.type='tenant';
+							}
+							return d.room;
+						}
+					}
+				}); 
+				if(!room)
+				{
+					contactOption.del(d.code); 
+					alert('用户或房源信息已失效，请重新登录。');
+					return;
+				}
+				
+			} 
+			chatOption.setMaxMsgId(0,contactOption.get(from),1);
+			chatWindow.createTalkDiv(from);
+			chatWindow.createContactDiv();
+			
+			//空新闻不计数
+			if(!msg)
+			{
+				return;
+			}
+			chatWindow.resetNum(chatUserId,1);
+			msgPrompt.init();
+			var record =  $('#record_'+chatUserId);
+			if(record)
+			{ 
+				 
+				chatWindow._appendTime(record,d,ext.time?$DTU.parseDateTime(ext.time):"");  
+				
+				if(ext.msgType=='recommend')
+				{
+					var recommendRoom = null;
+                    var obj = {"roomId":msg};
+                    var room =$.ajax({
+                        url :'/im/room',
+                        type : 'POST',
+                        async:false,
+                        data : obj,
+                        dataType:'json',
+                        timeout: 15000,
+                        error: function(data){
+                            obj.state=-2; //发送失败，服务器异常
+                        },
+                        success : function(data){
+                            if(data.error){
+                                return '';
+                            }else
+                            {
+                                 recommendRoom ={
+                                    "recommendRoomId":data.roomId,
+                                    "recommendTitle":data.title,
+                                    "recommendMainImageUrl":data.mainImageUrl,
+                                    "dayPrice":data.dayPrice/100,
+                                    "distractName":data.distractName,
+                                    "landLordCommentCnt":data.landLordCommentCnt,
+                                    "ratingScore":data.ratingScore,
+                                    "ratingScoreDesc":data.ratingScoreDesc,
+                                    "recommendAddress":data.address,
+									"recommendCityId":data.cityId,
+									"recommendRoomType":data.rommType,
+									"recommendLeaseType":data.leaseType,
+									"recommendDayPrice":data.dayPrice
+                                };
+                                if(data.ownerId==from)
+                                {
+                                    d.type='landlord';
+                                }else
+                                {
+                                    d.type='tenant';
+                                }
+                                return d.room;
+                            }
+                        }
+                    });
+
+                    // var recommendRoom = {"roomId":ext.recommendRoomId,
+					// "address":ext.recommendAddress,
+					// "title":ext.recommendTitle,
+					// "mainImageUrl":ext.recommendMainImageUrl,
+					// "cityId":ext.recommendCityId,
+					// "roomType":ext.recommendRoomType,
+					// "leaseType":ext.recommendLeaseType,
+					// "dayPrice":ext.recommendDayPrice
+					// };
+					 
+					chatWindow._appendRoom(record,d, recommendRoom);
+				}
+				else if(ext.msgType=='img')
+				{
+					chatWindow._appendImg(record,d,msg);
+				} 
+				else if(ext.msgType=='axbVoice')
+				{
+					chatWindow.appendWarn(record,"对方拨打了您的电话，PC端暂不支持拨打电话，请下载最新版手机App，跟对方电话沟通。");
+				}
+				else if(ext.msgType=='voice')
+				{
+					var svoice = '您收到一段语音消息，PC端暂不支持该功能，请登录新版手机APP查看。';
+					 
+					chatWindow.appendWarn(record,svoice);
+				}else if(ext.msgType=='realVoice')
+				{
+					var win = (msg.split(' ')[0]).replace(',点击回拨','')+"PC暂不支持通话功能，请登录新版手机APP查看。";
+					chatWindow.appendWarn(record,win);
+				} 
+				else if(ext.msgType=='warnTips')
+				{ 
+					chatWindow.appendWarn(record,msg);
+				} 
+				else if(msg.indexOf('温馨提示：')==0)
+				{ 
+					chatWindow.appendWarn(record,msg);
+				}
+				else if(msg)
+				{ 
+					if(msg.indexOf('pc暂不支持通话功能')!=-1)
+					{
+						var win = msg.split(' ')[0]+" PC暂不支持通话功能，请登录新版手机APP查看。";
+						 
+						chatWindow.appendWarn(record,msg);
+					}else
+					{
+						chatWindow._appendText(record,d,msg );
+					}
+					
+					//FIXME 判断房东/房客 ，同步自己发送消息
+					//this._appendAudio(record); 
+				} 
+//				 chatWindow.maxMsgId=ext.msgId;
+				chatOption.setMaxMsgId(ext.msgId,d,1);
+			}
+			
+			 chatOption.scroll(chatUserId);
+		}, 
+		talkTo:function(node)
+		{ 
+			var data = $(node).attr('data').split('\t');
+			var roomId = data[3].split('_')[0];
+			var from =data[1];
+			var ext = {
+					 "roomId":roomId,  
+					 "nickName":data[2],
+					 "headImageUrl":data[7],
+					 "talkTo":true
+			};
+			var cid=$("#MAYIUID").val();
+			if(cid==data[1])
+			{
+				alert("不能给自己发消息");
+				return;
+			} 
+			ext.userType="landlord";
+			 
+			
+			chatWindow.appendMsg(data[1],cid,"",ext);
+			$('.IM_btn').click();
+			chatOption.chooseContactDivClick($('#li_'+data[1]));
+			
+		},
+		_appendText:function(node,d,msg)
+		{
+			 
+			node.append('<p class="talk_left talk_p clearfloat"><strong class="talk_p_head">'+d.name+'</strong><i class="talk_text"><span class="talk_L_bj"></span>'+msg+'</i></p>');
+		},
+		_appendTime:function(node,d,msgTime)
+		{
+			if(!msgTime)
+			{
+				return;
+			}
+			var stime = "";
+			//历史消息
+			if(new Date().getTime()-msgTime.getTime()>60*1000)
+			{ 
+				//计算消息时间与当前时间差
+			 
+				var margin  = $DTU.getDateMargin(new Date(), msgTime); 
+				if(margin>=7)
+				{
+					stime=$FMT.fmtTimestamp(msgTime);
+				}
+				else if(margin>=2)
+				{
+					stime=$FMT.fmtZnWeekDay(msgTime)+" "+$FMT.fmtHourMin($FMT.fmtTimestamp(new Date(msgTime)));
+				}
+				else if(margin>=1)
+				{
+					stime='昨天 '+$FMT.fmtHourMin($FMT.fmtTimestamp(msgTime));
+				}else
+				{  
+					stime =	$FMT.fmtHourMin($FMT.fmtTimestamp(msgTime));
+				}
+				//如果不为第一条消息
+				if(d.time)
+				{
+					//新消息与上条消息间隔小于5m
+					if( msgTime.getTime() -d.time.getTime()<5*60*1000)
+					{
+						stime="";
+					}
+				} 
+			}//新消息
+			else
+			{
+				//第一条消息显示时间
+				if(!d.time)
+				{
+					stime =	$FMT.fmtHourMin($FMT.fmtTimestamp(msgTime));
+				}else
+				{
+					//新消息与上条消息间隔小于5m
+					if( msgTime.getTime() -d.time.getTime()<5*60*1000)
+					{
+						stime="";
+					}else
+					{
+						stime =	$FMT.fmtHourMin($FMT.fmtTimestamp(msgTime));
+					}
+				}
+			} 
+			 
+			if(stime)
+			{
+				node.append('<p><time>'+stime+'</time></p>');
+			} 
+			d.time = msgTime;
+		},
+		appendWarn:function(node,msg,cl)
+		{
+			if(cl){
+				$(node).append('<div class="block_h6"><h6 class="block_h6_bj">'+msg+'</h6></div>');
+			}else{
+				$(node).append('<div class="block_h6"><h6>'+msg+'</h6></div>');
+			} 
+		},
+		_appendAudio:function(node)
+		{
+			node.append('<div class="block_h6"><h6>房东在手机端给您发起一段语音通话，PC端暂不支持该功能。请下载蚂蚁短租APP，跟房东语音聊天！</h6></div>');  
+		},
+		_appendImg:function(node,d,img)
+		{  
+			 
+			var pNode = $('<p>').attr({"class":"talk_left talk_p clearfloat"}).appendTo(node);
+			pNode.append('<strong class="talk_p_head">'+d.name+'</strong>');
+		
+			var iNode= $('<i>').attr({"class":"talk_text"}).appendTo(pNode); 
+			iNode.append('<span class="talk_L_bj"></span>');
+			$('<img>').attr({"src":img}).click(function(event){
+        		event.stopPropagation();
+    			var line_h = $(window).outerHeight();
+    			$('.im_sfz_tan').css('line-height',line_h+'px');
+    			$('.im_sfz_tan').css('display','block');
+    			src = $(this).attr('src');
+    			var src1=src.substring(0,src.indexOf('_') )+'_620-500_8-11.jpg';
+    			$('.im_sfz_tan img').attr('src',src);
+			}).appendTo(iNode); ;
+		},
+		_appendRoom:function(node,d,room)
+		{
+			// var sRoom = '<div class="talk_left_room_roomer talk_p talk_left">'
+            // +'<strong class="talk_p_head">'+d.name+'</strong>'
+            // +'<div class="talk_left_room talk_p_room">'
+            // +'<span class="sanjiao sanjiaoL"></span>'
+            // +'<div class="room clearfloat">'
+            // +'<a target="_blank" href="/room/'+room.roomId+'">'
+            // +'<img style="display: block;" src="'+room.mainImageUrl+'" class="lazy fl" alt=""  >'
+            // +'<div class="room_instro clearfloat fl">'
+            // +'<strong>'
+			// +room.title
+			// +'</strong>'
+			// +'</div>'
+			// +'</a>'
+			// +'</div>'
+			// +'</div>'
+			// +'</div>';
+			// node.append(sRoom);
+            if(room.ratingScore < 4.0){
+                room.ratingScoreDesc = '';
+            }
+
+            var sRoom = '<div class="talk_left_room_roomer talk_p talk_left">'
+                +'<strong class="talk_p_head">'+d.name+'</strong>'
+                +'<div class="talk_left_room">'
+                +'<span class="sanjiao sanjiaoL"></span>'
+                +'<div class="room clearfloat">'
+             +'<a target="_blank" href="/room/'+room.recommendRoomId+'">'
+                +'<img style="display: block;" src="'+room.recommendMainImageUrl+'" class="lazy fl roomImg" alt=""  >'
+                +'<div class="room_instro clearfloat fl">'
+                +'<div class="roomTitle">'+room.recommendTitle+'</div>'
+                        +'<div class="roomPrice mt10">¥'+room.recommendDayPrice/100+'</div>'
+                        + '<div class="detail_list mt10">'
+                           + '<span class="room_addres icon_after">'+room.distractName+'</span>'
+                           + '<span class="valate_num icon_after">'+room.landLordCommentCnt+'评价</span>'
+                           + '<span class="room_score">'+room.ratingScore+'分&nbsp</span>'
+
+								+ '<span>'+room.ratingScoreDesc+'</span>'
+
+                        +'</div>'
+                +'</div>'
+              +'</a>'
+                +'</div>'
+                +'</div>'
+                +'</div>';
+            node.append(sRoom);
+			 
+		},
+		appendSysRecommend:function(cid)
+		{
+			var sysNode = document.getElementById('recommend_'+cid);
+			var recordNode=$('#record_'+cid);
+			//已存在
+			if(sysNode)
+			{ 
+				var dv =   $('#contacter_talk_'+cid)[0];
+		   		var a = $('#recommend_'+cid);
+		        dv.scrollTop = a.offsetTop - dv.offsetTop+70;
+				 
+				return ;
+			}
+			var d = contactOption.get(cid);
+			
+			var sysNode = $('<div>').attr({"class":"block_h6","id":"recommend_"+cid}).appendTo(recordNode);
+			$('<h6>').html('房东可能不在电脑边，以下房源可能适合你').appendTo(sysNode);
+			 var dRoom = $('<div>').attr({"class":"block_h6_room","id":"recommend_room_"+cid}).appendTo(sysNode);
+			chatWindow._appendRecommRoom(dRoom,1,d,1);				 
+			
+		},
+		_appendRecommRoom:function(dRoom,page,d,type)
+		{
+			$(dRoom).animate({opacity:0.3},300);
+			$('.xuanzhuan').addClass('xuanzhuan_loding')
+			var room =$.ajax({
+				url :'/im/recommend/rooms?type='+type,
+				type : 'POST',
+				async:true,
+				data : {"roomId":d.room.id,
+						"page":page,
+						"pageSize":2},
+				dataType:'json',
+				timeout: 15000,
+				error: function(data){
+					obj.state=-2; //发送失败，服务器异常 
+				},
+				success : function(data){
+					if(data.error){ 
+						$('.xuanzhuan').removeClass('xuanzhuan_loding');
+						$('#recommend_'+d.code).remove();
+						return;
+					}else
+					{
+						dRoom.animate({opacity:1},300);
+						$('.xuanzhuan').removeClass('xuanzhuan_loding');
+						if(data.rooms.length>0)
+						{
+							 dRoom.empty();
+						}
+						 for(var i=0;i<data.rooms.length;i++)
+						 { 
+							var room= data.rooms[i];
+							 var oRoom = $('<div>').attr({"class":"room clearfloat ptb8 plr10"}).appendTo(dRoom);
+							 if(i%2==1)
+							 {
+								 oRoom = $('<div>').attr({"class":"room clearfloat ptb8 plr10 borderT"}).appendTo(dRoom);
+							 } 
+							 var sRoom = '<a href="/room/'+room.id+'?IMfrom=1'+'" target="_blank">'
+										+'<img alt="" class="lazy fl" src="'+room.mainimgurl+'" style="display: block;">'	
+										+'<div class="room_instro clearfloat fl">'
+										+'<strong>'+room.name+'</strong>'
+										+'<ul>'
+                						+'<li><i style="color:#ff5d51;">￥</i><span style="color:#ff5d51;font-size:16px;">'+room.price+'</span>·</li>'	
+                						+'<li>'+room.roomNum+'·</li>'
+                						+'<li>距离'+room.distance+'km</li>'
+                						+'<input type="hidden" value="0">'
+										+'</ul>'
+										+'</div>'
+										+'</a>' ;
+							 oRoom.append(sRoom);
+						 }
+						 if(data.page.count>0 )
+						 {  
+							 if(data.page.count>2)
+							 { 
+								 var sOp =$('<div>').attr({"class":"talk_more_room","id":'talk_more_room_'+d.code,"page":"1"}).html('<a id="huanyipi" href="javascript:;">换一批<span class="xuanzhuan"></span></a>').click(function(){
+									 if(page+1<=3&&page+1<=data.page.pageCount)
+									 { 
+										 chatWindow._appendRecommRoom(dRoom,page+1,d,2); 
+									 }else
+									 { 
+										 chatWindow._appendRecommRoom(dRoom,1,d,2);
+									 }
+									
+									 
+								 });
+								 dRoom.append(sOp); 	
+							 }
+							 if(data.rooms.length==0&&data.page.count==1)
+							 {
+								 var record=$('#record_'+d.code);
+								 chatWindow.appendWarn(record,"没有匹配的房源推荐，试试网站的搜索功能");
+							 }
+							 
+						 }else
+						 {
+							 var record=$('#record_'+d.code);
+							 chatWindow.appendWarn(record,"没有匹配的房源推荐，试试网站的搜索功能");
+						 }
+					}
+				}
+			});
+		}
+};
+/*点击查看其他房源*/
+function animateRooms(roomId){
+	
+	var urls = window.location.href.split("/");
+	if(urls.length > 4){
+		if(roomId == urls[4].split("#")[0]){
+			 //window.location.href='/room/'+roomId+'#landlord_room';
+			 //window.location.reload();
+			//chatWindow.initHistoryContacts(); 
+			var map_scoll = $('.landlord_room').offset().top-60;
+			  $("html,body").animate({
+			    scrollTop: map_scoll
+			  }, 600);
+		}	
+		else{
+			window.location.href='/room/'+roomId+'#landlord_room';
+		}
+	}
+	else{
+		window.location.href='/room/'+roomId+'#landlord_room';
+	}
+};

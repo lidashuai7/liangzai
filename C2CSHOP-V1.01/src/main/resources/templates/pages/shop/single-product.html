@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700"
+	rel="stylesheet">
+
+<title>商品详情页面</title>
+
+<!-- Bootstrap core CSS -->
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+<!-- Additional CSS Files -->
+<link rel="stylesheet" href="../assets/css/fontawesome.css">
+<link rel="stylesheet" href="../assets/css/tooplate-main.css">
+<link rel="stylesheet" href="../assets/css/owl.css">
+<link rel="stylesheet" href="../assets/css/flex-slider.css">
+<style>
+.navbar>.container-fluid .navbar-brand {
+	margin-left: 0px;
+}
+
+a {
+	
+}
+</style>
+</head>
+
+<body>
+	<!-- 导航栏 start -->
+	<nav class="navbar navbar-default"
+		style="margin-bottom: 0px; background-color: white;">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar "></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#"
+					style="color: black; font-weight: 500">鲜果网</a>
+			</div>
+
+
+			<form class="navbar-form navbar-left">
+				<div class="form-group ">
+					<input type="text" class="form-control" placeholder="新鲜水果">
+				</div>
+				<button type="submit" class="btn btn-default">搜索</button>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a id="loginName" href="/loginpage">登陆/注册</a></li>
+				<li><a id="shopCar" href="/loginpage">购物车</a></li>
+				<li><a id="favourite" href="/loginpage">收藏夹</a></li>
+				<li><a id="order" href="/loginpage">我的订单</a></li>
+				<li><a  href="/homepage">退出登录</a></li>
+				<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">我的 XX<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+					</ul></li> -->
+			</ul>
+		</div>
+		</div>
+	</nav>
+	<!-- 导航栏 end -->
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top"
+		style="border-bottom: 0px">
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link" href="/homepage">首页</a>
+				</li>
+				<li class="nav-item active"><a class="nav-link"
+					href="products.html">商品 <span class="sr-only">(current)</span>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="about.html">关于我们</a></li>
+				<li class="nav-item"><a class="nav-link" href="contact.html">联系我们</a></li>
+			</ul>
+		</div>
+		</div>
+	</nav>
+
+	<!-- Page Content -->
+	<!-- Single Starts Here -->
+	<div class="single-product">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="section-heading">
+						<div class="line-dec"></div>
+						<h1>商品详情介绍</h1>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="product-slider">
+						<div id="slider" class="flexslider">
+							<ul class="slides">
+								<li><img src="" /></li>
+								<li><img src="" /></li>
+								<li><img src="" /></li>
+								<li><img src="" /></li>
+							</ul>
+						</div>
+						<div id="carousel" class="flexslider">
+							<ul class="slides">
+								<li><img src="" /></li>
+								<li><img src="" /></li>
+								<li><img src="" /></li>
+								<li><img src="" /></li>
+								<!-- items mirrored twice, total of 12 -->
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="right-content">
+						<h2>商品名</h2>
+						<h4 id="price">价格</h4>
+						<p>商品描述...</p>
+						<span id="amount">库存：</span>
+						<form>
+							<label for="quantity">购买数量:</label> 
+							<input name="quantity"
+								type="quantity" class="quantity-text" id="quantityAmount"
+								onfocus="if(this.value == '1') { this.value = ''; }"
+								onBlur="if(this.value == '') { this.value = '1';}" value="1">
+							<input id="shopOrder" type="button" class="button" value="马上购买！">
+							<input id="shopCart" type="button" class="button" value="添加购物车">
+							<input id="shopCollector" type="button" class="button" value="添加收藏夹">
+						</form>
+						<div class="down-content">
+							<div class="categories">
+								<h5 id="kind">种类: </h5>
+							</div>
+							<div class="share">
+								<h6>
+									分享: <span><a href="#"><i class="fa fa-facebook"></i></a><a
+										href="#"><i class="fa fa-twitter"></i></a><a href="#"><i
+											class="fa fa-wechat"></i></a></span>
+								</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Single Page Ends Here -->
+
+
+	<!-- Footer Starts Here -->
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="logo">
+						<img src="../assets/images/header-logo.png" alt="">
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="footer-menu">
+						<ul>
+							<li><a href="#">返回顶部</a></li>
+							<li><a href="#">帮助</a></li>
+							<li><a href="#">隐私条款</a></li>
+							<li><a href="#">联系我们</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="#"><i class="fa fa-wechat"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer Ends Here -->
+
+
+	<!-- Sub Footer Starts Here -->
+	<div class="sub-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="copyright-text">
+						<p>Copyright &copy; 2019 Company Name - Design: Tooplate /
+							More Templates CGB-1904</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Sub Footer Ends Here -->
+
+
+	<!-- Bootstrap core JavaScript -->
+	<script src="../vendor/jquery/jquery.min.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+	<!-- Additional Scripts -->
+	<script src="../assets/js/custom.js"></script>
+	<script src="../assets/js/owl.js"></script>
+	<script src="../assets/js/isotope.js"></script>
+	<script src="../assets/js/flex-slider.js"></script>
+
+	<h1 id="prodId" th:text='${prodId}' style="display:none"></h1>
+	<h1 id="userId" th:text='${userId}' style="display:none"></h1>
+	<h1 id="username1" th:text="${username}" style="display:none"></h1>
+</body>
+
+<script type="text/javascript">
+	//页面加载完成之后加载商品页面
+	$(function() {
+		loginINFO();
+		var url="/prod/doFindObjectById";
+		var prodId=$("#prodId").html();
+		var params={"prodId":prodId};
+		$.getJSON(url,params,function(result){
+			   var str=result.data.smallPhoto;
+			   var str2=result.data.bigPhoto;
+			   var smallPhoto={};
+			   var bigPhoto={};
+			   //可以用字符或字符串分割
+			   if(str!=null){smallPhoto=str.split(',')};
+			   if(str2!=null){bigPhoto=str2.split(',')};
+			   doInitPage(result.data,smallPhoto,bigPhoto);
+		});
+		//绑定按钮跳转购物车，携带商品id过去
+		$("#shopCart").click(function(){
+			doShopCart();
+		});
+		//绑定按钮跳转订单页面，携带商品id过去
+		$("#shopOrder").click(function(){
+			doShopOrder();
+		});
+		$("#shopCollector").click(function(){
+			doConllector();
+		});
+		
+	})
+	//显示用户名
+	function loginINFO(){
+		var username = $("#username1").html();
+		var userId1 = $("#userId1").html();
+		if(username!=""){
+			$("#loginName").removeAttr('href');
+			$("#loginName").html("您好："+username);
+		}
+	}
+	
+	
+	//跳转收藏夹页面
+	function doConllector(){
+		var prodId=$("#prodId").html();
+		var userId=$("#userId").html();
+		var amount=$("#quantityAmount").val();
+		window.location.href="/collector/collector?prodId="+prodId+"&payAmount="+amount+"&userId="+userId;
+	}
+	
+	//跳转订单页面
+	function doShopOrder(){
+		var prodId=$("#prodId").html();
+		var amount=$("#quantityAmount").val();
+		 window.location.href="/order/doShopOrder?prodId="+prodId+"&payAmount="+amount;
+	}
+	//跳转到购物车页面
+	function doShopCart(){
+		var prodId=$("#prodId").html();
+		var userId=$("#userId").html();
+		var amount=$("#quantityAmount").val();
+		 window.location.href="/cart/doShopCart?prodId="+prodId+"&payAmount="+amount+"&userId="+userId;
+	}
+	
+	
+	//加载商品
+	function doInitPage(data,smallPhoto,bigPhoto){
+		//加载小图
+		$("#carousel .slides img").each(function(i){
+            $(this).prop("src",smallPhoto[i]);
+    	}); 
+		//加载大图
+		$("#slider .slides img").each(function(i){
+            $(this).prop("src",bigPhoto[i]);
+    	}); 
+		//赋值商品信息
+		$(".right-content p").html(data.prodDescribe);
+		$(".right-content h2").html(data.name);
+		$(".right-content #price").html("￥"+data.price);
+		$(".right-content #amount").html("库存："+data.amount+data.unit);
+		$(".right-content #kind").html("种类："+data.kind);
+	}
+</script>
+</html>

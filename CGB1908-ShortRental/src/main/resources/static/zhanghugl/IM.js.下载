@@ -1,0 +1,238 @@
+var imTimer = {
+	inited:false,
+	oTimer:0,
+	init:function()
+	{
+		
+		 if(imTimer.inited)
+		 {
+		 	return;
+		 } 
+		 
+		imTimer.oTimer=setInterval(function(){
+			$('.IM_btn').toggleClass('IM_btn_hover');
+		},1000)
+		
+		imTimer.inited=true;
+	},
+	clearInterval:function()
+	{
+		clearInterval(imTimer.oTimer);
+		imTimer.inited=false;
+	}
+
+};	
+
+	 
+$(function(){  
+
+	/*拖拽事件*/
+  	$( "#point" ).draggable({ containment: "window", scroll: false });
+    $('#point').draggable({ cancel: '.contacter_right_room,.right_bottom,.room_status_tan,#xubox_layer1,.MtList,.check_near,.contacter_talk,.xiaoxi_text,.contacter_ul,.auto_reply_tan,.room_recommend_roomer,.right_open_btn,.xiaoxi_btn,.xiaoxi_record' });  
+    
+    //
+    //im聊天,点击重新打开，请求方法
+	$('.abnormal-tips-btn-open').click(function(){
+		
+		//window.localStorage.clear(); //清除所有的变量和值,之后重新计算 
+		var total1 = getPageCount();
+		getToken();
+		if(!window.isTokenSuccess){
+			$("#messageError").html('在线聊天登录失败，请点击重新打开或刷新页面后重试');
+			$('.abnormal-tips-mask,.abnormal-tips').fadeIn("normal");
+			return false;
+		}else{
+			$('.abnormal-tips-mask,.abnormal-tips').fadeOut("normal");
+		}
+
+		//判断页面个数是否大于8个，进行提示,并且不打开聊天窗口
+		if ( total1 > PAGELIMIT ) {
+			$("#messageError").html('抱歉，同一账号最多支持8个蚂蚁页面，请关闭暂不使用的页面，再重新打开');
+			$('.abnormal-tips-mask,.abnormal-tips').fadeIn("normal");
+			return false;
+		}else{
+			$('.abnormal-tips-mask,.abnormal-tips').fadeOut("normal");
+		}
+		//end
+
+		 $('.IM_content').show(); 
+		 if(!$(".contacter_ul").find('li').hasClass('on'))
+		 {
+			 if($(".contacter_ul").find('li')[0])
+			 {
+				 chatOption.chooseContactDivClick($('.contacter_ul').find('li')[0]);
+			 }
+		 }else
+		 {
+			 chatOption.scroll($(".contacter_ul").find('li.on').attr("id").replace('li_',''));
+			 chatOption.resetUnReadNum();
+		 }
+		
+		//$(this).find('i').html("").hide();
+		 
+		swiperPromp.init();
+		 
+		setInterval(swiperPromp.next,6000);
+		//clearInterval(oTimer);
+		
+		$('.IM_btn').removeClass('IM_btn_hover');
+	})
+    
+	/*点击站内信按钮聊天页面显示，定时器关闭*/
+	$('.IM_btn').click(function(){
+		//判断im是否登陆成功,失败后弹出窗口
+		/*if(!window.isTokenSuccess){
+			var confim = confirm("在线聊天登录失败，请点击重新打开或刷新页面后重试");
+			if(confim==true){
+				getToken();
+				if(window.isTokenSuccess){  //如果再次登陆成功后
+					;//
+				}else{
+					$('.IM_btn').click();   //模拟点击事件，再次弹窗口
+					return;
+				}
+			}else{
+				return;
+			}
+		}*/
+		if(!window.isTokenSuccess){
+			$("#messageError").html('在线聊天登录失败，请点击重新打开或刷新页面后重试');
+			$('.abnormal-tips-mask,.abnormal-tips').fadeIn();
+			return false;
+		}
+		//判断页面个数是否大于8个，进行提示,并且不打开聊天窗口
+		var total = getPageCount();
+		if ( total > PAGELIMIT ) {
+			$("#messageError").html('抱歉，同一账号最多支持8个蚂蚁页面，请关闭暂不使用的页面，再重新打开');
+			$('.abnormal-tips-mask,.abnormal-tips').fadeIn();
+			return false;
+		}
+		//end
+		 $('.IM_content').show(); 
+		 if(!$(".contacter_ul").find('li').hasClass('on'))
+		 {
+			 if($(".contacter_ul").find('li')[0])
+			 {
+				 chatOption.chooseContactDivClick($('.contacter_ul').find('li')[0]);
+			 }
+		 }else
+		 {
+			 chatOption.scroll($(".contacter_ul").find('li.on').attr("id").replace('li_',''));
+			 chatOption.resetUnReadNum();
+		 }
+		
+		//$(this).find('i').html("").hide();
+		 
+		swiperPromp.init();
+		 
+		setInterval(swiperPromp.next,6000);
+		//clearInterval(oTimer);
+		
+		$(this).removeClass('IM_btn_hover');
+		
+	 
+	});  
+	$('.imjs-embed-user').each(function(){
+			$(this).bind('click',function()
+	       {
+				chatWindow.talkTo(this);
+	       });
+	  return
+	});
+	
+	/*右上角按钮点击关闭*/
+	$('.right_open_btn').click(function(){
+		$(this).parents('.IM_content').hide();
+		
+		clearInterval(swiperPromp.autoTimer);
+		swiperPromp.inited=false;
+	});
+	$(document).click(function(){
+		$('.im_sfz_tan').css('display','none');
+	})
+});
+var msgPrompt={
+	inited:false,
+	blink:0,
+	index:0,
+	init:function()
+	{ 
+		 if(msgPrompt.inited)
+		 {
+		 	return;
+		 } 
+		 
+		 msgPrompt.blink=setInterval(function(){ 
+			 var title = document.title.replace('【　　　】','').replace('【新消息】','');  
+			 msgPrompt.index++;
+			 if(msgPrompt.index % 2==0)
+			 {
+				 title='【　　　】'+title;
+			 }else
+			 {
+				 title='【新消息】'+title;
+			 }
+			 document.title=title;
+		},1000)
+		
+		msgPrompt.inited=true;
+	},
+	clearInterval:function()
+	{ 
+		clearInterval(msgPrompt.blink);
+		document.title = document.title.replace('【　　　】','').replace('【新消息】','');  
+		
+		msgPrompt.inited=false;
+	}
+} ;
+
+var swiperPromp = 
+{ 
+	index:0,
+	clickEndFlag:true,
+	inited:false,
+	autoTimer:0,
+	init:function()
+	{  
+		if(imTimer.inited)
+		{
+		 	return;
+		} 
+		
+		/*房东端左下角轮播*/
+		$(".font_inner_ul li:eq(0)").clone(true).appendTo($(".font_inner_ul"));
+		var liHeight = $(".swiper_wrap_div").height();
+		var totalHeight = ($(".font_inner_ul li").length *  $(".font_inner_ul li").eq(0).height()) -liHeight;
+		$(".font_inner_ul").height(totalHeight);//给ul赋值高度
+		var index = 0; 
+		  
+		//鼠标放上关闭定时器
+		$(".swiper_wrap_div").hover(function(){
+			clearInterval(swiperPromp.autoTimer);
+		},function(){
+			swiperPromp.autoTimer = setInterval(swiperPromp.next,6000);
+		})
+
+		swiperPromp.inited=true;
+	},
+	tab:function(){
+		var liHeight = $(".swiper_wrap_div").height();
+		$(".font_inner_ul").stop().animate({
+			top: -swiperPromp.index * liHeight
+		},400,function(){
+			this.clickEndFlag = true;//图片走完才会true
+			if(swiperPromp.index == $(".font_inner_ul li").length -1) {
+				$(".font_inner_ul").css({top:0});
+				swiperPromp.index = 0;
+			}
+		})
+	},
+
+	next:function() {
+		swiperPromp.index++;
+		if(swiperPromp.index > $(".font_inner_ul li").length - 1) {//判断index为最后一个Li时index为0
+			swiperPromp.index = 0;
+		}
+		swiperPromp.tab();
+	 }
+}

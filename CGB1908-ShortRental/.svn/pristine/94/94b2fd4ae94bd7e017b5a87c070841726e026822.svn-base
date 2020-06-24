@@ -1,0 +1,16 @@
+package com.cy.pj.dao.xln;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.cy.pj.vo.xln.AllOrder;
+import com.cy.pj.vo.xln.NoPayOrder;
+import com.cy.pj.vo.xln.PayOrder;
+
+@Mapper
+public interface OrderMapper {
+	List<AllOrder> allOrderFind();
+	List<NoPayOrder> noOrderFind();
+	List<PayOrder> payOrderFind();
+}

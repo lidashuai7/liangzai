@@ -1,0 +1,108 @@
+﻿var baseLink = "http://www.mayi.com";
+var baseLinkWap = "http://m.mayi.com";
+//var baseLink = "http://preview.mayi.com";
+//var baseLinkWap = "http://prewap.mayi.com";
+var top = window.screen.height / 2 - 250;
+var left = window.screen.width / 2 - 300;
+
+// 分享到新浪微博
+function shareToSina(id) {
+	var url = baseLink + "/lottery/checkLotteryStock";
+	$.get(url,{id:id},function(re) {
+		if(re.state){
+			url = baseLink + "/lottery/" + encodeURIComponent(id);
+			window.open(url);
+		}else{
+			var title = "蚂蚁短租送我5个彩票红包，分你一个，看谁先中500万，开抢~（分享自@蚂蚁短租网）";
+			var pic = "http://i1.mayi.com/gjfs08/M01/BB/A5/wKhzWFST0JX49Q1bAAAadhwOW-s950.jpg_110x110c.jpg";
+			var url = baseLink + "/lottery/" + encodeURIComponent(id);
+			window
+					.open(
+							"http://service.weibo.com/share/share.php?appkey=1283049900&pic="
+									+ encodeURIComponent(pic)
+									+ "&title="
+									+ encodeURIComponent(title.replace(/&nbsp;/g, " ")
+											.replace(/<br \/>/g, " ")) + "&url="
+									+ encodeURIComponent(url) + "&searchPic=false",
+							"_blank",
+							"height=500,width=600,top="
+									+ top
+									+ ",left="
+									+ left
+									+ ",toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no");
+		}
+	},'JSON');
+}
+
+// 分享到QQ空间
+function shareToQzone(id) {
+	var url = baseLink + "/lottery/checkLotteryStock";
+	$.get(url,{id:id},function(re) {
+		if(re.state){
+			url = baseLink + "/lottery/" + encodeURIComponent(id);
+			window.open(url);
+		}else{
+			var title = "蚂蚁短租送我5个彩票红包，分你一个，看谁先中500万，开抢~";
+			var url = baseLink + "/lottery/" + encodeURIComponent(id);
+			var summary = "蚂蚁短租是赶集网旗下专业的度假公寓预订平台，不论一家老小还是朋友几人一套房全部搞定，能洗衣，能做饭，出门在外享受家一般的舒适，价格比同等酒店便宜50%以上。 ";
+			var pic = "http://i1.mayi.com/gjfs08/M01/BB/A5/wKhzWFST0JX49Q1bAAAadhwOW-s950.jpg_110x110c.jpg";
+			window.open(
+					'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?title='
+							+ encodeURIComponent(title) + '&url='
+							+ encodeURIComponent(url) + '&summary='
+							+ encodeURIComponent(summary) + '&pics='
+							+ encodeURIComponent(pic)
+							+ "&searchPic=false", '_blank',
+					'scrollbars=no,width=650,height=450,left=' + left + ',top=' + top
+							+ ',status=no,resizable=yes');
+		}
+	},'JSON');
+}
+
+// 分享到微信
+function shareToWeixin(id) {
+	var url = baseLink + "/lottery/checkLotteryStock";
+	$.get(url,{id:id},function(re) {
+		if(re.state){
+			url = baseLink + "/lottery/" + encodeURIComponent(id);
+			window.open(url);
+		}else{
+			window.open(baseLink + "/lottery/shareWeixin?id="
+					+ encodeURIComponent(id));
+		}
+	},'JSON');
+}
+
+function showImg(id) {
+	$("#shareSmall" + id).show();
+}
+function hideImg(id) {
+	$("#shareSmall" + id).hide();
+}
+
+function skipShareSina(){
+	var id = $("#bookOrderId").val();
+	shareToSina(id);
+}
+
+function skipShareZone(){
+	var id = $("#bookOrderId").val();
+	shareToQzone(id);
+}
+
+function skipShareWeixin(){
+	var id = $("#bookOrderId").val();
+	shareToWeixin(id);
+}
+
+$(document).ready(function() {
+	$("#downloadApp").mouseover(function() {
+		$("#app").show();
+	}).mouseout(function() {
+		$("#app").hide();
+	});
+	
+	$("#downloadApp").click(function(){ 
+		window.open(baseLink + "/activity/app50");
+	});
+});

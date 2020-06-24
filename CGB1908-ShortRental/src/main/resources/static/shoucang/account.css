@@ -1,0 +1,272 @@
+@charset "utf-8";
+/* CSS Document */
+/* 个人中心 */
+.uploaddiv, .uploaddiv table {
+	margin: 15px auto;
+}
+
+input {
+	padding: 3px;
+}
+
+#Step2Container {
+	/*display:none;	*/
+	
+}
+
+#Canvas {
+	position: relative;
+	margin: 0 auto;
+	width: 284px;
+	height: 266px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.smallbig {
+	cursor: pointer;
+}
+
+#bar {
+	width: 211px;
+	height: 18px;
+	background-image: url("/resourcesWeb/images/account/track.gif");
+	background-repeat: no-repeat;
+	position: relative;
+}
+
+.child {
+	width: 11px;
+	height: 16px;
+	background-image: url("/resourcesWeb/images/account/grip.gif");
+	background-repeat: no-repeat;
+	left: 0;
+	top: 2px;
+	position: absolute;
+	left: 100px;
+}
+
+.imagePhoto {
+	border-width: 0px;
+	position: relative;
+}
+
+#IconContainer {
+	position: relative;
+	left: 0px;
+	top: -120px;
+}
+
+#IconContainer img {
+	FILTER: alpha(opacity = 60);
+	opacity: 0.6;
+	background-color: #ccc;
+}
+
+#ImageDragContainer {
+	border: 1px solid #ccc;
+	width: 120px;
+	height: 120px;
+	cursor: pointer;
+	position: relative;
+	top: 73px;
+	left: 82px;
+	overflow: hidden;
+	z-index: 1;
+}
+/* 房东新增字段 新增拒绝理由样式*/
+.infoTitle {
+	overflow: visible;
+}
+
+.tabCon {
+	overflow: visible;
+}
+
+.refuseto {
+	color: #f00;
+	display: inline-block;
+	font-size: 12px;
+}
+
+.refuseto:hover {
+	text-decoration: none;
+}
+
+.personLargeInput {
+	box-sizing: border-box;
+}
+
+.avatar-box {
+	overflow: visible;
+}
+
+.refuseReson {
+	padding: 10px;
+	background-color: #fff4d6;
+	color: #000;
+	position: absolute;
+	z-index: 22;
+	margin-right: 40px;
+	display: none;
+}
+
+.mgt060 {
+	margin-top: -60px;
+}
+
+input.value {
+	color: #ccc;
+}
+
+.introduce-textarea {
+	border: 1px solid #999;
+	width: 438px;
+	height: 150px;
+	resize: none;
+}
+
+.refResDetail {
+	width: 750px;
+	height: 100px;
+	position: absolute;
+	top: 20px;
+	left: 120px;
+	color: #f00;
+}
+
+.phcolor {
+	color: #999;
+}
+
+/*短信认证、删除确认框弹窗2016.6.13*/
+.MphoneV {
+	position: relative;
+}
+
+.MphoneV ul {
+	width: 258px;
+	margin: 0 auto 43px;
+}
+
+.MphoneV ul li {
+	margin-bottom: 17px;
+	height: 36px;
+}
+
+.MphoneV ul li .span1 {
+	border-top: 1px solid #c1bcbc;
+	border-left: 1px solid #c1bcbc;
+	border-bottom: 1px solid #c1bcbc;
+	width: 170px;
+	float: left;
+	height: 100%;
+	position: relative;
+	box-sizing: border-box;
+}
+
+.MphoneV ul li .span2 {
+	border: 1px solid #c1bcbc;
+	width: 87px;
+	float: left;
+	height: 100%;
+	box-sizing: border-box;
+}
+
+.checkPic, .checkMassenge {
+	width: 100%;
+	padding-left: 5px;
+	padding-right: 22px;
+	box-sizing: border-box;
+	line-height: 36px;
+}
+
+.icon_add_red, .icon_add_green {
+	width: 19px;
+	height: 19px;
+	display: inline-block;
+	background-image: url(/resourcesWeb/images/Pcenter/red_green_icon.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	right: 3px;
+	top: 8px;
+}
+
+.icon_add_red {
+	background-position: 0 0 !important;
+}
+
+.icon_add_green {
+	background-position: 0 -20px;
+}
+
+#imgCode {
+	font-family: Arial;
+	font-style: italic;
+	font-weight: bold;
+	color: #919191;
+	font-size: 22px;
+}
+
+.MphoneV ul li .on {
+	color: #22bb61 !important;
+	border: 1px solid #22bb61;
+	cursor: pointer;
+}
+
+.action_two {
+	width: 258px;
+	margin: 0 auto 20px;
+}
+
+.complete_success, .complete_cancel {
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.action_two .on {
+	background: #22bb61;
+}
+
+.vertifyAlert {
+	color: #f00;
+	position: absolute;
+	left: 90px;
+	bottom: 50px;
+}
+
+#btnSendCode {
+	color: #999;
+}
+
+.complete_cancel {
+	background: #bdbdbd;
+}
+
+.complete_success {
+	background: #22bb61;
+}
+
+.for_disable {
+	position: absolute;
+	width: 100%;
+	height: 40px;
+	top: 43px;
+	left: 0;
+	z-index: 8;
+	display: none;
+}
+i.code-i  {
+	display: inline-block;
+	border: 1px solid #999;
+	height: 17px;
+	line-height: 19px;
+	padding: 2px 4px;
+	border-left: none;
+	width: 32px;
+	cursor: default;
+}

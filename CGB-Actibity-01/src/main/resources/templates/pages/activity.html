@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<!--当在页面中需要使用bootstrap插件时,需要添加吐下两个js,但需要注意顺序 jQuery先引入  -->
+<script src="/jquery/jquery.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<!--假如要在JS中获取thyemeaf表达式中的数据script标签内部需要 th:inline="javascript" -->
+<script th:inline="javascript">
+	$(function(){//页面加载完成 以后执行
+		var aty=[[${aty}]];//基于JS中获取thyemeaf表达式中的内容
+		if(aty){
+			doUpdate(aty);
+		}	
+	})
+	function doUpdate(aty){
+		 $("#atyId").val(aty.id);
+		$("#titleId").val(aty.title);
+		$("#categoryId").val(aty.category);
+		$("#startTimeId").val(aty.startTime);
+		$("#endTimeId").val(aty.endTime);
+		$("#remarkId").text(aty.remark);
+		$('#myModal').modal('show');
+	}
+	function doShowAdd(){
+		 $("#atyId").val("");
+		$("#titleId").val("");
+		$("#categoryId").val("");
+		$("#startTimeId").val("");
+		$("#endTimeId").val("");
+		$("#remarkId").text("");
+		$('#myModal').modal('show');
+	}
+	function doFindDelete(id){
+		if(!confirm("是否确认删除"))return;
+		location.href="doFindDelete?id="+id;		
+	}
+	function doSaveActivity() {
+		//执行表单操作(基于js方式提交表单)
+		//关闭模态框
+		$('#myModal').modal('hide')
+		//提交数据
+		//根据id对表单校验后提交
+		$('#addform').submit();
+	}
+	function doUpdateActivity(id){
+		location.href="doFindById?id="+id
+	}
+</script>
+<style type="text/css">
+ul li {
+	list-style-type: none;
+}
+</style>
+
+<title>Insert title here</title>
+</head>
+<body>
+	<h1 class="text-center" style="color: red">------活动表单------</h1>
+	<div class="container">
+	<div>
+		<button type="button" class="btn btn-primary btn-lg"
+			onclick="javascript:location.href='doFindInsert'">跳转页面添加</button>
+			
+		<button type="button" class="btn btn-primary btn-lg"
+			data-toggle="modal" onclick="doShowAdd()">弹窗添加</button>
+	</div>
+	<!-- Button trigger modal -->
+	<table class="table">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>title</th>
+				<th>category</th>
+				<th>startTime</th>
+				<th>endTime</th>
+				<th>remark</th>
+				<th>state</th>
+				<th>createdTime</th>
+				<th>createdUser</th>
+				<th >Open</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="a:${list}">
+				<td th:text="${a.id}"></td>
+				<td th:text="${a.title}"></td>
+				<td th:text="${a.category}"></td>
+				<td th:text="${#dates.format(a.startTime,'yyyy/MM/dd HH:mm')}"></td>
+				<td th:text="${#dates.format(a.endTime,'yyyy/MM/dd HH:mm')}"></td>
+				<td th:text="${a.remark}"></td>
+				<td th:text="${a.state}"></td>
+				<td th:text="${#dates.format(a.createdTime,'yyyy/MM/dd HH:mm')}"></td>
+				<td th:text="${a.createdUser}"></td>
+				<td><button  class="btn btn-danger" th:onclick="doFindDelete([[${a.id}]])">删除</button>
+					<button  class="btn btn-warning btn-sm" th:onclick="doUpdateActivity([[${a.id}]])">更新</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">添加页面</h4>
+				</div>
+				<div class="modal-body">
+					<form id="addform" class="form-horizontal" action="doSaveActivity"
+						method="post">
+						<input type="hidden" name="id" id="atyId">
+						<div class="form-group">
+							<label for="titleId" class="col-sm-2 control-label">标题</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="title"
+									id="titleId" placeholder="title">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="categoryId" class="col-sm-2 control-label">类别</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="category"
+									id="categoryId" placeholder="category">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="startTimeId" class="col-sm-2 control-label">开始时间</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="startTime"
+									id="startTimeId" placeholder="yyyy/MM/dd">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="endTimeId" class="col-sm-2 control-label">结束时间</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" name="endTime"
+									id="endTimeId" placeholder="yyyy/MM/dd">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="remarkId" class="col-sm-2 control-label">活动简介</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" id="remarkId" name="remark"
+									placeholder="remark"></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-primary" onclick="doSaveActivity()">提交并关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

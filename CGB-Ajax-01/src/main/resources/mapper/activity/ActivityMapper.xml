@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cy.pj.activity.dao.ActivityDao">
+   <!-- useGeneratedKeys 表示使用insert操作的自增主键值
+        keyProperty 表示将自增主键值赋值给参数对象的id属性 -->
+   <insert id="insertActivity"
+           parameterType="com.cy.pj.activity.pojo.Activity"
+           useGeneratedKeys="true"
+           keyProperty="id">
+      insert into tb_activity
+      (title,category,startTime,endTime,state,remark,createdTime,createdUser)
+      values
+      (#{title},#{category},#{startTime},#{endTime},#{state},#{remark},#{createdTime},#{createdUser})
+   </insert>
+   <update id="updateActivity">
+      update tb_activity
+      set title=#{title},
+          category=#{category},
+          startTime=#{startTime},
+          endTime=#{endTime},
+          remark=#{remark}
+      where id=#{id}
+   </update>
+</mapper>
+
+
